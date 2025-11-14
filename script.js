@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentSlide = 0;
 
     function showSlide(index) {
-        // Oculta todas las diapositivas
+        // Asegura que las imágenes se superpongan y cambien de opacidad
         slides.forEach((slide, i) => {
             slide.style.opacity = '0';
             slide.style.zIndex = '1';
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Muestra la diapositiva actual
         slides[index].style.opacity = '1';
-        slides[index].style.zIndex = '5'; // Asegura que esté por encima de las otras
+        slides[index].style.zIndex = '5'; 
 
         // Actualiza el índice
         currentSlide = index;
@@ -25,21 +25,23 @@ document.addEventListener('DOMContentLoaded', function () {
         showSlide(newIndex);
     }
 
-    // Inicializar el carrusel
+    // Inicializar el carrusel y establecer el temporizador
     if (slides.length > 0) {
-        showSlide(0); // Mostrar la primera diapositiva al cargar
-        setInterval(nextSlide, 5000); // Cambia la diapositiva cada 5 segundos (5000ms)
+        showSlide(0); 
+        // Cambia la diapositiva cada 5 segundos
+        setInterval(nextSlide, 5000); 
     }
 
 
     /* ========================================= */
-    /* 2. FUNCIONALIDAD DEL MENÚ MÓVIL (TOGGLE) - CORREGIDO */
+    /* 2. FUNCIONALIDAD DEL MENÚ MÓVIL (CORREGIDO) */
     /* ========================================= */
     const menuToggle = document.getElementById('menu-toggle');
     const nav = document.querySelector('.nav');
 
     menuToggle.addEventListener('click', () => {
-        // SOLAMENTE alternamos la clase 'active'
+        // La clave es SOLO alternar la clase 'active'. 
+        // El CSS debe hacer el trabajo de mostrar/ocultar el menú.
         nav.classList.toggle('active');
 
         // Cambia el ícono de la hamburguesa a X (y viceversa)
@@ -50,14 +52,24 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Ocultar el menú móvil al hacer clic en un enlace (solo en modo móvil)
+    // Ocultar el menú móvil al hacer clic en un enlace (para navegación interna)
     document.querySelectorAll('.nav a').forEach(link => {
         link.addEventListener('click', () => {
+            // Solo si el menú está activo, lo cerramos
             if (nav.classList.contains('active')) {
                 nav.classList.remove('active');
                 menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
             }
         });
+    });
+    
+    // Si la pantalla es grande y el menú está "activo" (por haber cambiado de móvil a escritorio), 
+    // asegura que la clase 'active' se elimine para que los estilos de escritorio dominen.
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 992) {
+            nav.classList.remove('active');
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        }
     });
 });
 
