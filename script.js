@@ -2,11 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
     const nav = document.querySelector('.nav');
 
-    // --- LÓGICA DEL MENÚ MÓVIL ---
+    // --- LÓGICA DEL MENÚ MÓVIL (Botón de Hamburguesa) ---
     menuToggle.addEventListener('click', () => {
         nav.classList.toggle('open');
     });
 
+    // Cierra el menú automáticamente al hacer clic en un enlace de navegación
     document.querySelectorAll('.nav a').forEach(link => {
         link.addEventListener('click', () => {
             if (nav.classList.contains('open')) {
@@ -18,8 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- LÓGICA DEL CARRUSEL DE FONDO ---
     const slides = document.querySelectorAll('.slide-image');
     let currentSlide = 0;
-    // Tiempo de transición de 1.5s (CSS) + 4.5s de pausa = 6 segundos total
-    const intervalTime = 6000;
+    const intervalTime = 6000; // Cambia la imagen cada 6 segundos
 
     function showSlide(index) {
         if (slides.length === 0) return;
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Inicializar el carrusel
     if (slides.length > 0) {
-        showSlide(currentSlide);
+        showSlide(currentSlide); // Muestra la primera imagen al cargar
         // Configurar el temporizador para la rotación automática
         setInterval(nextSlide, intervalTime);
     }
