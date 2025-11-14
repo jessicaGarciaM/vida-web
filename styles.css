@@ -1,21 +1,28 @@
-/* VARIABLES y RESET BÁSICO */
+/* ========================================= */
+/* 1. VARIABLES GLOBALES Y RESET */
+/* ========================================= */
 :root {
-    --primary-color: #1a1a2e;
-    --accent-color: #282376;
-    --text-dark: #333;
-    --text-light: #f4f4f4;
-    --bg-light: #ffffff;
-    --bg-gray: #f7f7f7;
+    --primary-color: #252323;
+    /* Azul Oscuro Profundo (Deep Indigo) */
+    --secondary-color: #706b58;
+    /* Nuevo: Marrón Profundo/Deep Ruby (Para CTAs y Énfasis) */
+    --accent-color: #c2bda1;
+    /* Nuevo: Dorado Antiguo/Soft Mustard (Para Subrayados y Iconos) */
+    --bg-light: #f5f5f5;
+    /* Gris muy claro para secciones alternas */
+    --bg-dark: #121212;
+    /* Negro muy oscuro para footer */
+    --text-dark: #333333;
+    --text-light: #ffffff;
     --font-family: 'Montserrat', sans-serif;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* Importar tipografía moderna (Montserrat) */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
-
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
@@ -23,378 +30,611 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
     background-color: var(--bg-light);
+    scroll-behavior: smooth;
 }
 
-/* HEADER Y NAVEGACIÓN */
+/* ========================================= */
+/* 2. HEADER Y NAVEGACIÓN (Sticky/Impresionante) */
+/* ========================================= */
 .header {
-    background-color: var(--bg-light);
-    color: var(--primary-color);
-    padding: 15px 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background-color: var(--text-light);
+    box-shadow: var(--shadow-light);
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.08);
-    border-bottom: 2px solid var(--bg-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    transition: background-color 0.3s ease;
 }
 
 .logo {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     font-weight: 800;
     color: var(--primary-color);
+    letter-spacing: 2px;
 }
 
+/* Estilos de navegación normal: Línea sutil */
 .nav a {
-    color: var(--primary-color);
     text-decoration: none;
-    margin-left: 25px;
-    font-weight: 600;
-    transition: color 0.3s;
-}
-
-.nav a:hover {
-    color: var(--accent-color);
-}
-
-/* BOTONES GLOBALES (CTAs) */
-.cta-button {
-    background-color: var(--accent-color);
-    color: var(--text-light);
-    padding: 10px 18px;
+    color: var(--primary-color);
+    /* Azul oscuro fijo */
+    font-weight: 700;
+    margin-left: 20px;
+    padding: 8px 15px;
     border-radius: 5px;
-    font-weight: 600;
-    transition: background-color 0.3s;
+    position: relative;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+}
+
+/* EFECTO HOVER IMPRESIONANTE (Estilo Botón Sofisticado) */
+.nav a:hover {
+    color: var(--text-light);
+    /* Color del texto se vuelve blanco */
+    background-color: var(--secondary-color);
+    /* Fondo Deep Ruby */
+    transform: translateY(-2px);
+    /* Pequeño levantamiento */
+    box-shadow: 0 4px 10px rgba(136, 14, 79, 0.4);
+    /* Sombra ajustada al nuevo color */
+}
+
+/* Asegura que el botón de DONAR mantenga su estilo distintivo */
+.cta-button {
+    background-color: var(--secondary-color) !important;
+    color: var(--text-light) !important;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 700 !important;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(136, 14, 79, 0.4);
+    margin-left: 30px;
 }
 
 .cta-button:hover {
-    background-color: #c9354e;
-}
-
-.btn {
-    display: inline-block;
-    padding: 12px 28px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    margin-top: 25px;
-    transition: transform 0.2s, box-shadow 0.3s;
-    text-transform: uppercase;
-    font-size: 0.95rem;
-    letter-spacing: 0.5px;
-}
-
-.btn:hover {
+    background-color: #6a003f !important;
+    /* Tono más oscuro de Deep Ruby */
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 15px rgba(136, 14, 79, 0.6);
 }
 
-/* ESTILOS DE BOTONES ESPECÍFICOS */
-.primary-btn {
-    background-color: var(--accent-color);
+.menu-toggle {
+    display: none;
+}
+
+/* ========================================= */
+/* 3. HERO Y CARRUSEL */
+/* ========================================= */
+.hero {
+    height: 85vh;
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.carousel-slide {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    /* La animación debe ser controlada por JavaScript */
+}
+
+.slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+    filter: brightness(0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.slide-image:first-child {
+    opacity: 1;
+}
+
+.hero-overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
     color: var(--text-light);
-    border: 2px solid var(--accent-color);
-    box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
-    margin-top: 40px;
+    z-index: 10;
+}
+
+.hero-content h1 {
+    font-size: 4.5rem;
+    font-weight: 900;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
+    text-transform: uppercase;
+}
+
+/* Estilos de botones generales */
+.btn {
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    display: inline-block;
+    border: 2px solid transparent;
+    margin: 10px 10px;
+}
+
+.primary-btn {
+    background-color: var(--secondary-color);
+    /* Deep Ruby */
+    color: var(--text-light);
+    border-color: var(--secondary-color);
 }
 
 .primary-btn:hover {
-    background-color: #c9354e;
-    border-color: #c9354e;
+    background-color: #6a003f;
+    /* Tono más oscuro de Deep Ruby */
+    transform: translateY(-2px);
 }
 
 .secondary-btn {
     background-color: transparent;
     color: var(--text-light);
-    border: 2px solid var(--text-light);
+    border-color: var(--text-light);
 }
 
 .secondary-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
 }
 
 .tertiary-btn {
     background-color: var(--primary-color);
     color: var(--text-light);
+    padding: 10px 25px;
+    border-radius: 5px;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
 }
 
 .tertiary-btn:hover {
-    background-color: var(--accent-color);
+    background-color: #151a5c;
 }
 
-
-/* HERO SECTION (Página Principal) */
-.hero {
-    height: 130vh;
-    /* Máxima altura para dar espacio a las imágenes verticales */
-    min-height: 700px;
-    padding: 80px 5% 50px;
-    background: none;
-    background-color: var(--primary-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    color: var(--text-light);
-    overflow: hidden;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 3;
-    max-width: 1000px;
-    width: 100%;
-}
-
-.hero-content h1 {
-    font-size: 4rem;
-    margin-bottom: 0px;
-    font-weight: 800;
-}
-
-/* --- ESTILOS PARA EL CARRUSEL DE IMÁGENES DE FONDO --- */
-.carousel-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-.carousel-slide {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.slide-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-
-    /* ***** AJUSTES CLAVE PARA IMÁGENES VERTICALES ***** */
-    object-fit: contain;
-    /* Muestra la imagen completa sin recortar. Genera barras a los lados. */
-    object-position: center top;
-    /* Asegura que la parte superior de la imagen (donde suele estar el texto) sea visible. */
-    background-color: var(--primary-color);
-    /* Rellena las barras laterales con el color oscuro del fondo. */
-}
-
-.slide-image.active {
-    opacity: 1;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.65);
-    /* Oscurece el carrusel para que el texto resalte */
-    z-index: 2;
-}
-
-
-/* CONTENEDOR DE VIDEO (Solo para la sección 'Mensajes') */
-.video-container {
-    max-width: 800px;
-    margin: 0 auto 30px;
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-/* SECCIONES ESTANDAR */
+/* ========================================= */
+/* 4. SECCIONES GENERALES (Títulos Impresionantes) */
+/* ========================================= */
 .section {
     padding: 80px 5%;
     text-align: center;
 }
 
+/* ESTILOS DE TÍTULOS IMPRESIONANTES */
 .section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 50px;
-    color: var(--primary-color);
+    font-size: 3rem;
     font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
-/* GRID DE CTAs (Llamados a la Acción) */
-.cta-grid {
-    display: flex;
-    justify-content: space-around;
+/* Subrayado de impacto */
+.section h2:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 5px;
+    background: var(--accent-color);
+    /* Antique Gold */
+    margin: 10px auto 0;
+    border-radius: 5px;
+    transform: scaleX(0.8);
+    transition: transform 0.3s ease;
+}
+
+.section h2:hover:after {
+    transform: scaleX(1);
+    background: var(--secondary-color);
+    /* Deep Ruby en hover */
+}
+
+.section-description {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilo para los títulos de las tarjetas */
+.event-card h3,
+.cta-item h3,
+.point-item h4 {
+    color: var(--secondary-color);
+    /* Utiliza Deep Ruby para mayor impacto */
+    font-weight: 700;
+}
+
+
+/* ========================================= */
+/* 5. MENSAJES */
+/* ========================================= */
+#mensajes {
+    background-color: var(--text-light);
+}
+
+.video-container {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 450px;
+}
+
+/* ========================================= */
+/* 6. EVENTOS (Cards Impresionantes) */
+/* ========================================= */
+.events-section {
+    background-color: var(--bg-light);
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
-    background-color: var(--bg-light);
-    padding: 60px 5%;
 }
 
-.cta-item {
-    padding: 35px;
-    background-color: var(--bg-light);
-    border-radius: 8px;
-    border: 1px solid var(--bg-gray);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    flex: 1;
-    transition: transform 0.3s, box-shadow 0.3s;
+.event-card {
+    background-color: var(--text-light);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-bottom: 5px solid var(--accent-color);
+    /* Antique Gold */
 }
 
-.cta-item:hover {
+.event-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-medium);
 }
 
-.cta-item i {
-    font-size: 3.5rem;
-    color: var(--accent-color);
+.event-card i {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    /* Deep Ruby */
+    margin-bottom: 15px;
+}
+
+.event-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.event-date {
+    font-weight: 600;
+    color: var(--secondary-color);
+    /* Deep Ruby */
+    margin-bottom: 5px;
+}
+
+.event-location {
+    color: #666;
     margin-bottom: 20px;
 }
 
-.cta-item h3 {
+.small-btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+}
+
+/* ========================================= */
+/* 7. MISIÓN (Profesional) */
+/* ========================================= */
+.mission-section {
+    background-color: var(--text-light);
+    padding: 80px 5%;
+    text-align: center;
+}
+
+.mission-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.mission-content p {
+    font-size: 1.3rem;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.mission-points {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.point-item {
+    flex: 1;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.point-item:hover {
+    background-color: var(--bg-light);
+    transform: translateY(-3px);
+}
+
+.point-item i {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    /* Deep Ruby */
+    margin-bottom: 15px;
+}
+
+.point-item h4 {
     font-size: 1.4rem;
     margin-bottom: 10px;
     color: var(--primary-color);
     font-weight: 700;
 }
 
-.cta-item p {
-    color: #666;
+/* ========================================= */
+/* 8. CTA GRID (Sección de Llamada a la Acción) */
+/* ========================================= */
+.cta-grid {
+    background-color: var(--primary-color);
+    /* Deep Indigo */
+    color: var(--text-light);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.cta-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 12px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.cta-item i {
+    font-size: 3rem;
+    color: var(--accent-color);
+    /* Antique Gold */
     margin-bottom: 15px;
+}
+
+.cta-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.cta-item p {
+    margin-bottom: 20px;
 }
 
 .cta-item a {
     color: var(--accent-color);
-    font-weight: 600;
+    /* Antique Gold */
     text-decoration: none;
-    display: inline-block;
-    padding-bottom: 2px;
+    font-weight: 600;
     border-bottom: 2px solid var(--accent-color);
-    transition: color 0.3s, border-color 0.3s;
+    padding-bottom: 2px;
+    transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 .cta-item a:hover {
-    color: var(--primary-color);
-    border-bottom-color: var(--primary-color);
+    color: var(--text-light);
+    border-color: var(--text-light);
 }
 
-
-/* FOOTER */
+/* ========================================= */
+/* 9. FOOTER Y MODALES */
+/* ========================================= */
 .footer {
-    background-color: var(--primary-color);
+    background-color: var(--bg-dark);
     color: var(--text-light);
     padding: 40px 5%;
     text-align: center;
 }
 
-.footer-links a,
-.social-links a {
-    color: var(--text-light);
-    margin: 0 15px;
-    text-decoration: none;
-    transition: color 0.3s;
-    font-weight: 600;
-}
-
-.footer-links {
-    margin-bottom: 20px;
-}
-
-.social-links {
+.social-links a i {
     font-size: 1.8rem;
-    margin-bottom: 20px;
+    color: var(--text-light);
+    margin: 0 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.social-links a:hover {
-    color: var(--accent-color);
+.social-links a:hover i {
+    color: var(--secondary-color);
+    /* Deep Ruby */
+    transform: scale(1.1);
+}
+
+.footer-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.footer-links a:hover {
+    opacity: 1;
 }
 
 .footer p {
+    margin-top: 10px;
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: #aaa;
 }
 
-/* MOBILE Y RESPONSIVE DESIGN */
-.menu-toggle {
+/* Estilo para el contenido de los modales */
+.modal {
     display: none;
-    background: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 10% auto;
+    padding: 40px;
     border: none;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: var(--shadow-medium);
+    animation: fadeIn 0.3s;
+}
+
+.modal-content h3 {
     color: var(--primary-color);
     font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--accent-color);
+    /* Antique Gold */
+    padding-bottom: 10px;
+}
+
+.modal-content ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.modal-content ul li {
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+.modal-content ul li i {
+    color: var(--secondary-color);
+    /* Deep Ruby */
+    margin-right: 10px;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--secondary-color);
+    /* Deep Ruby */
+    text-decoration: none;
     cursor: pointer;
 }
 
-/* Media Query para Tabletas y Móviles */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================= */
+/* 10. RESPONSIVE (Móviles) */
+/* ========================================= */
 @media (max-width: 992px) {
-    .nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        text-align: center;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background-color: var(--bg-light);
-        border-top: 1px solid var(--bg-gray);
-        padding: 20px 0;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
 
-    .nav a {
-        color: var(--primary-color);
-        margin: 10px 0;
-        font-size: 1.1rem;
-    }
-
-    .nav.open {
-        display: flex;
-    }
-
+    /* Muestra el botón de menú en móviles */
     .menu-toggle {
         display: block;
+        background: none;
+        border: none;
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    /* Oculta la navegación normal en móviles */
+    .nav {
+        display: none;
     }
 
     .hero-content h1 {
-        font-size: 2.8rem;
+        font-size: 2.5rem;
     }
 
-    .hero {
-        height: 125vh;
-        min-height: 950px;
+    .section h2 {
+        font-size: 2rem;
     }
 
-    .cta-grid {
+    .video-container iframe {
+        height: 300px;
+    }
+
+    /* Vuelve a la línea los puntos de misión */
+    .mission-points {
         flex-direction: column;
-        padding: 40px 5%;
-    }
-
-    .cta-item {
-        margin-bottom: 20px;
-    }
-
-    .video-container {
-        max-width: 100%;
     }
 }
-
-}
-
-
