@@ -1,19 +1,16 @@
 /* VARIABLES y RESET BÁSICO */
 :root {
-    /* Colores inspirados en Más Vida: Azul/gris oscuro y acento vibrante */
     --primary-color: #1a1a2e;
-    /* Azul/Gris muy oscuro (casi negro) */
-    --accent-color: #2f226c;
-    /* Rojo/Coral para acentos y DONAR */
+    --accent-color: #282376;
     --text-dark: #333;
     --text-light: #f4f4f4;
     --bg-light: #ffffff;
     --bg-gray: #f7f7f7;
     --font-family: 'Montserrat', sans-serif;
-    /* Tipografía moderna y clara */
 }
 
-/* Importar tipografía moderna (Montserrat) - YA DEBE ESTAR EN EL HTML */
+/* Importar tipografía moderna (Montserrat) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
 
 * {
     margin: 0;
@@ -72,7 +69,7 @@ body {
 }
 
 .cta-button:hover {
-    background-color: #2f226c;
+    background-color: #c9354e;
 }
 
 .btn {
@@ -91,6 +88,20 @@ body {
 .btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ESTILOS DE BOTONES ESPECÍFICOS */
+.primary-btn {
+    background-color: var(--accent-color);
+    color: var(--text-light);
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+    margin-top: 40px;
+}
+
+.primary-btn:hover {
+    background-color: #c9354e;
+    border-color: #c9354e;
 }
 
 .secondary-btn {
@@ -113,14 +124,14 @@ body {
 }
 
 
-/* HERO SECTION (Video en Vivo) */
+/* HERO SECTION (Página Principal) */
 .hero {
-    height: auto;
+    height: 130vh;
+    /* Máxima altura para dar espacio a las imágenes verticales */
+    min-height: 700px;
     padding: 80px 5% 50px;
     background: none;
-    /* Se elimina el background CSS para usar el carrusel */
     background-color: var(--primary-color);
-    /* Color de fallback si el carrusel falla */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -133,14 +144,13 @@ body {
 .hero-content {
     position: relative;
     z-index: 3;
-    /* Más alto que el overlay */
     max-width: 1000px;
     width: 100%;
 }
 
 .hero-content h1 {
     font-size: 4rem;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
     font-weight: 800;
 }
 
@@ -152,7 +162,6 @@ body {
     width: 100%;
     height: 100%;
     z-index: 1;
-    /* Detrás del overlay y el contenido */
 }
 
 .carousel-slide {
@@ -168,19 +177,21 @@ body {
     width: 100%;
     height: 100%;
     opacity: 0;
-    /* Por defecto, todas las imágenes están ocultas */
     transition: opacity 1.5s ease-in-out;
-    /* Transición suave entre imágenes */
-    object-fit: cover;
-    /* Asegura que la imagen cubra todo el fondo */
+
+    /* ***** AJUSTES CLAVE PARA IMÁGENES VERTICALES ***** */
+    object-fit: contain;
+    /* Muestra la imagen completa sin recortar. Genera barras a los lados. */
+    object-position: center top;
+    /* Asegura que la parte superior de la imagen (donde suele estar el texto) sea visible. */
+    background-color: var(--primary-color);
+    /* Rellena las barras laterales con el color oscuro del fondo. */
 }
 
 .slide-image.active {
     opacity: 1;
-    /* Muestra la imagen activa */
 }
 
-/* El overlay debe estar por encima de las imágenes */
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -188,24 +199,21 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.65);
-    /* Oscurece el video para que el texto resalte */
+    /* Oscurece el carrusel para que el texto resalte */
     z-index: 2;
-    /* Por encima del carrusel (z-index: 1) */
 }
 
 
-/* CONTENEDOR DE VIDEO (General) */
+/* CONTENEDOR DE VIDEO (Solo para la sección 'Mensajes') */
 .video-container {
     max-width: 800px;
     margin: 0 auto 30px;
     position: relative;
     padding-bottom: 56.25%;
-    /* Relación de aspecto 16:9 */
     height: 0;
     overflow: hidden;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    /* Sombra intensa para resaltar */
 }
 
 .video-container iframe {
@@ -368,6 +376,11 @@ body {
         font-size: 2.8rem;
     }
 
+    .hero {
+        height: 80vh;
+        min-height: 550px;
+    }
+
     .cta-grid {
         flex-direction: column;
         padding: 40px 5%;
@@ -377,8 +390,9 @@ body {
         margin-bottom: 20px;
     }
 
-    /* Ajuste para el video en móviles */
     .video-container {
         max-width: 100%;
     }
+}
+
 }
