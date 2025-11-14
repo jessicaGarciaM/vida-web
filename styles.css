@@ -101,12 +101,22 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+.tertiary-btn { /* Para el botón de Mensajes Anteriores */
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+.tertiary-btn:hover {
+    background-color: var(--accent-color);
+}
+
+
 /* HERO SECTION (Video en Vivo) */
 .hero {
     height: auto; 
     padding: 80px 5% 50px;
     /* Usa una imagen de fondo de alta calidad para este estilo */
     background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('hero-bg-dark.jpg') center/cover no-repeat; 
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -118,22 +128,22 @@ body {
 .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 1000px; /* Ancho cómodo para el contenido central */
+    max-width: 1000px; 
     width: 100%;
 }
 
 .hero-content h1 {
-    font-size: 4rem; /* Título grande y prominente */
+    font-size: 4rem; 
     margin-bottom: 30px;
     font-weight: 800; 
 }
 
-/* CONTENEDOR DE VIDEO */
+/* CONTENEDOR DE VIDEO (General) */
 .video-container {
     max-width: 800px;
     margin: 0 auto 30px;
     position: relative;
-    padding-bottom: 56.25%; 
+    padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
     height: 0;
     overflow: hidden;
     border-radius: 12px;
@@ -168,7 +178,7 @@ body {
     display: flex;
     justify-content: space-around;
     gap: 30px;
-    background-color: var(--bg-light); /* Fondo blanco */
+    background-color: var(--bg-light); 
     padding: 60px 5%;
 }
 
@@ -176,7 +186,7 @@ body {
     padding: 35px;
     background-color: var(--bg-light);
     border-radius: 8px;
-    border: 1px solid var(--bg-gray); /* Borde sutil */
+    border: 1px solid var(--bg-gray); 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     flex: 1;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -189,7 +199,7 @@ body {
 
 .cta-item i {
     font-size: 3.5rem;
-    color: var(--accent-color); /* Íconos con color de acento */
+    color: var(--accent-color); 
     margin-bottom: 20px;
 }
 
@@ -306,5 +316,10 @@ body {
 
     .cta-item {
         margin-bottom: 20px;
+    }
+    
+    /* Ajuste para el video en móviles */
+    .video-container {
+        max-width: 100%;
     }
 }
