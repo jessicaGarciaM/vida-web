@@ -18,14 +18,18 @@
             <a href="#inicio">Inicio</a>
             <a href="#mensajes">Mensajes</a>
             <a href="#eventos">Eventos</a>
+            <a href="#mision">Misión</a>
             <a href="#soy-nuevo">Soy Nuevo</a>
+            <a href="#InstitutoVida">Instituto biblico Vida</a>
+            <a href="#Eltren">El tren de la salvación</a>
+            <a href="#Ministerios">Ministerios</a>
+            <a href="#Americanos">Misioneros americanos</a>
             <a href="#donar" class="cta-button">DONAR</a>
         </nav>
         <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
     </header>
 
     <section id="inicio" class="hero">
-
         <div class="carousel-container">
             <div class="carousel-slide">
                 <img src="Captura de pantalla 2025-11-14 013526.jpg" class="slide-image">
@@ -34,9 +38,6 @@
                 <img src="537241085_1174701238016745_2982462451560072884_n.jpg" class="slide-image">
                 <img src="538226879_1174701398016729_8962635426443478501_n.jpg" class="slide-image">
                 <img src="534944430_1169235165230019_2657693387854067291_n" .jpg" class="slide-image">
-
-
-
             </div>
         </div>
 
@@ -62,9 +63,96 @@
                 allowfullscreen referrerpolicy="strict-origin-when-cross-origin">
             </iframe>
         </div>
-        <a href="#" class="btn tertiary-btn">Ver toda la biblioteca de Mensajes</a>
+        <a href="https://www.youtube.com/@IglesiaVidaGuadalajara/streams" class="btn tertiary-btn" target="_blank"
+            rel="noopener noreferrer">
+            Ver toda la biblioteca de Mensajes
+        </a>
     </section>
 
+    <section id="eventos" class="section events-section">
+        <div class="section-content">
+            <h2>Próximos Eventos</h2>
+            <p class="section-description">
+                Únete a nosotros para nuestros eventos especiales. ¡Hay algo para todos!
+            </p>
+
+            <div class="events-grid">
+                <div class="event-card">
+                    <i class="fas fa-calendar-day"></i>
+                    <h3>Actividad especial para jovenes</h3>
+                    <p class="event-date">Sabado, 22 de Noviembre - 6:00 PM</p>
+                    <p class="event-location">Auditorio Principal</p>
+                    <a href="#" class="btn primary-btn small-btn">Regístrate</a>
+                </div>
+
+                <div class="event-card">
+                    <i class="fas fa-child"></i>
+                    <h3>Vive + </h3>
+                    <p class="event-date">Martes, 18 de Noviembre - 7:00 pm</p>
+                    <p class="event-location">Auditorio Principal</p>
+                    <button onclick="openModal('modal-vive-mas')" class="btn primary-btn small-btn">Ver
+                        Detalles</button>
+                </div>
+
+                <div class="event-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Velada de oración</h3>
+                    <p class="event-date">Viernes, 28 de Noviembre - 8:00 - 11:00 p.m</p>
+                    <p class="event-location">Salón 3</p>
+                    <button onclick="openModal('modal-velada-oracion')" class="btn primary-btn small-btn">Ver
+                        Detalles</button>
+                </div>
+
+                <div class="event-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Viaje misionero Wixariatári con los niños Huicholes</h3>
+                    <p class="event-date">Del 13 al 17 de enero</p>
+                    <p class="event-location">Peña colorada</p>
+                    <button onclick="openModal('modal-viaje-misionero')" class="btn primary-btn small-btn">Ver
+                        Detalles</button>
+                </div>
+
+                <div class="event-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Cena de matrimonios</h3>
+                    <p class="event-date">Sabado, 6 de diciembre 6:30 p.m</p>
+                    <p class="event-location">Peña colorada</p>
+                    <button onclick="openModal('modal-cena-matrimonios')" class="btn primary-btn small-btn">Ver
+                        Detalles</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mision" class="section mission-section">
+        <h2>Nuestra Misión</h2>
+        <div class="mission-content">
+            <p>
+                <strong>Nuestra misión es alcanzar a cuantas más personas con el mensaje de Jesús, para que lleguen a
+                    ser discípulos comprometidos con el Señor en amor.</strong>
+            </p>
+
+            <div class="mission-points">
+                <div class="point-item">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h4>Amar a Dios</h4>
+                    <p>A través de la alabanza, la oración y la obediencia a Su Palabra.</p>
+                </div>
+                <div class="point-item">
+                    <i class="fas fa-users"></i>
+                    <h4>Amar al Prójimo</h4>
+                    <p>Sirviendo con generosidad y compartiendo el mensaje de esperanza en acción.</p>
+                </div>
+                <div class="point-item">
+                    <i class="fas fa-leaf"></i>
+                    <h4>Hacer Discípulos</h4>
+                    <p>Equipando a los creyentes para que maduren y reproduzcan el carácter de Cristo.</p>
+                </div>
+            </div>
+
+            <a href="#soy-nuevo" class="btn tertiary-btn">Conoce Nuestra Historia Completa</a>
+        </div>
+    </section>
     <section class="cta-grid section">
         <div class="cta-item">
             <i class="fas fa-map-marker-alt"></i>
@@ -110,8 +198,14 @@
         <p>© 2025 Vida GDL - Todos los derechos reservados.</p>
     </footer>
 
+    <div id="modal-vive-mas" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-vive-mas')">×</span>
+
+
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 
 </html>
-
