@@ -377,8 +377,8 @@ body {
     }
 
     .hero {
-        height: 85vh;
-        min-height: 650px;
+        height: 125vh;
+        min-height: 950px;
     }
 
     .cta-grid {
@@ -396,4 +396,5 @@ body {
 }
 
 }
+
 
