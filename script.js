@@ -33,42 +33,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     /* ========================================= */
-    /* 2. FUNCIONALIDAD DEL MENÚ MÓVIL (TOGGLE) */
+    /* 2. FUNCIONALIDAD DEL MENÚ MÓVIL (TOGGLE) - CORREGIDO */
     /* ========================================= */
     const menuToggle = document.getElementById('menu-toggle');
     const nav = document.querySelector('.nav');
 
     menuToggle.addEventListener('click', () => {
-        // Alterna la clase 'active' para controlar la visibilidad y el estilo de la navegación
+        // SOLAMENTE alternamos la clase 'active'
         nav.classList.toggle('active');
 
         // Cambia el ícono de la hamburguesa a X (y viceversa)
         if (nav.classList.contains('active')) {
             menuToggle.innerHTML = '<i class="fas fa-times"></i>'; // Icono de cerrar (X)
-            // Aplica estilos de menú abierto para móvil (se define en el CSS)
-            nav.style.display = 'flex';
-            nav.style.flexDirection = 'column';
-            nav.style.position = 'absolute';
-            nav.style.top = '70px'; // Debajo del header
-            nav.style.left = '0';
-            nav.style.width = '100%';
-            nav.style.backgroundColor = 'var(--text-light)'; // Fondo blanco
-            nav.style.boxShadow = 'var(--shadow-medium)';
-            nav.style.padding = '10px 0';
         } else {
             menuToggle.innerHTML = '<i class="fas fa-bars"></i>'; // Icono de hamburguesa
-            nav.style.display = 'none';
         }
     });
 
     // Ocultar el menú móvil al hacer clic en un enlace (solo en modo móvil)
     document.querySelectorAll('.nav a').forEach(link => {
         link.addEventListener('click', () => {
-            // Si el menú está activo (modo móvil), lo oculta después de hacer clic
             if (nav.classList.contains('active')) {
                 nav.classList.remove('active');
                 menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                nav.style.display = 'none';
             }
         });
     });
@@ -101,6 +88,3 @@ window.onclick = function (event) {
         event.target.style.display = 'none';
     }
 }
-
-// Nota: Debes añadir el contenido completo y los cierres de cada modal
-// en tu archivo HTML para que esta funcionalidad trabaje completamente.
