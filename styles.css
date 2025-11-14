@@ -602,40 +602,61 @@ body {
 }
 
 /* ========================================= */
-/* 10. RESPONSIVE (Móviles) */
+/* 10. RESPONSIVE (Móviles) - CORRECCIÓN DEFINITIVA DE DISPLAY */
 /* ========================================= */
 @media (max-width: 992px) {
-
-    /* Muestra el botón de menú en móviles */
+    /* 1. Muestra el botón de hamburguesa y oculta el menú de escritorio */
     .menu-toggle {
-        display: block;
-        background: none;
-        border: none;
-        color: var(--primary-color);
-        font-size: 1.5rem;
-        cursor: pointer;
+        display: block; /* MUESTRA el botón de hamburguesa en móvil */
     }
-
-    /* Oculta la navegación normal en móviles */
+    
+    /* 2. Oculta el menú por defecto, forzando la anulación de estilos de escritorio */
     .nav {
-        display: none;
+        display: none !important; /* CLAVE: Oculta el menú */
+        flex-direction: column; 
+        position: absolute;
+        top: 70px; 
+        left: 0;
+        width: 100%;
+        background-color: var(--text-light, white); /* Usar variable o fallback */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 999; 
+        height: auto; /* Permite que la altura se ajuste al contenido */
+        overflow-y: auto; /* Permite desplazamiento si hay muchos enlaces */
     }
 
-    .hero-content h1 {
-        font-size: 2.5rem;
+    /* 3. Muestra el menú cuando el JS añade la clase 'active' */
+    .nav.active {
+        display: flex !important; /* CLAVE: MUESTRA el menú */
+        animation: slideDown 0.3s ease-out;
     }
 
-    .section h2 {
-        font-size: 2rem;
+    /* 4. Estilos de los enlaces del menú móvil */
+    .nav a {
+        margin-left: 0; 
+        padding: 15px 5%; 
+        text-align: left;
+        border-bottom: 1px solid var(--bg-light, #f0f0f0); 
+        width: 100%; 
+        /* Mantener los colores para que se vean bien en el fondo blanco */
+        color: var(--primary-color, #2c3e50);
+    }
+    
+    /* 5. Ajuste para los botones CTA */
+    .nav a.cta-button {
+        margin: 15px 5% 5px; 
+        width: 90%;
+        text-align: center;
+        border-bottom: none;
     }
 
-    .video-container iframe {
-        height: 300px;
+    /* Definición de la animación (opcional, pero agradable) */
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Vuelve a la línea los puntos de misión */
-    .mission-points {
-        flex-direction: column;
-    }
+    /* Otros ajustes responsive de secciones... */
+    .hero-content h1 { font-size: 2.5rem; }
+    .mission-points { flex-direction: column; }
 }
-
