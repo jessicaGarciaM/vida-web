@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
+
     /* ========================================= */
-    /* 1. FUNCIONALIDAD DEL CARRUSEL (HERO) */
+    /* 1. FUNCIONALIDAD DEL CARRUSEL PRINCIPAL (HERO) */
     /* ========================================= */
     const slides = document.querySelectorAll('.slide-image');
     let currentSlide = 0;
@@ -14,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Muestra la diapositiva actual y la pone al frente
         slides[index].style.opacity = '1';
-        slides[index].style.zIndex = '5'; 
+        slides[index].style.zIndex = '5';
         currentSlide = index;
     }
 
@@ -25,8 +26,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Inicializar el carrusel y establecer el temporizador
     if (slides.length > 0) {
-        showSlide(0); 
-        setInterval(nextSlide, 5000); 
+        showSlide(0);
+        setInterval(nextSlide, 5000);
     }
 
 
@@ -37,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const nav = document.querySelector('.nav');
 
     menuToggle.addEventListener('click', () => {
-        // AÑADE o REMUEVE la clase 'active'. ¡Esto es lo único que hace el JS!
+        // AÑADE o REMUEVE la clase 'active' para mostrar/ocultar el menú
         nav.classList.toggle('active');
 
         // Cambia el ícono (hamburguesa <-> X)
@@ -48,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Cierra el menú móvil al hacer clic en un enlace (para facilitar la navegación)
+    // Cierra el menú móvil al hacer clic en un enlace
     document.querySelectorAll('.nav a').forEach(link => {
         link.addEventListener('click', () => {
             if (nav.classList.contains('active')) {
@@ -57,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-    
+
     // Cierra el menú si se redimensiona la ventana a escritorio
     window.addEventListener('resize', () => {
         if (window.innerWidth > 992) {
@@ -65,12 +66,69 @@ document.addEventListener('DOMContentLoaded', function () {
             menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
         }
     });
-});
+
+
+    /* ========================================= */
+    /* 3. FUNCIONALIDAD DE LOS 3 CAROUSELES DE FOTOS */
+    /* ========================================= */
+
+    function setupSlider(sliderId) {
+        const track = document.querySelector(`.slider-track[data-slider="${sliderId}"]`);
+
+        // Verifica que el track exista
+        if (!track) return;
+
+        const slides = Array.from(track.children);
+
+        // No hacer nada si solo hay una foto o ninguna
+        if (slides.length <= 1) return;
+
+        const nextButton = document.querySelector(`.slider-btn.next[data-slider-target="${sliderId}"]`);
+        const prevButton = document.querySelector(`.slider-btn.prev[data-slider-target="${sliderId}"]`);
+
+        let currentIndex = 0;
+        const slideCount = slides.length;
+
+        // Función para actualizar la posición del slider (transformación CSS)
+        function updateSlider() {
+            const offset = -currentIndex * 100;
+            track.style.transform = `translateX(${offset}%)`;
+        }
+
+        // Navegación a la siguiente diapositiva
+        function showNextSlide() {
+            currentIndex = (currentIndex + 1) % slideCount;
+            updateSlider();
+        }
+
+        // Navegación a la diapositiva anterior
+        function showPrevSlide() {
+            currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+            updateSlider();
+        }
+
+        // Event Listeners para los botones
+        if (nextButton) nextButton.addEventListener('click', showNextSlide);
+        if (prevButton) prevButton.addEventListener('click', showPrevSlide);
+
+        // Auto-slide para que se muevan automáticamente
+        setInterval(showNextSlide, 4000); // Cambia cada 4 segundos
+    }
+
+    // Inicializar los 3 sliders de fotos
+    setupSlider(1);
+    setupSlider(2);
+    setupSlider(3);
+
+}); // FIN de DOMContentLoaded
 
 
 /* ========================================= */
-/* 3. FUNCIONALIDAD DE MODALES */
+/* 4. FUNCIONALIDAD DE MODALES (GLOBAL) */
 /* ========================================= */
+
+// NOTA: Estas funciones están fuera de DOMContentLoaded para que sean accesibles desde
+// los atributos onclick="..." del HTML.
 
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
@@ -92,4 +150,3 @@ window.onclick = function (event) {
         event.target.style.display = 'none';
     }
 }
-
