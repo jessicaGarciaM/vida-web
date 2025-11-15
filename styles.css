@@ -479,6 +479,98 @@ body {
     border-color: var(--text-light);
 }
 
+/* ----------------------------------------- */
+/* 8.5. GALERÍA DE FOTOS (Sliders) - NUEVO */
+/* ----------------------------------------- */
+.slider-container-wrapper {
+    background-color: var(--bg-light);
+    text-align: center;
+}
+
+/* Diseño de cuadrícula para los 3 carruseles */
+.slider-grid {
+    display: grid;
+    /* 3 columnas en escritorio, mín. 300px cada una */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+/* Marco Blanco y contenedor del slider */
+.gallery-slider-frame {
+    position: relative;
+    overflow: hidden;
+    /* CRÍTICO: Oculta las imágenes que no están en vista */
+    border: 15px solid white;
+    /* El marco blanco */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    height: 350px;
+    /* Altura fija */
+}
+
+/* Contenedor de las imágenes (el que se desliza) */
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    /* Animación de deslizamiento */
+    height: 100%;
+}
+
+/* Cada imagen dentro del slider */
+.slider-slide {
+    min-width: 100%;
+    /* CRÍTICO: Cada imagen ocupa el 100% del contenedor */
+    height: 100%;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    /* Evita que las imágenes se compriman */
+}
+
+.slider-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Asegura que la imagen llene el espacio */
+    display: block;
+}
+
+/* Botones de navegación (flechas) */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.5em;
+    line-height: 1;
+    border-radius: 5px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.slider-btn:hover {
+    opacity: 1;
+}
+
+.slider-btn.prev {
+    left: 10px;
+}
+
+.slider-btn.next {
+    right: 10px;
+}
+
+/* ----------------------------------------- */
+/* FIN 8.5. GALERÍA DE FOTOS (Sliders) */
+/* ----------------------------------------- */
+
+
 /* ========================================= */
 /* 9. FOOTER Y MODALES */
 /* ========================================= */
@@ -602,49 +694,56 @@ body {
 }
 
 /* ========================================= */
-/* 10. RESPONSIVE (Móviles) - CORRECCIÓN DEFINITIVA DE DISPLAY */
+/* 10. RESPONSIVE (Móviles) */
 /* ========================================= */
 @media (max-width: 992px) {
+
     /* 1. Muestra el botón de hamburguesa y oculta el menú de escritorio */
     .menu-toggle {
-        display: block; /* MUESTRA el botón de hamburguesa en móvil */
+        display: block;
+        /* MUESTRA el botón de hamburguesa en móvil */
     }
-    
+
     /* 2. Oculta el menú por defecto, forzando la anulación de estilos de escritorio */
     .nav {
-        display: none !important; /* CLAVE: Oculta el menú */
-        flex-direction: column; 
+        display: none !important;
+        /* CLAVE: Oculta el menú */
+        flex-direction: column;
         position: absolute;
-        top: 70px; 
+        top: 70px;
         left: 0;
         width: 100%;
-        background-color: var(--text-light, white); /* Usar variable o fallback */
+        background-color: var(--text-light, white);
+        /* Usar variable o fallback */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        z-index: 999; 
-        height: auto; /* Permite que la altura se ajuste al contenido */
-        overflow-y: auto; /* Permite desplazamiento si hay muchos enlaces */
+        z-index: 999;
+        height: auto;
+        /* Permite que la altura se ajuste al contenido */
+        overflow-y: auto;
+        /* Permite desplazamiento si hay muchos enlaces */
     }
 
     /* 3. Muestra el menú cuando el JS añade la clase 'active' */
     .nav.active {
-        display: flex !important; /* CLAVE: MUESTRA el menú */
+        display: flex !important;
+        /* CLAVE: MUESTRA el menú */
         animation: slideDown 0.3s ease-out;
     }
 
     /* 4. Estilos de los enlaces del menú móvil */
     .nav a {
-        margin-left: 0; 
-        padding: 15px 5%; 
+        margin-left: 0;
+        padding: 15px 5%;
         text-align: left;
-        border-bottom: 1px solid var(--bg-light, #f0f0f0); 
-        width: 100%; 
+        border-bottom: 1px solid var(--bg-light, #f0f0f0);
+        width: 100%;
         /* Mantener los colores para que se vean bien en el fondo blanco */
         color: var(--primary-color, #2c3e50);
     }
-    
+
     /* 5. Ajuste para los botones CTA */
     .nav a.cta-button {
-        margin: 15px 5% 5px; 
+        margin: 15px 5% 5px;
         width: 90%;
         text-align: center;
         border-bottom: none;
@@ -652,11 +751,33 @@ body {
 
     /* Definición de la animación (opcional, pero agradable) */
     @keyframes slideDown {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     /* Otros ajustes responsive de secciones... */
-    .hero-content h1 { font-size: 2.5rem; }
-    .mission-points { flex-direction: column; }
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .mission-points {
+        flex-direction: column;
+    }
+
+    /* ----------------------------------------- */
+    /* RESPONSIVIDAD ESPECÍFICA PARA LA GALERÍA */
+    /* ----------------------------------------- */
+    @media (max-width: 768px) {
+        .slider-grid {
+            grid-template-columns: 1fr;
+            /* Una sola columna en móvil */
+        }
+    }
 }
