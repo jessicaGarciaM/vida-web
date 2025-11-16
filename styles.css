@@ -8,7 +8,7 @@
     /* Nuevo: Marrón Profundo/Deep Ruby (Para CTAs y Énfasis) */
     --accent-color: #c2bda1;
     /* Nuevo: Dorado Antiguo/Soft Mustard (Para Subrayados y Iconos) */
-    --bg-light: #b9bba3;
+    --bg-light: #F5F5F5
     /* Gris muy claro para secciones alternas */
     --bg-dark: #121212;
     /* Negro muy oscuro para footer */
@@ -909,3 +909,4 @@ body {
         }
     }
 }
+
