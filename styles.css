@@ -8,7 +8,7 @@
     /* Nuevo: Marrón Profundo/Deep Ruby (Para CTAs y Énfasis) */
     --accent-color: #c2bda1;
     /* Nuevo: Dorado Antiguo/Soft Mustard (Para Subrayados y Iconos) */
-    --bg-light: #f5f5f5;
+    --bg-light: #b9bba3;
     /* Gris muy claro para secciones alternas */
     --bg-dark: #121212;
     /* Negro muy oscuro para footer */
@@ -582,16 +582,19 @@ body {
 }
 
 .social-links a i {
-    font-size: 1.8rem;
+    font-size: 2.8rem;
+    /* ¡Nuevo Tamaño! Hazlos mucho más grandes */
     color: var(--text-light);
-    margin: 0 10px;
+    margin: 0 12px;
+    /* Aumentamos el margen para separarlos más */
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .social-links a:hover i {
     color: var(--secondary-color);
     /* Deep Ruby */
-    transform: scale(1.1);
+    transform: scale(1.15);
+    /* Ajustamos la escala en hover para que se vea bien */
 }
 
 .footer-links a {
@@ -694,6 +697,86 @@ body {
 }
 
 /* ========================================= */
+/* 9.5. BOTÓN FLOTANTE DE WHATSAPP */
+/* ========================================= */
+/* ========================================= */
+/* 9. BOTÓN FLOTANTE DE WHATSAPP (CON TEXTO "CONTÁCTANOS" Y MÁS GRANDE) */
+/* ========================================= */
+.whatsapp-float {
+    /* Posicionamiento fijo en la esquina inferior derecha */
+    position: fixed;
+    width: auto;
+    /* Ancho automático para ajustarse al texto */
+    min-width: 120px;
+    /* Ancho mínimo para que quepa el texto */
+    height: 60px;
+    /* Altura un poco más grande */
+    bottom: 40px;
+    right: 40px;
+    /* Estilos del botón */
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    /* Usar flexbox para centrar el texto vertical y horizontalmente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    /* Relleno horizontal para que el texto no se pegue a los bordes */
+    font-size: 1.1rem;
+    /* Tamaño de fuente más grande */
+    font-weight: 700;
+    /* Texto en negrita */
+    text-decoration: none;
+    /* Quitar el subrayado del enlace */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    z-index: 1000;
+}
+
+.whatsapp-float:hover {
+    background-color: #128c7e;
+    transform: translateY(-3px);
+    /* Efecto ligero de levantamiento */
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Ajuste para dispositivos móviles (solo el tamaño para que sea más compacto) */
+@media (max-width: 600px) {
+    .whatsapp-float {
+        min-width: 100px;
+        /* Ancho mínimo más pequeño en móvil */
+        height: 50px;
+        /* Altura más pequeña en móvil */
+        bottom: 20px;
+        right: 20px;
+        font-size: 1rem;
+        /* Fuente un poco más pequeña en móvil */
+        padding: 0 15px;
+        /* Relleno ajustado */
+    }
+}
+
+/* ========================================= */
+/* 10. RESPONSIVE (Ajuste para móviles) */
+/* ========================================= */
+@media (max-width: 992px) {
+    /* ... (Tu código responsive de navegación anterior) ... */
+
+    /* Ajuste para el botón flotante en dispositivos móviles */
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        /* Distancia menor desde abajo */
+        right: 20px;
+        /* Distancia menor desde la derecha */
+        font-size: 25px;
+    }
+}
+
+/* ========================================= */
 /* 10. RESPONSIVE (Móviles) */
 /* ========================================= */
 @media (max-width: 992px) {
@@ -778,6 +861,51 @@ body {
         .slider-grid {
             grid-template-columns: 1fr;
             /* Una sola columna en móvil */
+        }
+    }
+
+    /* Estilo para el botón flotante de WhatsApp (Añadir a styles.css) */
+    .whatsapp-float {
+        /* Posicionamiento fijo en la esquina inferior derecha */
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        /* Distancia desde abajo */
+        right: 40px;
+        /* Distancia desde la derecha */
+        /* Estilos del botón */
+        background-color: #25d366;
+        /* Color verde de WhatsApp */
+        color: #fff;
+        border-radius: 50px;
+        /* Hace el botón redondo */
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        /* Centrar el ícono */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* Transiciones */
+        transition: background-color 0.3s, transform 0.3s;
+        z-index: 1000;
+        /* Asegura que esté por encima de otros elementos */
+    }
+
+    .whatsapp-float:hover {
+        background-color: #128c7e;
+        transform: scale(1.05);
+    }
+
+    /* Ajuste para dispositivos móviles */
+    @media (max-width: 600px) {
+        .whatsapp-float {
+            width: 50px;
+            height: 50px;
+            bottom: 20px;
+            right: 20px;
+            font-size: 25px;
         }
     }
 }
