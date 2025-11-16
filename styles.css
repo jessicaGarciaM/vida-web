@@ -697,9 +697,6 @@ body {
 }
 
 /* ========================================= */
-/* 9.5. BOTÓN FLOTANTE DE WHATSAPP */
-/* ========================================= */
-/* ========================================= */
 /* 9. BOTÓN FLOTANTE DE WHATSAPP (CON TEXTO "CONTÁCTANOS" Y MÁS GRANDE) */
 /* ========================================= */
 .whatsapp-float {
@@ -756,6 +753,75 @@ body {
         padding: 0 15px;
         /* Relleno ajustado */
     }
+
+    /* ========================================= */
+/* 9.5. BOTÓN FLOTANTE DE WHATSAPP (CON TEXTO "CONTÁCTANOS" Y MÁS GRANDE) */
+/* ========================================= */
+.whatsapp-float {
+    /* Posicionamiento fijo en la esquina inferior derecha */
+    position: fixed;
+    width: auto; /* Ancho automático para ajustarse al texto */
+    min-width: 170px; /* **AJUSTE:** Ancho mínimo suficiente para "CONTÁCTANOS" */
+    height: 55px; /* Altura ideal */
+    bottom: 40px;
+    right: 40px;
+    
+    /* Estilos base */
+    background-color: #25d366;
+    color: var(--text-light); /* Usamos la variable de texto claro */
+    border-radius: 50px;
+    text-align: center;
+    
+    /* Contenido y Centrado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px; /* Relleno horizontal para que el texto respire */
+    font-size: 1.1rem; 
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase; /* Queda mejor en mayúsculas */
+    
+    /* Sombra y Transición */
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.6); 
+    transition: all 0.3s ease;
+    z-index: 10000; /* Aseguramos la máxima visibilidad */
+}
+
+/* Estilo para el ícono de WhatsApp (i) dentro del botón */
+.whatsapp-float i {
+    font-size: 1.4rem; /* Tamaño del ícono */
+    margin-right: 10px; /* Separación entre el ícono y el texto */
+    line-height: 1; /* Asegura que el ícono no desplace el texto */
+}
+
+
+.whatsapp-float:hover {
+    background-color: #128c7e;
+    transform: translateY(-3px); /* Efecto ligero de levantamiento */
+    box-shadow: 0 8px 20px rgba(18, 140, 126, 0.8);
+}
+
+/* ========================================= */
+/* RESPONSIVE (Móvil) */
+/* ========================================= */
+@media (max-width: 992px) {
+    /* Hacemos el botón un poco más compacto en móvil */
+    .whatsapp-float {
+        min-width: 150px; /* Ancho mínimo ajustado */
+        height: 50px; /* Altura más pequeña en móvil */
+        bottom: 20px;
+        right: 20px;
+        font-size: 1rem;
+        padding: 0 20px; /* Relleno ajustado */
+    }
+
+    /* Reducimos el tamaño del ícono en móvil */
+    .whatsapp-float i {
+        font-size: 1.2rem;
+        margin-right: 8px;
+    }
+}
 }
 
 /* ========================================= */
@@ -909,4 +975,5 @@ body {
         }
     }
 }
+
 
