@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería Completa - Vida Iglesia Cristiana</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos específicos para la página del álbum */
+        .gallery-page-section {
+            padding-top: 120px;
+            /* Espacio para el header fijo */
+            text-align: center;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .photo-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.03);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 300px;
+            /* Altura uniforme para la cuadrícula */
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .photo-item img {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">VIDA</div>
+        <nav class="nav">
+            <a href="index.html#inicio">Inicio</a>
+            <a href="index.html#mision">Misión</a>
+            <a href="index.html#mensajes">Predicas</a>
+            <a href="index.html#eventos">Eventos</a>
+            <a href="index.html#Ministerios">Ministerios</a>
+            <a href="#galeria-completa">Galería</a>
+            <a href="index.html#donar" class="cta-button">DONAR</a>
+            <a href="index.html#iniciarsesion" class="cta-button">INICIAR SESIÓN</a>
+        </nav>
+        <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+    </header>
+
+    <section id="galeria-completa" class="section gallery-page-section">
+        <h2>Álbum de Fotos Completo</h2>
+        <p class="section-description">Un vistazo a los momentos especiales y la vida en comunidad de Iglesia Vida.</p>
+
+        <<div class="photo-grid">
+
+            <div class="photo-item"><img src="Captura de pantalla 2025-11-14 013526.jpg"
+                    alt="Foto principal de la iglesia"></div>
+            <div class="photo-item"><img src="533041861_1166762848810584_1119548223159718177_n.jpg"
+                    alt="Foto de héroe 2"></div>
+            <div class="photo-item"><img src="537241085_1174701238016745_2982462451560072884_n.jpg"
+                    alt="Foto de héroe 3"></div>
+            <div class="photo-item"><img src="538226879_1174701398016729_8962635426443478501_n.jpg"
+                    alt="Predicador sonriendo y predicando"></div>
+            <div class="photo-item"><img src="Captura de pantalla 2025-11-15 232704.jpg"
+                    alt="Joven sonriendo con letrero de bienvenida"></div>
+            <div class="photo-item"><img src="Captura de pantalla 2025-11-15 235112.jpg"
+                    alt="Mujeres conversando y riendo"></div>
+            <div class="photo-item"><img src="Captura de pantalla 2025-11-15 233046.jpg" alt="Juego de dardos"></div>
+            <div class="photo-item"><img src="Captura de pantalla 2025-11-15 232945.jpg" alt="Diana para dardos"></div>
+            <div class="photo-item"><img src="Captura de pantalla 2025-11-15 232911.jpg" alt="Mujeres en video"></div>
+            <div class="photo-item"><img src="Captura de pantalla 2025-11-15 232736.jpg" alt="Pareja alabando"></div>
+            <div class="photo-item"><img src="Captura de pantalla 2025-11-15 235234.jpg" alt="Madre e hija riendo">
+            </div>
+            <div class="photo-item"><img src="Captura de pantalla 2025-11-16 001001.jpg" alt="Chica riendo"></div>
+            <div class="photo-item"><img src="Captura de pantalla 2025-11-15 234252.jpg" alt="Adolescente Sirviendo">
+            </div>
+            <div class="photo-item"><img src="Captura de pantalla 2025-11-15 235321.jpg" alt="Mujer en adoración"></div>
+            <div class="photo-item"><img src="Captura de pantalla 2025-11-15 232819.jpg" alt="Hombre alabando"></div>
+            <div class="photo-item"><img src="Captura de pantalla 2025-11-15 234800.jpg"
+                    alt="Letrero: Hay un lugar para ti"></div>
+            <div class="photo-item"><img src="573464533_18432689509098742_4855542439238872359_n.jpg"
+                    alt="Predicador en el escenario sonriendo"></div>
+            <div class="photo-item"><img src="579867650_18435162379098742_8706222621952952616_n.jpg"
+                    alt="Joven con letrero de 'Llegaste al lugar indicado'"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.20.jpeg"
+                    alt="Equipo de producción sonriendo"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.20 (4).jpeg"
+                    alt="Dos hombres sonriendo con Biblia"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.20 (3).jpeg"
+                    alt="Saludo entre hombres"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.16 (5).jpeg"
+                    alt="Mujeres conversando y riendo en evento"></div>
+            <div class="photo-item"><img src="570881214_18432674275098742_222298099019773298_n.jpg"
+                    alt="Domingo de Bautizos - Mujer sonriendo"></div>
+            <div class="photo-item"><img src="564306343_18432674302098742_7489024045387532613_n.jpg"
+                    alt="Bautizo - Hoy vivo en un nuevo amanecer"></div>
+            <div class="photo-item"><img src="571579292_18432674284098742_8022444363042516797_n.jpg"
+                    alt="Bautizo - Adiós al Ayer"></div>
+            <div class="photo-item"><img src="572888107_18432689437098742_1393350821371965939_n.jpg"
+                    alt="Aniversario - Ocho Años de Propósito"></div>
+            <div class="photo-item"><img src="534944430_1169235165230019_2657693387854067291_n.jpg"
+                    alt="Alabanza y adoración con proyección de letras"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.24 (2).jpeg"
+                    alt="Gente alabando y celebrando con papel picado"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.24 (1).jpeg"
+                    alt="Gente aplaudiendo y celebrando con alegría"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.23 (5).jpeg"
+                    alt="Mujeres cocinando con atuendo mexicano"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.23 (4).jpeg" alt="Mamá y bebé riendo">
+            </div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.16 (1).jpeg"
+                    alt="Mujer en adoración con manos levantadas"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.19 (1).jpeg"
+                    alt="Tres hombres sonriendo"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.23 (2).jpeg"
+                    alt="Dos mujeres posando en una puerta"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.22 (3).jpeg"
+                    alt="Abrazo entre un hombre y una joven"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.24 (4).jpeg"
+                    alt="Mujer sonriente entregando tazas"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.23 (6).jpeg"
+                    alt="Joven cantando con sombrero mexicano"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.23.jpeg"
+                    alt="Niños jugando en un área de juegos"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.24.jpeg"
+                    alt="Persona jugando a los dardos con globos"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.22 (4).jpeg"
+                    alt="Jóvenes sirviendo bebidas"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.11.jpeg"
+                    alt="Pareja y gente aplaudiendo y orando"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.23 (1).jpeg"
+                    alt="Hombre tocando la guitarra y cantando"></div>
+            <div class="photo-item"><img src="538173574_1174701368016732_2722241288776342789_n.jpg"
+                    alt="Joven cantando en el escenario"></div>
+            <div class="photo-item"><img src="533388228_1166762325477303_6300083443030489843_n.jpg"
+                    alt="Dos mujeres orando con la cabeza agachada"></div>
+            <div class="photo-item"><img src="572346711_18432689461098742_730306033540294400_n.jpg"
+                    alt="Dos mujeres sonriendo"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.14 (1).jpeg"
+                    alt="Jóvenes jugando futbolito"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.23 (3).jpeg"
+                    alt="Abrazo de bienvenida en la entrada"></div>
+            <div class="photo-item"><img src="559481110_1206026204884248_7105037096779548510_n.jpg"
+                    alt="Mujer alabando con micrófono"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.10 (3).jpeg"
+                    alt="Dos mujeres sonriendo en la noche"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.10 (2).jpeg"
+                    alt="Hombre tocando la batería en el servicio"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.10 (1).jpeg"
+                    alt="Hombres riendo y dando la mano en el escenario"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.10.jpeg"
+                    alt="Congregación viendo la alabanza y proyección"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.14.jpeg"
+                    alt="Grupo de personas sonriendo en el área de cafetería"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.11 (1).jpeg"
+                    alt="Mujer en adoración con el brazo levantado hacia el escenario"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.24 (3).jpeg"
+                    alt="Mujer alabando con las manos levantadas en el servicio"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.16 (4).jpeg"
+                    alt="Hombres con micrófonos en el escenario"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.16 (3).jpeg"
+                    alt="Mujer en primer plano con micrófono en el escenario"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.16 (2).jpeg"
+                    alt="Joven cantando en el escenario con guitarra"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.16.jpeg"
+                    alt="Hombre con micrófono en el escenario"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.15 (5).jpeg"
+                    alt="Hombre y mujer sirviendo comida en un evento"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.15 (4).jpeg"
+                    alt="Gente de espaldas viendo un show en el escenario"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.15 (3).jpeg"
+                    alt="Dos jóvenes riendo en un evento"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.15 (2).jpeg"
+                    alt="Grupo de mujeres sonriendo y posando"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.15 (1).jpeg"
+                    alt="Mujer riendo y compartiendo en una mesa"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.15.jpeg"
+                    alt="Mujer sonriendo y posando con gorra"></div>
+
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.20 (2).jpeg"
+                    alt="Joven con micrófono y la congregación al fondo"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.20 (1).jpeg"
+                    alt="Hombre sonriendo y dando la mano"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.19 (2).jpeg"
+                    alt="Mujer y hombre sonriendo en un evento"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.19.jpeg"
+                    alt="Joven posando con un letrero"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.18.jpeg"
+                    alt="Vista del escenario con músicos y público"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.17 (6).jpeg"
+                    alt="Mujer cantando y tocando la guitarra"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.17 (5).jpeg"
+                    alt="Mujeres en el escenario con instrumentos"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.17 (3).jpeg"
+                    alt="Dos jóvenes tomando café y conversando"></div>
+            <div class="photo-item"><img src="WhatsApp Image 2025-11-15 at 11.29.17 (2).jpeg"
+                    alt="Hombre tocando la guitarra con alegría"></div>
+            </div>
+
+            <a href="index.html#Fotos" class="btn primary-btn" style="margin-top: 30px;">
+                <i class="fas fa-arrow-left"></i> Volver a la página principal
+            </a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">Términos y Condiciones</a>
+            <a href="#">Aviso de Privacidad</a>
+            <a href="#">Contacto</a>
+        </div>
+        <div class="social-links">
+            <a href="https://www.facebook.com/IglesiaVidaGDL" aria-label="Facebook" target="_blank"
+                rel="noopener noreferrer">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/iglesiavidagdl/" aria-label="Instagram" target="_blank"
+                rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@IglesiaVidaGuadalajara/featured" aria-label="YouTube" target="_blank"
+                rel="noopener noreferrer">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <p>© 2025 Vida GDL - Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
