@@ -576,8 +576,10 @@ body {
 /* 9. FOOTER Y MODALES (¡CORREGIDO PARA FONDO OSCURO!) */
 /* ========================================= */
 .footer {
-    background-color: var(--bg-dark) !important; /* ¡Fondo oscuro asegurado! */
-    color: var(--text-light) !important; /* Texto claro asegurado */
+    background-color: var(--bg-dark) !important;
+    /* ¡Fondo oscuro asegurado! */
+    color: var(--text-light) !important;
+    /* Texto claro asegurado */
     padding: 40px 5%;
     text-align: center;
     width: 100%;
@@ -591,13 +593,15 @@ body {
 
 .social-links a i {
     font-size: 2.8rem;
-    color: var(--text-light) !important; /* ¡Color de íconos asegurado! */
+    color: var(--text-light) !important;
+    /* ¡Color de íconos asegurado! */
     margin: 0 12px;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .social-links a:hover i {
-    color: var(--secondary-color); /* Deep Ruby en hover */
+    color: var(--secondary-color);
+    /* Deep Ruby en hover */
     transform: scale(1.15);
 }
 
@@ -607,7 +611,8 @@ body {
 }
 
 .footer-links a {
-    color: var(--text-light) !important; /* ¡Color de enlaces asegurado! */
+    color: var(--text-light) !important;
+    /* ¡Color de enlaces asegurado! */
     text-decoration: none;
     margin: 0 15px;
     font-size: 0.9rem;
@@ -623,7 +628,8 @@ body {
 .footer p {
     margin-top: 20px;
     font-size: 0.9rem;
-    color: #aaa; /* Gris claro para el copyright */
+    color: #aaa;
+    /* Gris claro para el copyright */
 }
 
 /* Estilo para el contenido de los modales */
