@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     /* ========================================= */
-    /* 2. FUNCIONALIDAD DEL MENÚ MÓVIL (CORRECCIÓN) */
+    /* 2. FUNCIONALIDAD DEL MENÚ MÓVIL */
     /* ========================================= */
     const menuToggle = document.getElementById('menu-toggle');
     const nav = document.querySelector('.nav');
@@ -120,6 +120,17 @@ document.addEventListener('DOMContentLoaded', function () {
     setupSlider(2);
     setupSlider(3);
 
+    
+    /* ========================================= */
+    /* 5. CORRECCIÓN: APERTURA DEL MODAL (DESACTIVACIÓN AUTOMÁTICA) */
+    /* ========================================= */
+    
+    // **IMPORTANTE:** Este bloque queda vacío.
+    // Al no haber código aquí, el modal NO se abrirá automáticamente.
+    // La apertura se gestionará únicamente por los botones 'Ver más' en el HTML
+    // a través de la función global openModal().
+
+
 }); // FIN de DOMContentLoaded
 
 
@@ -127,8 +138,8 @@ document.addEventListener('DOMContentLoaded', function () {
 /* 4. FUNCIONALIDAD DE MODALES (GLOBAL) */
 /* ========================================= */
 
-// NOTA: Estas funciones están fuera de DOMContentLoaded para que sean accesibles desde
-// los atributos onclick="..." del HTML.
+// NOTA: Estas funciones son las que usas en el HTML con onclick="openModal('ID_DEL_MODAL')".
+// Funcionan para abrir cualquier modal de la página.
 
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
@@ -146,6 +157,7 @@ function closeModal(modalId) {
 
 // Cerrar el modal haciendo clic fuera de su contenido
 window.onclick = function (event) {
+    // Verificamos si el elemento clicado tiene la clase 'modal'
     if (event.target.classList.contains('modal')) {
         event.target.style.display = 'none';
     }
