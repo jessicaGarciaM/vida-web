@@ -5,15 +5,16 @@
     --primary-color: #252323;
     /* Azul Oscuro Profundo (Deep Indigo) */
     --secondary-color: #706b58;
-    /* Nuevo: Marrón Profundo/Deep Ruby (Para CTAs y Énfasis) */
+    /* Marrón Profundo/Deep Ruby (Para CTAs y Énfasis) */
     --accent-color: #c2bda1;
-    /* Nuevo: Dorado Antiguo/Soft Mustard (Para Subrayados y Iconos) */
-    --bg-light: #F5F5F5
+    /* Dorado Antiguo/Soft Mustard (Para Subrayados y Iconos) */
+    --bg-light: #F5F5F5;
     /* Gris muy claro para secciones alternas */
     --bg-dark: #121212;
-    /* Negro muy oscuro para footer */
+    /* CRUCIAL: Negro muy oscuro para footer */
     --text-dark: #333333;
     --text-light: #ffffff;
+    /* CRUCIAL: Blanco para el texto del footer */
     --font-family: 'Montserrat', sans-serif;
     --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
     --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.2);
@@ -572,34 +573,43 @@ body {
 
 
 /* ========================================= */
-/* 9. FOOTER Y MODALES */
+/* 9. FOOTER Y MODALES (¡CORREGIDO PARA FONDO OSCURO!) */
 /* ========================================= */
 .footer {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
+    background-color: var(--bg-dark) !important; /* ¡Fondo oscuro asegurado! */
+    color: var(--text-light) !important; /* Texto claro asegurado */
     padding: 40px 5%;
     text-align: center;
+    width: 100%;
+    margin-top: 0;
+}
+
+/* Enlaces Sociales (Iconos) - Asegurar color blanco */
+.social-links {
+    margin: 20px 0;
 }
 
 .social-links a i {
     font-size: 2.8rem;
-    color: var(--text-light);
+    color: var(--text-light) !important; /* ¡Color de íconos asegurado! */
     margin: 0 12px;
-    /* Aumentamos el margen para separarlos más */
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .social-links a:hover i {
-    color: var(--secondary-color);
-    /* Deep Ruby */
+    color: var(--secondary-color); /* Deep Ruby en hover */
     transform: scale(1.15);
-    /* Ajustamos la escala en hover para que se vea bien */
+}
+
+/* Enlaces del Footer (Términos, Privacidad, Contacto) - Asegurar color blanco */
+.footer-links {
+    margin-bottom: 15px;
 }
 
 .footer-links a {
-    color: var(--text-light);
+    color: var(--text-light) !important; /* ¡Color de enlaces asegurado! */
     text-decoration: none;
-    margin: 15px;
+    margin: 0 15px;
     font-size: 0.9rem;
     opacity: 0.8;
     transition: opacity 0.3s;
@@ -609,10 +619,11 @@ body {
     opacity: 1;
 }
 
+/* Texto de Copyright */
 .footer p {
-    margin-top: 10px;
+    margin-top: 20px;
     font-size: 0.9rem;
-    color: #aaa;
+    color: #aaa; /* Gris claro para el copyright */
 }
 
 /* Estilo para el contenido de los modales */
@@ -696,48 +707,49 @@ body {
 }
 
 /* ========================================= */
-/* 9.5. BOTÓN FLOTANTE DE WHATSAPP (CORREGIDO) */
+/* 9.5. BOTÓN FLOTANTE DE WHATSAPP */
 /* ========================================= */
 .whatsapp-float {
     /* Posicionamiento y diseño */
     position: fixed;
-    width: auto; 
-    min-width: 170px; 
+    width: auto;
+    min-width: 170px;
     height: 55px;
     bottom: 40px;
     right: 40px;
-    
+
     /* Estilos */
     background-color: #25d366;
-    color: var(--text-light); 
+    color: var(--text-light);
     border-radius: 50px;
-    
+
     /* Contenido y Centrado */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 25px; 
-    font-size: 1.1rem; 
+    padding: 0 25px;
+    font-size: 1.1rem;
     font-weight: 700;
-    text-transform: uppercase; 
+    text-transform: uppercase;
     text-decoration: none;
-    
+
     /* Sombra y Transición */
-    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.6); 
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.6);
     transition: all 0.3s ease;
-    z-index: 10000; 
+    z-index: 10000;
 }
 
 /* Estilo para el ícono de WhatsApp (i) dentro del botón */
 .whatsapp-float i {
-    font-size: 1.4rem; /* Tamaño del ícono en escritorio */
-    margin-right: 10px; 
-    line-height: 1; 
+    font-size: 1.4rem;
+    /* Tamaño del ícono en escritorio */
+    margin-right: 10px;
+    line-height: 1;
 }
 
 .whatsapp-float:hover {
     background-color: #128c7e;
-    transform: translateY(-3px); 
+    transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(18, 140, 126, 0.8);
 }
 
@@ -825,12 +837,15 @@ body {
     /* AJUSTE WHATSAPP FLOTANTE EN MÓVIL (Bajo 992px) */
     /* ---------------------------------------------------- */
     .whatsapp-float {
-        min-width: 130px; /* Ancho mínimo ajustado */
-        height: 45px; /* Altura más pequeña en móvil */
+        min-width: 130px;
+        /* Ancho mínimo ajustado */
+        height: 45px;
+        /* Altura más pequeña en móvil */
         bottom: 20px;
         right: 20px;
         font-size: 0.8rem;
-        padding: 0 15px; /* Relleno ajustado */
+        padding: 0 15px;
+        /* Relleno ajustado */
     }
 
     .whatsapp-float i {
@@ -838,6 +853,3 @@ body {
         margin-right: 8px;
     }
 }
-
-
-
