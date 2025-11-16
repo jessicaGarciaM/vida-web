@@ -582,10 +582,9 @@ body {
 }
 
 .social-links a i {
-    font-size: 2.8rem;
-    /* ¡Nuevo Tamaño! Hazlos mucho más grandes */
+    font-size: 1.8rem;
     color: var(--text-light);
-    margin: 0 12px;
+    margin: 0 8px;
     /* Aumentamos el margen para separarlos más */
     transition: color 0.3s ease, transform 0.3s ease;
 }
@@ -600,7 +599,7 @@ body {
 .footer-links a {
     color: var(--text-light);
     text-decoration: none;
-    margin: 0 15px;
+    margin: 5px;
     font-size: 0.9rem;
     opacity: 0.8;
     transition: opacity 0.3s;
@@ -618,7 +617,7 @@ body {
 
 /* Estilo para el contenido de los modales */
 .modal {
-    display: none;
+    display: flex;
     position: fixed;
     z-index: 2000;
     left: 0;
@@ -839,4 +838,5 @@ body {
         margin-right: 8px;
     }
 }
+
 
