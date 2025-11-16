@@ -156,9 +156,10 @@ function closeModal(modalId) {
 }
 
 // Cerrar el modal haciendo clic fuera de su contenido
-window.onclick = function (event) {
+window.onclick = function (event)
     // Verificamos si el elemento clicado tiene la clase 'modal'
     if (event.target.classList.contains('modal')) {
         event.target.style.display = 'none';
     }
 }
+
