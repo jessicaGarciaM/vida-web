@@ -697,78 +697,20 @@ body {
 }
 
 /* ========================================= */
-/* 9. BOTÓN FLOTANTE DE WHATSAPP (CON TEXTO "CONTÁCTANOS" Y MÁS GRANDE) */
+/* 9.5. BOTÓN FLOTANTE DE WHATSAPP (CORREGIDO) */
 /* ========================================= */
 .whatsapp-float {
     /* Posicionamiento fijo en la esquina inferior derecha */
     position: fixed;
-    width: auto;
-    /* Ancho automático para ajustarse al texto */
-    min-width: 120px;
-    /* Ancho mínimo para que quepa el texto */
-    height: 60px;
-    /* Altura un poco más grande */
-    bottom: 40px;
-    right: 40px;
-    /* Estilos del botón */
-    background-color: #25d366;
-    color: #fff;
-    border-radius: 50px;
-    text-align: center;
-    /* Usar flexbox para centrar el texto vertical y horizontalmente */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 20px;
-    /* Relleno horizontal para que el texto no se pegue a los bordes */
-    font-size: 1.1rem;
-    /* Tamaño de fuente más grande */
-    font-weight: 700;
-    /* Texto en negrita */
-    text-decoration: none;
-    /* Quitar el subrayado del enlace */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    z-index: 1000;
-}
-
-.whatsapp-float:hover {
-    background-color: #128c7e;
-    transform: translateY(-3px);
-    /* Efecto ligero de levantamiento */
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
-}
-
-/* Ajuste para dispositivos móviles (solo el tamaño para que sea más compacto) */
-@media (max-width: 600px) {
-    .whatsapp-float {
-        min-width: 100px;
-        /* Ancho mínimo más pequeño en móvil */
-        height: 50px;
-        /* Altura más pequeña en móvil */
-        bottom: 20px;
-        right: 20px;
-        font-size: 1rem;
-        /* Fuente un poco más pequeña en móvil */
-        padding: 0 15px;
-        /* Relleno ajustado */
-    }
-
-    /* ========================================= */
-/* 9.5. BOTÓN FLOTANTE DE WHATSAPP (CON TEXTO "CONTÁCTANOS" Y MÁS GRANDE) */
-/* ========================================= */
-.whatsapp-float {
-    /* Posicionamiento fijo en la esquina inferior derecha */
-    position: fixed;
-    width: auto; /* Ancho automático para ajustarse al texto */
-    min-width: 170px; /* **AJUSTE:** Ancho mínimo suficiente para "CONTÁCTANOS" */
-    height: 55px; /* Altura ideal */
+    width: auto; 
+    min-width: 170px; /* Ancho mínimo para que quepa el texto */
+    height: 55px;
     bottom: 40px;
     right: 40px;
     
     /* Estilos base */
     background-color: #25d366;
-    color: var(--text-light); /* Usamos la variable de texto claro */
+    color: var(--text-light); 
     border-radius: 50px;
     text-align: center;
     
@@ -776,23 +718,23 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 25px; /* Relleno horizontal para que el texto respire */
+    padding: 0 25px; 
     font-size: 1.1rem; 
     font-weight: 700;
     text-decoration: none;
-    text-transform: uppercase; /* Queda mejor en mayúsculas */
+    text-transform: uppercase; 
     
     /* Sombra y Transición */
     box-shadow: 0 5px 15px rgba(37, 211, 102, 0.6); 
     transition: all 0.3s ease;
-    z-index: 10000; /* Aseguramos la máxima visibilidad */
+    z-index: 10000; 
 }
 
 /* Estilo para el ícono de WhatsApp (i) dentro del botón */
 .whatsapp-float i {
     font-size: 1.4rem; /* Tamaño del ícono */
     margin-right: 10px; /* Separación entre el ícono y el texto */
-    line-height: 1; /* Asegura que el ícono no desplace el texto */
+    line-height: 1; 
 }
 
 
@@ -802,80 +744,35 @@ body {
     box-shadow: 0 8px 20px rgba(18, 140, 126, 0.8);
 }
 
-/* ========================================= */
-/* RESPONSIVE (Móvil) */
-/* ========================================= */
-@media (max-width: 992px) {
-    /* Hacemos el botón un poco más compacto en móvil */
-    .whatsapp-float {
-        min-width: 150px; /* Ancho mínimo ajustado */
-        height: 50px; /* Altura más pequeña en móvil */
-        bottom: 20px;
-        right: 20px;
-        font-size: 1rem;
-        padding: 0 20px; /* Relleno ajustado */
-    }
-
-    /* Reducimos el tamaño del ícono en móvil */
-    .whatsapp-float i {
-        font-size: 1.2rem;
-        margin-right: 8px;
-    }
-}
-}
 
 /* ========================================= */
-/* 10. RESPONSIVE (Ajuste para móviles) */
-/* ========================================= */
-@media (max-width: 992px) {
-    /* ... (Tu código responsive de navegación anterior) ... */
-
-    /* Ajuste para el botón flotante en dispositivos móviles */
-    .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        bottom: 20px;
-        /* Distancia menor desde abajo */
-        right: 20px;
-        /* Distancia menor desde la derecha */
-        font-size: 25px;
-    }
-}
-
-/* ========================================= */
-/* 10. RESPONSIVE (Móviles) */
+/* 10. RESPONSIVE (Móviles y Tabletas) */
 /* ========================================= */
 @media (max-width: 992px) {
 
     /* 1. Muestra el botón de hamburguesa y oculta el menú de escritorio */
     .menu-toggle {
         display: block;
-        /* MUESTRA el botón de hamburguesa en móvil */
     }
 
     /* 2. Oculta el menú por defecto, forzando la anulación de estilos de escritorio */
     .nav {
         display: none !important;
-        /* CLAVE: Oculta el menú */
         flex-direction: column;
         position: absolute;
         top: 70px;
         left: 0;
         width: 100%;
         background-color: var(--text-light, white);
-        /* Usar variable o fallback */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         z-index: 999;
         height: auto;
-        /* Permite que la altura se ajuste al contenido */
         overflow-y: auto;
-        /* Permite desplazamiento si hay muchos enlaces */
     }
 
     /* 3. Muestra el menú cuando el JS añade la clase 'active' */
     .nav.active {
         display: flex !important;
-        /* CLAVE: MUESTRA el menú */
         animation: slideDown 0.3s ease-out;
     }
 
@@ -886,7 +783,6 @@ body {
         text-align: left;
         border-bottom: 1px solid var(--bg-light, #f0f0f0);
         width: 100%;
-        /* Mantener los colores para que se vean bien en el fondo blanco */
         color: var(--primary-color, #2c3e50);
     }
 
@@ -923,57 +819,25 @@ body {
     /* ----------------------------------------- */
     /* RESPONSIVIDAD ESPECÍFICA PARA LA GALERÍA */
     /* ----------------------------------------- */
-    @media (max-width: 768px) {
-        .slider-grid {
-            grid-template-columns: 1fr;
-            /* Una sola columna en móvil */
-        }
+    .slider-grid {
+        grid-template-columns: 1fr;
+        /* Una sola columna en móvil */
     }
 
-    /* Estilo para el botón flotante de WhatsApp (Añadir a styles.css) */
+    /* ---------------------------------------------------- */
+    /* AJUSTE WHATSAPP FLOTANTE EN MÓVIL (Bajo 992px) */
+    /* ---------------------------------------------------- */
     .whatsapp-float {
-        /* Posicionamiento fijo en la esquina inferior derecha */
-        position: fixed;
-        width: 60px;
-        height: 60px;
-        bottom: 40px;
-        /* Distancia desde abajo */
-        right: 40px;
-        /* Distancia desde la derecha */
-        /* Estilos del botón */
-        background-color: #25d366;
-        /* Color verde de WhatsApp */
-        color: #fff;
-        border-radius: 50px;
-        /* Hace el botón redondo */
-        text-align: center;
-        font-size: 30px;
-        box-shadow: 2px 2px 3px #999;
-        /* Centrar el ícono */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /* Transiciones */
-        transition: background-color 0.3s, transform 0.3s;
-        z-index: 1000;
-        /* Asegura que esté por encima de otros elementos */
+        min-width: 150px; /* Ancho mínimo ajustado */
+        height: 50px; /* Altura más pequeña en móvil */
+        bottom: 20px;
+        right: 20px;
+        font-size: 1rem;
+        padding: 0 20px; /* Relleno ajustado */
     }
 
-    .whatsapp-float:hover {
-        background-color: #128c7e;
-        transform: scale(1.05);
-    }
-
-    /* Ajuste para dispositivos móviles */
-    @media (max-width: 600px) {
-        .whatsapp-float {
-            width: 50px;
-            height: 50px;
-            bottom: 20px;
-            right: 20px;
-            font-size: 25px;
-        }
+    .whatsapp-float i {
+        font-size: 1.2rem;
+        margin-right: 8px;
     }
 }
-
-
