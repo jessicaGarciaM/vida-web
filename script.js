@@ -120,11 +120,11 @@ document.addEventListener('DOMContentLoaded', function () {
     setupSlider(2);
     setupSlider(3);
 
-    
+
     /* ========================================= */
     /* 5. CORRECCIÓN: APERTURA DEL MODAL (DESACTIVACIÓN AUTOMÁTICA) */
     /* ========================================= */
-    
+
     // **IMPORTANTE:** Este bloque queda vacío.
     // Al no haber código aquí, el modal NO se abrirá automáticamente.
     // La apertura se gestionará únicamente por los botones 'Ver más' en el HTML
@@ -156,7 +156,7 @@ function closeModal(modalId) {
 }
 
 // Cerrar el modal haciendo clic fuera de su contenido
-window.onclick = function (event)
+window.onclick = function (event) {
     // Verificamos si el elemento clicado tiene la clase 'modal'
     if (event.target.classList.contains('modal')) {
         event.target.style.display = 'none';
