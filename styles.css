@@ -1,988 +1,169 @@
-/* ========================================= */
-/* 1. VARIABLES GLOBALES Y RESET */
-/* ========================================= */
-:root {
-    --primary-color: #252323;
-    /* Azul Oscuro Profundo (Deep Indigo) */
-    --secondary-color: #706b58;
-    /* Marrón Profundo/Deep Ruby (Para CTAs y Énfasis) */
-    --accent-color: #c2bda1;
-    /* Dorado Antiguo/Soft Mustard (Para Subrayados y Iconos) */
-    --bg-light: #F5F5F5;
-    /* Gris muy claro para secciones alternas */
-    --bg-dark: #121212;
-    /* CRUCIAL: Negro muy oscuro para footer */
-    --text-dark: #333333;
-    --text-light: #ffffff;
-    /* CRUCIAL: Blanco para el texto del footer */
-    --font-family: 'Montserrat', sans-serif;
-    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
-    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
+document.addEventListener('DOMContentLoaded', function () {
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+    /* ========================================= */
+    /* 1. FUNCIONALIDAD DEL CARRUSEL PRINCIPAL (HERO) */
+    /* ========================================= */
+    const slides = document.querySelectorAll('.slide-image');
+    let currentSlide = 0;
 
-body {
-    font-family: var(--font-family);
-    color: var(--text-dark);
-    line-height: 1.6;
-    background-color: var(--bg-light);
-    scroll-behavior: smooth;
-}
+    function showSlide(index) {
+        // Oculta todas las diapositivas con baja opacidad
+        slides.forEach((slide, i) => {
+            slide.style.opacity = '0';
+            slide.style.zIndex = '1';
+        });
 
-/* ========================================= */
-/* 2. HEADER Y NAVEGACIÓN (Sticky/Impresionante) */
-/* ========================================= */
-.header {
-    background-color: var(--text-light);
-    box-shadow: var(--shadow-light);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 5%;
-    transition: background-color 0.3s ease;
-}
-
-.logo {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--primary-color);
-    letter-spacing: 2px;
-}
-
-.nav {
-    display: flex;
-    align-items: center;
-}
-
-/* ----------------------------------------- */
-/* ESTILOS PARA DROPDOWN (DESKTOP) */
-/* ----------------------------------------- */
-
-/* Contenedor principal del dropdown */
-.nav .dropdown {
-    position: relative;
-    /* Contenedor para posicionar el submenú */
-    display: flex;
-    /* Asegura que el enlace se alinee bien con los otros */
-    align-items: center;
-}
-
-/* Estilos de navegación normal: Enlaces simples y enlaces toggle */
-.nav a,
-.nav .dropdown-toggle {
-    text-decoration: none;
-    color: var(--primary-color);
-    /* Azul oscuro fijo */
-    font-weight: 700;
-    margin-left: 20px;
-    padding: 8px 15px;
-    border-radius: 5px;
-    position: relative;
-    transition: all 0.3s ease;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    cursor: pointer;
-}
-
-/* EFECTO HOVER (Estilo Botón Sofisticado) */
-.nav a:hover,
-.nav .dropdown:hover .dropdown-toggle {
-    color: var(--text-light);
-    /* Color del texto se vuelve blanco */
-    background-color: var(--secondary-color);
-    /* Fondo Deep Ruby */
-    transform: translateY(-2px);
-    /* Pequeño levantamiento */
-    box-shadow: 0 4px 10px rgba(112, 107, 88, 0.4);
-    /* Sombra ajustada al nuevo color */
-}
-
-/* Estilos del submenú */
-.dropdown-menu {
-    display: none;
-    /* Oculto por defecto en desktop */
-    position: absolute;
-    top: 100%;
-    /* Empieza justo debajo del link principal */
-    left: 10px;
-    /* Pequeño desplazamiento a la izquierda */
-    background-color: var(--text-light);
-    /* Fondo blanco */
-    min-width: 220px;
-    box-shadow: var(--shadow-medium);
-    border-radius: 5px;
-    padding: 10px 0;
-    z-index: 1001;
-    margin-top: 5px;
-    flex-direction: column;
-}
-
-/* Mostrar el menú en desktop al pasar el ratón por el contenedor del dropdown */
-.dropdown:hover .dropdown-menu {
-    display: flex;
-}
-
-/* Estilos de los enlaces internos del submenú */
-.dropdown-menu a {
-    color: var(--primary-color);
-    padding: 10px 20px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-    white-space: nowrap;
-    /* Evita que el texto se rompa */
-    font-weight: 500;
-    margin: 0;
-    border-radius: 0;
-    transition: background-color 0.3s ease;
-    text-transform: none;
-    /* No en mayúsculas */
-}
-
-.dropdown-menu a:hover {
-    background-color: var(--bg-light);
-    color: var(--secondary-color);
-    transform: none;
-    /* Anular el translateY(-2px) del hover general */
-    box-shadow: none;
-}
-
-
-/* Asegura que el botón de DONAR mantenga su estilo distintivo */
-.cta-button {
-    background-color: var(--secondary-color) !important;
-    color: var(--text-light) !important;
-    padding: 8px 20px;
-    border-radius: 50px;
-    font-weight: 700 !important;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(112, 107, 88, 0.4);
-    margin-left: 30px;
-}
-
-.cta-button:hover {
-    background-color: #5d594b !important;
-    /* Tono más oscuro */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(112, 107, 88, 0.6);
-}
-
-.menu-toggle {
-    background: none;
-    border: none;
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: none;
-}
-
-
-/* ========================================= */
-/* 3. HERO Y CARRUSEL */
-/* ========================================= */
-.hero {
-    position: relative;
-    width: 100%;
-    height: 90vh;
-    /* Altura estándar del héroe */
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.carousel-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.carousel-slide {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-.slide-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-    filter: brightness(0.6);
-    /* Oscurece las imágenes */
-    z-index: 1;
-}
-
-.slide-image:first-child {
-    opacity: 1;
-    z-index: 5;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Oscurecimiento adicional */
-    z-index: 5;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 10;
-    color: var(--text-light);
-    max-width: 900px;
-    padding: 0 20px;
-}
-
-/* Estilos para el texto marquee (animación) */
-.pe-marquee {
-    font-size: 4rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    overflow: hidden;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    line-height: 1.1;
-}
-
-.pe-marquee .marquee-inner {
-    display: inline-flex;
-    animation: marquee 15s linear infinite;
-}
-
-.pe-marquee .marquee-text {
-    padding-right: 50px;
-    /* Espacio entre repeticiones */
-    display: inline-block;
-}
-
-.pe-marquee .seperator {
-    height: 1.2em;
-    width: 1.2em;
-    margin: 0 20px;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.pe-marquee .seperator svg {
-    fill: var(--accent-color);
-    /* Color dorado */
-    height: 100%;
-    width: 100%;
-}
-
-@keyframes marquee {
-    from {
-        transform: translateX(0);
+        // Muestra la diapositiva actual y la pone al frente
+        slides[index].style.opacity = '1';
+        slides[index].style.zIndex = '5';
+        currentSlide = index;
     }
 
-    to {
-        transform: translateX(-50%);
-    }
-}
-
-.hero-content .btn {
-    display: inline-block;
-    margin: 10px 15px;
-    padding: 12px 30px;
-    font-size: 1rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    border-radius: 50px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.hero-content .primary-btn {
-    background-color: var(--secondary-color);
-    color: var(--text-light);
-    border: 2px solid var(--secondary-color);
-}
-
-.hero-content .primary-btn:hover {
-    background-color: #5d594b;
-    border-color: #5d594b;
-    transform: translateY(-3px);
-}
-
-.hero-content .secondary-btn {
-    background-color: transparent;
-    color: var(--text-light);
-    border: 2px solid var(--text-light);
-}
-
-.hero-content .secondary-btn:hover {
-    background-color: var(--text-light);
-    color: var(--primary-color);
-    transform: translateY(-3px);
-}
-
-/* ========================================= */
-/* 4. SECCIONES GENERALES */
-/* ========================================= */
-.section {
-    padding: 80px 5%;
-    text-align: center;
-}
-
-.section h2 {
-    font-size: 3rem;
-    color: var(--primary-color);
-    margin-bottom: 20px;
-    border-bottom: 4px solid var(--accent-color);
-    display: inline-block;
-    padding-bottom: 10px;
-}
-
-.section-description {
-    max-width: 800px;
-    margin: 0 auto 40px;
-    font-size: 1.1rem;
-    color: var(--text-dark);
-}
-
-/* ========================================= */
-/* 5. MENSAJES (Video) */
-/* ========================================= */
-.video-container {
-    max-width: 800px;
-    margin: 0 auto 30px;
-    background: #000;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: var(--shadow-medium);
-}
-
-.video-container iframe {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    display: block;
-}
-
-.tertiary-btn {
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    padding: 10px 25px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.tertiary-btn:hover {
-    background-color: #3d3b3b;
-    transform: translateY(-2px);
-}
-
-/* ========================================= */
-/* 6. EVENTOS */
-/* ========================================= */
-.events-section {
-    background-color: var(--bg-light);
-}
-
-.events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.event-card {
-    background-color: var(--text-light);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: var(--shadow-light);
-    text-align: left;
-    transition: transform 0.3s ease;
-}
-
-.event-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-.event-card i {
-    font-size: 2.5rem;
-    color: var(--accent-color);
-    margin-bottom: 15px;
-}
-
-.event-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 10px;
-    font-size: 1.4rem;
-}
-
-.event-date,
-.event-location {
-    font-size: 0.95rem;
-    color: var(--secondary-color);
-    margin-bottom: 5px;
-    font-weight: 600;
-}
-
-.small-btn {
-    margin-top: 15px;
-    padding: 8px 20px;
-    font-size: 0.9rem;
-    display: inline-block;
-    cursor: pointer;
-    border: none;
-}
-
-/* Estilos del Calendario de Google */
-.calendar-container {
-    max-width: 1000px;
-    margin: 30px auto;
-    height: 600px;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: var(--shadow-medium);
-}
-
-.calendar-container iframe {
-    height: 100%;
-}
-
-/* ========================================= */
-/* 7. MISIÓN */
-/* ========================================= */
-.mission-section {
-    background-color: var(--text-light);
-}
-
-.mission-content {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.mission-content strong {
-    display: block;
-    font-size: 1.5rem;
-    color: var(--secondary-color);
-    margin-bottom: 40px;
-}
-
-.mission-points {
-    display: flex;
-    justify-content: space-around;
-    gap: 30px;
-    margin-bottom: 40px;
-    padding-top: 20px;
-}
-
-.point-item {
-    flex: 1;
-    padding: 20px;
-    background-color: var(--bg-light);
-    border-radius: 8px;
-    box-shadow: var(--shadow-light);
-}
-
-.point-item i {
-    font-size: 3rem;
-    color: var(--accent-color);
-    margin-bottom: 15px;
-}
-
-.point-item h4 {
-    color: var(--primary-color);
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-
-/* ========================================= */
-/* 8. GALERÍA DE FOTOS (Sliders) */
-/* ========================================= */
-.gallery-section {
-    background-color: var(--bg-light);
-}
-
-.slider-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    /* Tres columnas en desktop */
-    gap: 20px;
-    max-width: 1200px;
-    margin: 40px auto;
-}
-
-.gallery-slider-frame {
-    overflow: hidden;
-    position: relative;
-    border-radius: 10px;
-    box-shadow: var(--shadow-medium);
-}
-
-.slider-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.slider-slide {
-    min-width: 100%;
-    /* Asegura que el slide ocupe todo el marco */
-    flex-shrink: 0;
-    /* Evita que se encoja */
-}
-
-.slider-slide img {
-    width: 100%;
-    height: 350px;
-    /* Altura fija para uniformidad */
-    object-fit: cover;
-    display: block;
-}
-
-.slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 10;
-    transition: background 0.3s;
-}
-
-.slider-btn:hover {
-    background: rgba(0, 0, 0, 0.8);
-}
-
-.slider-btn.prev {
-    left: 0;
-    border-radius: 0 5px 5px 0;
-}
-
-.slider-btn.next {
-    right: 0;
-    border-radius: 5px 0 0 5px;
-}
-
-/* ========================================= */
-/* 9. CTAs/CONTACTO (Grid) */
-/* ========================================= */
-.cta-grid {
-    background-color: var(--text-light);
-    padding: 60px 5%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.cta-item {
-    background-color: var(--bg-light);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: var(--shadow-light);
-    text-align: center;
-}
-
-.cta-item i {
-    font-size: 3rem;
-    color: var(--accent-color);
-    margin-bottom: 15px;
-}
-
-.cta-item h3 {
-    color: var(--primary-color);
-    margin-bottom: 10px;
-}
-
-.cta-item p {
-    margin-bottom: 20px;
-    font-size: 0.95rem;
-}
-
-.cta-item a {
-    display: inline-block;
-    padding: 8px 20px;
-    background-color: var(--secondary-color);
-    color: var(--text-light);
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: background-color 0.3s;
-}
-
-.cta-item a:hover {
-    background-color: #5d594b;
-}
-
-/* ========================================= */
-/* 10. FOOTER */
-/* ========================================= */
-.footer {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-    text-align: center;
-    padding: 40px 5%;
-    font-size: 0.9rem;
-}
-
-.footer-links a {
-    color: var(--accent-color);
-    text-decoration: none;
-    margin: 0 15px;
-    transition: color 0.3s;
-}
-
-.footer-links a:hover {
-    color: var(--text-light);
-}
-
-.social-links {
-    margin: 20px 0;
-}
-
-.social-links a {
-    color: var(--text-light);
-    font-size: 1.5rem;
-    margin: 0 10px;
-    transition: color 0.3s;
-}
-
-.social-links a:hover {
-    color: var(--accent-color);
-}
-
-/* ========================================= */
-/* 11. MODALES */
-/* ========================================= */
-.modal {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 10000;
-    /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.6);
-    /* Black w/ opacity */
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    /* 15% from the top and centered */
-    padding: 30px;
-    border: 1px solid #888;
-    width: 90%;
-    /* Could be more or less, depending on screen size */
-    max-width: 600px;
-    border-radius: 10px;
-    position: relative;
-    box-shadow: var(--shadow-medium);
-    animation-name: animatetop;
-    animation-duration: 0.4s
-}
-
-/* Add Animation */
-@keyframes animatetop {
-    from {
-        top: -300px;
-        opacity: 0
+    function nextSlide() {
+        let newIndex = (currentSlide + 1) % slides.length;
+        showSlide(newIndex);
     }
 
-    to {
-        top: 0;
-        opacity: 1
-    }
-}
-
-.close-btn {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-    color: var(--primary-color);
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.event-details-modal h3 {
-    color: var(--secondary-color);
-    margin-top: 15px;
-    border-bottom: 2px solid var(--accent-color);
-    padding-bottom: 5px;
-}
-
-.event-details-modal ul {
-    list-style-type: none;
-    padding-left: 0;
-    margin-top: 10px;
-}
-
-.event-details-modal ul li::before {
-    content: "•";
-    color: var(--accent-color);
-    font-weight: bold;
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-}
-
-/* ========================================= */
-/* 12. WHATSAPP FLOTANTE */
-/* ========================================= */
-.whatsapp-float {
-    position: fixed;
-    width: 250px;
-    height: 50px;
-    bottom: 40px;
-    right: 40px;
-    background-color: #25d366;
-    color: var(--text-light);
-    border-radius: 50px;
-    text-align: center;
-    font-size: 1rem;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 20px;
-    text-decoration: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.whatsapp-float:hover {
-    background-color: #128c7e;
-    transform: scale(1.05);
-}
-
-.whatsapp-float i {
-    font-size: 24px;
-    margin-right: 10px;
-}
-
-/* ========================================= */
-/* 13. RESPONSIVE (Móviles y Tabletas) */
-/* ========================================= */
-@media (max-width: 992px) {
-
-    /* 1. Muestra el botón de hamburguesa y oculta el menú de escritorio */
-    .menu-toggle {
-        display: block;
+    // Inicializar el carrusel y establecer el temporizador
+    if (slides.length > 0) {
+        showSlide(0);
+        setInterval(nextSlide, 5000);
     }
 
-    /* 2. Oculta el menú por defecto, forzando la anulación de estilos de escritorio */
-    .nav {
-        display: none !important;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background-color: var(--text-light, white);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-        height: auto;
-        overflow-y: auto;
-        padding-bottom: 10px;
-    }
 
-    /* 3. Muestra el menú cuando el JS añade la clase 'active' */
-    .nav.active {
-        display: flex !important;
-        animation: slideDown 0.3s ease-out;
-    }
+    /* ========================================= */
+    /* 2. FUNCIONALIDAD DEL MENÚ MÓVIL */
+    /* ========================================= */
+    const menuToggle = document.getElementById('menu-toggle');
+    const nav = document.querySelector('.nav');
 
-    /* 4. Estilos de los enlaces del menú móvil */
-    /* Aplica a links simples y a los contenedores dropdown */
-    .nav a:not(.dropdown-toggle),
-    .nav .dropdown {
-        width: 100%;
-        margin-left: 0;
-        padding: 0;
-        text-align: left;
-        border-bottom: 1px solid var(--bg-light, #f0f0f0);
-    }
+    menuToggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
 
-    /* Estilo del botón toggle principal en móvil */
-    .nav .dropdown .dropdown-toggle {
-        width: 100%;
-        display: block;
-        margin: 0;
-        padding: 15px 5%;
-        border-radius: 0;
-        /* Asegura que los enlaces principales tomen todo el ancho */
-    }
+        // Si el menú principal se cierra, cerrar todos los submenús
+        if (!nav.classList.contains('active')) {
+            document.querySelectorAll('.dropdown.active').forEach(item => {
+                item.classList.remove('active');
+            });
+        }
+    });
 
-    /* Quitar el borde inferior al padre si el submenú está activo */
-    .dropdown.active {
-        border-bottom: none;
-    }
+    // Cerrar el menú si se hace clic en un enlace (móvil)
+    document.querySelectorAll('.nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            // Se asegura de cerrar el menú principal solo si es un enlace de navegación normal
+            if (!link.classList.contains('dropdown-toggle')) {
+                nav.classList.remove('active');
+                // Cierra también los submenús al navegar
+                document.querySelectorAll('.dropdown.active').forEach(item => {
+                    item.classList.remove('active');
+                });
+            }
+        });
+    });
 
-    /* El submenú ya no es absolute, se despliega in-line */
-    .dropdown-menu {
-        position: static;
-        /* CRUCIAL: Se despliega justo debajo del toggle */
-        width: 100%;
-        max-height: 0;
-        /* Oculto con max-height para la transición */
-        overflow: hidden;
-        box-shadow: none;
-        padding: 0;
-        transition: max-height 0.3s ease-in-out;
-        margin-top: 0;
-        border-radius: 0;
-        background-color: #f7f7f7;
-        /* Un color ligeramente diferente para el submenú */
-    }
 
-    /* Mostrar el submenú en móvil cuando la clase 'active' está presente (gestión por JS) */
-    .dropdown.active .dropdown-menu {
-        max-height: 500px;
-        /* Suficientemente grande para contener todos los links */
-        padding: 10px 0;
-    }
+    /* ========================================= */
+    /* 3. FUNCIONALIDAD DEL SUBMENÚ (DROPDOWN) */
+    /* ========================================= */
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
-    /* Estilos de los enlaces internos del submenú en móvil */
-    .dropdown-menu a {
-        padding: 10px 5% 10px 10%;
-        /* Más indentación */
-        border-bottom: 1px solid #eee;
-    }
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function (e) {
+            // Solo para pantallas pequeñas (móvil)
+            if (window.innerWidth <= 992) {
+                e.preventDefault(); // Detener la navegación para que se abra el menú
+                const parentDropdown = this.closest('.dropdown');
 
-    /* Eliminar el borde del último link del submenú */
-    .dropdown-menu a:last-child {
-        border-bottom: none;
-    }
+                // Cerrar otros submenús si están abiertos
+                document.querySelectorAll('.dropdown').forEach(item => {
+                    if (item !== parentDropdown) {
+                        item.classList.remove('active');
+                    }
+                });
 
-    /* 5. Ajuste para los botones CTA */
-    .nav a.cta-button {
-        margin: 15px 5% 5px;
-        width: 90%;
-        text-align: center;
-        border-bottom: none;
-        padding: 15px 20px;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-    }
+                // Abrir o cerrar el submenú actual
+                parentDropdown.classList.toggle('active');
+            }
+        });
+    });
 
-    /* Definición de la animación (opcional, pero agradable) */
-    @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-20px);
+
+    /* ========================================= */
+    /* 4. SLIDERS DE FOTOS (Galería) */
+    /* ========================================= */
+    function setupSlider(sliderId) {
+        const slider = document.querySelector(`.slider-track[data-slider="${sliderId}"]`);
+        if (!slider) return;
+
+        const slides = slider.querySelectorAll('.slider-slide');
+        let currentIndex = 0;
+
+        function updateSlider() {
+            const slideWidth = slides[0].clientWidth;
+            slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
         }
 
-        to {
-            opacity: 1;
-            transform: translateY(0);
+        function nextSlidePhotos() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlider();
         }
+
+        function prevSlidePhotos() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlider();
+        }
+
+        // Eventos para botones
+        document.querySelector(`.slider-btn.next[data-slider-target="${sliderId}"]`).addEventListener('click', nextSlidePhotos);
+        document.querySelector(`.slider-btn.prev[data-slider-target="${sliderId}"]`).addEventListener('click', prevSlidePhotos);
+
+        // Actualizar el slider si la ventana cambia de tamaño
+        window.addEventListener('resize', updateSlider);
+
+        // Auto-avance (opcional, pero mantiene la galería viva)
+        setInterval(nextSlidePhotos, 4000); // Cambia cada 4 segundos
     }
 
-    /* Ajustes para el Hero en móvil */
-    .hero {
-        height: 70vh;
-    }
+    // Inicializar los 3 sliders de fotos
+    setupSlider(1);
+    setupSlider(2);
+    setupSlider(3);
 
-    .hero-content .pe-marquee {
-        font-size: 2.5rem;
-    }
 
-    .hero-content .pe-marquee .seperator {
-        margin: 0 10px;
-        height: 0.8em;
-        width: 0.8em;
-    }
+    /* ========================================= */
+    /* 5. FUNCIONALIDAD DE MODALES (GLOBAL) */
+    /* ========================================= */
 
-    /* Ajuste para que la animación de la marquesina sea más rápida en móvil */
-    .hero-content .pe-marquee .marquee-inner {
-        animation-duration: 10s;
-    }
+    // NOTA: Estas funciones son las que usas en el HTML con onclick="openModal('ID_DEL_MODAL')".
+    // Funcionan para abrir cualquier modal de la página.
+    // (Funciones openModal y closeModal se mantienen fuera del DOMContentLoaded)
 
-    .hero-content .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
 
-    .mission-points {
-        flex-direction: column;
-    }
+}); // FIN de DOMContentLoaded
 
-    .event-card {
-        padding: 20px;
-    }
 
-    /* RESPONSIVIDAD ESPECÍFICA PARA LA GALERÍA */
-    .slider-grid {
-        grid-template-columns: 1fr;
-        /* Una sola columna en móvil */
-    }
+/* ========================================= */
+/* FUNCIONALIDAD DE MODALES (GLOBAL) */
+/* ========================================= */
 
-    .slider-slide img {
-        height: 250px;
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'block';
     }
+}
 
-    /* AJUSTE WHATSAPP FLOTANTE EN MÓVIL */
-    .whatsapp-float {
-        min-width: 130px;
-        /* Ancho mínimo ajustado */
-        height: 45px;
-        /* Altura más pequeña en móvil */
-        bottom: 20px;
-        right: 20px;
-        font-size: 0.8rem;
-        padding: 0 15px;
-        /* Relleno ajustado */
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'none';
     }
+}
 
-    .whatsapp-float span {
-        display: none;
-    }
-
-    .whatsapp-float i {
-        font-size: 20px;
-        margin-right: 0;
-    }
-
-    .whatsapp-float:hover {
-        transform: none;
+// Cerrar el modal haciendo clic fuera del contenido
+window.onclick = function (event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = "none";
     }
 }
