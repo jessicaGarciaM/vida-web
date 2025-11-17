@@ -394,11 +394,11 @@ body {
 
 /* Ajuste específico para móvil si el 16:9 es demasiado ancho */
 @media (max-width: 600px) {
-    .calendar-container {
-        /* Usamos un porcentaje más alto para que sea más largo verticalmente */
-        padding-bottom: 120%;
-        /* Esto hará el calendario 1.2 veces más alto que su ancho en móvil */
-    }
+    .calendar-container {
+        /* Usa una relación más cuadrada para pantallas muy pequeñas (Ej: 4:3) */
+        padding-bottom: 75%;
+        /* 3 / 4 = 0.75 = 75% */
+    }
 }
 
 /* ========================================= */
@@ -894,4 +894,3 @@ body {
         margin-right: 8px;
     }
 }
-
