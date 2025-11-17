@@ -57,8 +57,27 @@ body {
     letter-spacing: 2px;
 }
 
-/* Estilos de navegación normal: Línea sutil */
-.nav a {
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+/* ----------------------------------------- */
+/* ESTILOS PARA DROPDOWN (DESKTOP) */
+/* ----------------------------------------- */
+
+/* Contenedor principal del dropdown */
+.nav .dropdown {
+    position: relative;
+    /* Contenedor para posicionar el submenú */
+    display: flex;
+    /* Asegura que el enlace se alinee bien con los otros */
+    align-items: center;
+}
+
+/* Estilos de navegación normal: Enlaces simples y enlaces toggle */
+.nav a,
+.nav .dropdown-toggle {
     text-decoration: none;
     color: var(--primary-color);
     /* Azul oscuro fijo */
@@ -70,19 +89,72 @@ body {
     transition: all 0.3s ease;
     font-size: 0.95rem;
     text-transform: uppercase;
+    cursor: pointer;
 }
 
-/* EFECTO HOVER IMPRESIONANTE (Estilo Botón Sofisticado) */
-.nav a:hover {
+/* EFECTO HOVER (Estilo Botón Sofisticado) */
+.nav a:hover,
+.nav .dropdown:hover .dropdown-toggle {
     color: var(--text-light);
     /* Color del texto se vuelve blanco */
     background-color: var(--secondary-color);
     /* Fondo Deep Ruby */
     transform: translateY(-2px);
     /* Pequeño levantamiento */
-    box-shadow: 0 4px 10px rgba(136, 14, 79, 0.4);
+    box-shadow: 0 4px 10px rgba(112, 107, 88, 0.4);
     /* Sombra ajustada al nuevo color */
 }
+
+/* Estilos del submenú */
+.dropdown-menu {
+    display: none;
+    /* Oculto por defecto en desktop */
+    position: absolute;
+    top: 100%;
+    /* Empieza justo debajo del link principal */
+    left: 10px;
+    /* Pequeño desplazamiento a la izquierda */
+    background-color: var(--text-light);
+    /* Fondo blanco */
+    min-width: 220px;
+    box-shadow: var(--shadow-medium);
+    border-radius: 5px;
+    padding: 10px 0;
+    z-index: 1001;
+    margin-top: 5px;
+    flex-direction: column;
+}
+
+/* Mostrar el menú en desktop al pasar el ratón por el contenedor del dropdown */
+.dropdown:hover .dropdown-menu {
+    display: flex;
+}
+
+/* Estilos de los enlaces internos del submenú */
+.dropdown-menu a {
+    color: var(--primary-color);
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    white-space: nowrap;
+    /* Evita que el texto se rompa */
+    font-weight: 500;
+    margin: 0;
+    border-radius: 0;
+    transition: background-color 0.3s ease;
+    text-transform: none;
+    /* No en mayúsculas */
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--bg-light);
+    color: var(--secondary-color);
+    transform: none;
+    /* Anular el translateY(-2px) del hover general */
+    box-shadow: none;
+}
+
 
 /* Asegura que el botón de DONAR mantenga su estilo distintivo */
 .cta-button {
@@ -93,32 +165,46 @@ body {
     font-weight: 700 !important;
     transition: transform 0.3s ease, background-color 0.3s ease;
     text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(136, 14, 79, 0.4);
+    box-shadow: 0 4px 10px rgba(112, 107, 88, 0.4);
     margin-left: 30px;
 }
 
 .cta-button:hover {
-    background-color: #6a003f !important;
-    /* Tono más oscuro de Deep Ruby */
+    background-color: #5d594b !important;
+    /* Tono más oscuro */
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(136, 14, 79, 0.6);
+    box-shadow: 0 6px 15px rgba(112, 107, 88, 0.6);
 }
 
 .menu-toggle {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    cursor: pointer;
     display: none;
 }
+
 
 /* ========================================= */
 /* 3. HERO Y CARRUSEL */
 /* ========================================= */
 .hero {
-    height: 85vh;
-    min-height: 600px;
     position: relative;
+    width: 100%;
+    height: 90vh;
+    /* Altura estándar del héroe */
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .carousel-container {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -129,184 +215,192 @@ body {
     width: 100%;
     height: 100%;
     position: relative;
-    /* La animación debe ser controlada por JavaScript */
 }
 
 .slide-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    flex-shrink: 0;
-    filter: brightness(0.7);
     position: absolute;
     top: 0;
     left: 0;
     opacity: 0;
-    transition: opacity 1s ease;
+    transition: opacity 1.5s ease-in-out;
+    filter: brightness(0.6);
+    /* Oscurece las imágenes */
+    z-index: 1;
 }
 
 .slide-image:first-child {
     opacity: 1;
+    z-index: 5;
 }
 
 .hero-overlay {
-    background-color: rgba(0, 0, 0, 0.4);
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Oscurecimiento adicional */
+    z-index: 5;
 }
 
 .hero-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: var(--text-light);
+    position: relative;
     z-index: 10;
-}
-
-.hero-content h1 {
-    font-size: 4.5rem;
-    font-weight: 900;
-    margin-bottom: 25px;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
-    text-transform: uppercase;
-}
-
-/* Estilos de botones generales */
-.btn {
-    text-decoration: none;
-    padding: 12px 30px;
-    border-radius: 50px;
-    font-weight: 700;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    display: inline-block;
-    border: 2px solid transparent;
-    margin: 10px 10px;
-}
-
-.primary-btn {
-    background-color: var(--secondary-color);
-    /* Deep Ruby */
     color: var(--text-light);
-    border-color: var(--secondary-color);
+    max-width: 900px;
+    padding: 0 20px;
 }
 
-.primary-btn:hover {
-    background-color: #6a003f;
-    /* Tono más oscuro de Deep Ruby */
-    transform: translateY(-2px);
+/* Estilos para el texto marquee (animación) */
+.pe-marquee {
+    font-size: 4rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    line-height: 1.1;
 }
 
-.secondary-btn {
+.pe-marquee .marquee-inner {
+    display: inline-flex;
+    animation: marquee 15s linear infinite;
+}
+
+.pe-marquee .marquee-text {
+    padding-right: 50px;
+    /* Espacio entre repeticiones */
+    display: inline-block;
+}
+
+.pe-marquee .seperator {
+    height: 1.2em;
+    width: 1.2em;
+    margin: 0 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.pe-marquee .seperator svg {
+    fill: var(--accent-color);
+    /* Color dorado */
+    height: 100%;
+    width: 100%;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.hero-content .btn {
+    display: inline-block;
+    margin: 10px 15px;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hero-content .primary-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    border: 2px solid var(--secondary-color);
+}
+
+.hero-content .primary-btn:hover {
+    background-color: #5d594b;
+    border-color: #5d594b;
+    transform: translateY(-3px);
+}
+
+.hero-content .secondary-btn {
     background-color: transparent;
     color: var(--text-light);
-    border-color: var(--text-light);
+    border: 2px solid var(--text-light);
 }
 
-.secondary-btn:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    transform: scale(1.05);
-}
-
-.tertiary-btn {
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    padding: 10px 25px;
-    border-radius: 5px;
-    margin-top: 30px;
-    transition: background-color 0.3s ease;
-}
-
-.tertiary-btn:hover {
-    background-color: #151a5c;
+.hero-content .secondary-btn:hover {
+    background-color: var(--text-light);
+    color: var(--primary-color);
+    transform: translateY(-3px);
 }
 
 /* ========================================= */
-/* 4. SECCIONES GENERALES (Títulos Impresionantes) */
+/* 4. SECCIONES GENERALES */
 /* ========================================= */
 .section {
     padding: 80px 5%;
     text-align: center;
 }
 
-/* ESTILOS DE TÍTULOS IMPRESIONANTES */
 .section h2 {
     font-size: 3rem;
-    font-weight: 800;
     color: var(--primary-color);
-    margin-bottom: 30px;
-    position: relative;
+    margin-bottom: 20px;
+    border-bottom: 4px solid var(--accent-color);
     display: inline-block;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-/* Subrayado de impacto */
-.section h2:after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 5px;
-    background: var(--accent-color);
-    /* Antique Gold */
-    margin: 10px auto 0;
-    border-radius: 5px;
-    transform: scaleX(0.8);
-    transition: transform 0.3s ease;
-}
-
-.section h2:hover:after {
-    transform: scaleX(1);
-    background: var(--secondary-color);
-    /* Deep Ruby en hover */
+    padding-bottom: 10px;
 }
 
 .section-description {
-    font-size: 1.1rem;
-    color: var(--text-dark);
-    margin-bottom: 40px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Estilo para los títulos de las tarjetas */
-.event-card h3,
-.cta-item h3,
-.point-item h4 {
-    color: var(--secondary-color);
-    /* Utiliza Deep Ruby para mayor impacto */
-    font-weight: 700;
-}
-
-
-/* ========================================= */
-/* 5. MENSAJES */
-/* ========================================= */
-#mensajes {
-    background-color: var(--text-light);
-}
-
-.video-container {
     max-width: 800px;
     margin: 0 auto 40px;
-    border-radius: 12px;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+}
+
+/* ========================================= */
+/* 5. MENSAJES (Video) */
+/* ========================================= */
+.video-container {
+    max-width: 800px;
+    margin: 0 auto 30px;
+    background: #000;
+    border-radius: 10px;
     overflow: hidden;
     box-shadow: var(--shadow-medium);
 }
 
 .video-container iframe {
     width: 100%;
-    height: 450px;
+    aspect-ratio: 16 / 9;
+    display: block;
+}
+
+.tertiary-btn {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.tertiary-btn:hover {
+    background-color: #3d3b3b;
+    transform: translateY(-2px);
 }
 
 /* ========================================= */
-/* 6. EVENTOS (Cards Impresionantes) */
+/* 6. EVENTOS */
 /* ========================================= */
 .events-section {
     background-color: var(--bg-light);
@@ -316,407 +410,319 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
+    margin-top: 40px;
 }
 
 .event-card {
     background-color: var(--text-light);
     padding: 30px;
-    border-radius: 12px;
+    border-radius: 10px;
     box-shadow: var(--shadow-light);
     text-align: left;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-bottom: 5px solid var(--accent-color);
-    /* Antique Gold */
+    transition: transform 0.3s ease;
 }
 
 .event-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-medium);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .event-card i {
-    font-size: 2rem;
-    color: var(--secondary-color);
-    /* Deep Ruby */
+    font-size: 2.5rem;
+    color: var(--accent-color);
     margin-bottom: 15px;
 }
 
 .event-card h3 {
-    font-size: 1.4rem;
-    font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 10px;
-    line-height: 1.3;
+    font-size: 1.4rem;
 }
 
-.event-date {
-    font-weight: 600;
-    color: var(--secondary-color);
-    /* Deep Ruby */
-    margin-bottom: 5px;
-}
-
+.event-date,
 .event-location {
-    color: #666;
-    margin-bottom: 20px;
+    font-size: 0.95rem;
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+    font-weight: 600;
 }
 
 .small-btn {
-    padding: 8px 15px;
+    margin-top: 15px;
+    padding: 8px 20px;
     font-size: 0.9rem;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
 }
 
-/* ========================================= */
-/* 6.5. CALENDARIO RESPONSIVO */
-/* ========================================= */
+/* Estilos del Calendario de Google */
 .calendar-container {
-    /* Establece un ancho máximo si es necesario, ya lo tienes en el padre */
-    max-width: 900px;
-    margin: 0 auto;
-
-    /* CRÍTICO: Técnica para mantener la relación de aspecto (16:9) */
-    position: relative;
-    padding-bottom: 56.25%;
-    /* 9 / 16 = 0.5625 = 56.25% (Relación 16:9) */
-    height: 0;
+    max-width: 1000px;
+    margin: 30px auto;
+    height: 600px;
     overflow: hidden;
+    border-radius: 10px;
+    box-shadow: var(--shadow-medium);
 }
 
 .calendar-container iframe {
-    /* CRÍTICO: El iframe toma la altura y el ancho del contenedor responsivo */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
     height: 100%;
-    /* Remueve la altura fija del HTML */
-}
-
-/* Ajuste específico para móvil si el 16:9 es demasiado ancho */
-@media (max-width: 600px) {
-    .calendar-container {
-        /* Usa una relación más cuadrada para pantallas muy pequeñas (Ej: 4:3) */
-        padding-bottom: 75%;
-        /* 3 / 4 = 0.75 = 75% */
-    }
 }
 
 /* ========================================= */
-/* 7. MISIÓN (Profesional) */
+/* 7. MISIÓN */
 /* ========================================= */
 .mission-section {
     background-color: var(--text-light);
-    padding: 80px 5%;
-    text-align: center;
 }
 
 .mission-content {
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
-.mission-content p {
-    font-size: 1.3rem;
-    margin-bottom: 50px;
-    color: var(--primary-color);
-    font-weight: 600;
+.mission-content strong {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 40px;
 }
 
 .mission-points {
     display: flex;
     justify-content: space-around;
     gap: 30px;
-    margin-bottom: 50px;
-    margin-top: 50px;
+    margin-bottom: 40px;
+    padding-top: 20px;
 }
 
 .point-item {
     flex: 1;
-    padding: 30px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.point-item:hover {
+    padding: 20px;
     background-color: var(--bg-light);
-    transform: translateY(-3px);
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
 }
 
 .point-item i {
     font-size: 3rem;
-    color: var(--secondary-color);
-    /* Deep Ruby */
+    color: var(--accent-color);
     margin-bottom: 15px;
 }
 
 .point-item h4 {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
     color: var(--primary-color);
-    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
 }
 
 /* ========================================= */
-/* 8. CTA GRID (Sección de Llamada a la Acción) */
+/* 8. GALERÍA DE FOTOS (Sliders) */
+/* ========================================= */
+.gallery-section {
+    background-color: var(--bg-light);
+}
+
+.slider-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Tres columnas en desktop */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.gallery-slider-frame {
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: var(--shadow-medium);
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider-slide {
+    min-width: 100%;
+    /* Asegura que el slide ocupe todo el marco */
+    flex-shrink: 0;
+    /* Evita que se encoja */
+}
+
+.slider-slide img {
+    width: 100%;
+    height: 350px;
+    /* Altura fija para uniformidad */
+    object-fit: cover;
+    display: block;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s;
+}
+
+.slider-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.slider-btn.prev {
+    left: 0;
+    border-radius: 0 5px 5px 0;
+}
+
+.slider-btn.next {
+    right: 0;
+    border-radius: 5px 0 0 5px;
+}
+
+/* ========================================= */
+/* 9. CTAs/CONTACTO (Grid) */
 /* ========================================= */
 .cta-grid {
-    background-color: var(--primary-color);
-    /* Deep Indigo */
-    color: var(--text-light);
+    background-color: var(--text-light);
+    padding: 60px 5%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    text-align: center;
 }
 
 .cta-item {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--bg-light);
     padding: 30px;
-    border-radius: 12px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.cta-item:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-5px);
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+    text-align: center;
 }
 
 .cta-item i {
     font-size: 3rem;
     color: var(--accent-color);
-    /* Antique Gold */
     margin-bottom: 15px;
 }
 
 .cta-item h3 {
-    font-size: 1.5rem;
+    color: var(--primary-color);
     margin-bottom: 10px;
 }
 
 .cta-item p {
     margin-bottom: 20px;
+    font-size: 0.95rem;
 }
 
 .cta-item a {
-    color: var(--accent-color);
-    /* Antique Gold */
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: var(--secondary-color);
+    color: var(--text-light);
     text-decoration: none;
+    border-radius: 50px;
     font-weight: 600;
-    border-bottom: 2px solid var(--accent-color);
-    padding-bottom: 2px;
-    transition: color 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
 .cta-item a:hover {
-    color: var(--text-light);
-    border-color: var(--text-light);
+    background-color: #5d594b;
 }
-
-/* ----------------------------------------- */
-/* 8.5. GALERÍA DE FOTOS (Sliders) - NUEVO */
-/* ----------------------------------------- */
-.slider-container-wrapper {
-    background-color: var(--bg-light);
-    text-align: center;
-}
-
-/* Diseño de cuadrícula para los 3 carruseles */
-.slider-grid {
-    display: grid;
-    /* 3 columnas en escritorio, mín. 300px cada una */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin: 40px auto;
-    max-width: 1200px;
-}
-
-/* Marco Blanco y contenedor del slider */
-.gallery-slider-frame {
-    position: relative;
-    overflow: hidden;
-    /* CRÍTICO: Oculta las imágenes que no están en vista */
-    border: 15px solid white;
-    /* El marco blanco */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
-    height: 350px;
-    /* Altura fija */
-}
-
-/* Contenedor de las imágenes (el que se desliza) */
-.slider-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    /* Animación de deslizamiento */
-    height: 100%;
-}
-
-/* Cada imagen dentro del slider */
-.slider-slide {
-    min-width: 100%;
-    /* CRÍTICO: Cada imagen ocupa el 100% del contenedor */
-    height: 100%;
-    box-sizing: border-box;
-    flex-shrink: 0;
-    /* Evita que las imágenes se compriman */
-}
-
-.slider-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* Asegura que la imagen llene el espacio */
-    display: block;
-}
-
-/* Botones de navegación (flechas) */
-.slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    z-index: 10;
-    font-size: 1.5em;
-    line-height: 1;
-    border-radius: 5px;
-    opacity: 0.8;
-    transition: opacity 0.3s;
-}
-
-.slider-btn:hover {
-    opacity: 1;
-}
-
-.slider-btn.prev {
-    left: 10px;
-}
-
-.slider-btn.next {
-    right: 10px;
-}
-
-/* ----------------------------------------- */
-/* FIN 8.5. GALERÍA DE FOTOS (Sliders) */
-/* ----------------------------------------- */
-
 
 /* ========================================= */
-/* 9. FOOTER Y MODALES (¡CORREGIDO PARA FONDO OSCURO!) */
+/* 10. FOOTER */
 /* ========================================= */
 .footer {
-    background-color: var(--bg-dark) !important;
-    /* ¡Fondo oscuro asegurado! */
-    color: var(--text-light) !important;
-    /* Texto claro asegurado */
-    padding: 40px 5%;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
     text-align: center;
-    width: 100%;
-    margin-top: 0;
+    padding: 40px 5%;
+    font-size: 0.9rem;
 }
 
-/* Enlaces Sociales (Iconos) - Asegurar color blanco */
+.footer-links a {
+    color: var(--accent-color);
+    text-decoration: none;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--text-light);
+}
+
 .social-links {
     margin: 20px 0;
 }
 
-.social-links a i {
-    font-size: 2.8rem;
-    color: var(--text-light) !important;
-    /* ¡Color de íconos asegurado! */
-    margin: 0 12px;
-    transition: color 0.3s ease, transform 0.3s ease;
+.social-links a {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s;
 }
 
-.social-links a:hover i {
-    color: var(--secondary-color);
-    /* Deep Ruby en hover */
-    transform: scale(1.15);
+.social-links a:hover {
+    color: var(--accent-color);
 }
 
-/* Enlaces del Footer (Términos, Privacidad, Contacto) - Asegurar color blanco */
-.footer-links {
-    margin-bottom: 15px;
-}
-
-.footer-links a {
-    color: var(--text-light) !important;
-    /* ¡Color de enlaces asegurado! */
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 0.9rem;
-    opacity: 0.8;
-    transition: opacity 0.3s;
-}
-
-.footer-links a:hover {
-    opacity: 1;
-}
-
-/* Texto de Copyright */
-.footer p {
-    margin-top: 20px;
-    font-size: 0.9rem;
-    color: #aaa;
-    /* Gris claro para el copyright */
-}
-
-/* Estilo para el contenido de los modales */
+/* ========================================= */
+/* 11. MODALES */
+/* ========================================= */
 .modal {
     display: none;
+    /* Hidden by default */
     position: fixed;
-    z-index: 2000;
+    /* Stay in place */
+    z-index: 10000;
+    /* Sit on top */
     left: 0;
     top: 0;
     width: 100%;
+    /* Full width */
     height: 100%;
+    /* Full height */
     overflow: auto;
+    /* Enable scroll if needed */
     background-color: rgba(0, 0, 0, 0.6);
+    /* Black w/ opacity */
 }
 
 .modal-content {
-    background-color: #ffffff;
-    margin: 10% auto;
-    padding: 40px;
-    border: none;
-    border-radius: 15px;
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 30px;
+    border: 1px solid #888;
     width: 90%;
+    /* Could be more or less, depending on screen size */
     max-width: 600px;
+    border-radius: 10px;
+    position: relative;
     box-shadow: var(--shadow-medium);
-    animation: fadeIn 0.3s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
 }
 
-.modal-content h3 {
-    color: var(--primary-color);
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    border-bottom: 2px solid var(--accent-color);
-    /* Antique Gold */
-    padding-bottom: 10px;
-}
+/* Add Animation */
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
 
-.modal-content ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
-    text-align: left;
-}
-
-.modal-content ul li {
-    margin-bottom: 10px;
-    color: var(--text-dark);
-}
-
-.modal-content ul li i {
-    color: var(--secondary-color);
-    /* Deep Ruby */
-    margin-right: 10px;
+    to {
+        top: 0;
+        opacity: 1
+    }
 }
 
 .close-btn {
@@ -724,79 +730,76 @@ body {
     float: right;
     font-size: 28px;
     font-weight: bold;
-    transition: color 0.3s;
+    position: absolute;
+    top: 10px;
+    right: 20px;
 }
 
 .close-btn:hover,
 .close-btn:focus {
-    color: var(--secondary-color);
-    /* Deep Ruby */
+    color: var(--primary-color);
     text-decoration: none;
     cursor: pointer;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
+.event-details-modal h3 {
+    color: var(--secondary-color);
+    margin-top: 15px;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 5px;
+}
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.event-details-modal ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.event-details-modal ul li::before {
+    content: "•";
+    color: var(--accent-color);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
 }
 
 /* ========================================= */
-/* 9.5. BOTÓN FLOTANTE DE WHATSAPP */
+/* 12. WHATSAPP FLOTANTE */
 /* ========================================= */
 .whatsapp-float {
-    /* Posicionamiento y diseño */
     position: fixed;
-    width: auto;
-    min-width: 170px;
-    height: 55px;
+    width: 250px;
+    height: 50px;
     bottom: 40px;
     right: 40px;
-
-    /* Estilos */
     background-color: #25d366;
     color: var(--text-light);
     border-radius: 50px;
-
-    /* Contenido y Centrado */
+    text-align: center;
+    font-size: 1rem;
+    z-index: 1000;
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 0 25px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    text-transform: uppercase;
+    justify-content: center;
+    padding: 0 20px;
     text-decoration: none;
-
-    /* Sombra y Transición */
-    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.6);
-    transition: all 0.3s ease;
-    z-index: 10000;
-}
-
-/* Estilo para el ícono de WhatsApp (i) dentro del botón */
-.whatsapp-float i {
-    font-size: 1.4rem;
-    /* Tamaño del ícono en escritorio */
-    margin-right: 10px;
-    line-height: 1;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .whatsapp-float:hover {
     background-color: #128c7e;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(18, 140, 126, 0.8);
+    transform: scale(1.05);
 }
 
+.whatsapp-float i {
+    font-size: 24px;
+    margin-right: 10px;
+}
 
 /* ========================================= */
-/* 10. RESPONSIVE (Móviles y Tabletas) */
+/* 13. RESPONSIVE (Móviles y Tabletas) */
 /* ========================================= */
 @media (max-width: 992px) {
 
@@ -818,6 +821,7 @@ body {
         z-index: 999;
         height: auto;
         overflow-y: auto;
+        padding-bottom: 10px;
     }
 
     /* 3. Muestra el menú cuando el JS añade la clase 'active' */
@@ -827,13 +831,65 @@ body {
     }
 
     /* 4. Estilos de los enlaces del menú móvil */
-    .nav a {
+    /* Aplica a links simples y a los contenedores dropdown */
+    .nav a:not(.dropdown-toggle),
+    .nav .dropdown {
+        width: 100%;
         margin-left: 0;
-        padding: 15px 5%;
+        padding: 0;
         text-align: left;
         border-bottom: 1px solid var(--bg-light, #f0f0f0);
+    }
+
+    /* Estilo del botón toggle principal en móvil */
+    .nav .dropdown .dropdown-toggle {
         width: 100%;
-        color: var(--primary-color, #2c3e50);
+        display: block;
+        margin: 0;
+        padding: 15px 5%;
+        border-radius: 0;
+        /* Asegura que los enlaces principales tomen todo el ancho */
+    }
+
+    /* Quitar el borde inferior al padre si el submenú está activo */
+    .dropdown.active {
+        border-bottom: none;
+    }
+
+    /* El submenú ya no es absolute, se despliega in-line */
+    .dropdown-menu {
+        position: static;
+        /* CRUCIAL: Se despliega justo debajo del toggle */
+        width: 100%;
+        max-height: 0;
+        /* Oculto con max-height para la transición */
+        overflow: hidden;
+        box-shadow: none;
+        padding: 0;
+        transition: max-height 0.3s ease-in-out;
+        margin-top: 0;
+        border-radius: 0;
+        background-color: #f7f7f7;
+        /* Un color ligeramente diferente para el submenú */
+    }
+
+    /* Mostrar el submenú en móvil cuando la clase 'active' está presente (gestión por JS) */
+    .dropdown.active .dropdown-menu {
+        max-height: 500px;
+        /* Suficientemente grande para contener todos los links */
+        padding: 10px 0;
+    }
+
+    /* Estilos de los enlaces internos del submenú en móvil */
+    .dropdown-menu a {
+        padding: 10px 5% 10px 10%;
+        /* Más indentación */
+        border-bottom: 1px solid #eee;
+    }
+
+    /* Eliminar el borde del último link del submenú */
+    .dropdown-menu a:last-child {
+        border-bottom: none;
     }
 
     /* 5. Ajuste para los botones CTA */
@@ -842,6 +898,10 @@ body {
         width: 90%;
         text-align: center;
         border-bottom: none;
+        padding: 15px 20px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
     }
 
     /* Definición de la animación (opcional, pero agradable) */
@@ -857,26 +917,50 @@ body {
         }
     }
 
-    /* Otros ajustes responsive de secciones... */
-    .hero-content h1 {
+    /* Ajustes para el Hero en móvil */
+    .hero {
+        height: 70vh;
+    }
+
+    .hero-content .pe-marquee {
         font-size: 2.5rem;
+    }
+
+    .hero-content .pe-marquee .seperator {
+        margin: 0 10px;
+        height: 0.8em;
+        width: 0.8em;
+    }
+
+    /* Ajuste para que la animación de la marquesina sea más rápida en móvil */
+    .hero-content .pe-marquee .marquee-inner {
+        animation-duration: 10s;
+    }
+
+    .hero-content .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
     }
 
     .mission-points {
         flex-direction: column;
     }
 
-    /* ----------------------------------------- */
+    .event-card {
+        padding: 20px;
+    }
+
     /* RESPONSIVIDAD ESPECÍFICA PARA LA GALERÍA */
-    /* ----------------------------------------- */
     .slider-grid {
         grid-template-columns: 1fr;
         /* Una sola columna en móvil */
     }
 
-    /* ---------------------------------------------------- */
-    /* AJUSTE WHATSAPP FLOTANTE EN MÓVIL (Bajo 992px) */
-    /* ---------------------------------------------------- */
+    .slider-slide img {
+        height: 250px;
+    }
+
+    /* AJUSTE WHATSAPP FLOTANTE EN MÓVIL */
     .whatsapp-float {
         min-width: 130px;
         /* Ancho mínimo ajustado */
@@ -889,8 +973,16 @@ body {
         /* Relleno ajustado */
     }
 
+    .whatsapp-float span {
+        display: none;
+    }
+
     .whatsapp-float i {
         font-size: 20px;
-        margin-right: 8px;
+        margin-right: 0;
+    }
+
+    .whatsapp-float:hover {
+        transform: none;
     }
 }
