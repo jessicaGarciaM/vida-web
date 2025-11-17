@@ -1,1824 +1,987 @@
-/* ========================================= */ 
-
-/* 1. VARIABLES GLOBALES Y RESET */ 
-
-/* ========================================= */ 
-
-:root { 
-
-    --primary-color: #252323; 
-
-    /* Azul Oscuro Profundo (Deep Indigo) */ 
-
-    --secondary-color: #706b58; 
-
-    /* Marrón Profundo/Deep Ruby (Para CTAs y Énfasis) */ 
-
-    --accent-color: #c2bda1; 
-
-    /* Dorado Antiguo/Soft Mustard (Para Subrayados y Iconos) */ 
-
-    --bg-light: #F5F5F5; 
-
-    /* Gris muy claro para secciones alternas */ 
-
-    --bg-dark: #121212; 
-
-    /* CRUCIAL: Negro muy oscuro para footer */ 
-
-    --text-dark: #333333; 
-
-    --text-light: #ffffff; 
-
-    /* CRUCIAL: Blanco para el texto del footer */ 
-
-    --font-family: 'Montserrat', sans-serif; 
-
-    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1); 
-
-    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.2); 
-
-} 
-
- 
- 
-
-* { 
-
-    box-sizing: border-box; 
-
-    margin: 0; 
-
-    padding: 0; 
-
-} 
-
- 
- 
-
-body { 
-
-    font-family: var(--font-family); 
-
-    color: var(--text-dark); 
-
-    line-height: 1.6; 
-
-    background-color: var(--bg-light); 
-
-    scroll-behavior: smooth; 
-
-} 
-
- 
- 
-
-/* ========================================= */ 
-
-/* 2. HEADER Y NAVEGACIÓN (Sticky/Impresionante) */ 
-
-/* ========================================= */ 
-
-.header { 
-
-    background-color: var(--text-light); 
-
-    box-shadow: var(--shadow-light); 
-
-    position: sticky; 
-
-    top: 0; 
-
-    z-index: 1000; 
-
-    display: flex; 
-
-    justify-content: space-between; 
-
-    align-items: center; 
-
-    padding: 15px 5%; 
-
-    transition: background-color 0.3s ease; 
-
-} 
-
- 
- 
-
-.logo { 
-
-    font-size: 2.5rem; 
-
-    font-weight: 800; 
-
-    color: var(--primary-color); 
-
-    letter-spacing: 2px; 
-
-} 
-
- 
- 
-
-/* Estilos de navegación normal: Línea sutil */ 
-
-.nav a { 
-
-    text-decoration: none; 
-
-    color: var(--primary-color); 
-
-    /* Azul oscuro fijo */ 
-
-    font-weight: 700; 
-
-    margin-left: 20px; 
-
-    padding: 8px 15px; 
-
-    border-radius: 5px; 
-
-    position: relative; 
-
-    transition: all 0.3s ease; 
-
-    font-size: 0.95rem; 
-
-    text-transform: uppercase; 
-
-} 
-
- 
- 
-
-/* EFECTO HOVER IMPRESIONANTE (Estilo Botón Sofisticado) */ 
-
-.nav a:hover { 
-
-    color: var(--text-light); 
-
-    /* Color del texto se vuelve blanco */ 
-
-    background-color: var(--secondary-color); 
-
-    /* Fondo Deep Ruby */ 
-
-    transform: translateY(-2px); 
-
-    /* Pequeño levantamiento */ 
-
-    box-shadow: 0 4px 10px rgba(136, 14, 79, 0.4); 
-
-    /* Sombra ajustada al nuevo color */ 
-
-} 
-
- 
- 
-
-/* Asegura que el botón de DONAR mantenga su estilo distintivo */ 
-
-.cta-button { 
-
-    background-color: var(--secondary-color) !important; 
-
-    color: var(--text-light) !important; 
-
-    padding: 8px 20px; 
-
-    border-radius: 50px; 
-
-    font-weight: 700 !important; 
-
-    transition: transform 0.3s ease, background-color 0.3s ease; 
-
-    text-transform: uppercase; 
-
-    box-shadow: 0 4px 10px rgba(136, 14, 79, 0.4); 
-
-    margin-left: 30px; 
-
-} 
-
- 
- 
-
-.cta-button:hover { 
-
-    background-color: #6a003f !important; 
-
-    /* Tono más oscuro de Deep Ruby */ 
-
-    transform: translateY(-2px); 
-
-    box-shadow: 0 6px 15px rgba(136, 14, 79, 0.6); 
-
-} 
-
- 
- 
-
-.menu-toggle { 
-
-    display: none; 
-
-} 
-
- 
- 
-
-/* ========================================= */ 
-
-/* 3. HERO Y CARRUSEL */ 
-
-/* ========================================= */ 
-
-.hero { 
-
-    height: 85vh; 
-
-    min-height: 600px; 
-
-    position: relative; 
-
-    overflow: hidden; 
-
-} 
-
- 
- 
-
-.carousel-container { 
-
-    width: 100%; 
-
-    height: 100%; 
-
-    overflow: hidden; 
-
-} 
-
- 
- 
-
-.carousel-slide { 
-
-    display: flex; 
-
-    width: 100%; 
-
-    height: 100%; 
-
-    position: relative; 
-
-    /* La animación debe ser controlada por JavaScript */ 
-
-} 
-
- 
- 
-
-.slide-image { 
-
-    width: 100%; 
-
-    height: 100%; 
-
-    object-fit: cover; 
-
-    flex-shrink: 0; 
-
-    filter: brightness(0.7); 
-
-    position: absolute; 
-
-    top: 0; 
-
-    left: 0; 
-
-    opacity: 0; 
-
-    transition: opacity 1s ease; 
-
-} 
-
- 
- 
-
-.slide-image:first-child { 
-
-    opacity: 1; 
-
-} 
-
- 
- 
-
-.hero-overlay { 
-
-    background-color: rgba(0, 0, 0, 0.4); 
-
-    position: absolute; 
-
-    top: 0; 
-
-    left: 0; 
-
-    width: 100%; 
-
-    height: 100%; 
-
-} 
-
- 
- 
-
-.hero-content { 
-
-    position: absolute; 
-
-    top: 50%; 
-
-    left: 50%; 
-
-    transform: translate(-50%, -50%); 
-
-    text-align: center; 
-
-    color: var(--text-light); 
-
-    z-index: 10; 
-
-} 
-
- 
- 
-
-.hero-content h1 { 
-
-    font-size: 4.5rem; 
-
-    font-weight: 900; 
-
-    margin-bottom: 25px; 
-
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 1); 
-
-    text-transform: uppercase; 
-
-} 
-
- 
- 
-
-/* Estilos de botones generales */ 
-
-.btn { 
-
-    text-decoration: none; 
-
-    padding: 12px 30px; 
-
-    border-radius: 50px; 
-
-    font-weight: 700; 
-
-    text-transform: uppercase; 
-
-    transition: all 0.3s ease; 
-
-    display: inline-block; 
-
-    border: 2px solid transparent; 
-
-    margin: 10px 10px; 
-
-} 
-
- 
- 
-
-.primary-btn { 
-
-    background-color: var(--secondary-color); 
-
-    /* Deep Ruby */ 
-
-    color: var(--text-light); 
-
-    border-color: var(--secondary-color); 
-
-} 
-
- 
- 
-
-.primary-btn:hover { 
-
-    background-color: #6a003f; 
-
-    /* Tono más oscuro de Deep Ruby */ 
-
-    transform: translateY(-2px); 
-
-} 
-
- 
- 
-
-.secondary-btn { 
-
-    background-color: transparent; 
-
-    color: var(--text-light); 
-
-    border-color: var(--text-light); 
-
-} 
-
- 
- 
-
-.secondary-btn:hover { 
-
-    background-color: rgba(255, 255, 255, 0.15); 
-
-    transform: scale(1.05); 
-
-} 
-
- 
- 
-
-.tertiary-btn { 
-
-    background-color: var(--primary-color); 
-
-    color: var(--text-light); 
-
-    padding: 10px 25px; 
-
-    border-radius: 5px; 
-
-    margin-top: 30px; 
-
-    transition: background-color 0.3s ease; 
-
-} 
-
- 
- 
-
-.tertiary-btn:hover { 
-
-    background-color: #151a5c; 
-
-} 
-
- 
- 
-
-/* ========================================= */ 
-
-/* 4. SECCIONES GENERALES (Títulos Impresionantes) */ 
-
-/* ========================================= */ 
-
-.section { 
-
-    padding: 80px 5%; 
-
-    text-align: center; 
-
-} 
-
- 
- 
-
-/* ESTILOS DE TÍTULOS IMPRESIONANTES */ 
-
-.section h2 { 
-
-    font-size: 3rem; 
-
-    font-weight: 800; 
-
-    color: var(--primary-color); 
-
-    margin-bottom: 30px; 
-
-    position: relative; 
-
-    display: inline-block; 
-
-    text-transform: uppercase; 
-
-    letter-spacing: 2px; 
-
-} 
-
- 
- 
-
-/* Subrayado de impacto */ 
-
-.section h2:after { 
-
-    content: ''; 
-
-    display: block; 
-
-    width: 100%; 
-
-    height: 5px; 
-
-    background: var(--accent-color); 
-
-    /* Antique Gold */ 
-
-    margin: 10px auto 0; 
-
-    border-radius: 5px; 
-
-    transform: scaleX(0.8); 
-
-    transition: transform 0.3s ease; 
-
-} 
-
- 
- 
-
-.section h2:hover:after { 
-
-    transform: scaleX(1); 
-
-    background: var(--secondary-color); 
-
-    /* Deep Ruby en hover */ 
-
-} 
-
- 
- 
-
-.section-description { 
-
-    font-size: 1.1rem; 
-
-    color: var(--text-dark); 
-
-    margin-bottom: 40px; 
-
-    max-width: 700px; 
-
-    margin-left: auto; 
-
-    margin-right: auto; 
-
-} 
-
- 
- 
-
-/* Estilo para los títulos de las tarjetas */ 
-
-.event-card h3, 
-
-.cta-item h3, 
-
-.point-item h4 { 
-
-    color: var(--secondary-color); 
-
-    /* Utiliza Deep Ruby para mayor impacto */ 
-
-    font-weight: 700; 
-
-} 
-
- 
- 
- 
-
-/* ========================================= */ 
-
-/* 5. MENSAJES */ 
-
-/* ========================================= */ 
-
-#mensajes { 
-
-    background-color: var(--text-light); 
-
-} 
-
- 
- 
-
-.video-container { 
-
-    max-width: 800px; 
-
-    margin: 0 auto 40px; 
-
-    border-radius: 12px; 
-
-    overflow: hidden; 
-
-    box-shadow: var(--shadow-medium); 
-
-} 
-
- 
- 
-
-.video-container iframe { 
-
-    width: 100%; 
-
-    height: 450px; 
-
-} 
-
- 
- 
-
-/* ========================================= */ 
-
-/* 6. EVENTOS (Cards Impresionantes) */ 
-
-/* ========================================= */ 
-
-.events-section { 
-
-    background-color: var(--bg-light); 
-
-} 
-
- 
- 
-
-.events-grid { 
-
-    display: grid; 
-
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-
-    gap: 30px; 
-
-} 
-
- 
- 
-
-.event-card { 
-
-    background-color: var(--text-light); 
-
-    padding: 30px; 
-
-    border-radius: 12px; 
-
-    box-shadow: var(--shadow-light); 
-
-    text-align: left; 
-
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
-
-    border-bottom: 5px solid var(--accent-color); 
-
-    /* Antique Gold */ 
-
-} 
-
- 
- 
-
-.event-card:hover { 
-
-    transform: translateY(-5px); 
-
-    box-shadow: var(--shadow-medium); 
-
-} 
-
- 
- 
-
-.event-card i { 
-
-    font-size: 2rem; 
-
-    color: var(--secondary-color); 
-
-    /* Deep Ruby */ 
-
-    margin-bottom: 15px; 
-
-} 
-
- 
- 
-
-.event-card h3 { 
-
-    font-size: 1.4rem; 
-
-    font-weight: 700; 
-
-    color: var(--primary-color); 
-
-    margin-bottom: 10px; 
-
-    line-height: 1.3; 
-
-} 
-
- 
- 
-
-.event-date { 
-
-    font-weight: 600; 
-
-    color: var(--secondary-color); 
-
-    /* Deep Ruby */ 
-
-    margin-bottom: 5px; 
-
-} 
-
- 
- 
-
-.event-location { 
-
-    color: #666; 
-
-    margin-bottom: 20px; 
-
-} 
-
- 
- 
-
-.small-btn { 
-
-    padding: 8px 15px; 
-
-    font-size: 0.9rem; 
-
-} 
-
- 
- 
-
-/* ========================================= */ 
-
-/* 7. MISIÓN (Profesional) */ 
-
-/* ========================================= */ 
-
-.mission-section { 
-
-    background-color: var(--text-light); 
-
-    padding: 80px 5%; 
-
-    text-align: center; 
-
-} 
-
- 
- 
-
-.mission-content { 
-
-    max-width: 1000px; 
-
-    margin: 0 auto; 
-
-} 
-
- 
- 
-
-.mission-content p { 
-
-    font-size: 1.3rem; 
-
-    margin-bottom: 50px; 
-
-    color: var(--primary-color); 
-
-    font-weight: 600; 
-
-} 
-
- 
- 
-
-.mission-points { 
-
-    display: flex; 
-
-    justify-content: space-around; 
-
-    gap: 30px; 
-
-    margin-bottom: 50px; 
-
-    margin-top: 50px; 
-
-} 
-
- 
- 
-
-.point-item { 
-
-    flex: 1; 
-
-    padding: 30px; 
-
-    border: 1px solid #ddd; 
-
-    border-radius: 8px; 
-
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); 
-
-    text-align: center; 
-
-    transition: background-color 0.3s ease, transform 0.3s ease; 
-
-} 
-
- 
- 
-
-.point-item:hover { 
-
-    background-color: var(--bg-light); 
-
-    transform: translateY(-3px); 
-
-} 
-
- 
- 
-
-.point-item i { 
-
-    font-size: 3rem; 
-
-    color: var(--secondary-color); 
-
-    /* Deep Ruby */ 
-
-    margin-bottom: 15px; 
-
-} 
-
- 
- 
-
-.point-item h4 { 
-
-    font-size: 1.4rem; 
-
-    margin-bottom: 10px; 
-
-    color: var(--primary-color); 
-
-    font-weight: 700; 
-
-} 
-
- 
- 
-
-/* ========================================= */ 
-
-/* 8. CTA GRID (Sección de Llamada a la Acción) */ 
-
-/* ========================================= */ 
-
-.cta-grid { 
-
-    background-color: var(--primary-color); 
-
-    /* Deep Indigo */ 
-
-    color: var(--text-light); 
-
-    display: grid; 
-
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-
-    gap: 30px; 
-
-    text-align: center; 
-
-} 
-
- 
- 
-
-.cta-item { 
-
-    background-color: rgba(255, 255, 255, 0.1); 
-
-    padding: 30px; 
-
-    border-radius: 12px; 
-
-    transition: background-color 0.3s ease, transform 0.3s ease; 
-
-} 
-
- 
- 
-
-.cta-item:hover { 
-
-    background-color: rgba(255, 255, 255, 0.2); 
-
-    transform: translateY(-5px); 
-
-} 
-
- 
- 
-
-.cta-item i { 
-
-    font-size: 3rem; 
-
-    color: var(--accent-color); 
-
-    /* Antique Gold */ 
-
-    margin-bottom: 15px; 
-
-} 
-
- 
- 
-
-.cta-item h3 { 
-
-    font-size: 1.5rem; 
-
-    margin-bottom: 10px; 
-
-} 
-
- 
- 
-
-.cta-item p { 
-
-    margin-bottom: 20px; 
-
-} 
-
- 
- 
-
-.cta-item a { 
-
-    color: var(--accent-color); 
-
-    /* Antique Gold */ 
-
-    text-decoration: none; 
-
-    font-weight: 600; 
-
-    border-bottom: 2px solid var(--accent-color); 
-
-    padding-bottom: 2px; 
-
-    transition: color 0.3s ease, border-color 0.3s ease; 
-
-} 
-
- 
- 
-
-.cta-item a:hover { 
-
-    color: var(--text-light); 
-
-    border-color: var(--text-light); 
-
-} 
-
- 
- 
-
-/* ----------------------------------------- */ 
-
-/* 8.5. GALERÍA DE FOTOS (Sliders) - NUEVO */ 
-
-/* ----------------------------------------- */ 
-
-.slider-container-wrapper { 
-
-    background-color: var(--bg-light); 
-
-    text-align: center; 
-
-} 
-
- 
- 
-
-/* Diseño de cuadrícula para los 3 carruseles */ 
-
-.slider-grid { 
-
-    display: grid; 
-
-    /* 3 columnas en escritorio, mín. 300px cada una */ 
-
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-
-    gap: 25px; 
-
-    margin: 40px auto; 
-
-    max-width: 1200px; 
-
-} 
-
- 
- 
-
-/* Marco Blanco y contenedor del slider */ 
-
-.gallery-slider-frame { 
-
-    position: relative; 
-
-    overflow: hidden; 
-
-    /* CRÍTICO: Oculta las imágenes que no están en vista */ 
-
-    border: 15px solid white; 
-
-    /* El marco blanco */ 
-
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); 
-
-    border-radius: 10px; 
-
-    height: 350px; 
-
-    /* Altura fija */ 
-
-} 
-
- 
- 
-
-/* Contenedor de las imágenes (el que se desliza) */ 
-
-.slider-track { 
-
-    display: flex; 
-
-    transition: transform 0.5s ease-in-out; 
-
-    /* Animación de deslizamiento */ 
-
-    height: 100%; 
-
-} 
-
- 
- 
-
-/* Cada imagen dentro del slider */ 
-
-.slider-slide { 
-
-    min-width: 100%; 
-
-    /* CRÍTICO: Cada imagen ocupa el 100% del contenedor */ 
-
-    height: 100%; 
-
-    box-sizing: border-box; 
-
-    flex-shrink: 0; 
-
-    /* Evita que las imágenes se compriman */ 
-
-} 
-
- 
- 
-
-.slider-slide img { 
-
-    width: 100%; 
-
-    height: 100%; 
-
-    object-fit: cover; 
-
-    /* Asegura que la imagen llene el espacio */ 
-
-    display: block; 
-
-} 
-
- 
- 
-
-/* Botones de navegación (flechas) */ 
-
-.slider-btn { 
-
-    position: absolute; 
-
-    top: 50%; 
-
-    transform: translateY(-50%); 
-
-    background: rgba(0, 0, 0, 0.6); 
-
-    color: white; 
-
-    border: none; 
-
-    padding: 10px 15px; 
-
-    cursor: pointer; 
-
-    z-index: 10; 
-
-    font-size: 1.5em; 
-
-    line-height: 1; 
-
-    border-radius: 5px; 
-
-    opacity: 0.8; 
-
-    transition: opacity 0.3s; 
-
-} 
-
- 
- 
-
-.slider-btn:hover { 
-
-    opacity: 1; 
-
-} 
-
- 
- 
-
-.slider-btn.prev { 
-
-    left: 10px; 
-
-} 
-
- 
- 
-
-.slider-btn.next { 
-
-    right: 10px; 
-
-} 
-
- 
- 
-
-/* ----------------------------------------- */ 
-
-/* FIN 8.5. GALERÍA DE FOTOS (Sliders) */ 
-
-/* ----------------------------------------- */ 
-
- 
- 
- 
-
-/* ========================================= */ 
-
-/* 9. FOOTER Y MODALES (¡CORREGIDO PARA FONDO OSCURO!) */ 
-
-/* ========================================= */ 
-
-.footer { 
-
-    background-color: var(--bg-dark) !important; 
-
-    /* ¡Fondo oscuro asegurado! */ 
-
-    color: var(--text-light) !important; 
-
-    /* Texto claro asegurado */ 
-
-    padding: 40px 5%; 
-
-    text-align: center; 
-
-    width: 100%; 
-
-    margin-top: 0; 
-
-} 
-
- 
- 
-
-/* Enlaces Sociales (Iconos) - Asegurar color blanco */ 
-
-.social-links { 
-
-    margin: 20px 0; 
-
-} 
-
- 
- 
-
-.social-links a i { 
-
-    font-size: 2.8rem; 
-
-    color: var(--text-light) !important; 
-
-    /* ¡Color de íconos asegurado! */ 
-
-    margin: 0 12px; 
-
-    transition: color 0.3s ease, transform 0.3s ease; 
-
-} 
-
- 
- 
-
-.social-links a:hover i { 
-
-    color: var(--secondary-color); 
-
-    /* Deep Ruby en hover */ 
-
-    transform: scale(1.15); 
-
-} 
-
- 
- 
-
-/* Enlaces del Footer (Términos, Privacidad, Contacto) - Asegurar color blanco */ 
-
-.footer-links { 
-
-    margin-bottom: 15px; 
-
-} 
-
- 
- 
-
-.footer-links a { 
-
-    color: var(--text-light) !important; 
-
-    /* ¡Color de enlaces asegurado! */ 
-
-    text-decoration: none; 
-
-    margin: 0 15px; 
-
-    font-size: 0.9rem; 
-
-    opacity: 0.8; 
-
-    transition: opacity 0.3s; 
-
-} 
-
- 
- 
-
-.footer-links a:hover { 
-
-    opacity: 1; 
-
-} 
-
- 
- 
-
-/* Texto de Copyright */ 
-
-.footer p { 
-
-    margin-top: 20px; 
-
-    font-size: 0.9rem; 
-
-    color: #aaa; 
-
-    /* Gris claro para el copyright */ 
-
-} 
-
- 
- 
-
-/* Estilo para el contenido de los modales */ 
-
-.modal { 
-
-    display: none; 
-
-    position: fixed; 
-
-    z-index: 2000; 
-
-    left: 0; 
-
-    top: 0; 
-
-    width: 100%; 
-
-    height: 100%; 
-
-    overflow: auto; 
-
-    background-color: rgba(0, 0, 0, 0.6); 
-
-} 
-
- 
- 
-
-.modal-content { 
-
-    background-color: #ffffff; 
-
-    margin: 10% auto; 
-
-    padding: 40px; 
-
-    border: none; 
-
-    border-radius: 15px; 
-
-    width: 90%; 
-
-    max-width: 600px; 
-
-    box-shadow: var(--shadow-medium); 
-
-    animation: fadeIn 0.3s; 
-
-} 
-
- 
- 
-
-.modal-content h3 { 
-
-    color: var(--primary-color); 
-
-    font-size: 1.8rem; 
-
-    margin-bottom: 20px; 
-
-    border-bottom: 2px solid var(--accent-color); 
-
-    /* Antique Gold */ 
-
-    padding-bottom: 10px; 
-
-} 
-
- 
- 
-
-.modal-content ul { 
-
-    list-style: none; 
-
-    padding: 0; 
-
-    margin-top: 20px; 
-
-    text-align: left; 
-
-} 
-
- 
- 
-
-.modal-content ul li { 
-
-    margin-bottom: 10px; 
-
-    color: var(--text-dark); 
-
-} 
-
- 
- 
-
-.modal-content ul li i { 
-
-    color: var(--secondary-color); 
-
-    /* Deep Ruby */ 
-
-    margin-right: 10px; 
-
-} 
-
- 
- 
-
-.close-btn { 
-
-    color: #aaa; 
-
-    float: right; 
-
-    font-size: 28px; 
-
-    font-weight: bold; 
-
-    transition: color 0.3s; 
-
-} 
-
- 
- 
-
-.close-btn:hover, 
-
-.close-btn:focus { 
-
-    color: var(--secondary-color); 
-
-    /* Deep Ruby */ 
-
-    text-decoration: none; 
-
-    cursor: pointer; 
-
-} 
-
- 
- 
-
-@keyframes fadeIn { 
-
-    from { 
-
-        opacity: 0; 
-
-        transform: translateY(-50px); 
-
-    } 
-
- 
- 
-
-    to { 
-
-        opacity: 1; 
-
-        transform: translateY(0); 
-
-    } 
-
-} 
-
- 
- 
-
-/* ========================================= */ 
-
-/* 9.5. BOTÓN FLOTANTE DE WHATSAPP */ 
-
-/* ========================================= */ 
-
-.whatsapp-float { 
-
-    /* Posicionamiento y diseño */ 
-
-    position: fixed; 
-
-    width: auto; 
-
-    min-width: 170px; 
-
-    height: 55px; 
-
-    bottom: 40px; 
-
-    right: 40px; 
-
- 
- 
-
-    /* Estilos */ 
-
-    background-color: #25d366; 
-
-    color: var(--text-light); 
-
-    border-radius: 50px; 
-
- 
- 
-
-    /* Contenido y Centrado */ 
-
-    display: flex; 
-
-    justify-content: center; 
-
-    align-items: center; 
-
-    padding: 0 25px; 
-
-    font-size: 1.1rem; 
-
-    font-weight: 700; 
-
-    text-transform: uppercase; 
-
-    text-decoration: none; 
-
- 
- 
-
-    /* Sombra y Transición */ 
-
-    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.6); 
-
-    transition: all 0.3s ease; 
-
-    z-index: 10000; 
-
-} 
-
- 
- 
-
-/* Estilo para el ícono de WhatsApp (i) dentro del botón */ 
-
-.whatsapp-float i { 
-
-    font-size: 1.4rem; 
-
-    /* Tamaño del ícono en escritorio */ 
-
-    margin-right: 10px; 
-
-    line-height: 1; 
-
-} 
-
- 
- 
-
-.whatsapp-float:hover { 
-
-    background-color: #128c7e; 
-
-    transform: translateY(-3px); 
-
-    box-shadow: 0 8px 20px rgba(18, 140, 126, 0.8); 
-
-} 
-
- 
- 
- 
-
-/* ========================================= */ 
-
-/* 10. RESPONSIVE (Móviles y Tabletas) */ 
-
-/* ========================================= */ 
-
-@media (max-width: 992px) { 
-
- 
- 
-
-    /* 1. Muestra el botón de hamburguesa y oculta el menú de escritorio */ 
-
-    .menu-toggle { 
-
-        display: block; 
-
-    } 
-
- 
- 
-
-    /* 2. Oculta el menú por defecto, forzando la anulación de estilos de escritorio */ 
-
-    .nav { 
-
-        display: none !important; 
-
-        flex-direction: column; 
-
-        position: absolute; 
-
-        top: 70px; 
-
-        left: 0; 
-
-        width: 100%; 
-
-        background-color: var(--text-light, white); 
-
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-
-        z-index: 999; 
-
-        height: auto; 
-
-        overflow-y: auto; 
-
-    } 
-
- 
- 
-
-    /* 3. Muestra el menú cuando el JS añade la clase 'active' */ 
-
-    .nav.active { 
-
-        display: flex !important; 
-
-        animation: slideDown 0.3s ease-out; 
-
-    } 
-
- 
- 
-
-    /* 4. Estilos de los enlaces del menú móvil */ 
-
-    .nav a { 
-
-        margin-left: 0; 
-
-        padding: 15px 5%; 
-
-        text-align: left; 
-
-        border-bottom: 1px solid var(--bg-light, #f0f0f0); 
-
-        width: 100%; 
-
-        color: var(--primary-color, #2c3e50); 
-
-    } 
-
- 
- 
-
-    /* 5. Ajuste para los botones CTA */ 
-
-    .nav a.cta-button { 
-
-        margin: 15px 5% 5px; 
-
-        width: 90%; 
-
-        text-align: center; 
-
-        border-bottom: none; 
-
-    } 
-
- 
- 
-
-    /* Definición de la animación (opcional, pero agradable) */ 
-
-    @keyframes slideDown { 
-
-        from { 
-
-            opacity: 0; 
-
-            transform: translateY(-20px); 
-
-        } 
-
- 
- 
-
-        to { 
-
-            opacity: 1; 
-
-            transform: translateY(0); 
-
-        } 
-
-    } 
-
- 
- 
-
-    /* Otros ajustes responsive de secciones... */ 
-
-    .hero-content h1 { 
-
-        font-size: 2.5rem; 
-
-    } 
-
- 
- 
-
-    .mission-points { 
-
-        flex-direction: column; 
-
-    } 
-
- 
- 
-
-    /* ----------------------------------------- */ 
-
-    /* RESPONSIVIDAD ESPECÍFICA PARA LA GALERÍA */ 
-
-    /* ----------------------------------------- */ 
-
-    .slider-grid { 
-
-        grid-template-columns: 1fr; 
-
-        /* Una sola columna en móvil */ 
-
-    } 
-
- 
- 
-
-    /* ---------------------------------------------------- */ 
-
-    /* AJUSTE WHATSAPP FLOTANTE EN MÓVIL (Bajo 992px) */ 
-
-    /* ---------------------------------------------------- */ 
-
-    .whatsapp-float { 
-
-        min-width: 130px; 
-
-        /* Ancho mínimo ajustado */ 
-
-        height: 45px; 
-
-        /* Altura más pequeña en móvil */ 
-
-        bottom: 20px; 
-
-        right: 20px; 
-
-        font-size: 0.8rem; 
-
-        padding: 0 15px; 
-
-        /* Relleno ajustado */ 
-
-    } 
-
- 
- 
-
-    .whatsapp-float i { 
-
-        font-size: 20px; 
-
-        margin-right: 8px; 
-
-    } 
-
-} 
+/* ========================================= */
+/* 1. VARIABLES GLOBALES Y RESET */
+/* ========================================= */
+:root {
+    --primary-color: #252323;
+    /* Azul Oscuro Profundo (Deep Indigo) */
+    --secondary-color: #706b58;
+    /* Marrón Profundo/Deep Ruby (Para CTAs y Énfasis) */
+    --accent-color: #c2bda1;
+    /* Dorado Antiguo/Soft Mustard (Para Subrayados y Iconos) */
+    --bg-light: #F5F5F5;
+    /* Gris muy claro para secciones alternas */
+    --bg-dark: #121212;
+    /* CRUCIAL: Negro muy oscuro para footer */
+    --text-dark: #333333;
+    --text-light: #ffffff;
+    /* CRUCIAL: Blanco para el texto del footer */
+    --font-family: 'Montserrat', sans-serif;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: var(--bg-light);
+    scroll-behavior: smooth;
+}
+
+/* ========================================= */
+/* 2. HEADER Y NAVEGACIÓN (Sticky/Impresionante) */
+/* ========================================= */
+.header {
+    background-color: var(--text-light);
+    box-shadow: var(--shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    transition: background-color 0.3s ease;
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    letter-spacing: 2px;
+}
+
+/* Estilos de navegación normal: Línea sutil */
+.nav a {
+    text-decoration: none;
+    color: var(--primary-color);
+    /* Azul oscuro fijo */
+    font-weight: 700;
+    margin-left: 20px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    position: relative;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+}
+
+/* EFECTO HOVER IMPRESIONANTE (Estilo Botón Sofisticado) */
+.nav a:hover {
+    color: var(--text-light);
+    /* Color del texto se vuelve blanco */
+    background-color: var(--secondary-color);
+    /* Fondo Deep Ruby */
+    transform: translateY(-2px);
+    /* Pequeño levantamiento */
+    box-shadow: 0 4px 10px rgba(136, 14, 79, 0.4);
+    /* Sombra ajustada al nuevo color */
+}
+
+/* Asegura que el botón de DONAR mantenga su estilo distintivo */
+.cta-button {
+    background-color: var(--secondary-color) !important;
+    color: var(--text-light) !important;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 700 !important;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(136, 14, 79, 0.4);
+    margin-left: 30px;
+}
+
+.cta-button:hover {
+    background-color: #6a003f !important;
+    /* Tono más oscuro de Deep Ruby */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(136, 14, 79, 0.6);
+}
+
+.menu-toggle {
+    display: none;
+}
+
+/* ========================================= */
+/* 3. HERO Y CARRUSEL */
+/* ========================================= */
+.hero {
+    height: 85vh;
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.carousel-slide {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    /* La animación debe ser controlada por JavaScript */
+}
+
+.slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+    filter: brightness(0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.slide-image:first-child {
+    opacity: 1;
+}
+
+.hero-overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--text-light);
+    z-index: 10;
+}
+
+/* ESTILO DEL TÍTULO MARQUESINA/ROTATORIO */
+.hero-content .pe-marquee {
+    /* Estilos base del H1 de la sección Hero */
+    font-size: 4.5rem;
+    font-weight: 900;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
+    text-transform: uppercase;
+    color: var(--text-light);
+
+    /* Para centrar el separador y aplicar el efecto marquee */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 90%; /* Limita el ancho para que el desplazamiento sea visible */
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden; /* **CRUCIAL**: Oculta el contenido fuera del ancho */
+}
+
+/* Contenedor del texto de la marquesina */
+.hero-content .pe-marquee .marquee-inner {
+    display: flex;
+    /* Los dos <span> se alinean horizontalmente */
+    white-space: nowrap;
+    /* Evita saltos de línea */
+    animation: marquee-scroll 15s linear infinite;
+    /* **CRUCIAL**: Aplica la animación de desplazamiento */
+}
+
+/* Desplazamiento del texto */
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(0%);
+    }
+
+    /* Mueve un 50% para que la segunda copia del texto reemplace a la primera */
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Cada bloque de texto dentro de la marquesina */
+.hero-content .pe-marquee .marquee-text {
+    flex-shrink: 0;
+    /* Asegura que el texto no se comprima */
+}
+
+/* Contenedor del SVG (el separador) */
+.hero-content .pe-marquee .seperator {
+    margin: 0 30px;
+    /* Espaciado entre el texto y el SVG */
+    height: 1.2em;
+    /* Altura basada en el tamaño de la fuente */
+    width: 1.2em;
+    /* Ancho basado en el tamaño de la fuente */
+    flex-shrink: 0;
+    /* Evita que el SVG se comprima */
+
+    /* Animación de rotación (Giro anti-horario) */
+    animation: rotate-counter-clockwise 10s linear infinite;
+}
+
+/* Definición de la animación de rotación */
+@keyframes rotate-counter-clockwise {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+/* Asegura que el SVG tome el tamaño de su contenedor */
+.hero-content .pe-marquee .seperator svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+/* Aplica el color blanco a los elementos del SVG */
+.hero-content .pe-marquee .seperator svg .cls-1 {
+    fill: var(--text-light);
+}
+
+/* Estilos de botones generales */
+.btn {
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    display: inline-block;
+    border: 2px solid transparent;
+    margin: 10px 10px;
+}
+
+.primary-btn {
+    background-color: var(--secondary-color);
+    /* Deep Ruby */
+    color: var(--text-light);
+    border-color: var(--secondary-color);
+}
+
+.primary-btn:hover {
+    background-color: #6a003f;
+    /* Tono más oscuro de Deep Ruby */
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--text-light);
+    border-color: var(--text-light);
+}
+
+.secondary-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+.tertiary-btn {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 10px 25px;
+    border-radius: 5px;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.tertiary-btn:hover {
+    background-color: #151a5c;
+}
+
+/* ========================================= */
+/* 4. SECCIONES GENERALES (Títulos Impresionantes) */
+/* ========================================= */
+.section {
+    padding: 80px 5%;
+    text-align: center;
+}
+
+/* ESTILOS DE TÍTULOS IMPRESIONANTES */
+.section h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Subrayado de impacto */
+.section h2:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 5px;
+    background: var(--accent-color);
+    /* Antique Gold */
+    margin: 10px auto 0;
+    border-radius: 5px;
+    transform: scaleX(0.8);
+    transition: transform 0.3s ease;
+}
+
+.section h2:hover:after {
+    transform: scaleX(1);
+    background: var(--secondary-color);
+    /* Deep Ruby en hover */
+}
+
+.section-description {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilo para los títulos de las tarjetas */
+.event-card h3,
+.cta-item h3,
+.point-item h4 {
+    color: var(--secondary-color);
+    /* Utiliza Deep Ruby para mayor impacto */
+    font-weight: 700;
+}
+
+
+/* ========================================= */
+/* 5. MENSAJES */
+/* ========================================= */
+#mensajes {
+    background-color: var(--text-light);
+}
+
+.video-container {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 450px;
+}
+
+/* ========================================= */
+/* 6. EVENTOS (Cards Impresionantes) */
+/* ========================================= */
+.events-section {
+    background-color: var(--bg-light);
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.event-card {
+    background-color: var(--text-light);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-bottom: 5px solid var(--accent-color);
+    /* Antique Gold */
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.event-card i {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    /* Deep Ruby */
+    margin-bottom: 15px;
+}
+
+.event-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.event-date {
+    font-weight: 600;
+    color: var(--secondary-color);
+    /* Deep Ruby */
+    margin-bottom: 5px;
+}
+
+.event-location {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.small-btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+}
+
+/* ========================================= */
+/* 6.5. CALENDARIO RESPONSIVO */
+/* ========================================= */
+.calendar-container {
+    /* Establece un ancho máximo si es necesario, ya lo tienes en el padre */
+    max-width: 900px;
+    margin: 0 auto;
+
+    /* CRÍTICO: Técnica para mantener la relación de aspecto (16:9) */
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 9 / 16 = 0.5625 = 56.25% (Relación 16:9) */
+    height: 0;
+    overflow: hidden;
+}
+
+.calendar-container iframe {
+    /* CRÍTICO: El iframe toma la altura y el ancho del contenedor responsivo */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Remueve la altura fija del HTML */
+}
+
+/* Ajuste específico para móvil si el 16:9 es demasiado ancho */
+@media (max-width: 600px) {
+    .calendar-container {
+        /* Usa una relación más cuadrada para pantallas muy pequeñas (Ej: 4:3) */
+        padding-bottom: 75%;
+        /* 3 / 4 = 0.75 = 75% */
+    }
+}
+
+/* ========================================= */
+/* 7. MISIÓN (Profesional) */
+/* ========================================= */
+.mission-section {
+    background-color: var(--text-light);
+    padding: 80px 5%;
+    text-align: center;
+}
+
+.mission-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.mission-content p {
+    font-size: 1.3rem;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.mission-points {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.point-item {
+    flex: 1;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.point-item:hover {
+    background-color: var(--bg-light);
+    transform: translateY(-3px);
+}
+
+.point-item i {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    /* Deep Ruby */
+    margin-bottom: 15px;
+}
+
+.point-item h4 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* ========================================= */
+/* 8. CTA GRID (Sección de Llamada a la Acción) */
+/* ========================================= */
+.cta-grid {
+    background-color: var(--primary-color);
+    /* Deep Indigo */
+    color: var(--text-light);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.cta-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 12px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.cta-item i {
+    font-size: 3rem;
+    color: var(--accent-color);
+    /* Antique Gold */
+    margin-bottom: 15px;
+}
+
+.cta-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.cta-item p {
+    margin-bottom: 20px;
+}
+
+.cta-item a {
+    color: var(--accent-color);
+    /* Antique Gold */
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 2px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.cta-item a:hover {
+    color: var(--text-light);
+    border-color: var(--text-light);
+}
+
+/* ----------------------------------------- */
+/* 8.5. GALERÍA DE FOTOS (Sliders) - NUEVO */
+/* ----------------------------------------- */
+.slider-container-wrapper {
+    background-color: var(--bg-light);
+    text-align: center;
+}
+
+/* Diseño de cuadrícula para los 3 carruseles */
+.slider-grid {
+    display: grid;
+    /* 3 columnas en escritorio, mín. 300px cada una */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+/* Marco Blanco y contenedor del slider */
+.gallery-slider-frame {
+    position: relative;
+    overflow: hidden;
+    /* CRÍTICO: Oculta las imágenes que no están en vista */
+    border: 15px solid white;
+    /* El marco blanco */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    height: 350px;
+    /* Altura fija */
+}
+
+/* Contenedor de las imágenes (el que se desliza) */
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    /* Animación de deslizamiento */
+    height: 100%;
+}
+
+/* Cada imagen dentro del slider */
+.slider-slide {
+    min-width: 100%;
+    /* CRÍTICO: Cada imagen ocupa el 100% del contenedor */
+    height: 100%;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    /* Evita que las imágenes se compriman */
+}
+
+.slider-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Asegura que la imagen llene el espacio */
+    display: block;
+}
+
+/* Botones de navegación (flechas) */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.5em;
+    line-height: 1;
+    border-radius: 5px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.slider-btn:hover {
+    opacity: 1;
+}
+
+.slider-btn.prev {
+    left: 10px;
+}
+
+.slider-btn.next {
+    right: 10px;
+}
+
+/* ----------------------------------------- */
+/* FIN 8.5. GALERÍA DE FOTOS (Sliders) */
+/* ----------------------------------------- */
+
+
+/* ========================================= */
+/* 9. FOOTER Y MODALES (¡CORREGIDO PARA FONDO OSCURO!) */
+/* ========================================= */
+.footer {
+    background-color: var(--bg-dark) !important;
+    /* ¡Fondo oscuro asegurado! */
+    color: var(--text-light) !important;
+    /* Texto claro asegurado */
+    padding: 40px 5%;
+    text-align: center;
+    width: 100%;
+    margin-top: 0;
+}
+
+/* Enlaces Sociales (Iconos) - Asegurar color blanco */
+.social-links {
+    margin: 20px 0;
+}
+
+.social-links a i {
+    font-size: 2.8rem;
+    color: var(--text-light) !important;
+    /* ¡Color de íconos asegurado! */
+    margin: 0 12px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover i {
+    color: var(--secondary-color);
+    /* Deep Ruby en hover */
+    transform: scale(1.15);
+}
+
+/* Enlaces del Footer (Términos, Privacidad, Contacto) - Asegurar color blanco */
+.footer-links {
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    color: var(--text-light) !important;
+    /* ¡Color de enlaces asegurado! */
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+}
+
+/* Texto de Copyright */
+.footer p {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #aaa;
+    /* Gris claro para el copyright */
+}
+
+/* Estilo para el contenido de los modales */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 10% auto;
+    padding: 40px;
+    border: none;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: var(--shadow-medium);
+    animation: fadeIn 0.3s;
+}
+
+.modal-content h3 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--accent-color);
+    /* Antique Gold */
+    padding-bottom: 10px;
+}
+
+.modal-content ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.modal-content ul li {
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+.modal-content ul li i {
+    color: var(--secondary-color);
+    /* Deep Ruby */
+    margin-right: 10px;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--secondary-color);
+    /* Deep Ruby */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================= */
+/* 9.5. BOTÓN FLOTANTE DE WHATSAPP */
+/* ========================================= */
+.whatsapp-float {
+    /* Posicionamiento y diseño */
+    position: fixed;
+    width: auto;
+    min-width: 170px;
+    height: 55px;
+    bottom: 40px;
+    right: 40px;
+
+    /* Estilos */
+    background-color: #25d366;
+    color: var(--text-light);
+    border-radius: 50px;
+
+    /* Contenido y Centrado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    /* Sombra y Transición */
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.6);
+    transition: all 0.3s ease;
+    z-index: 10000;
+}
+
+/* Estilo para el ícono de WhatsApp (i) dentro del botón */
+.whatsapp-float i {
+    font-size: 1.4rem;
+    /* Tamaño del ícono en escritorio */
+    margin-right: 10px;
+    line-height: 1;
+}
+
+.whatsapp-float:hover {
+    background-color: #128c7e;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(18, 140, 126, 0.8);
+}
+
+
+/* ========================================= */
+/* 10. RESPONSIVE (Móviles y Tabletas) */
+/* ========================================= */
+@media (max-width: 992px) {
+
+    /* 1. Muestra el botón de hamburguesa y oculta el menú de escritorio */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* 2. Oculta el menú por defecto, forzando la anulación de estilos de escritorio */
+    .nav {
+        display: none !important;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--text-light, white);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+        height: auto;
+        overflow-y: auto;
+    }
+
+    /* 3. Muestra el menú cuando el JS añade la clase 'active' */
+    .nav.active {
+        display: flex !important;
+        animation: slideDown 0.3s ease-out;
+    }
+
+    /* 4. Estilos de los enlaces del menú móvil */
+    .nav a {
+        margin-left: 0;
+        padding: 15px 5%;
+        text-align: left;
+        border-bottom: 1px solid var(--bg-light, #f0f0f0);
+        width: 100%;
+        color: var(--primary-color, #2c3e50);
+    }
+
+    /* 5. Ajuste para los botones CTA */
+    .nav a.cta-button {
+        margin: 15px 5% 5px;
+        width: 90%;
+        text-align: center;
+        border-bottom: none;
+    }
+
+    /* Definición de la animación (opcional, pero agradable) */
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Otros ajustes responsive de secciones... */
+    .hero-content .pe-marquee {
+        font-size: 2.5rem;
+    }
+
+    .hero-content .pe-marquee .seperator {
+        margin: 0 15px;
+        height: 1em;
+        width: 1em;
+    }
+
+    /* Ajuste para que la animación de la marquesina sea más rápida en móvil */
+    .hero-content .pe-marquee .marquee-inner {
+        animation-duration: 10s;
+    }
+
+
+    .mission-points {
+        flex-direction: column;
+    }
+
+    /* ----------------------------------------- */
+    /* RESPONSIVIDAD ESPECÍFICA PARA LA GALERÍA */
+    /* ----------------------------------------- */
+    .slider-grid {
+        grid-template-columns: 1fr;
+        /* Una sola columna en móvil */
+    }
+
+    /* ---------------------------------------------------- */
+    /* AJUSTE WHATSAPP FLOTANTE EN MÓVIL (Bajo 992px) */
+    /* ---------------------------------------------------- */
+    .whatsapp-float {
+        min-width: 130px;
+        /* Ancho mínimo ajustado */
+        height: 45px;
+        /* Altura más pequeña en móvil */
+        bottom: 20px;
+        right: 20px;
+        font-size: 0.8rem;
+        padding: 0 15px;
+        /* Relleno ajustado */
+    }
+
+    .whatsapp-float i {
+        font-size: 20px;
+        margin-right: 8px;
+    }
+}
