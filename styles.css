@@ -13,7 +13,7 @@
     --bg-dark: #121212;
     /* CRUCIAL: Negro muy oscuro para footer */
     --text-dark: #333333;
-    --text-light: #ffffff;
+    --text-light: #e4e4e4;
     /* CRUCIAL: Blanco para el texto del footer */
     --font-family: 'Montserrat', sans-serif;
     --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -83,6 +83,84 @@ body {
     box-shadow: 0 4px 10px rgba(136, 14, 79, 0.4);
     /* Sombra ajustada al nuevo color */
 }
+
+/* ========================================= */
+/* 2.5. SUBMENÚ DESPLEGABLE (DROPDOWN) - NUEVO */
+/* ========================================= */
+
+/* Contenedor del Dropdown (el <li> que contiene el submenú) */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Enlace que activa el dropdown */
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+/* Flecha indicadora de submenú */
+.dropdown-toggle::after {
+    content: ' \25BE';
+    /* Código de flecha hacia abajo */
+    font-size: 0.8em;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+/* Contenedor real del submenú */
+.dropdown-menu {
+    display: none;
+    /* Por defecto, oculto */
+    position: absolute;
+    top: 100%;
+    /* Se posiciona justo debajo del enlace padre */
+    left: 0;
+    min-width: 220px;
+    background-color: var(--text-light);
+    box-shadow: var(--shadow-medium);
+    border-radius: 5px;
+    z-index: 1001;
+    /* Debe estar por encima de otros elementos */
+    padding: 10px 0;
+}
+
+/* Estilos para los elementos dentro del submenú */
+.dropdown-menu a {
+    color: var(--primary-color);
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    margin: 0;
+    border-radius: 0;
+    /* Remueve el borde redondeado */
+    font-weight: 600;
+}
+
+/* Estilo hover en enlaces del submenú */
+.dropdown-menu a:hover {
+    background-color: var(--bg-light);
+    /* Fondo gris claro en hover */
+    color: var(--secondary-color);
+    transform: none;
+    /* Evita el levantamiento */
+    box-shadow: none;
+}
+
+/* Activación del Dropdown en Escritorio (Hover) */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Rotar la flecha al abrir el menú en escritorio */
+.dropdown:hover .dropdown-toggle::after {
+    transform: rotate(180deg);
+}
+
+/* Fin 2.5. Dropdown */
+/* ========================================= */
+
 
 /* Asegura que el botón de DONAR mantenga su estilo distintivo */
 .cta-button {
@@ -183,10 +261,12 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 90%; /* Limita el ancho para que el desplazamiento sea visible */
+    max-width: 90%;
+    /* Limita el ancho para que el desplazamiento sea visible */
     margin-left: auto;
     margin-right: auto;
-    overflow: hidden; /* **CRUCIAL**: Oculta el contenido fuera del ancho */
+    overflow: hidden;
+    /* **CRUCIAL**: Oculta el contenido fuera del ancho */
 }
 
 /* Contenedor del texto de la marquesina */
@@ -922,6 +1002,57 @@ body {
         text-align: center;
         border-bottom: none;
     }
+
+    /* ========================================= */
+    /* DROPDOWN EN MÓVIL (Activación por JS) - NUEVO */
+    /* ========================================= */
+    .dropdown {
+        display: block;
+        /* Ocupa todo el ancho en móvil */
+    }
+
+    /* El submenú por defecto sigue oculto */
+    .dropdown-menu {
+        position: relative;
+        /* Ya no es absoluto; se mueve dentro del flujo */
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+        /* Remueve la sombra en móvil */
+        border-radius: 0;
+        background-color: var(--bg-light);
+        /* Un tono para diferenciar */
+        padding: 0;
+    }
+
+    /* Estilos de los enlaces dentro del submenú móvil */
+    .dropdown-menu a {
+        padding-left: 10%;
+        /* Sangría para indicar que es un sub-enlace */
+        font-size: 0.9em;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    /* El JS añade la clase 'active' al contenedor .dropdown para mostrar .dropdown-menu */
+    .dropdown.active .dropdown-menu {
+        display: block;
+        /* Muestra el submenú cuando el JS lo activa en móvil */
+        animation: slideDown 0.3s ease-out;
+    }
+
+    /* Rota la flecha para indicar que está abierto en móvil */
+    .dropdown.active .dropdown-toggle::after {
+        transform: rotate(180deg);
+    }
+
+    /* El .dropdown-toggle no debe tener un margen inferior grande */
+    .nav a.dropdown-toggle {
+        margin-bottom: 0;
+    }
+
+    /* Fin Dropdown Responsive */
+    /* ========================================= */
+
 
     /* Definición de la animación (opcional, pero agradable) */
     @keyframes slideDown {

@@ -4,16 +4,17 @@ document.addEventListener('DOMContentLoaded', function () {
     /* 1. FUNCIONALIDAD DEL CARRUSEL PRINCIPAL (HERO) */
     /* ========================================= */
     const slides = document.querySelectorAll('.slide-image');
+    const heroContainer = document.querySelector('.hero'); // Añadido: Contenedor principal del carrusel (ajústalo al selector de tu HTML si es diferente)
     let currentSlide = 0;
+    let slideInterval; // Añadido: Variable para almacenar el ID del intervalo
 
     function showSlide(index) {
-        // Oculta todas las diapositivas con baja opacidad
+        // ... (Tu código original para mostrar la diapositiva)
         slides.forEach((slide, i) => {
             slide.style.opacity = '0';
             slide.style.zIndex = '1';
         });
 
-        // Muestra la diapositiva actual y la pone al frente
         slides[index].style.opacity = '1';
         slides[index].style.zIndex = '5';
         currentSlide = index;
@@ -24,16 +25,42 @@ document.addEventListener('DOMContentLoaded', function () {
         showSlide(newIndex);
     }
 
+    // Función para iniciar el avance automático
+    function startAutoSlide() {
+        // Solo iniciar si no está ya corriendo
+        if (!slideInterval) {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+    }
+
+    // Función para detener el avance automático
+    function stopAutoSlide() {
+        clearInterval(slideInterval);
+        slideInterval = null;
+    }
+
     // Inicializar el carrusel y establecer el temporizador
     if (slides.length > 0) {
         showSlide(0);
-        setInterval(nextSlide, 5000);
+        startAutoSlide(); // Inicia el carrusel al cargar
+
+        // *******************************************
+        // * NUEVA FUNCIONALIDAD: Pausar al Hover *
+        // *******************************************
+        if (heroContainer) {
+            // Pausar al pasar el ratón (mouseenter)
+            heroContainer.addEventListener('mouseenter', stopAutoSlide);
+
+            // Reanudar al quitar el ratón (mouseleave)
+            heroContainer.addEventListener('mouseleave', startAutoSlide);
+        }
     }
 
 
     /* ========================================= */
     /* 2. FUNCIONALIDAD DEL MENÚ MÓVIL */
     /* ========================================= */
+    // ... (El resto de tu código, sin cambios)
     const menuToggle = document.getElementById('menu-toggle');
     const nav = document.querySelector('.nav');
 
@@ -88,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let currentIndex = 0;
         const slideCount = slides.length;
+        let autoSlideInterval; // Variable para controlar el intervalo del slider de fotos
 
         // Función para actualizar la posición del slider (transformación CSS)
         function updateSlider() {
@@ -107,12 +135,32 @@ document.addEventListener('DOMContentLoaded', function () {
             updateSlider();
         }
 
+        // Iniciar auto-slide
+        function startPhotoAutoSlide() {
+            if (!autoSlideInterval) {
+                autoSlideInterval = setInterval(showNextSlide, 4000); // Cambia cada 4 segundos
+            }
+        }
+
+        // Detener auto-slide
+        function stopPhotoAutoSlide() {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = null;
+        }
+
         // Event Listeners para los botones
         if (nextButton) nextButton.addEventListener('click', showNextSlide);
         if (prevButton) prevButton.addEventListener('click', showPrevSlide);
 
-        // Auto-slide para que se muevan automáticamente
-        setInterval(showNextSlide, 4000); // Cambia cada 4 segundos
+        // *******************************************
+        // * NUEVA FUNCIONALIDAD: Pausar al Hover en la galería *
+        // *******************************************
+        track.closest('.slider-container').addEventListener('mouseenter', stopPhotoAutoSlide);
+        track.closest('.slider-container').addEventListener('mouseleave', startPhotoAutoSlide);
+
+
+        // Iniciar el auto-avance
+        startPhotoAutoSlide();
     }
 
     // Inicializar los 3 sliders de fotos
@@ -126,9 +174,6 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ========================================= */
 
     // **IMPORTANTE:** Este bloque queda vacío.
-    // Al no haber código aquí, el modal NO se abrirá automáticamente.
-    // La apertura se gestionará únicamente por los botones 'Ver más' en el HTML
-    // a través de la función global openModal().
 
 
     /* ========================================= */
@@ -173,7 +218,6 @@ document.addEventListener('DOMContentLoaded', function () {
 /* ========================================= */
 
 // NOTA: Estas funciones son las que usas en el HTML con onclick="openModal('ID_DEL_MODAL')".
-// Funcionan para abrir cualquier modal de la página.
 
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
