@@ -131,6 +131,40 @@ document.addEventListener('DOMContentLoaded', function () {
     // a través de la función global openModal().
 
 
+    /* ========================================= */
+    /* 6. EFECTO DE TÍTULO DESLIZANTE (MARQUEE TITLE) */
+    /* ========================================= */
+
+    const originalTitle = "Vida - Iglesia Cristiana";
+    const marqueeMessage = "¡Bienvenido a la iglesia Vida!";
+
+    let isOriginal = true;
+    let titleIndex = 0;
+    const scrollSpeed = 300; // Velocidad del desplazamiento en milisegundos
+    const delaySwitch = 4000; // Tiempo para cambiar de mensaje
+
+    function marqueeTitle() {
+        const currentMessage = isOriginal ? originalTitle : marqueeMessage;
+
+        if (titleIndex < currentMessage.length) {
+            // Desplaza el título mostrando una subcadena que avanza
+            document.title = currentMessage.substring(titleIndex, currentMessage.length) + " | " + currentMessage.substring(0, titleIndex);
+            titleIndex++;
+        } else {
+            // Al finalizar el desplazamiento, espera un momento y cambia al siguiente mensaje
+            setTimeout(() => {
+                isOriginal = !isOriginal; // Cambia entre original y el mensaje de bienvenida
+                titleIndex = 0; // Reinicia el índice
+            }, delaySwitch);
+        }
+    }
+
+    // Inicia el ciclo de desplazamiento solo si el título original está presente
+    if (document.title.includes(originalTitle)) {
+        setInterval(marqueeTitle, scrollSpeed);
+    }
+
+
 }); // FIN de DOMContentLoaded
 
 
@@ -162,4 +196,3 @@ window.onclick = function (event) {
         event.target.style.display = 'none';
     }
 }
-
