@@ -201,57 +201,71 @@ function sliderLogic(sliderId) {
 }
 
 /* ========================================= */
-/* 5.5. FUNCIÓN ESPECÍFICA DEL CARRUSEL DE EVENTOS (3 ITEMS POR VISTA) */
+/* 5.5. FUNCIÓN ESPECÍFICA DEL CARRUSEL DE EVENTOS (AJUSTADA PARA RESPONSIVE) */
 /* ========================================= */
 
 function initializeEventsCarousel(trackId) {
     const track = document.getElementById(trackId);
     if (!track) return;
 
-    // Selecciona los ítems individuales que se van a deslizar (carousel-item)
+    // Selecciona los ítems individuales que se van a deslizar
     const items = Array.from(track.children).filter(el => el.classList.contains('carousel-item'));
+    if (items.length === 0) return;
 
-    // Si hay 3 o menos ítems, no se necesita el carrusel, ya que todos son visibles.
-    if (items.length <= 3) return;
-
-    // Obtener los botones de navegación usando su atributo data-target
     const nextButton = document.querySelector(`.carousel-btn.next[data-target="${trackId}"]`);
     const prevButton = document.querySelector(`.carousel-btn.prev[data-target="${trackId}"]`);
 
     let currentIndex = 0;
     const itemsCount = items.length;
-    // Máximo índice al que podemos mover el carrusel sin mostrar espacio en blanco.
-    const maxMoveIndex = itemsCount - 3;
+
+    // Nueva función para obtener el número de ítems visibles basado en el ancho de la pantalla
+    function getVisibleItemsCount() {
+        // Usamos 992px como el punto de quiebre de tu CSS
+        if (window.innerWidth <= 992) {
+            return 1; // ✅ Móvil: mostrar 1 ítem a la vez
+        }
+        // Escritorio: mantener la lógica original de 3 ítems
+        return 3;
+    }
 
     // Función principal para actualizar la posición del carrusel
     function moveToItem(index) {
-        // Obtenemos el ancho de un solo ítem (que por CSS es 33.33% del contenedor)
+        const visibleItems = getVisibleItemsCount();
+        // Recalcula el índice máximo basado en los ítems visibles actuales
+        const maxMoveIndex = itemsCount - visibleItems;
+
+        let targetIndex = index;
+
+        // Restricción: No mover más allá del último conjunto visible
+        if (targetIndex > maxMoveIndex) {
+            targetIndex = maxMoveIndex;
+        }
+        if (targetIndex < 0) {
+            targetIndex = 0;
+        }
+
+        currentIndex = targetIndex;
+
+        // Si hay menos ítems que los visibles, no hay necesidad de mover
+        if (itemsCount <= visibleItems) {
+            track.style.transform = `translateX(0)`;
+            return;
+        }
+
+        // El ancho de un solo ítem (que en móvil debe ser 100% y en desktop 33.33%)
         const itemWidth = items[0].offsetWidth;
 
-        // El movimiento es el índice actual * el ancho de un ítem.
-        track.style.transform = `translateX(-${index * itemWidth}px)`;
-        currentIndex = index;
+        // Aplica la transformación
+        track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
     }
 
+    // Estas funciones ahora llaman a moveToItem con el índice ajustado
     function showNextItem() {
-        let newIndex = currentIndex + 1;
-
-        // Restricción: No pasar del último set de 3 ítems visibles
-        if (newIndex > maxMoveIndex) {
-            newIndex = maxMoveIndex;
-        }
-        moveToItem(newIndex);
+        moveToItem(currentIndex + 1);
     }
 
     function showPrevItem() {
-        let newIndex = currentIndex - 1;
-
-        // Restricción: No ir antes del primer ítem
-        if (newIndex < 0) {
-            newIndex = 0;
-        }
-
-        moveToItem(newIndex);
+        moveToItem(currentIndex - 1);
     }
 
     // Event Listeners para Navegación Manual
@@ -263,7 +277,7 @@ function initializeEventsCarousel(trackId) {
         prevButton.addEventListener('click', showPrevItem);
     }
 
-    // Asegurarse de que el carrusel se reposicione al cambiar el tamaño de la ventana
+    // Asegurarse de que el carrusel se reposicione y recalcule la visibilidad al cambiar el tamaño de la ventana
     window.addEventListener('resize', () => {
         moveToItem(currentIndex);
     });
@@ -271,8 +285,6 @@ function initializeEventsCarousel(trackId) {
     // Inicializar la posición
     moveToItem(currentIndex);
 }
-
-
 /* ========================================= */
 /* 6. FUNCIONALIDAD DE MODALES (GLOBAL) */
 /* ========================================= */
