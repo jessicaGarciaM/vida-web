@@ -83,8 +83,11 @@
             <div class="carousel-slide">
                 <img src="533041861_1166762848810584_1119548223159718177_n.jpg" class="slide-image">
                 <img src="538226879_1174701398016729_8962635426443478501_n.jpg" class="slide-image">
+                <img src="1abb07da-9d54-4471-a15a-35e5d9e4fd82.jfif" class="slide-image">
                 <img src="Captura de pantalla 2025-11-16 021448.jpg" class="slide-image">
                 <img src="537241085_1174701238016745_2982462451560072884_n.jpg" class="slide-image">
+
+
             </div>
         </div>
 
@@ -123,10 +126,69 @@
         </div>
     </section>
 
+    <section id="eventos" class="section events-section">
+        <div class="section-content">
+            <h2>Próximos Eventos</h2>
+            <p class="section-description">
+                Únete a nosotros para nuestros eventos especiales. ¡Hay algo para todos!
+            </p>
+
+            <div class="carousel-container events-carousel">
+                <div class="carousel-frame">
+                    <div class="carousel-track" id="eventos-track">
+
+                        <div class="carousel-item">
+                            <img src="output-onlinetools (1).png" alt="Velada de Oración">
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="output-onlinetools.png" alt="Liderando Sin Cargo">
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="WhatsApp Image 2025-11-17 at 10.41.38.jpeg" alt="Reunión de Jóvenes Impacta">
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="WhatsApp Image 2025-11-17 at 10.38.37.jpeg" alt="mision huicholes">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="WhatsApp-Image-2025-11-17-at-104.jpg" alt="matrimonios">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="WhatsApp Image 2025-11-17 at 10.53.39.jpeg" alt="Congreso de mujeres">
+                        </div>
+
+                    </div>
+                </div>
+
+                <button class="carousel-btn prev" aria-label="Anterior" data-target="eventos-track">❮</button>
+                <button class="carousel-btn next" aria-label="Siguiente" data-target="eventos-track">❯</button>
+
+            </div>
+        </div>
+    </section>
+
+    <hr style="width: 100%; max-width: 800px; margin: 60px auto 40px; border-color: #ddd;">
+
+    <h3 style="font-size: 2rem; color: var(--primary-color); margin-bottom: 25px; text-align: center;">
+        Calendario de Actividades Completo</h3>
+    <p class="section-description">Consulta las fechas y horarios de todas nuestras reuniones y actividades.
+    </p>
+
+    <div class="calendar-container">
+        <iframe
+            src="https://calendar.google.com/calendar/embed?src=2a03636d69a1082c552230c656f38ffabe22f78bb2832dd1f4867faa091a86c3%40group.calendar.google.com&ctz=America%2FMexico_City"
+            style="border: 0" width="100%" frameborder="0" scrolling="yes" title="Calendario de la Iglesia">
+        </iframe>
+    </div>
+    </div>
+    </section>
+
     <section id="mensajes" class="section">
         <h2>Mensaje Más Reciente</h2>
         <div class="video-container">
-            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/EQwcvvu2NH0" frameborder="0"
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/0gcuwyS9V2c" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
             </iframe>
@@ -135,74 +197,6 @@
             rel="noopener noreferrer">
             Ver toda la biblioteca de Mensajes
         </a>
-    </section>
-
-    <section id="eventos" class="section events-section">
-        <div class="section-content">
-            <h2>Próximos Eventos</h2>
-            <p class="section-description">
-                Únete a nosotros para nuestros eventos especiales. ¡Hay algo para todos!
-            </p>
-
-            <div class="events-grid">
-                <div class="event-card">
-                    <i class="fas fa-calendar-day"></i>
-                    <h3>Actividad especial para jovenes</h3>
-                    <p class="event-date">Sabado, 22 de Noviembre - 6:00 PM</p>
-                    <p class="event-location">Auditorio Principal</p>
-                    <a href="#" class="btn primary-btn small-btn">Regístrate</a>
-                </div>
-
-                <div class="event-card">
-                    <i class="fas fa-child"></i>
-                    <h3>Vive + </h3>
-                    <p class="event-date">Martes, 18 de Noviembre - 7:00 pm</p>
-                    <p class="event-location">Auditorio Principal</p>
-                    <button onclick="openModal('modal-vive-mas')" class="btn primary-btn small-btn">Ver
-                        Detalles</button>
-                </div>
-
-                <div class="event-card">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>Velada de oración</h3>
-                    <p class="event-date">Viernes, 28 de Noviembre - 8:00 - 11:00 p.m</p>
-                    <p class="event-location">Auditorio principal</p>
-                    <button onclick="openModal('modal-velada-oracion')" class="btn primary-btn small-btn">Ver
-                        Detalles</button>
-                </div>
-
-                <div class="event-card">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Viaje misionero Wixariatári con los niños Huicholes</h3>
-                    <p class="event-date">Del 13 al 17 de enero</p>
-                    <p class="event-location">Peña colorada</p>
-                    <button onclick="openModal('modal-viaje-misionero')" class="btn primary-btn small-btn">Ver
-                        Detalles</button>
-                </div>
-
-                <div class="event-card">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Cena de matrimonios</h3>
-                    <p class="event-date">Sabado, 6 de diciembre 6:30 p.m</p>
-                    <p class="event-location">Auditorio principal</p>
-                    <button onclick="openModal('modal-cena-matrimonios')" class="btn primary-btn small-btn">Ver
-                        Detalles</button>
-                </div>
-            </div>
-
-            <hr style="width: 100%; max-width: 800px; margin: 60px auto 40px; border-color: #ddd;">
-
-            <h3 style="font-size: 2rem; color: var(--primary-color); margin-bottom: 25px; text-align: center;">
-                Calendario de Actividades Completo</h3>
-            <p class="section-description">Consulta las fechas y horarios de todas nuestras reuniones y actividades.</p>
-
-            <div class="calendar-container">
-                <iframe
-                    src="https://calendar.google.com/calendar/embed?src=2a03636d69a1082c552230c656f38ffabe22f78bb2832dd1f4867faa091a86c3%40group.calendar.google.com&ctz=America%2FMexico_City"
-                    style="border: 0" width="100%" frameborder="0" scrolling="yes" title="Calendario de la Iglesia">
-                </iframe>
-            </div>
-        </div>
     </section>
 
     <section id="Fotos" class="section gallery-section slider-container-wrapper">
@@ -293,28 +287,36 @@
         </div>
     </section>
 
-    <section class="cta-grid section" id="contacto-section">
-        <div class="cta-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <h3>Ubicación</h3>
-            <p>Sierra de Tapalpa No. 5466, Col. Las Águilas, Zapopan, Mexico.</p>
-            <a href="https://maps.app.goo.gl/dP2GJVHsHiLrzSRg6" target="_blank" rel="noopener noreferrer">Ver
-                Ubicacion</a>
-        </div>
-        <div class="cta-item">
-            <i class="fas fa-hand-holding-heart"></i>
-            <h3>Conoce Iglesia Vida</h3>
-            <p>Descubre nuestra visión, valores y lo que es ser parte de nuestra iglesia.</p>
-            <a href="#">Nuestra Historia</a>
-        </div>
-        <div class="cta-item">
-            <i class="fas fa-users"></i>
-            <h3>Grupos conexión</h3>
-            <p>Conéctate y crece en comunidad durante la semana.</p>
-            <a href="#">Únete a un Grupo</a>
+    <section id="contacto-section" class="section events-section" style="padding-top: 60px; padding-bottom: 60px;">
+        <h2>Conecta con Nosotros</h2>
+        <p class="section-description">Todo lo que necesitas para conectar con la comunidad Vida y saber dónde estamos.
+        </p>
+
+        <div class="events-grid">
+            <div class="event-card" style="border-bottom-color: var(--secondary-color);">
+                <i class="fas fa-map-marker-alt" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                <h3>Ubicación</h3>
+                <p>Sierra de Tapalpa No. 5466, Col. Las Águilas, Zapopan, Jalisco, Mexico.</p>
+                <a href="https://maps.app.goo.gl/dP2GJVHsHiLrzSRg6" target="_blank" class="btn tertiary-btn small-btn"
+                    style="margin-top: 15px;">Ver Ubicación</a>
+            </div>
+
+            <div class="event-card" style="border-bottom-color: var(--secondary-color);">
+                <i class="fas fa-book-open" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                <h3>Conoce Iglesia Vida</h3>
+                <p>Descubre nuestra visión, valores y lo que es ser parte de nuestra iglesia.</p>
+                <a href="#mision" class="btn tertiary-btn small-btn" style="margin-top: 15px;">Nuestra Historia</a>
+            </div>
+
+            <div class="event-card" style="border-bottom-color: var(--secondary-color);">
+                <i class="fas fa-users" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                <h3>Grupos Conexión</h3>
+                <p>Conéctate y crece en comunidad durante la semana.</p>
+                <a href="#" onclick="openModal('modal-grupos-conexion')" class="btn tertiary-btn small-btn"
+                    style="margin-top: 15px;">Únete a un Grupo</a>
+            </div>
         </div>
     </section>
-
     <footer class="footer">
         <div class="footer-links">
             <a href="#">Términos y Condiciones</a>
@@ -338,85 +340,20 @@
         <p>© 2025 Vida GDL - Todos los derechos reservados.</p>
     </footer>
 
-    <div id="modal-vive-mas" class="modal">
+    <div id="modal-grupos-conexion" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('modal-vive-mas')">×</span>
-
-            <h2 style="color: var(--primary-color);">Vive +: Inicio de nueva serie </h2>
-            <hr style="margin: 15px 0; border-color: var(--accent-color);">
-
-            <div class="event-details-modal" style="text-align: left; line-height: 1.8;">
-
-                <h3>Detalles Clave</h3>
-                <p><strong><i class="fas fa-calendar-alt"></i> Fecha:</strong> Martes, 18 de Noviembre</p>
-                <p><strong><i class="fas fa-clock"></i> Hora:</strong> 7:00 pm</p>
-                <p><strong><i class="fas fa-map-marker-alt"></i> Lugar:</strong> Auditorio Principal en
-                    Iglesia Vida</p>
-
-                <br>
-
-                <h3>Propósito</h3>
-                <p>Vive + es el tiempo de enseñanza para los mayores de 18 años para profundizar en
-                    temas
-                    prácticos de la vida cristiana, equipándote para crecer en tu fe y aplicar la
-                    Palabra de Dios en tu día a día.</p>
-
-                <ul>
-                    <li>Enseñanza dirigida y práctica.</li>
-                    <li>Tiempo de compartir con otros creyentes.</li>
-                </ul>
-                <br>
-
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-velada-oracion" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('modal-velada-oracion')">×</span>
-            <h2 style="color: var(--primary-color);">Velada de Oración</h2>
-            <hr style="margin: 15px 0; border-color: var(--accent-color);">
+            <span class="close-btn" onclick="closeModal('modal-grupos-conexion')">×</span>
+            <h2 style="color: var(--primary-color);">Únete a un Grupo de Conexión</h2>
+            <hr style="margin: 15px 0; border-color: var(--secondary-color);">
             <p style="text-align: left;">
-                **¡Tiempo de buscar a Dios!** Te invitamos a nuestra velada de oración. Únete a la comunidad para orar
-                juntos y buscar la dirección de Dios.
+                Los **Grupos de Conexión** se reúnen en casas a lo largo de la semana para estudiar la Biblia, orar y
+                compartir en comunidad.
             </p>
-            <br>
-            <p><strong><i class="fas fa-calendar-alt"></i> Fecha:</strong> Viernes, 28 de Noviembre</p>
-            <p><strong><i class="fas fa-clock"></i> Hora:</strong> 8:00 p.m. a 11:00 p.m.</p>
-            <p><strong><i class="fas fa-map-marker-alt"></i> Lugar:</strong> Auditorio principal</p>
-        </div>
-    </div>
-
-    <div id="modal-viaje-misionero" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('modal-viaje-misionero')">×</span>
-            <h2 style="color: var(--primary-color);">Viaje Misionero Wixárika</h2>
-            <hr style="margin: 15px 0; border-color: var(--accent-color);">
-            <p style="text-align: left;">
-                ¡Sé parte de la misión! Viaja con nosotros a Peña Colorada para servir a los niños de la comunidad
-                Huichol. Necesitamos manos para actividades, enseñanza y apoyo logístico.
+            <p style="text-align: left; margin-top: 15px;">
+                **Para unirte, contáctanos y te ayudaremos a encontrar el grupo perfecto para ti.**
             </p>
-            <br>
-            <p><strong><i class="fas fa-calendar-alt"></i> Fechas:</strong> Del 13 al 17 de enero</p>
-            <p><strong><i class="fas fa-map-marker-alt"></i> Destino:</strong> Peña Colorada</p>
-            <a href="#" class="btn primary-btn small-btn" style="margin-top: 20px;">Quiero Participar</a>
-        </div>
-    </div>
-
-    <div id="modal-cena-matrimonios" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('modal-cena-matrimonios')">×</span>
-            <h2 style="color: var(--primary-color);">Cena Especial de Matrimonios</h2>
-            <hr style="margin: 15px 0; border-color: var(--accent-color);">
-            <p style="text-align: left;">
-                Disfruten de una noche romántica con cena, música y un mensaje especial para fortalecer su relación.
-                Cupo limitado.
-            </p>
-            <br>
-            <p><strong><i class="fas fa-calendar-alt"></i> Fecha:</strong> Sábado, 6 de diciembre</p>
-            <p><strong><i class="fas fa-clock"></i> Hora:</strong> 6:30 p.m.</p>
-            <p><strong><i class="fas fa-map-marker-alt"></i> Lugar:</strong> Auditorio principal</p>
-            <a href="#" class="btn primary-btn small-btn" style="margin-top: 20px;">Comprar Boletos</a>
+            <a href="https://wa.me/523318592329?text=Hola%20quiero%20unirme%20a%20un%20Grupo%20de%20Conexi%C3%B3n."
+                target="_blank" class="btn primary-btn small-btn" style="margin-top: 25px;">Enviar WhatsApp</a>
         </div>
     </div>
 

@@ -2,22 +2,34 @@
 /* 1. VARIABLES GLOBALES Y RESET */
 /* ========================================= */
 :root {
-    --primary-color: #252323;
-    /* Azul Oscuro Profundo (Deep Indigo) */
-    --secondary-color: #706b58;
-    /* Marrón Profundo/Deep Ruby (Para CTAs y Énfasis) */
-    --accent-color: #c2bda1;
-    /* Dorado Antiguo/Soft Mustard (Para Subrayados y Iconos) */
-    --bg-light: #F5F5F5;
-    /* Gris muy claro para secciones alternas */
-    --bg-dark: #121212;
-    /* CRUCIAL: Negro muy oscuro para footer */
-    --text-dark: #333333;
-    --text-light: #e4e4e4;
-    /* CRUCIAL: Blanco para el texto del footer */
-    --font-family: 'Montserrat', sans-serif;
-    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
-    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.2);
+    /* Fondo Principal Oscuro (Base del Body/Contenedores) */
+    --bg-dark: #202020;
+    /* Un gris muy oscuro, menos duro que el negro puro. */
+
+    /* Fondo Secundario Oscuro (Para secciones alternas o tarjetas) */
+    --bg-light: #252525;
+    /* Un gris un poco más claro para dar profundidad y separación. */
+
+    /* Color Principal: (para elementos de navegación, iconos, bordes) */
+    --primary-color: #e8e8e8;
+
+    /* Color Secundario/Acento:  (para CTAs, botones, enlaces destacados, hover) */
+    --secondary-color: #b3b3b3;
+
+    /* Texto Claro (Texto principal, títulos) */
+    --text-light: #1f1e1e;
+    /* Blanco roto para evitar el brillo excesivo sobre el fondo oscuro. */
+
+    /* Texto Secundario/Subtítulos (Para texto menos prominente o de ayuda) */
+    --text-dark: #A0A0A0;
+    /* Un gris medio para subtítulos o texto descriptivo. */
+
+    /* Fuente */
+    --font-family: 'Lato', sans-serif;
+
+    /* 💡 Sombras (Se cambian a sombras interiores o sutiles sobre fondos oscuros) */
+    --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-medium: 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 
 * {
@@ -38,7 +50,7 @@ body {
 /* 2. HEADER Y NAVEGACIÓN (Sticky/Impresionante) */
 /* ========================================= */
 .header {
-    background-color: var(--text-light);
+    background-color: var(--bg-dark);
     box-shadow: var(--shadow-light);
     position: sticky;
     top: 0;
@@ -171,7 +183,7 @@ body {
     font-weight: 700 !important;
     transition: transform 0.3s ease, background-color 0.3s ease;
     text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(136, 14, 79, 0.4);
+    box-shadow: 0 4px 10px rgba(223, 220, 222, 0.4);
     margin-left: 30px;
 }
 
@@ -254,7 +266,7 @@ body {
     margin-bottom: 25px;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
     text-transform: uppercase;
-    color: var(--text-light);
+    color: var(--primary-color:);
 
     /* Para centrar el separador y aplicar el efecto marquee */
     display: flex;
@@ -277,6 +289,7 @@ body {
     /* Evita saltos de línea */
     animation: marquee-scroll 15s linear infinite;
     /* **CRUCIAL**: Aplica la animación de desplazamiento */
+    color: var(--primary-color);
 }
 
 /* Desplazamiento del texto */
@@ -308,8 +321,6 @@ body {
     flex-shrink: 0;
     /* Evita que el SVG se comprima */
 
-    /* Animación de rotación (Giro anti-horario) */
-    animation: rotate-counter-clockwise 10s linear infinite;
 }
 
 /* Definición de la animación de rotación */
@@ -394,6 +405,12 @@ body {
 }
 
 /* ESTILOS DE TÍTULOS IMPRESIONANTES */
+.section {
+    padding: 80px 5% 60px;
+    /* ✅ AÑADIDO: Centra los elementos de bloque hijos como el h2 (inline-block) */
+    text-align: center;
+}
+
 .section h2 {
     font-size: 3rem;
     font-weight: 800;
@@ -401,6 +418,7 @@ body {
     margin-bottom: 30px;
     position: relative;
     display: inline-block;
+    /* Necesita que el padre (.section) tenga text-align: center para centrarse */
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -432,6 +450,7 @@ body {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 
 /* Estilo para los títulos de las tarjetas */
@@ -440,89 +459,144 @@ body {
 .point-item h4 {
     color: var(--secondary-color);
     /* Utiliza Deep Ruby para mayor impacto */
-    font-weight: 700;
+    font-weight: 600;
+    /* ✅ CORRECCIÓN DE SINTAXIS: Separamos las propiedades */
+    text-align: center;
+    display: block;
+    margin: 0 auto 10px auto;
 }
 
+.point-item {
+    text-align: center;
+}
+
+.cta-item {
+    text-align: center;
+}
+
+.event-card {
+    text-align: center;
+}
 
 /* ========================================= */
-/* 5. MENSAJES */
+/* 5. MENSAJES (Nuevo estilo: Imagen de Fondo Fija) */
 /* ========================================= */
 #mensajes {
-    background-color: var(--text-light);
+    background-image: url('1abb07da-9d54-4471-a15a-35e5d9e4fd82.jfif');
+    background-size: cover;
+    /* Asegura que la imagen cubra toda la sección */
+    background-position: center center;
+    /* Centra la imagen */
+    background-attachment: fixed;
+    /* ¡Esto hace que la imagen sea fija al hacer scroll! */
+    background-blend-mode: multiply;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Capa de color negro con 50% de opacidad para mejorar contraste */
+    padding: 80px 20px;
+    text-align: center;
+    /* Hacemos que el texto sea blanco para que se vea sobre el fondo oscuro */
+    color: white;
 }
 
 .video-container {
     max-width: 800px;
-    margin: 0 auto 40px;
+    /* margin: 0 auto 40px; */
+    margin: 40px auto;
+    /* Centra el contenedor del video y le da margen */
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: var(--shadow-medium);
+    /* Ajustamos la sombra para que se vea bien sobre un fondo oscuro si es necesario */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    background-color: #000;
+    /* Fondo negro para evitar un borde blanco si la imagen no se carga rápido */
 }
 
 .video-container iframe {
     width: 100%;
+    /* Ajusta la altura del iframe si es necesario, 450px puede ser mucho en móviles */
+    /* Considera usar un aspect ratio más flexible con padding-bottom si es crítico */
     height: 450px;
 }
 
 /* ========================================= */
-/* 6. EVENTOS (Cards Impresionantes) */
+/* 6. EVENTOS (Cards Impresionantes y Carrusel de 3 items) */
+/* ========================================= */
+/* ========================================= */
+/* 6. EVENTOS (Cards Impresionantes y Carrusel de 3 items) */
 /* ========================================= */
 .events-section {
     background-color: var(--bg-light);
 }
 
-.events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+/* --- ESTILOS ESPECÍFICOS DEL CARRUSEL DE EVENTOS (3 Recuadros Visibles - Desktop) --- */
+
+.events-section .events-carousel {
+    position: relative;
+    /* Ancho máximo ajustado para el escritorio */
+    max-width: 1500px;
+    margin: 40px auto;
+    width: 100%;
 }
 
-.event-card {
-    background-color: var(--text-light);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: var(--shadow-light);
-    text-align: left;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-bottom: 5px solid var(--accent-color);
-    /* Antique Gold */
+.events-section .events-carousel .carousel-frame {
+    overflow: hidden;
+    width: 100%;
+    /* 💥 CAMBIO CLAVE: Aumenta el padding del marco para compensar el del ítem */
+    padding: 0 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.event-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-medium);
+.events-section .events-carousel .carousel-track {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
 }
 
-.event-card i {
-    font-size: 2rem;
-    color: var(--secondary-color);
-    /* Deep Ruby */
-    margin-bottom: 15px;
+/* 💥 CADA ITEM OCUPA UN TERCIO DEL ESPACIO VISIBLE (Desktop) */
+.events-section .events-carousel .carousel-item {
+    flex-shrink: 0;
+    width: 33.333%;
+    /* 💥 CAMBIO CLAVE: Aumenta el padding lateral a 15px para más separación */
+    padding: 0 15px;
+    box-sizing: border-box;
 }
 
-.event-card h3 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-    line-height: 1.3;
+.events-section .events-carousel .carousel-item img {
+    width: 100%;
+    /* Altura aumentada a 450px */
+    height: 650px;
+    display: block;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
-.event-date {
-    font-weight: 600;
-    color: var(--secondary-color);
-    /* Deep Ruby */
-    margin-bottom: 5px;
+/* Estilos de botones específicos para eventos (Mantener) */
+.events-section .events-carousel .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 24px;
+    line-height: 1;
+    border-radius: 50%;
+    transition: background 0.2s;
 }
 
-.event-location {
-    color: #666;
-    margin-bottom: 20px;
+.events-section .events-carousel .carousel-btn:hover {
+    background: var(--secondary-color);
 }
 
-.small-btn {
-    padding: 8px 15px;
-    font-size: 0.9rem;
+.events-section .events-carousel .carousel-btn.prev {
+    left: 15px;
+}
+
+.events-section .events-carousel .carousel-btn.next {
+    right: 15px;
 }
 
 /* ========================================= */
@@ -564,7 +638,38 @@ body {
 /* 7. MISIÓN (Profesional) */
 /* ========================================= */
 .mission-section {
-    background-color: var(--text-light);
+    background-image: url('WhatsApp\ Image\ 2025-11-15\ at\ 11.29.19\ \(2\).jpeg');
+    background-size: cover;
+    /* Cubre toda la sección */
+    background-position: center center;
+    /* Centra la imagen */
+    background-attachment: fixed;
+    /* ¡El efecto Parallax/Fijo! */
+
+    /* Overlay oscuro para la legibilidad del texto claro */
+    background-blend-mode: multiply;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Capa de color negro con 50% de opacidad */
+
+    /* Texto principal y títulos claros sobre la imagen oscura */
+    color: var(--primary-color);
+
+    /* Mantenemos el padding original */
+    padding: 80px 5%;
+    text-align: center;
+}
+
+.mission-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.mission-content p {
+    font-size: 1.3rem;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+    /* Aseguramos que el texto del párrafo sea claro */
+    font-weight: 600;
     padding: 80px 5%;
     text-align: center;
 }
@@ -609,6 +714,7 @@ body {
     color: var(--secondary-color);
     /* Deep Ruby */
     margin-bottom: 15px;
+
 }
 
 .point-item h4 {
@@ -619,59 +725,82 @@ body {
 }
 
 /* ========================================= */
-/* 8. CTA GRID (Sección de Llamada a la Acción) */
+/* 8. ARREGLO DE LAYOUT PARA GALERÍA (SLIDER) */
 /* ========================================= */
-.cta-grid {
-    background-color: var(--primary-color);
-    /* Deep Indigo */
-    color: var(--text-light);
+
+.slider-grid {
+    /* Define un layout de 2 columnas para los 2 sliders */
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    text-align: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 40px auto;
 }
 
-.cta-item {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 12px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+/* 1. El Marco Visible */
+.gallery-slider-frame {
+    position: relative;
+    overflow: hidden;
+    /* CRUCIAL: Oculta las diapositivas que están fuera de este marco */
+    border-radius: 10px;
+    box-shadow: var(--shadow-medium);
+    /* Puedes ajustar esta altura según el tamaño deseado */
+    height: 350px;
 }
 
-.cta-item:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-5px);
+/* 2. El Contenedor de Todas las Diapositivas (el "Track") */
+.slider-track {
+    display: flex;
+    /* CRUCIAL: Coloca todos los slides en una fila horizontal */
+    width: 100%;
+    /* La anchura base es 100% */
+    height: 100%;
+    /* La transición CSS hace que el movimiento se vea suave, ya que el JS solo cambia el valor del 'transform' */
+    transition: transform 0.6s ease-in-out;
 }
 
-.cta-item i {
-    font-size: 3rem;
-    color: var(--accent-color);
-    /* Antique Gold */
-    margin-bottom: 15px;
+/* 3. Cada Diapositiva Individual */
+.slider-slide {
+    flex-shrink: 0;
+    /* CRUCIAL: Evita que la imagen se encoja para caber */
+    width: 100%;
+    /* Cada slide ocupa el 100% del ancho del marco (.gallery-slider-frame) */
+    height: 100%;
 }
 
-.cta-item h3 {
+.slider-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Asegura que la imagen se ajuste bien sin distorsionarse */
+}
+
+/* 4. Estilo de los Botones (Asegurando que sean visibles y clicables) */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
     font-size: 1.5rem;
-    margin-bottom: 10px;
+    line-height: 1;
+    transition: background-color 0.3s;
 }
 
-.cta-item p {
-    margin-bottom: 20px;
+.slider-btn.prev {
+    left: 10px;
 }
 
-.cta-item a {
-    color: var(--accent-color);
-    /* Antique Gold */
-    text-decoration: none;
-    font-weight: 600;
-    border-bottom: 2px solid var(--accent-color);
-    padding-bottom: 2px;
-    transition: color 0.3s ease, border-color 0.3s ease;
+.slider-btn.next {
+    right: 10px;
 }
 
-.cta-item a:hover {
-    color: var(--text-light);
-    border-color: var(--text-light);
+.slider-btn:hover {
+    background-color: var(--secondary-color);
 }
 
 /* ----------------------------------------- */
@@ -761,18 +890,13 @@ body {
     right: 10px;
 }
 
-/* ----------------------------------------- */
-/* FIN 8.5. GALERÍA DE FOTOS (Sliders) */
-/* ----------------------------------------- */
-
-
 /* ========================================= */
 /* 9. FOOTER Y MODALES (¡CORREGIDO PARA FONDO OSCURO!) */
 /* ========================================= */
 .footer {
     background-color: var(--bg-dark) !important;
     /* ¡Fondo oscuro asegurado! */
-    color: var(--text-light) !important;
+    color: var(--text-dark) !important;
     /* Texto claro asegurado */
     padding: 40px 5%;
     text-align: center;
@@ -787,14 +911,14 @@ body {
 
 .social-links a i {
     font-size: 2.8rem;
-    color: var(--text-light) !important;
+    color: var(--text-dark) !important;
     /* ¡Color de íconos asegurado! */
     margin: 0 12px;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .social-links a:hover i {
-    color: var(--secondary-color);
+    color: var(--text-dark);
     /* Deep Ruby en hover */
     transform: scale(1.15);
 }
@@ -805,7 +929,7 @@ body {
 }
 
 .footer-links a {
-    color: var(--text-light) !important;
+    color: var(--text-dark) !important;
     /* ¡Color de enlaces asegurado! */
     text-decoration: none;
     margin: 0 15px;
@@ -1114,5 +1238,25 @@ body {
     .whatsapp-float i {
         font-size: 20px;
         margin-right: 8px;
+    }
+
+    /* ---------------------------------------------------- */
+    /* AJUSTE ESPECÍFICO CARRUSEL DE EVENTOS EN MÓVIL/TABLET */
+    /* ---------------------------------------------------- */
+    .events-section .events-carousel {
+        /* Ajusta el ancho máximo del contenedor para móviles si es necesario */
+        max-width: 450px;
+    }
+
+    /* En pantallas pequeñas, mostramos solo 1 recuadro por deslizamiento */
+    .events-section .events-carousel .carousel-item {
+        width: 100%;
+        /* Ocupa el ancho total para mostrar 1 a la vez */
+        padding: 0 5px;
+    }
+
+    .events-section .events-carousel .carousel-item img {
+        height: 250px;
+        /* Altura más pequeña en móvil */
     }
 }

@@ -4,12 +4,10 @@ document.addEventListener('DOMContentLoaded', function () {
     /* 1. FUNCIONALIDAD DEL CARRUSEL PRINCIPAL (HERO) */
     /* ========================================= */
     const slides = document.querySelectorAll('.slide-image');
-    const heroContainer = document.querySelector('.hero'); // Añadido: Contenedor principal del carrusel (ajústalo al selector de tu HTML si es diferente)
     let currentSlide = 0;
-    let slideInterval; // Añadido: Variable para almacenar el ID del intervalo
+    let slideInterval;
 
     function showSlide(index) {
-        // ... (Tu código original para mostrar la diapositiva)
         slides.forEach((slide, i) => {
             slide.style.opacity = '0';
             slide.style.zIndex = '1';
@@ -25,174 +23,80 @@ document.addEventListener('DOMContentLoaded', function () {
         showSlide(newIndex);
     }
 
-    // Función para iniciar el avance automático
     function startAutoSlide() {
-        // Solo iniciar si no está ya corriendo
         if (!slideInterval) {
             slideInterval = setInterval(nextSlide, 5000);
         }
     }
 
-    // Función para detener el avance automático
     function stopAutoSlide() {
         clearInterval(slideInterval);
         slideInterval = null;
     }
 
-    // Inicializar el carrusel y establecer el temporizador
-    if (slides.length > 0) {
+    // Inicialización del Carrusel Principal
+    if (slides.length > 1) {
         showSlide(0);
-        startAutoSlide(); // Inicia el carrusel al cargar
+        startAutoSlide();
 
-        // *******************************************
-        // * NUEVA FUNCIONALIDAD: Pausar al Hover *
-        // *******************************************
+        // Pausa al pasar el ratón (Recomendado para el Hero)
+        const heroContainer = document.querySelector('.hero');
         if (heroContainer) {
-            // Pausar al pasar el ratón (mouseenter)
             heroContainer.addEventListener('mouseenter', stopAutoSlide);
-
-            // Reanudar al quitar el ratón (mouseleave)
             heroContainer.addEventListener('mouseleave', startAutoSlide);
         }
     }
 
-
     /* ========================================= */
-    /* 2. FUNCIONALIDAD DEL MENÚ MÓVIL */
+    /* 2. FUNCIONALIDAD DE NAVEGACIÓN Y DROPDOWN (MÓVIL) */
     /* ========================================= */
-    // ... (El resto de tu código, sin cambios)
-    const menuToggle = document.getElementById('menu-toggle');
+    const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('.nav');
 
-    menuToggle.addEventListener('click', () => {
-        // AÑADE o REMUEVE la clase 'active' para mostrar/ocultar el menú
-        nav.classList.toggle('active');
+    if (menuToggle && nav) {
+        menuToggle.addEventListener('click', function () {
+            nav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+    }
 
-        // Cambia el ícono (hamburguesa <-> X)
-        if (nav.classList.contains('active')) {
-            menuToggle.innerHTML = '<i class="fas fa-times"></i>';
-        } else {
-            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-        }
-    });
-
-    // Cierra el menú móvil al hacer clic en un enlace
-    document.querySelectorAll('.nav a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (nav.classList.contains('active')) {
-                nav.classList.remove('active');
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-            }
+    // Funcionalidad de Dropdown en móvil (Activar/Desactivar al hacer clic)
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function (e) {
+            // Previene la navegación si es un enlace (#)
+            e.preventDefault();
+            // Encuentra el contenedor padre
+            const parentDropdown = toggle.closest('.dropdown');
+            // Muestra/Oculta el submenú
+            parentDropdown.classList.toggle('active');
         });
     });
 
-    // Cierra el menú si se redimensiona la ventana a escritorio
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 992) {
-            nav.classList.remove('active');
-            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-        }
-    });
-
 
     /* ========================================= */
-    /* 3. FUNCIONALIDAD DE LOS 3 CAROUSELES DE FOTOS */
+    /* 3. FUNCIONALIDAD DEL SLIDER DE GALERÍA (INICIALIZACIÓN) */
     /* ========================================= */
-
-    function setupSlider(sliderId) {
-        const track = document.querySelector(`.slider-track[data-slider="${sliderId}"]`);
-
-        // Verifica que el track exista
-        if (!track) return;
-
-        const slides = Array.from(track.children);
-
-        // No hacer nada si solo hay una foto o ninguna
-        if (slides.length <= 1) return;
-
-        const nextButton = document.querySelector(`.slider-btn.next[data-slider-target="${sliderId}"]`);
-        const prevButton = document.querySelector(`.slider-btn.prev[data-slider-target="${sliderId}"]`);
-
-        let currentIndex = 0;
-        const slideCount = slides.length;
-        let autoSlideInterval; // Variable para controlar el intervalo del slider de fotos
-
-        // Función para actualizar la posición del slider (transformación CSS)
-        function updateSlider() {
-            const offset = -currentIndex * 100;
-            track.style.transform = `translateX(${offset}%)`;
-        }
-
-        // Navegación a la siguiente diapositiva
-        function showNextSlide() {
-            currentIndex = (currentIndex + 1) % slideCount;
-            updateSlider();
-        }
-
-        // Navegación a la diapositiva anterior
-        function showPrevSlide() {
-            currentIndex = (currentIndex - 1 + slideCount) % slideCount;
-            updateSlider();
-        }
-
-        // Iniciar auto-slide
-        function startPhotoAutoSlide() {
-            if (!autoSlideInterval) {
-                autoSlideInterval = setInterval(showNextSlide, 4000); // Cambia cada 4 segundos
-            }
-        }
-
-        // Detener auto-slide
-        function stopPhotoAutoSlide() {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = null;
-        }
-
-        // Event Listeners para los botones
-        if (nextButton) nextButton.addEventListener('click', showNextSlide);
-        if (prevButton) prevButton.addEventListener('click', showPrevSlide);
-
-        // *******************************************
-        // * NUEVA FUNCIONALIDAD: Pausar al Hover en la galería *
-        // *******************************************
-        track.closest('.slider-container').addEventListener('mouseenter', stopPhotoAutoSlide);
-        track.closest('.slider-container').addEventListener('mouseleave', startPhotoAutoSlide);
-
-
-        // Iniciar el auto-avance
-        startPhotoAutoSlide();
-    }
-
-    // Inicializar los 3 sliders de fotos
-    setupSlider(1);
-    setupSlider(2);
-    setupSlider(3);
-
+    // Llama a las funciones para INICIALIZAR AMBOS SLIDERS de la galería
+    sliderLogic(1);
+    sliderLogic(2);
+    sliderLogic(3);
 
     /* ========================================= */
-    /* 5. CORRECCIÓN: APERTURA DEL MODAL (DESACTIVACIÓN AUTOMÁTICA) */
+    /* 4. FUNCIONALIDAD DEL TÍTULO ROTATORIO (MARQUEE) */
     /* ========================================= */
-
-    // **IMPORTANTE:** Este bloque queda vacío.
-
-
-    /* ========================================= */
-    /* 6. EFECTO DE TÍTULO DESLIZANTE (MARQUEE TITLE) */
-    /* ========================================= */
-
-    const originalTitle = "Vida - Iglesia Cristiana";
-    const marqueeMessage = "¡Bienvenido a la iglesia Vida!";
+    const originalTitle = "Vida - Iglesia Cristiana"; // Título base
+    const welcomeMessage = "¡Bienvenido a VIDA! 💖"; // Mensaje de bienvenida
+    const delaySwitch = 8000; // Tiempo en ms para cambiar de mensaje (8 segundos)
+    const scrollSpeed = 200; // Velocidad de desplazamiento en ms
 
     let isOriginal = true;
     let titleIndex = 0;
-    const scrollSpeed = 300; // Velocidad del desplazamiento en milisegundos
-    const delaySwitch = 4000; // Tiempo para cambiar de mensaje
 
     function marqueeTitle() {
-        const currentMessage = isOriginal ? originalTitle : marqueeMessage;
+        const currentMessage = isOriginal ? welcomeMessage : originalTitle;
 
-        if (titleIndex < currentMessage.length) {
-            // Desplaza el título mostrando una subcadena que avanza
+        if (titleIndex <= currentMessage.length) {
             document.title = currentMessage.substring(titleIndex, currentMessage.length) + " | " + currentMessage.substring(0, titleIndex);
             titleIndex++;
         } else {
@@ -209,15 +113,169 @@ document.addEventListener('DOMContentLoaded', function () {
         setInterval(marqueeTitle, scrollSpeed);
     }
 
+    /* ========================================= */
+    /* 5. INICIALIZACIÓN DEL CARRUSEL DE EVENTOS */
+    /* ========================================= */
+    // LLAMADA CLAVE: Inicializa el carrusel de eventos
+    initializeEventsCarousel('eventos-track');
 
 }); // FIN de DOMContentLoaded
 
+// --- Funciones de Carrusel Auxiliares (DEFINIDAS FUERA DE DOMContentLoaded) ---
 
 /* ========================================= */
-/* 4. FUNCIONALIDAD DE MODALES (GLOBAL) */
+/* 5.1. FUNCIÓN PRINCIPAL DEL SLIDER DE GALERÍA */
 /* ========================================= */
 
-// NOTA: Estas funciones son las que usas en el HTML con onclick="openModal('ID_DEL_MODAL')".
+function sliderLogic(sliderId) {
+    const track = document.querySelector(`.slider-track[data-slider="${sliderId}"]`);
+    if (!track) return;
+
+    const slides = Array.from(track.children);
+    // No hacer nada si solo hay una foto o ninguna
+    if (slides.length <= 1) return;
+
+    const frame = track.closest('.gallery-slider-frame');
+    const nextButton = document.querySelector(`.slider-btn.next[data-slider-target="${sliderId}"]`);
+    const prevButton = document.querySelector(`.slider-btn.prev[data-slider-target="${sliderId}"]`);
+
+    let currentIndex = 0;
+    const slideCount = slides.length;
+    let autoSlideInterval;
+
+    // Función para actualizar la posición del slider (transformación CSS)
+    function updateSlider() {
+        const offset = -currentIndex * 100;
+        track.style.transform = `translateX(${offset}%)`;
+    }
+
+    function showNextSlide() {
+        currentIndex = (currentIndex + 1) % slideCount;
+        updateSlider();
+    }
+
+    function showPrevSlide() {
+        currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+        updateSlider();
+    }
+
+    // Función para iniciar el avance automático
+    function startAutoSlide() {
+        if (!autoSlideInterval) {
+            autoSlideInterval = setInterval(showNextSlide, 3500); // 3.5 segundos de avance
+        }
+    }
+
+    // Función para detener el avance automático
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = null;
+    }
+
+    // Event Listeners para Navegación Manual
+    if (nextButton) {
+        nextButton.addEventListener('click', () => {
+            stopAutoSlide(); // Pausa al hacer clic
+            showNextSlide();
+            startAutoSlide(); // Reinicia el auto-slide
+        });
+    }
+
+    if (prevButton) {
+        prevButton.addEventListener('click', () => {
+            stopAutoSlide(); // Pausa al hacer clic
+            showPrevSlide();
+            startAutoSlide(); // Reinicia el auto-slide
+        });
+    }
+
+    // Pausar al pasar el ratón (Hover)
+    if (frame) {
+        frame.addEventListener('mouseenter', stopAutoSlide);
+        frame.addEventListener('mouseleave', startAutoSlide);
+    }
+
+    // Iniciar el slider
+    updateSlider(); // Muestra la primera diapositiva inmediatamente
+    startAutoSlide(); // Comienza el avance automático
+}
+
+/* ========================================= */
+/* 5.5. FUNCIÓN ESPECÍFICA DEL CARRUSEL DE EVENTOS (3 ITEMS POR VISTA) */
+/* ========================================= */
+
+function initializeEventsCarousel(trackId) {
+    const track = document.getElementById(trackId);
+    if (!track) return;
+
+    // Selecciona los ítems individuales que se van a deslizar (carousel-item)
+    const items = Array.from(track.children).filter(el => el.classList.contains('carousel-item'));
+
+    // Si hay 3 o menos ítems, no se necesita el carrusel, ya que todos son visibles.
+    if (items.length <= 3) return;
+
+    // Obtener los botones de navegación usando su atributo data-target
+    const nextButton = document.querySelector(`.carousel-btn.next[data-target="${trackId}"]`);
+    const prevButton = document.querySelector(`.carousel-btn.prev[data-target="${trackId}"]`);
+
+    let currentIndex = 0;
+    const itemsCount = items.length;
+    // Máximo índice al que podemos mover el carrusel sin mostrar espacio en blanco.
+    const maxMoveIndex = itemsCount - 3;
+
+    // Función principal para actualizar la posición del carrusel
+    function moveToItem(index) {
+        // Obtenemos el ancho de un solo ítem (que por CSS es 33.33% del contenedor)
+        const itemWidth = items[0].offsetWidth;
+
+        // El movimiento es el índice actual * el ancho de un ítem.
+        track.style.transform = `translateX(-${index * itemWidth}px)`;
+        currentIndex = index;
+    }
+
+    function showNextItem() {
+        let newIndex = currentIndex + 1;
+
+        // Restricción: No pasar del último set de 3 ítems visibles
+        if (newIndex > maxMoveIndex) {
+            newIndex = maxMoveIndex;
+        }
+        moveToItem(newIndex);
+    }
+
+    function showPrevItem() {
+        let newIndex = currentIndex - 1;
+
+        // Restricción: No ir antes del primer ítem
+        if (newIndex < 0) {
+            newIndex = 0;
+        }
+
+        moveToItem(newIndex);
+    }
+
+    // Event Listeners para Navegación Manual
+    if (nextButton) {
+        nextButton.addEventListener('click', showNextItem);
+    }
+
+    if (prevButton) {
+        prevButton.addEventListener('click', showPrevItem);
+    }
+
+    // Asegurarse de que el carrusel se reposicione al cambiar el tamaño de la ventana
+    window.addEventListener('resize', () => {
+        moveToItem(currentIndex);
+    });
+
+    // Inicializar la posición
+    moveToItem(currentIndex);
+}
+
+
+/* ========================================= */
+/* 6. FUNCIONALIDAD DE MODALES (GLOBAL) */
+/* ========================================= */
 
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
@@ -235,7 +293,7 @@ function closeModal(modalId) {
 
 // Cerrar el modal haciendo clic fuera de su contenido
 window.onclick = function (event) {
-    // Verificamos si el elemento clicado tiene la clase 'modal'
+    // Verificamos si el elemento clicado tiene la clase 'modal' (el fondo oscuro)
     if (event.target.classList.contains('modal')) {
         event.target.style.display = 'none';
     }
