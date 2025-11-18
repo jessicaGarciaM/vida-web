@@ -73,6 +73,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    /* ========================================= */
+    /* 2.5. CERRAR DROPDOWN AL CLICKEAR FUERA */
+    /* ========================================= */
+    document.addEventListener('click', function (e) {
+        // Busca el elemento padre con la clase .dropdown para ver si se hizo clic dentro de un dropdown
+        const isClickInsideDropdown = e.target.closest('.dropdown');
+
+        // Si el clic NO fue dentro de un dropdown...
+        if (!isClickInsideDropdown) {
+            const activeDropdowns = document.querySelectorAll('.dropdown.active');
+            activeDropdowns.forEach(dropdown => {
+                // Cierra todos los dropdowns que estén abiertos
+                dropdown.classList.remove('active');
+            });
+        }
+    });
 
     /* ========================================= */
     /* 3. FUNCIONALIDAD DEL SLIDER DE GALERÍA (INICIALIZACIÓN) */
@@ -285,6 +301,8 @@ function initializeEventsCarousel(trackId) {
     // Inicializar la posición
     moveToItem(currentIndex);
 }
+
+
 /* ========================================= */
 /* 6. FUNCIONALIDAD DE MODALES (GLOBAL) */
 /* ========================================= */
