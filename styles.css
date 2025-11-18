@@ -69,22 +69,20 @@ body {
     letter-spacing: 2px;
 }
 
-/* Estilos de navegación normal: Línea sutil */
 .nav a {
     text-decoration: none;
     color: var(--primary-color);
-    /* Azul oscuro fijo */
     font-weight: 700;
     margin-left: 20px;
     padding: 8px 15px;
     border-radius: 5px;
     position: relative;
     transition: all 0.3s ease;
-    font-size: 0.95rem;
+    /* ✅ CAMBIO CLAVE: Reducir este valor de 0.95rem a un valor más pequeño */
+    font-size: 0.65rem;
     text-transform: uppercase;
 }
 
-/* EFECTO HOVER IMPRESIONANTE (Estilo Botón Sofisticado) */
 .nav a:hover {
     color: var(--text-light);
     /* Color del texto se vuelve blanco */
@@ -174,7 +172,7 @@ body {
 /* ========================================= */
 
 
-/* Asegura que el botón de DONAR mantenga su estilo distintivo */
+/* Asegura que el botón de DONAR y del INSTITUTO mantenga su estilo distintivo */
 .cta-button {
     background-color: var(--secondary-color) !important;
     color: var(--text-light) !important;
@@ -396,6 +394,34 @@ body {
     background-color: #151a5c;
 }
 
+
+/* ========================================= */
+/* AJUSTE ESPECÍFICO DEL BOTÓN SECUNDARIO EN HERO */
+/* ========================================= */
+
+.hero-content .secondary-btn {
+    /* Fondo Claro (Usando el color principal del tema) */
+    background-color: var(--secondary-color);
+
+    /* Texto Oscuro para contraste */
+    color: var(--text-light);
+
+    /* Asegurar que no tenga un borde que no se vea bien */
+    border: none;
+}
+
+.hero-content .secondary-btn:hover {
+    /* Usamos el color de acento (gris medio) al pasar el ratón */
+    background-color: var(--prima-color);
+
+    /* Mantiene el texto oscuro */
+    color: var(--text-light);
+
+    /* Mantiene el efecto de elevación si lo tienes definido en el .btn global */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
 /* ========================================= */
 /* 4. SECCIONES GENERALES (Títulos Impresionantes) */
 /* ========================================= */
@@ -518,11 +544,8 @@ body {
     height: 450px;
 }
 
-/* ========================================= */
-/* 6. EVENTOS (Cards Impresionantes y Carrusel de 3 items) */
-/* ========================================= */
-/* ========================================= */
-/* 6. EVENTOS (Cards Impresionantes y Carrusel de 3 items) */
+
+/* 6. EVENTOS*/
 /* ========================================= */
 .events-section {
     background-color: var(--bg-light);
@@ -564,7 +587,7 @@ body {
 .events-section .events-carousel .carousel-item img {
     width: 100%;
     /* Altura aumentada a 450px */
-    height: 650px;
+    height: 450px;
     display: block;
     object-fit: cover;
     border-radius: 8px;
@@ -632,6 +655,53 @@ body {
         padding-bottom: 75%;
         /* 3 / 4 = 0.75 = 75% */
     }
+}
+
+
+/* ========================================= */
+/* 7. SECCIÓN CONECTA CON NOSOTROS (HORIZONTAL) */
+/* ========================================= */
+.events-grid {
+    display: grid;
+    /* Divide el espacio en 3 columnas de igual ancho */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    /* Espacio entre las columnas */
+    max-width: 1100px;
+    margin: 40px auto;
+    /* Centra el contenedor y le da espacio vertical */
+    padding: 0 20px;
+}
+
+.event-card {
+    /* Usamos flexbox para asegurar que el botón se alinee al fondo */
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px;
+    height: 100%;
+    /* Permite que el grid ocupe el espacio completo */
+
+    /* Estilos visuales de la tarjeta */
+    background-color: var(--bg-light);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Regla clave para empujar el botón al fondo si el texto es de diferente longitud */
+.event-card p {
+    flex-grow: 1;
+    /* Permite que el párrafo ocupe el espacio restante */
+    margin-bottom: 20px;
+    color: var(--text-dark);
+}
+
+/* Ajuste de botones dentro de la tarjeta */
+.event-card .btn {
+    margin-top: auto;
+    /* Empuja el botón al final de la tarjeta */
+    display: inline-block;
+    width: auto;
 }
 
 /* ========================================= */
@@ -1191,7 +1261,48 @@ body {
         }
     }
 
-    /* Otros ajustes responsive de secciones... */
+    /* ========================================= */
+    /* AJUSTES ESPECÍFICOS DE LA SECCIÓN HERO ✅ */
+    /* ========================================= */
+
+    /* 6. Altura y centrado del Hero */
+    .hero {
+        height: 70vh;
+        /* Reduce la altura para que ocupe menos de la pantalla */
+        min-height: 450px;
+        /* Mínimo pero más pequeño */
+    }
+
+    .hero-content {
+        /* Asegura el centrado vertical y horizontal */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        /* Limita el ancho del contenido para que no se desborde */
+    }
+
+    /* 7. Ajuste de imágenes para evitar desajustes */
+    .slide-image {
+        object-fit: cover;
+        /* Asegura que la imagen cubra el contenedor sin distorsión */
+    }
+
+    /* 8. Ajuste de Botones (CTA) en el Hero (más pequeños y apilados) */
+    .btn {
+        padding: 10px 20px;
+        /* Reduce el padding para botones más pequeños */
+        font-size: 0.9rem;
+        /* Reduce el tamaño de la fuente del botón */
+        margin: 8px auto;
+        /* Margen reducido y centrado */
+        display: block;
+        /* Hace que los botones se apilen para una mejor experiencia táctil */
+        width: 90%;
+        /* Ocupa casi todo el ancho disponible */
+    }
+
+    /* 9. Estilos para la marquesina */
     .hero-content .pe-marquee {
         font-size: 2.5rem;
     }
@@ -1207,6 +1318,7 @@ body {
         animation-duration: 10s;
     }
 
+    /* Otros ajustes responsive de secciones... */
 
     .mission-points {
         flex-direction: column;
