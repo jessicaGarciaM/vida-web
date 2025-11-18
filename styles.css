@@ -559,7 +559,7 @@ body {
 .events-section .events-carousel .carousel-item img {
     width: 100%;
     /* Altura aumentada a 450px */
-    height: 650px;
+    height: 1050px;
     display: block;
     object-fit: cover;
     border-radius: 8px;
@@ -1306,6 +1306,33 @@ body {
 
     .mission-points {
         flex-direction: column;
+    }
+
+    /* ========================================= */
+    /* AJUSTE ESPECÍFICO DEL BOTÓN SECUNDARIO EN HERO */
+    /* ========================================= */
+
+    .hero-content .secondary-btn {
+        /* Fondo Claro (Usando el color principal del tema) */
+        background-color: var(--primary-color);
+
+        /* Texto Oscuro para contraste */
+        color: var(--text-light);
+
+        /* Asegurar que no tenga un borde que no se vea bien */
+        border: none;
+    }
+
+    .hero-content .secondary-btn:hover {
+        /* Usamos el color de acento (gris medio) al pasar el ratón */
+        background-color: var(--secondary-color);
+
+        /* Mantiene el texto oscuro */
+        color: var(--text-light);
+
+        /* Mantiene el efecto de elevación si lo tienes definido en el .btn global */
+        transform: translateY(-2px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
     }
 
     /* ----------------------------------------- */
