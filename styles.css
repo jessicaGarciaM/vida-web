@@ -1197,8 +1197,16 @@ body {
         border-bottom: none;
     }
 
+    .events-grid {
+        /* 1fr significa "una fracción", lo que resulta en una sola columna */
+        grid-template-columns: 1fr;
+        gap: 20px;
+        /* Reduce un poco el espacio vertical entre las tarjetas */
+        margin: 20px auto;
+    }
+
     /* ========================================= */
-    /* DROPDOWN EN MÓVIL (Activación por JS) - NUEVO */
+    /* DROPDOWN EN MÓVIL*/
     /* ========================================= */
     .dropdown {
         display: block;
@@ -1368,7 +1376,7 @@ body {
     }
 
     .events-section .events-carousel .carousel-item img {
-        height: 250px;
+        height: 450px;
         /* Altura más pequeña en móvil */
     }
 }
