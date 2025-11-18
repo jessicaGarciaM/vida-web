@@ -394,34 +394,6 @@ body {
     background-color: #151a5c;
 }
 
-
-/* ========================================= */
-/* AJUSTE ESPECÍFICO DEL BOTÓN SECUNDARIO EN HERO */
-/* ========================================= */
-
-.hero-content .secondary-btn {
-    /* Fondo Claro (Usando el color principal del tema) */
-    background-color: var(--secondary-color);
-
-    /* Texto Oscuro para contraste */
-    color: var(--text-light);
-
-    /* Asegurar que no tenga un borde que no se vea bien */
-    border: none;
-}
-
-.hero-content .secondary-btn:hover {
-    /* Usamos el color de acento (gris medio) al pasar el ratón */
-    background-color: var(--prima-color);
-
-    /* Mantiene el texto oscuro */
-    color: var(--text-light);
-
-    /* Mantiene el efecto de elevación si lo tienes definido en el .btn global */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
 /* ========================================= */
 /* 4. SECCIONES GENERALES (Títulos Impresionantes) */
 /* ========================================= */
@@ -1149,88 +1121,226 @@ body {
 
 
 /* ========================================= */
-/* CORRECCIÓN: NAVEGACIÓN ACTIVA EN MÓVIL */
+/* 10. RESPONSIVE (Móviles y Tabletas) */
 /* ========================================= */
+@media (max-width: 992px) {
 
-.nav {
-    /* Mantenemos estos estilos base del menú móvil (oculto por defecto) */
-    display: none !important;
-    flex-direction: column;
-    position: absolute;
-    top: 70px;
-    /* Asumiendo que el header mide 70px */
-    left: 0;
-    width: 100%;
-    z-index: 999;
-    height: auto;
-    /* Se define a full-height cuando está activo */
-    overflow-y: auto;
-    /* Permite scroll si el contenido es largo */
-}
+    /* 1. Muestra el botón de hamburguesa y oculta el menú de escritorio */
+    .menu-toggle {
+        display: block;
+    }
 
-.nav.active {
-    /* Asegura que ocupe el espacio completo debajo del header */
-    height: calc(100vh - 70px);
+    /* 2. Oculta el menú por defecto, forzando la anulación de estilos de escritorio */
+    .nav {
+        display: none !important;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--text-light, white);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+        height: auto;
+        overflow-y: auto;
+    }
 
-    /* Mantiene el fondo oscuro para un alto contraste */
-    background-color: var(--bg-dark, #1f1e1e);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-    display: flex !important;
-}
+    /* 3. Muestra el menú cuando el JS añade la clase 'active' */
+    .nav.active {
+        display: flex !important;
+        animation: slideDown 0.3s ease-out;
+    }
 
-/* ⚠️ Estilo de los Enlaces Principales */
-.nav a {
-    /* Texto claro sobre fondo oscuro */
-    color: var(--text-light, #f8f8f8);
-    padding: 15px 5%;
-    margin-bottom: 0 !important;
-    text-align: left;
-    width: 100%;
+    /* 4. Estilos de los enlaces del menú móvil */
+    .nav a {
+        margin-left: 0;
+        padding: 15px 5%;
+        text-align: left;
+        border-bottom: 1px solid var(--bg-light, #f0f0f0);
+        width: 100%;
+        color: var(--primary-color, #2c3e50);
+    }
 
-    /* ✅ CORRECCIÓN CLAVE: Línea de separación sutil y clara */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: background-color 0.2s ease;
-}
+    /* 5. Ajuste para los botones CTA */
+    .nav a.cta-button {
+        margin: 15px 5% 5px;
+        width: 90%;
+        text-align: center;
+        border-bottom: none;
+    }
 
-/* Estilo al presionar o interactuar */
-.nav a:active,
-.nav a:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    /* Un sutil brillo al tocar */
-}
+    /* ========================================= */
+    /* DROPDOWN EN MÓVIL (Activación por JS) - NUEVO */
+    /* ========================================= */
+    .dropdown {
+        display: block;
+        /* Ocupa todo el ancho en móvil */
+    }
 
-/* ========================================= */
-/* AJUSTE DROPDOWN (MEJORA VISUAL) */
-/* ========================================= */
+    /* El submenú por defecto sigue oculto */
+    .dropdown-menu {
+        position: relative;
+        /* Ya no es absoluto; se mueve dentro del flujo */
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+        /* Remueve la sombra en móvil */
+        border-radius: 0;
+        background-color: var(--bg-light);
+        /* Un tono para diferenciar */
+        padding: 0;
+    }
 
-/* Sobrescribe el borde para el enlace principal del dropdown (dropdown-toggle)
-   para que se vea igual que los otros enlaces. */
-.nav a.dropdown-toggle {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
+    /* Estilos de los enlaces dentro del submenú móvil */
+    .dropdown-menu a {
+        padding-left: 10%;
+        /* Sangría para indicar que es un sub-enlace */
+        font-size: 0.9em;
+        border-bottom: 1px solid #e0e0e0;
+    }
 
-/* Ajuste del submenú */
-.dropdown-menu {
-    /* Un fondo más claro para diferenciar la jerarquía (contraste con el nav oscuro) */
-    background-color: var(--bg-light, #f8f8f8);
+    /* El JS añade la clase 'active' al contenedor .dropdown para mostrar .dropdown-menu */
+    .dropdown.active .dropdown-menu {
+        display: block;
+        /* Muestra el submenú cuando el JS lo activa en móvil */
+        animation: slideDown 0.3s ease-out;
+    }
 
-    /* El sub-enlace debe tener texto oscuro sobre fondo claro */
-    /* Lo ponemos aquí para sobrescribir el .nav a general */
-    color: var(--text-dark, #1f1e1e);
-}
+    /* Rota la flecha para indicar que está abierto en móvil */
+    .dropdown.active .dropdown-toggle::after {
+        transform: rotate(180deg);
+    }
 
-.dropdown-menu a {
-    /* Vuelve el texto del submenú a oscuro */
-    color: var(--text-dark, #1f1e1e);
-    /* Aumentamos la sangría para claridad */
-    padding-left: 15%;
-    /* Cambiamos el borde a oscuro para el fondo claro */
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
+    /* El .dropdown-toggle no debe tener un margen inferior grande */
+    .nav a.dropdown-toggle {
+        margin-bottom: 0;
+    }
 
-/* Efecto al tocar un sub-enlace */
-.dropdown-menu a:active,
-.dropdown-menu a:hover {
-    background-color: var(--secondary-color);
-    color: white;
+    /* Fin Dropdown Responsive */
+    /* ========================================= */
+
+
+    /* Definición de la animación (opcional, pero agradable) */
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ========================================= */
+    /* AJUSTES ESPECÍFICOS DE LA SECCIÓN HERO ✅ */
+    /* ========================================= */
+
+    /* 6. Altura y centrado del Hero */
+    .hero {
+        height: 70vh;
+        /* Reduce la altura para que ocupe menos de la pantalla */
+        min-height: 450px;
+        /* Mínimo pero más pequeño */
+    }
+
+    .hero-content {
+        /* Asegura el centrado vertical y horizontal */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        /* Limita el ancho del contenido para que no se desborde */
+    }
+
+    /* 7. Ajuste de imágenes para evitar desajustes */
+    .slide-image {
+        object-fit: cover;
+        /* Asegura que la imagen cubra el contenedor sin distorsión */
+    }
+
+    /* 8. Ajuste de Botones (CTA) en el Hero (más pequeños y apilados) */
+    .btn {
+        padding: 10px 20px;
+        /* Reduce el padding para botones más pequeños */
+        font-size: 0.9rem;
+        /* Reduce el tamaño de la fuente del botón */
+        margin: 8px auto;
+        /* Margen reducido y centrado */
+        display: block;
+        /* Hace que los botones se apilen para una mejor experiencia táctil */
+        width: 90%;
+        /* Ocupa casi todo el ancho disponible */
+    }
+
+    /* 9. Estilos para la marquesina */
+    .hero-content .pe-marquee {
+        font-size: 2.5rem;
+    }
+
+    .hero-content .pe-marquee .seperator {
+        margin: 0 15px;
+        height: 1em;
+        width: 1em;
+    }
+
+    /* Ajuste para que la animación de la marquesina sea más rápida en móvil */
+    .hero-content .pe-marquee .marquee-inner {
+        animation-duration: 10s;
+    }
+
+    /* Otros ajustes responsive de secciones... */
+
+    .mission-points {
+        flex-direction: column;
+    }
+
+    /* ----------------------------------------- */
+    /* RESPONSIVIDAD ESPECÍFICA PARA LA GALERÍA */
+    /* ----------------------------------------- */
+    .slider-grid {
+        grid-template-columns: 1fr;
+        /* Una sola columna en móvil */
+    }
+
+    /* ---------------------------------------------------- */
+    /* AJUSTE WHATSAPP FLOTANTE EN MÓVIL (Bajo 992px) */
+    /* ---------------------------------------------------- */
+    .whatsapp-float {
+        min-width: 130px;
+        /* Ancho mínimo ajustado */
+        height: 45px;
+        /* Altura más pequeña en móvil */
+        bottom: 20px;
+        right: 20px;
+        font-size: 0.8rem;
+        padding: 0 15px;
+        /* Relleno ajustado */
+    }
+
+    .whatsapp-float i {
+        font-size: 20px;
+        margin-right: 8px;
+    }
+
+    /* ---------------------------------------------------- */
+    /* AJUSTE ESPECÍFICO CARRUSEL DE EVENTOS EN MÓVIL/TABLET */
+    /* ---------------------------------------------------- */
+    .events-section .events-carousel {
+        /* Ajusta el ancho máximo del contenedor para móviles si es necesario */
+        max-width: 450px;
+    }
+
+    /* En pantallas pequeñas, mostramos solo 1 recuadro por deslizamiento */
+    .events-section .events-carousel .carousel-item {
+        width: 100%;
+        /* Ocupa el ancho total para mostrar 1 a la vez */
+        padding: 0 5px;
+    }
+
+    .events-section .events-carousel .carousel-item img {
+        height: 250px;
+        /* Altura más pequeña en móvil */
+    }
 }
