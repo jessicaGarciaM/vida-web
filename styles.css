@@ -1368,18 +1368,19 @@ body {
     /* ---------------------------------------------------- */
     .events-section .events-carousel {
         /* Ajusta el ancho máximo del contenedor para móviles si es necesario */
-        max-width: 450px;
+        max-width: 100%;
     }
 
     /* En pantallas pequeñas, mostramos solo 1 recuadro por deslizamiento */
     .events-section .events-carousel .carousel-item {
         width: 100%;
         /* Ocupa el ancho total para mostrar 1 a la vez */
-        padding: 0 5px;
+        padding: 0 10px;
     }
 
     .events-section .events-carousel .carousel-item img {
-        height: 550px;
+        height: 450px;
         /* Altura más pequeña en móvil */
     }
+
 }
