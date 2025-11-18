@@ -559,7 +559,7 @@ body {
 .events-section .events-carousel .carousel-item img {
     width: 100%;
     /* Altura aumentada a 450px */
-    height: 450px;
+    height: 650px;
     display: block;
     object-fit: cover;
     border-radius: 8px;
@@ -1167,6 +1167,18 @@ body {
         width: 90%;
         text-align: center;
         border-bottom: none;
+    }
+
+    /* ========================================= */
+    /* Dentro de @media (max-width: 992px) { ... } */
+    /* ========================================= */
+
+    .events-grid {
+        /* 1fr significa "una fracción", lo que resulta en una sola columna */
+        grid-template-columns: 1fr;
+        gap: 20px;
+        /* Reduce un poco el espacio vertical entre las tarjetas */
+        margin: 20px auto;
     }
 
     /* ========================================= */
