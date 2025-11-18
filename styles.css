@@ -655,7 +655,7 @@ body {
     /* Permite que el grid ocupe el espacio completo */
 
     /* Estilos visuales de la tarjeta */
-    background-color: var(--bg-light);
+    background-color: var(--bg-dark);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
@@ -1384,3 +1384,4 @@ body {
     }
 
 }
+
