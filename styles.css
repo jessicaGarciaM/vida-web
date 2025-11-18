@@ -559,7 +559,7 @@ body {
 .events-section .events-carousel .carousel-item img {
     width: 100%;
     /* Altura aumentada a 450px */
-    height: 1050px;
+    height: 550px;
     display: block;
     object-fit: cover;
     border-radius: 8px;
@@ -1379,7 +1379,7 @@ body {
     }
 
     .events-section .events-carousel .carousel-item img {
-        height: 250px;
+        height: 750px;
         /* Altura más pequeña en móvil */
     }
 }
