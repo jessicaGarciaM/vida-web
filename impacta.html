@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vida GDL - Impacta: Activando la Transformación</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ========================================= */
+        /* 1. VARIABLES NEÓN (Impacta Override)      */
+        /* ========================================= */
+        :root {
+            /* Colores de Impacta */
+            --impacta-bg-dark: #000000;
+            /* Fondo Negro Puro */
+            --impacta-primary-color: #00eaff;
+            /* Azul Neón (Cian) */
+            --impacta-secondary-color: #00ffc8;
+            /* Verde Neón */
+            --impacta-text-light: #FFFFFF;
+            /* Texto Base Blanco */
+
+            /* Sombras Neón para el brillo */
+            --neon-blue-shadow: 0 0 5px var(--impacta-primary-color), 0 0 10px var(--impacta-primary-color), 0 0 20px var(--impacta-primary-color);
+            --neon-green-shadow: 0 0 5px var(--impacta-secondary-color), 0 0 10px var(--impacta-secondary-color), 0 0 20px var(--impacta-secondary-color);
+        }
+
+        /* ========================================= */
+        /* 2. ESTILOS BASE DE IMPACTA PAGE           */
+        /* ========================================= */
+        .impacta-page {
+            background-color: var(--impacta-bg-dark);
+            color: var(--impacta-text-light);
+            /* Asegura que el footer y header usen el fondo oscuro */
+        }
+
+        .header,
+        .footer {
+            background-color: var(--impacta-bg-dark);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .header a {
+            color: var(--impacta-text-light) !important;
+        }
+
+        .header .active-page-link,
+        .header a:hover {
+            color: var(--impacta-primary-color) !important;
+            text-shadow: 0 0 5px var(--impacta-primary-color);
+        }
+
+        .dark-section,
+        .medium-dark-section {
+            background-color: var(--impacta-bg-dark);
+        }
+
+        /* ========================================= */
+        /* 3. ESTILOS NEÓN PARA TEXTO Y TÍTULOS      */
+        /* ========================================= */
+        .impacta-title {
+            color: var(--impacta-text-light);
+            letter-spacing: 2px;
+            font-size: 3rem;
+            /* Ajuste para que se vea mejor */
+        }
+
+        .impacta-heading {
+            color: var(--impacta-secondary-color);
+            text-shadow: var(--neon-green-shadow);
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .impacta-subtitle,
+        .impacta-text {
+            color: var(--impacta-text-light);
+            font-weight: 600;
+        }
+
+        /* ========================================= */
+        /* 4. ESTILOS PARA TARJETAS Y ZIGZAG         */
+        /* ========================================= */
+
+        /* ESTILO DEL MARCO CON ESQUINAS REDONDEADAS (AÑADIDO AQUÍ) */
+        .rounded-frame {
+            background-color: transparent;
+            border: 2px solid var(--impacta-text-light);
+            /* Usamos --impacta-text-light que es blanco (#FFFFFF) */
+            border-radius: 15px;
+            padding: 10px;
+            display: inline-block;
+            margin-top: 15px;
+            /* Espacio para separarlo del título */
+            margin-bottom: 15px;
+            /* Espacio para separarlo de la animación */
+        }
+
+        .impacta-card {
+            background-color: rgba(0, 255, 255, 0.05);
+            /* Fondo muy sutil */
+            border: 1px solid var(--impacta-primary-color);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+            /* Borde sutil neón */
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        /* ----------------------------------------- */
+        /* Efecto Máquina de Escribir (Typing)     */
+        /* ----------------------------------------- */
+        .typing-animation {
+            color: var(--impacta-secondary-color);
+            /* Color de la animación de typing */
+            border-right-color: var(--impacta-secondary-color) !important;
+            /* Cursor verde neón */
+            text-shadow: 0 0 3px var(--impacta-secondary-color);
+        }
+
+        /* ----------------------------------------- */
+        /* Animación del cursor de typing          */
+        /* ----------------------------------------- */
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: var(--impacta-secondary-color);
+            }
+        }
+
+        /* ========================================= */
+        /* 5. ESTILOS PARA BOTONES Y EVENTOS         */
+        /* ========================================= */
+        .primary-btn {
+            background-color: var(--impacta-primary-color);
+            color: var(--impacta-bg-dark);
+            border: none;
+            box-shadow: var(--neon-blue-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .primary-btn:hover {
+            background-color: var(--impacta-text-light);
+            box-shadow: 0 0 15px var(--impacta-primary-color), 0 0 30px var(--impacta-primary-color);
+        }
+
+        .pulse-btn {
+            box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7);
+            animation: pulse-neon 2s infinite;
+        }
+
+        @keyframes pulse-neon {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7);
+            }
+
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 15px rgba(0, 255, 255, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(0, 255, 255, 0);
+            }
+        }
+
+        .impacta-btn {
+            background-color: var(--impacta-secondary-color);
+            color: var(--impacta-bg-dark);
+            box-shadow: var(--neon-green-shadow);
+        }
+
+        .impacta-btn:hover {
+            box-shadow: 0 0 15px var(--impacta-secondary-color), 0 0 30px var(--impacta-secondary-color);
+        }
+
+        .whatsapp-float {
+            background-color: var(--impacta-secondary-color);
+            box-shadow: var(--neon-green-shadow);
+            color: var(--impacta-bg-dark);
+        }
+
+        .whatsapp-float:hover {
+            box-shadow: 0 0 15px var(--impacta-secondary-color), 0 0 30px var(--impacta-secondary-color);
+        }
+
+        /* ========================================= */
+        /* 6. ESTILOS PARA EL VIDEO                  */
+        /* ========================================= */
+        .video-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .video-container {
+            max-width: 400px;
+            margin: 0 auto 30px;
+            background: "7384eb896c87f613f4d36bba5a24108b.jpg";
+            border: 2px solid var(--impacta-primary-color);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        /* ========================================= */
+        /* 7. ESTILOS ZIGZAG / TIMELINE NEÓN         */
+        /* ========================================= */
+
+        .impacta-zigzag-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            /* Espacio entre cada punto de la línea de tiempo */
+            padding-top: 50px;
+            position: relative;
+        }
+
+        /* Línea vertical central que conecta los puntos */
+        .impacta-zigzag-grid::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom,
+                    var(--impacta-primary-color) 0%,
+                    var(--impacta-secondary-color) 50%,
+                    var(--impacta-primary-color) 100%);
+            box-shadow: var(--neon-blue-shadow);
+            transform: translateX(-50%);
+        }
+
+        .zigzag-item {
+            display: flex;
+            align-items: center;
+            position: relative;
+            justify-content: space-between;
+            min-height: 250px;
+        }
+
+        /* Contenido del Texto (Card) */
+        .zigzag-content {
+            width: 45%;
+            z-index: 10;
+        }
+
+        /* Contenedor de Imagen */
+        .zigzag-media {
+            width: 45%;
+            z-index: 10;
+        }
+
+        .media-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--impacta-secondary-color);
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
+            /* Sombra Verde Neón */
+        }
+
+        /* Punto de Conexión en la Línea de Tiempo */
+        .zigzag-item::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: var(--impacta-bg-dark);
+            /* Fondo negro */
+            border: 3px solid var(--impacta-primary-color);
+            border-radius: 50%;
+            box-shadow: var(--neon-blue-shadow);
+            z-index: 20;
+            /* Asegura que esté sobre la línea */
+        }
+
+        /* Estilo para el Subtítulo pequeño */
+        .step-subtitle {
+            display: block;
+            font-size: 2em;
+            color: var(--impacta-secondary-color);
+            margin-bottom: 10px;
+        }
+
+        /* ----------------------------------------- */
+        /* MEDIA QUERIES (ADAPTACIÓN A MÓVIL)        */
+        /* ----------------------------------------- */
+        @media (max-width: 992px) {
+            .impacta-zigzag-grid::before {
+                left: 20px;
+                /* Mueve la línea de tiempo a la izquierda */
+            }
+
+            .zigzag-item {
+                flex-direction: column;
+                align-items: flex-start;
+                min-height: initial;
+            }
+
+            .zigzag-content,
+            .zigzag-media {
+                width: 100%;
+            }
+
+            .zigzag-media {
+                margin-top: 20px;
+                order: 2;
+                /* Imagen abajo en móvil */
+            }
+
+            .zigzag-content {
+                order: 1;
+                /* Texto arriba en móvil */
+                border-left: 5px solid var(--impacta-primary-color);
+                padding-left: 20px;
+                background-color: transparent !important;
+                /* Quita el fondo de la tarjeta en móvil */
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            /* Quitar el punto de conexión central y mover la tarjeta */
+            .zigzag-item::after {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+
+            /* Asegura que la imagen de la derecha quede abajo */
+            .img-right .zigzag-media {
+                order: 3;
+            }
+
+            /* ========================================= */
+            /* 10. ESTILOS ESPECÍFICOS PARA LA SECCIÓN DE EVENTOS PEQUEÑA */
+            /* (Necesario para controlar el tamaño de la imagen) */
+            /* ========================================= */
+
+            .events-grid {
+                /* Limita el ancho máximo para centrar la tarjeta */
+                max-width: 350px;
+                margin: 30px auto;
+                display: flex;
+                justify-content: center;
+            }
+
+            .impacta-event-card {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                padding: 0;
+                border: 2px solid var(--impacta-secondary-color);
+                background-color: rgba(57, 255, 20, 0.05);
+                box-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+                transition: transform 0.3s ease;
+            }
+
+            .impacta-event-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 20px rgba(57, 255, 20, 0.8);
+            }
+
+            .impacta-event-card .event-image {
+                /* 🔴 ESTA ES LA LÍNEA CLAVE PARA MODIFICAR LA ALTURA 🔴 */
+                height: 180px;
+
+                object-fit: cover;
+                border-bottom: 2px solid var(--impacta-secondary-color);
+            }
+
+            .impacta-event-card .event-info {
+                padding: 15px 20px;
+                text-align: left;
+            }
+
+            .impacta-event-card h4 {
+                color: var(--impacta-primary-color);
+                text-shadow: var(--neon-blue-shadow);
+                margin-top: 0;
+                font-size: 1.5rem;
+            }
+
+            .impacta-event-card .impacta-btn {
+                margin-top: 15px;
+                width: 100%;
+                font-size: 0.9rem;
+                text-align: center;
+            }
+
+            @media (max-width: 450px) {
+                .events-grid {
+                    max-width: 90%;
+                }
+            }
+        }
+    </style>
+</head>
+
+<body class="impacta-page">
+
+    <header class="header">
+        <div class="logo">VIDA</div>
+        <nav class="nav">
+            <a href="index.html#inicio">Inicio</a>
+
+            <a href="#impacta-hero" class="active-page-link">IMPACTA</a>
+
+        </nav>
+    </header>
+
+    <main>
+        <section id="impacta-hero" class="hero impacta-hero">
+
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="WhatsApp Image 2025-11-15 at 16.16.07.jpeg" class="slide-image"
+                        alt="Jóvenes en reunión de alabanza">
+                    <img src="WhatsApp Image 2025-11-15 at 16.16.08.jpeg" class="slide-image" alt="Jóvenes ministrando">
+                    <img src="WhatsApp Image 2025-11-15 at 16.16.07 (2).jpeg" class="slide-image"
+                        alt="Multitud de jóvenes en evento">
+                </div>
+            </div>
+            <section class="hero-section">
+                <div class="hero-overlay"></div>
+
+                <div class="container">
+                    <div class="hero-content">
+
+                        <h1 class="pe-marquee rotating_seperator">
+                            <div class="marquee-inner">
+                                <span class="marquee-text">MOVIMIENTO IMPACTA </span>
+                                <span class="marquee-text">MOVIMIENTO IMPACTA </span>
+                                <span class="marquee-text">MOVIMIENTO IMPACTA </span>
+                            </div>
+                        </h1>
+
+                        <div class="rounded-frame">
+                            <h4 class="impacta-subtitle">
+                                Proyectos de evangelismo que involucran a jóvenes de distintas congregaciones.
+                            </h4>
+                        </div>
+
+
+                        <span class="typing-animation"
+                            data-text="Únete al movimiento Cristiano de jovenes  que está encendiendo el corazón de Guadalajara.">
+                        </span>
+
+                    </div>
+                </div>
+            </section>
+
+        </section>
+
+
+        <section id="presentacion-video" class="section dark-section video-section">
+            <div class="container">
+                <h2 class="section-title impacta-heading">Conoce la Visión de Impacta</h2>
+                <div class="video-container">
+                    <video controls autoplay loop muted preload="metadata"
+                        poster="WhatsApp Image 2025-11-15 at 16.16.07.jpeg">
+                        <source src="WhatsApp Video 2025-11-19 at 13.33.15.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                </div>
+                <p class="section-subtitle impacta-text">
+                    Mira este video y sé testigo del poder que la juventud unida tiene para transformar nuestra
+                    ciudad.
+                </p>
+                <a href="#nuestra-causa" class="btn impacta-btn" style="margin-top: 20px;">
+                    ¿Cuál es Nuestra Causa? <i class="fas fa-arrow-down"></i>
+                </a>
+            </div>
+        </section>
+
+        <section id="nuestra-causa" class="section dark-section">
+            <div class="container">
+                <h2 class="section-title impacta-heading">Nuestra Misión, Nuestra Causa</h2>
+                <p class="section-subtitle impacta-text">
+                    Impacta es más que un ministerio; es la respuesta audaz a un llamado ineludible.
+                </p>
+
+                <section id="nuestra-causa" class="section dark-section">
+                    <div class="container">
+                        <h2 class="section-title impacta-heading">Nuestra Misión, Nuestra Causa</h2>
+                        <p class="section-subtitle impacta-text">
+                            Impacta es más que un ministerio; es la respuesta audaz a un llamado ineludible.
+                        </p>
+
+                        <div class="impacta-zigzag-grid">
+
+                            <div class="zigzag-item img-right">
+                                <div class="zigzag-content impacta-card">
+                                    <h3 class="step-title impacta-heading">Rompiendo el Círculo del Silencio</h3>
+                                    <span class="step-subtitle">La Urgencia Espiritual</span>
+                                    <p>
+                                        Impacta surgió de una visión radical: Alcanzar el llamado "círculo del silencio"
+                                        de
+                                        Guadalajara, una de las áreas menos evangelizadas del país. No estamos aquí para
+                                        ser
+                                        pasivos. Nacimos para ser la luz, la voz y la acción que lleva el mensaje
+                                        transformador
+                                        de Cristo a quienes más lo necesitan. Es una urgencia espiritual que nos mueve
+                                        cada
+                                        día.
+                                    </p>
+                                </div>
+                                <div class="zigzag-media">
+                                    <img src="WhatsApp Image 2025-11-19 at 18.31.21.jpeg"
+                                        alt="Jóvenes impactando en la calle" class="media-image">
+                                </div>
+                            </div>
+
+                            <div class="zigzag-item img-left">
+                                <div class="zigzag-media">
+                                    <img src="Captura de pantalla 2025-11-19 205458.jpg"
+                                        alt="Ilustración de transformación y cambio" class="media-image">
+                                </div>
+                                <div class="zigzag-content impacta-card">
+                                    <h3 class="step-title impacta-heading">La Recompensa: Ver la Transformación</h3>
+                                    <span class="step-subtitle">El Impacto Real</span>
+                                    <p>
+                                        Este ministerio es el campo de batalla donde tu fe se convierte en impacto real.
+                                        Es
+                                        una plataforma para que salgas de tu zona de confort y hagas historia. La mayor
+                                        alegría
+                                        es ser testigo de cómo jóvenes como tú desatan sus dones y talentos (arte,
+                                        música,
+                                        tecnología) para forjar un movimiento creativo que no solo inspira a la
+                                        juventud,
+                                        sino
+                                        que transforma el tejido social de nuestra ciudad.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="zigzag-item img-right">
+                                <div class="zigzag-content impacta-card">
+                                    <h3 class="step-title impacta-heading">El Desafío: Forjar un Ejército Unido</h3>
+                                    <span class="step-subtitle">La Unidad en Cristo</span>
+                                    <p>
+                                        Superamos el reto de unificar la pasión de jóvenes de diferentes congregaciones
+                                        para
+                                        que
+                                        trabajen con un mismo propósito. Hemos aprendido que la verdadera fuerza reside
+                                        en
+                                        la
+                                        Unidad en Cristo. Somos un solo cuerpo, un equipo multidisciplinario que rompe
+                                        barreras denominacionales, demostrando que cuando la juventud se une, el impacto
+                                        es
+                                        imparable.
+                                    </p>
+                                </div>
+                                <div class="zigzag-media">
+                                    <img src="WhatsApp Image 2025-11-15 at 16.17.54 (2).jpeg"
+                                        alt="Grupo de jóvenes unidos" class="media-image">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+        </section>
+
+        <section id="proximas-actividades" class="section dark-section">
+            <div class="container">
+                <h2 class="section-title impacta-heading">Próximas Activaciones Impacta</h2>
+
+                <div class="events-grid">
+                    <div class="event-card impacta-event-card">
+                        <img src="WhatsApp Image 2025-11-17 at 10.41.38.jpeg" alt="Reunión Impacta de jóvenes"
+                            class="event-image">
+                        <div class="event-info">
+                            <h4>Reunión Impacta</h4>
+                            <p class="event-date"><i class="far fa-calendar-alt"></i> Sábado, 22 de Noviembre</p>
+                            <p class="event-time"><i class="far fa-clock"></i> 5:00 PM</p>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> Auditorio VIDA</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-banner"
+                    style="background: rgba(57, 255, 20, 0.1); border: 1px solid var(--impacta-secondary-color);">
+                    <h3 class="cta-title"
+                        style="color: var(--impacta-secondary-color); text-shadow: var(--neon-green-shadow);">
+                        ¿Quieres
+                        organizar tu propia activación?</h3>
+                    <p class="cta-subtitle impacta-text">¡Te damos las herramientas y el apoyo que necesitas para
+                        encender tu comunidad!</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contacto-impacta" class="section medium-dark-section" style="margin-top: 50px;">
+            <div class="container">
+                <h2 class="section-title impacta-heading">¡Únete a la Acción!</h2>
+                <p class="section-subtitle impacta-text">
+                    ¿Listo para impactar? Contáctanos y sé parte de la transformación.
+                </p>
+                <a href="https://wa.me/523324552145?text=Hola%20quiero%20saber%20más%20sobre%20el%20Ministerio%20Impacta."
+                    target="_blank" class="btn primary-btn large-btn whatsapp-btn" rel="noopener noreferrer">
+                    <i class="fab fa-whatsapp"></i> Habla con el Equipo Impacta
+                </a>
+            </div>
+        </section>
+
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="#">Términos y Condiciones</a>
+                <a href="#">Aviso de Privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+            <div class="social-links">
+                <a href="https://www.facebook.com/IglesiaVidaGDL" aria-label="Facebook" target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/iglesiavidagdl/" aria-label="Instagram" target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/@IglesiaVidaGuadalajara/featured" aria-label="YouTube" target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+            <p>© 2025 Vida GDL - Todos los derechos reservados.</p>
+        </footer>
+
+        <a href="https://wa.me/523318592329?text=Hola%20Iglesia%20Vida%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n."
+            class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span>Contáctanos por WhatsApp</span>
+        </a>
+
+        <script src="script.js"></script>
+</body>
+
+</html>
