@@ -16,18 +16,12 @@
         /* ========================================= */
         :root {
             /* Colores de Impacta */
-            --impacta-bg-dark: #000000;
-            /* Fondo Negro Puro */
-            --impacta-primary-color: #00eaff;
-            /* Azul Neón (Cian) */
-            --impacta-secondary-color: #00ffc8;
-            /* Verde Neón */
-            --impacta-text-light: #FFFFFF;
-            /* Texto Base Blanco */
+            --impacta-bg-dark: #202020;
 
-            /* Sombras Neón para el brillo */
-            --neon-blue-shadow: 0 0 5px var(--impacta-primary-color), 0 0 10px var(--impacta-primary-color), 0 0 20px var(--impacta-primary-color);
-            --neon-green-shadow: 0 0 5px var(--impacta-secondary-color), 0 0 10px var(--impacta-secondary-color), 0 0 20px var(--impacta-secondary-color);
+            --impacta-primary-color: #e8e8e8;
+            --impacta-secondary-color: #f2f1f0;
+            /* Color Neón Verde para contrastar */
+            --impacta-text-light: #e0dddd;
         }
 
         /* ========================================= */
@@ -36,7 +30,6 @@
         .impacta-page {
             background-color: var(--impacta-bg-dark);
             color: var(--impacta-text-light);
-            /* Asegura que el footer y header usen el fondo oscuro */
         }
 
         .header,
@@ -67,7 +60,6 @@
             color: var(--impacta-text-light);
             letter-spacing: 2px;
             font-size: 3rem;
-            /* Ajuste para que se vea mejor */
         }
 
         .impacta-heading {
@@ -87,26 +79,21 @@
         /* 4. ESTILOS PARA TARJETAS Y ZIGZAG         */
         /* ========================================= */
 
-        /* ESTILO DEL MARCO CON ESQUINAS REDONDEADAS (AÑADIDO AQUÍ) */
+        /* ESTILO DEL MARCO CON ESQUINAS REDONDEADAS */
         .rounded-frame {
             background-color: transparent;
             border: 2px solid var(--impacta-text-light);
-            /* Usamos --impacta-text-light que es blanco (#FFFFFF) */
             border-radius: 15px;
             padding: 10px;
             display: inline-block;
             margin-top: 15px;
-            /* Espacio para separarlo del título */
             margin-bottom: 15px;
-            /* Espacio para separarlo de la animación */
         }
 
         .impacta-card {
             background-color: rgba(0, 255, 255, 0.05);
-            /* Fondo muy sutil */
             border: 1px solid var(--impacta-primary-color);
             box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-            /* Borde sutil neón */
             padding: 25px;
             border-radius: 8px;
         }
@@ -116,9 +103,7 @@
         /* ----------------------------------------- */
         .typing-animation {
             color: var(--impacta-secondary-color);
-            /* Color de la animación de typing */
             border-right-color: var(--impacta-secondary-color) !important;
-            /* Cursor verde neón */
             text-shadow: 0 0 3px var(--impacta-secondary-color);
         }
 
@@ -226,7 +211,6 @@
             display: flex;
             flex-direction: column;
             gap: 60px;
-            /* Espacio entre cada punto de la línea de tiempo */
             padding-top: 50px;
             position: relative;
         }
@@ -272,8 +256,7 @@
             height: auto;
             border-radius: 8px;
             border: 1px solid var(--impacta-secondary-color);
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
-            /* Sombra Verde Neón */
+            box-shadow: 0 0 15px rgba(0, 255, 162, 0.5);
         }
 
         /* Punto de Conexión en la Línea de Tiempo */
@@ -285,12 +268,10 @@
             width: 20px;
             height: 20px;
             background-color: var(--impacta-bg-dark);
-            /* Fondo negro */
             border: 3px solid var(--impacta-primary-color);
             border-radius: 50%;
             box-shadow: var(--neon-blue-shadow);
             z-index: 20;
-            /* Asegura que esté sobre la línea */
         }
 
         /* Estilo para el Subtítulo pequeño */
@@ -301,13 +282,154 @@
             margin-bottom: 10px;
         }
 
+        /* ========================================= */
+        /* 8. ESTILOS PARA FONDOS DE SECCIÓN          */
+        /* ========================================= */
+
+        /* Fondo para la sección de Misión/Causa */
+        #nuestra-causa {
+            /* Reemplaza 'imagen-fondo-mision.jpg' con tu archivo */
+            background-image: url('592bdb66-1984-4a8f-ae1d-e2ebc1310797.jfif');
+            background-size: cover;
+            /* Asegura que la imagen cubra toda la sección */
+            background-position: center center;
+            /* Centra la imagen */
+            background-attachment: fixed;
+            /* Opcional: crea un efecto parallax */
+        }
+
+        /* Fondo para la sección de Galería/Fotos */
+        #Fotos {
+            /* Reemplaza 'imagen-fondo-galeria.jpg' con tu archivo */
+            background-image: url('WhatsApp Image 2025-11-15 at 16.16.07.jpeg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            /* Opcional: crea un efecto parallax */
+        }
+
+        #presentacion-video {
+            /* Reemplaza 'imagen-fondo-galeria.jpg' con tu archivo */
+            background-image: url('biblia.webp');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            /* Opcional: crea un efecto parallax */
+        }
+
+        /* 💥 CORRECCIÓN: Aplicar opacidad para legibilidad */
+        #presentacion-video .container {
+            background-color: rgba(0, 0, 0, 0.6);
+            /* Fondo negro con 60% de opacidad */
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        /* 9. AJUSTES DE OPACIDAD PARA MEJOR LECTURA (¡MUY IMPORTANTE!) */
+
+        /* Aplicamos un fondo oscuro semi-transparente al contenedor interno */
+        /* para que el texto sea legible sobre la imagen de fondo */
+        #nuestra-causa .container,
+        #Fotos .container {
+            background-color: rgba(0, 0, 0, 0.6);
+            /* Color negro con 60% de opacidad */
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        /* ========================================= */
+        /* 10. ESTILOS ESPECÍFICOS PARA LA SECCIÓN DE EVENTOS PEQUEÑA (Laptop/Escritorio) */
+        /* ========================================= */
+
+        .events-grid {
+            /* Limita el ancho máximo para centrar la tarjeta */
+            max-width: 600px;
+            /* Ajuste para un tamaño más razonable en desktop */
+            margin: 30px auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .impacta-event-card {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 0;
+            border: 2px solid var(--impacta-secondary-color);
+            background-color: rgba(57, 255, 20, 0.05);
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .impacta-event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(57, 255, 20, 0.8);
+        }
+
+        /* 💻 ESTILO PARA LAPTOP (Por defecto: pequeño) */
+        .impacta-event-card .event-image {
+            height: 650px;
+            /* Altura pequeña para laptop */
+            object-fit: cover;
+            border-bottom: 2px solid var(--impacta-secondary-color);
+        }
+
+        .impacta-event-card .event-info {
+            padding: 15px 20px;
+            text-align: left;
+        }
+
+        .impacta-event-card h4 {
+            color: var(--impacta-primary-color);
+            text-shadow: var(--neon-blue-shadow);
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .impacta-event-card .impacta-btn {
+            margin-top: 15px;
+            width: 100%;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Estilos para el contenedor de las tarjetas de historia */
+        .impacta-story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        /* Estilos para cada tarjeta de la historia */
+        .story-card {
+            display: flex;
+            flex-direction: column;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #1a1a1a;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-media img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+
         /* ----------------------------------------- */
         /* MEDIA QUERIES (ADAPTACIÓN A MÓVIL)        */
         /* ----------------------------------------- */
         @media (max-width: 992px) {
+
+            /* Ajustes para el ZigZag/Timeline en móvil */
             .impacta-zigzag-grid::before {
                 left: 20px;
-                /* Mueve la línea de tiempo a la izquierda */
             }
 
             .zigzag-item {
@@ -324,127 +446,66 @@
             .zigzag-media {
                 margin-top: 20px;
                 order: 2;
-                /* Imagen abajo en móvil */
             }
 
             .zigzag-content {
                 order: 1;
-                /* Texto arriba en móvil */
                 border-left: 5px solid var(--impacta-primary-color);
                 padding-left: 20px;
                 background-color: transparent !important;
-                /* Quita el fondo de la tarjeta en móvil */
                 box-shadow: none;
                 border-radius: 0;
             }
 
-            /* Quitar el punto de conexión central y mover la tarjeta */
             .zigzag-item::after {
                 left: 20px;
                 transform: translateX(-50%);
             }
 
-            /* Asegura que la imagen de la derecha quede abajo */
             .img-right .zigzag-media {
                 order: 3;
             }
 
-            /* ========================================= */
-            /* 10. ESTILOS ESPECÍFICOS PARA LA SECCIÓN DE EVENTOS PEQUEÑA */
-            /* (Necesario para controlar el tamaño de la imagen) */
-            /* ========================================= */
-
-            .events-grid {
-                /* Limita el ancho máximo para centrar la tarjeta */
-                max-width: 350px;
-                margin: 30px auto;
-                display: flex;
-                justify-content: center;
-            }
-
-            .impacta-event-card {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                padding: 0;
-                border: 2px solid var(--impacta-secondary-color);
-                background-color: rgba(57, 255, 20, 0.05);
-                box-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
-                transition: transform 0.3s ease;
-            }
-
-            .impacta-event-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 5px 20px rgba(57, 255, 20, 0.8);
-            }
-
+            /* 📱 ESTILO PARA MÓVIL (Grande) */
             .impacta-event-card .event-image {
-                /* 🔴 ESTA ES LA LÍNEA CLAVE PARA MODIFICAR LA ALTURA 🔴 */
-                height: 120px;
-
-                object-fit: cover;
-                border-bottom: 2px solid var(--impacta-secondary-color);
+                height: 250px;
+                /* Tamaño grande para móvil (ajustado de 400px a 250px para ser más práctico) */
             }
 
-            .impacta-event-card .event-info {
-                padding: 15px 20px;
-                text-align: left;
-            }
-
-            .impacta-event-card h4 {
-                color: var(--impacta-primary-color);
-                text-shadow: var(--neon-blue-shadow);
-                margin-top: 0;
-                font-size: 1.5rem;
-            }
-
-            .impacta-event-card .impacta-btn {
-                margin-top: 15px;
-                width: 100%;
-                font-size: 0.9rem;
-                text-align: center;
-            }
-
+            /* Sección 10. ESTILOS ESPECÍFICOS PARA LA SECCIÓN DE EVENTOS PEQUEÑA */
             @media (max-width: 750px) {
                 .events-grid {
                     max-width: 90%;
                 }
             }
-        }
 
-        /* Estilos para el contenedor de las tarjetas */
-        .impacta-story-grid {
-            display: grid;
-            /* En escritorio, 2 columnas (o más si quieres). Separación entre tarjetas. */
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            /* Espacio entre las tarjetas */
-            margin-top: 40px;
-        }
+            /* ========================================= */
+            /* 8. ESTILOS PARA FONDOS DE SECCIÓN         */
+            /* ========================================= */
 
-        /* Estilos para cada tarjeta de la historia */
-        .story-card {
-            display: flex;
-            /* Usamos flexbox para que la imagen y el texto se organicen */
-            flex-direction: column;
-            /* Por defecto, en el celular, la imagen está arriba del texto */
-            border-radius: 12px;
-            overflow: hidden;
-            background-color: #1a1a1a;
-            /* Un color ligeramente diferente al fondo si es dark-section */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
+            #nuestra-causa {
+                background-image: url('592bdb66-1984-4a8f-ae1d-e2ebc1310797.jfif');
+                background-size: cover;
+                background-position: center center;
+                background-attachment: fixed;
+            }
 
-        .card-media img {
-            width: 100%;
-            height: 250px;
-            /* Altura fija para las imágenes */
-            object-fit: cover;
-            /* Asegura que la imagen cubra el área sin distorsionarse */
-        }
+            #Fotos {
+                background-image: url('WhatsApp Image 2025-11-15 at 16.16.07.jpeg');
+                background-size: cover;
+                background-position: center center;
+                background-attachment: fixed;
+            }
 
-        .card-content {
-            padding: 20px;
+            /* 9. AJUSTES DE OPACIDAD PARA MEJOR LECTURA (¡MUY IMPORTANTE!) */
+
+            #nuestra-causa .container,
+            #Fotos .container {
+                background-color: rgba(0, 0, 0, 0.6);
+                padding: 40px;
+                border-radius: 10px;
+            }
+
         }
     </style>
 </head>
@@ -486,7 +547,15 @@
                                 <span class="marquee-text">MOVIMIENTO IMPACTA </span>
                             </div>
                         </h1>
-
+                        <style>
+                            .marquee-inner {
+                                /* Si no tiene display: flex; ya aplicado, añádelo */
+                                display: flex;
+                                /* Usa la propiedad gap para espaciar los elementos hijos */
+                                gap: 50px;
+                                /* Ajusta este valor según sea necesario */
+                            }
+                        </style>
                         <div class="rounded-frame">
                             <h4 class="impacta-subtitle">
                                 Proyectos de evangelismo que involucran a jóvenes de distintas congregaciones.
@@ -536,7 +605,7 @@
 
                     <div class="story-card">
                         <div class="card-media">
-                            <img src="WhatsApp Image 2025-11-19 at 18.31.21.jpeg" alt="Jóvenes impactando en la calle"
+                            <img src="WhatsApp Image 2025-11-20 at 14.41.00.jpeg" alt="Jóvenes impactando en la calle"
                                 class="media-image">
                         </div>
                         <div class="card-content impacta-card">
@@ -612,7 +681,7 @@
                 </div>
 
                 <div class="cta-banner"
-                    style="background: rgba(38, 255, 0, 0.1); border: 1px solid var(--impacta-secondary-color);">
+                    style="background: rgba(105, 105, 105, 0.1); border: 1px solid var(--impacta-secondary-color);">
                     <h3 class="cta-title"
                         style="color: var(--impacta-secondary-color); text-shadow: var(--neon-green-shadow);">
                         ¿Quieres
@@ -623,6 +692,60 @@
 
             </div>
         </section>
+
+
+        <section id="Fotos" class="section gallery-section slider-container-wrapper">
+            <h2>Galería de Fotos</h2>
+            <p class="section-description">Mira los momentos de IMPACTA.</p>
+
+            <div class="slider-grid">
+                <div class="gallery-slider-frame">
+                    <div class="slider-track" data-slider="1">
+                        <div class="slider-slide"><img src="WhatsApp Image 2025-11-15 at 16.17.55.jpeg" alt="concierto">
+                        </div>
+                        <div class="slider-slide"><img src="WhatsApp Image 2025-11-19 at 18.31.21 (1).jpeg"
+                                alt="playeras"></div>
+                        <div class="slider-slide"><img src="Captura de pantalla 2025-11-20 142503.jpg" alt="Dardos">
+                        </div>
+                        <div class="slider-slide"><img src="WhatsApp Image 2025-11-20 at 13.52.32.jpeg" alt="tere">
+                        </div>
+                    </div>
+                    <button class="slider-btn prev" data-slider-target="1">❮</button>
+                    <button class="slider-btn next" data-slider-target="1">❯</button>
+                </div>
+                <div class="gallery-slider-frame">
+                    <div class="slider-track" data-slider="2">
+                        <div class="slider-slide"><img src="Captura de pantalla 2025-11-20 142806.jpg" alt="cantando">
+                        </div>
+                        <div class="slider-slide"><img src="WhatsApp Image 2025-11-20 at 13.52.32 (3).jpeg"
+                                alt="Evangelizando"></div>
+                        <div class="slider-slide"><img src="WhatsApp Image 2025-11-20 at 13.52.32 (2).jpeg"
+                                alt="Evangelizando2"></div>
+                        <div class="slider-slide"><img src="WhatsApp Image 2025-11-20 at 13.52.32 (1).jpeg"
+                                alt="Evangelizando3">
+                        </div>
+                    </div>
+                    <button class="slider-btn prev" data-slider-target="2">❮</button>
+                    <button class="slider-btn next" data-slider-target="2">❯</button>
+                </div>
+                <div class="gallery-slider-frame">
+                    <div class="slider-track" data-slider="3">
+                        <div class="slider-slide"><img src="Captura de pantalla 2025-11-20 143406.jpg"
+                                alt="adoracion morada"></div>
+                        <div class="slider-slide"><img src="WhatsApp Image 2025-11-20 at 13.52.31 (1).jpeg"
+                                alt="Evangeliznado4"></div>
+                        <div class="slider-slide"><img src="Captura de pantalla 2025-11-20 143156.jpg"
+                                alt="evangelizando5"></div>
+                        <div class="slider-slide"><img src="WhatsApp Image 2025-11-15 at 16.17.54 (1).jpeg" alt="grupo">
+                        </div>
+                    </div>
+                    <button class="slider-btn prev" data-slider-target="3">❮</button>
+                    <button class="slider-btn next" data-slider-target="3">❯</button>
+                </div>
+            </div>
+
+        </section>
+
 
         <section id="contacto-impacta" class="section medium-dark-section" style="margin-top: 50px;">
             <div class="container">
@@ -668,6 +791,7 @@
         </a>
 
         <script src="script.js"></script>
+    </main>
 </body>
 
 </html>
