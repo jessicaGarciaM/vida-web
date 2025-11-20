@@ -380,7 +380,7 @@
 
             .impacta-event-card .event-image {
                 /* 🔴 ESTA ES LA LÍNEA CLAVE PARA MODIFICAR LA ALTURA 🔴 */
-                height: 180px;
+                height: 120px;
 
                 object-fit: cover;
                 border-bottom: 2px solid var(--impacta-secondary-color);
@@ -405,11 +405,46 @@
                 text-align: center;
             }
 
-            @media (max-width: 650px) {
+            @media (max-width: 550px) {
                 .events-grid {
-                    max-width: 100%;
+                    max-width: 90%;
                 }
             }
+        }
+
+        /* Estilos para el contenedor de las tarjetas */
+        .impacta-story-grid {
+            display: grid;
+            /* En escritorio, 2 columnas (o más si quieres). Separación entre tarjetas. */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            /* Espacio entre las tarjetas */
+            margin-top: 40px;
+        }
+
+        /* Estilos para cada tarjeta de la historia */
+        .story-card {
+            display: flex;
+            /* Usamos flexbox para que la imagen y el texto se organicen */
+            flex-direction: column;
+            /* Por defecto, en el celular, la imagen está arriba del texto */
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #1a1a1a;
+            /* Un color ligeramente diferente al fondo si es dark-section */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-media img {
+            width: 100%;
+            height: 250px;
+            /* Altura fija para las imágenes */
+            object-fit: cover;
+            /* Asegura que la imagen cubra el área sin distorsionarse */
+        }
+
+        .card-content {
+            padding: 20px;
         }
     </style>
 </head>
@@ -494,89 +529,69 @@
             <div class="container">
                 <h2 class="section-title impacta-heading">Nuestra Misión, Nuestra Causa</h2>
                 <p class="section-subtitle impacta-text">
-                    Impacta es más que un ministerio; es la respuesta audaz a un llamado ineludible.
+                    **Impacta** es más que un ministerio; es la respuesta audaz a un llamado ineludible.
                 </p>
 
-                <section id="nuestra-causa" class="section dark-section">
-                    <div class="container">
-                        <h2 class="section-title impacta-heading">Nuestra Misión, Nuestra Causa</h2>
-                        <p class="section-subtitle impacta-text">
-                            Impacta es más que un ministerio; es la respuesta audaz a un llamado ineludible.
-                        </p>
+                <div class="impacta-story-grid">
 
-                        <div class="impacta-zigzag-grid">
-
-                            <div class="zigzag-item img-right">
-                                <div class="zigzag-content impacta-card">
-                                    <h3 class="step-title impacta-heading">Rompiendo el Círculo del Silencio</h3>
-                                    <span class="step-subtitle">La Urgencia Espiritual</span>
-                                    <p>
-                                        Impacta surgió de una visión radical: Alcanzar el llamado "círculo del silencio"
-                                        de
-                                        Guadalajara, una de las áreas menos evangelizadas del país. No estamos aquí para
-                                        ser
-                                        pasivos. Nacimos para ser la luz, la voz y la acción que lleva el mensaje
-                                        transformador
-                                        de Cristo a quienes más lo necesitan. Es una urgencia espiritual que nos mueve
-                                        cada
-                                        día.
-                                    </p>
-                                </div>
-                                <div class="zigzag-media">
-                                    <img src="WhatsApp Image 2025-11-19 at 18.31.21.jpeg"
-                                        alt="Jóvenes impactando en la calle" class="media-image">
-                                </div>
-                            </div>
-
-                            <div class="zigzag-item img-left">
-                                <div class="zigzag-media">
-                                    <img src="Captura de pantalla 2025-11-19 205458.jpg"
-                                        alt="Ilustración de transformación y cambio" class="media-image">
-                                </div>
-                                <div class="zigzag-content impacta-card">
-                                    <h3 class="step-title impacta-heading">La Recompensa: Ver la Transformación</h3>
-                                    <span class="step-subtitle">El Impacto Real</span>
-                                    <p>
-                                        Este ministerio es el campo de batalla donde tu fe se convierte en impacto real.
-                                        Es
-                                        una plataforma para que salgas de tu zona de confort y hagas historia. La mayor
-                                        alegría
-                                        es ser testigo de cómo jóvenes como tú desatan sus dones y talentos (arte,
-                                        música,
-                                        tecnología) para forjar un movimiento creativo que no solo inspira a la
-                                        juventud,
-                                        sino
-                                        que transforma el tejido social de nuestra ciudad.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="zigzag-item img-right">
-                                <div class="zigzag-content impacta-card">
-                                    <h3 class="step-title impacta-heading">El Desafío: Forjar un Ejército Unido</h3>
-                                    <span class="step-subtitle">La Unidad en Cristo</span>
-                                    <p>
-                                        Superamos el reto de unificar la pasión de jóvenes de diferentes congregaciones
-                                        para
-                                        que
-                                        trabajen con un mismo propósito. Hemos aprendido que la verdadera fuerza reside
-                                        en
-                                        la
-                                        Unidad en Cristo. Somos un solo cuerpo, un equipo multidisciplinario que rompe
-                                        barreras denominacionales, demostrando que cuando la juventud se une, el impacto
-                                        es
-                                        imparable.
-                                    </p>
-                                </div>
-                                <div class="zigzag-media">
-                                    <img src="WhatsApp Image 2025-11-15 at 16.17.54 (2).jpeg"
-                                        alt="Grupo de jóvenes unidos" class="media-image">
-                                </div>
-                            </div>
-
+                    <div class="story-card">
+                        <div class="card-media">
+                            <img src="WhatsApp Image 2025-11-19 at 18.31.21.jpeg" alt="Jóvenes impactando en la calle"
+                                class="media-image">
+                        </div>
+                        <div class="card-content impacta-card">
+                            <h3 class="step-title impacta-heading">Rompiendo el Círculo del Silencio</h3>
+                            <span class="step-subtitle">La Urgencia Espiritual</span>
+                            <p>
+                                Impacta surgió de una visión radical: Alcanzar el llamado "círculo del silencio" de
+                                Guadalajara, una de las áreas menos evangelizadas del país. Nacimos para ser la luz, la
+                                voz y
+                                la acción que lleva el mensaje transformador de Cristo a quienes más lo necesitan. Es
+                                una
+                                urgencia espiritual.
+                            </p>
                         </div>
                     </div>
-                </section>
+
+                    <div class="story-card">
+                        <div class="card-media">
+                            <img src="Captura de pantalla 2025-11-19 205458.jpg"
+                                alt="Ilustración de transformación y cambio" class="media-image">
+                        </div>
+                        <div class="card-content impacta-card">
+                            <h3 class="step-title impacta-heading">La Recompensa: Ver la Transformación</h3>
+                            <span class="step-subtitle">El Impacto Real</span>
+                            <p>
+                                Este ministerio es el campo de batalla donde tu fe se convierte en impacto real. Es una
+                                plataforma para que salgas de tu zona de confort y hagas historia. La mayor alegría es
+                                ser
+                                testigo de cómo jóvenes desatan sus dones y talentos (arte, música, tecnología) para
+                                forjar un
+                                movimiento creativo que transforma el tejido social de nuestra ciudad.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="story-card">
+                        <div class="card-media">
+                            <img src="WhatsApp Image 2025-11-15 at 16.17.54 (2).jpeg" alt="Grupo de jóvenes unidos"
+                                class="media-image">
+                        </div>
+                        <div class="card-content impacta-card">
+                            <h3 class="step-title impacta-heading">El Desafío: Forjar un Ejército Unido</h3>
+                            <span class="step-subtitle">La Unidad en Cristo</span>
+                            <p>
+                                Superamos el reto de unificar la pasión de jóvenes de diferentes congregaciones para que
+                                trabajen con un mismo propósito. Hemos aprendido que la verdadera fuerza reside en la
+                                Unidad en
+                                Cristo. Somos un solo cuerpo, un equipo multidisciplinario que rompe barreras
+                                denominacionales.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </section>
 
         <section id="proximas-actividades" class="section dark-section">
@@ -654,6 +669,5 @@
 
         <script src="script.js"></script>
 </body>
-
 
 </html>
