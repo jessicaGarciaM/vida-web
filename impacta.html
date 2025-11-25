@@ -421,6 +421,12 @@
             padding: 20px;
         }
 
+        .back-to-home {
+            margin: 40px auto 0;
+            display: block;
+            text-align: center;
+        }
+
 
         /* ----------------------------------------- */
         /* MEDIA QUERIES (ADAPTACIÓN A MÓVIL)        */
@@ -466,7 +472,7 @@
                 order: 3;
             }
 
-                       /* ESTILO PARA MÓVIL (Grande) */
+            /* 📱 ESTILO PARA MÓVIL (Grande) */
             .impacta-event-card .event-image {
                 height: 450px;
                 /* Tamaño grande para móvil (ajustado de 400px a 250px para ser más práctico) */
@@ -513,14 +519,78 @@
 
 <body class="impacta-page">
 
+
+
     <header class="header">
         <div class="logo">VIDA</div>
         <nav class="nav">
             <a href="index.html#inicio">Inicio</a>
 
-            <a href="#impacta-hero" class="active-page-link">IMPACTA</a>
+            <div class="dropdown">
+                <a href="index.html#mision" class="dropdown-toggle">Nosotros</a>
+                <div class="dropdown-menu">
+                    <a href="index.html#mision">Nuestra Misión</a>
+                    <a href="creemos.html">En qué Creemos</a>
+                    <a href="index.html#testimonios-section">Testimonios</a>
+                    <a href="index.html#contacto-section">Contacto</a>
+                </div>
+            </div>
 
+            <div class="dropdown">
+                <a href="index.html#eventos" class="dropdown-toggle">Eventos</a>
+                <div class="dropdown-menu">
+                    <a href="index.html#eventos">Próximos Eventos</a>
+                    <a href="index.html#eventos">Calendario</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="index.html#mensajes" class="dropdown-toggle">Predicas</a>
+                <div class="dropdown-menu">
+                    <a href="index.html#mensajes">Mensaje Reciente</a>
+                    <a href="https://www.youtube.com/@IglesiaVidaGuadalajara/streams" target="_blank"
+                        rel="noopener noreferrer">Biblioteca Completa</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="index.html#ministerios" class="dropdown-toggle">Ministerios</a>
+                <div class="dropdown-menu">
+                    <a href="impacta.html">Impacta</a>
+
+                    <a href="index.html#ministerios">El Tren de la Salvación</a>
+                    <a href="index.html#ministerios">Ciento Ochenta mx</a>
+                    <a href="index.html#ministerios">VIVE +</a>
+                    <a href="index.html#ministerios">Matrimonios</a>
+                    <a href="index.html#ministerios">Mujeres</a>
+                    <a href="index.html#ministerios">Varones</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="index.html#discipulado-section" class="dropdown-toggle">Discipulado</a>
+                <div class="dropdown-menu">
+                    <a href="index.html#discipulado-presencial">Quiero discipulado presencial</a>
+                    <a href="index.html#discipulado-online"> Quiero discipulado online</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="index.html#fotos" class="dropdown-toggle">Galeria</a>
+                <div class="dropdown-menu">
+                    <a href="album.html">Álbum Completo</a>
+                </div>
+            </div>
+
+            <a href="index.html#donar" class="cta-button">OFRENDAR</a>
+            <a href="index.html#iniciarsesion" class="cta-button">INSTITUTO BIBLICO VIDA ONLINE</a>
         </nav>
+        <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+    </header>
+
+    <a href="#impacta-hero" class="active-page-link">IMPACTA</a>
+
+    </nav>
     </header>
 
     <main>
@@ -644,7 +714,7 @@
 
                     <div class="story-card">
                         <div class="card-media">
-                            <img src="WhatsApp Image 2025-11-15 at 16.17.54 (3).jpeg" alt="Grupo de jóvenes unidos"
+                            <img src="WhatsApp Image 2025-11-15 at 16.17.54 (2).jpeg" alt="Grupo de jóvenes unidos"
                                 class="media-image">
                         </div>
                         <div class="card-content impacta-card">
@@ -761,6 +831,14 @@
             </div>
         </section>
 
+        </div>
+
+        <div class="back-to-home">
+            <a href="index.html#mision" class="btn tertiary-btn">← Volver a la página principal</a>
+        </div>
+        </section>
+
+
 
         <footer class="footer">
             <div class="footer-links">
@@ -795,8 +873,4 @@
     </main>
 </body>
 
-
 </html>
-
-
-

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En Qué Creemos - Iglesia Cristiana Vida</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos específicos para creemos.html para asegurar la consistencia */
+
+        /* Usar el mismo logo/header del index */
+        .creemos-header {
+            background-color: var(--primary-color, #333);
+            color: rgb(84, 53, 53);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .creemos-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .creemos-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .creemos-section {
+            padding: 80px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .creemos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .creemos-item {
+            background-color: #ffffff;
+            /* Fondo blanco para las tarjetas */
+            border: 1px solid #433f3f;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .creemos-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* MODIFICACIÓN: Títulos de las tarjetas (<h3>) a negro puro */
+        .creemos-item h3 {
+            color: #3f3e3e !important;
+            font-size: 1.8rem;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            position: relative;
+            padding-left: 45px;
+            /* Espacio para el icono */
+        }
+
+        .creemos-item h3::before {
+            content: attr(data-number);
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.2rem;
+            color: #3f3e3e font-weight: 800;
+            line-height: 1;
+        }
+
+        .creemos-item p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .creemos-item strong {
+            color: var(--secondary-color, #e74c3c);
+            font-weight: 700;
+        }
+
+        /* Estilo para las ordenanzas que usan lista */
+        .creemos-item ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+
+        .creemos-item ul li {
+            position: relative;
+            padding-left: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .creemos-item ul li::before {
+            content: '•';
+            color: var(--secondary-color, #e74c3c);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Estilo para el botón de regreso, usando la clase del index.html */
+        .back-to-home {
+            margin: 40px auto 0;
+            display: block;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">VIDA</div>
+        <nav class="nav">
+            <a href="index.html#inicio">Inicio</a>
+
+            <div class="dropdown">
+                <a href="index.html#mision" class="dropdown-toggle">Nosotros</a>
+                <div class="dropdown-menu">
+                    <a href="index.html#mision">Nuestra Misión</a>
+                    <a href="creemos.html">En qué Creemos</a>
+                    <a href="index.html#testimonios-section">Testimonios</a>
+                    <a href="index.html#contacto-section">Contacto</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="index.html#eventos" class="dropdown-toggle">Eventos</a>
+                <div class="dropdown-menu">
+                    <a href="index.html#eventos">Próximos Eventos</a>
+                    <a href="index.html#eventos">Calendario</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="index.html#mensajes" class="dropdown-toggle">Predicas</a>
+                <div class="dropdown-menu">
+                    <a href="index.html#mensajes">Mensaje Reciente</a>
+                    <a href="https://www.youtube.com/@IglesiaVidaGuadalajara/streams" target="_blank"
+                        rel="noopener noreferrer">Biblioteca Completa</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="index.html#ministerios" class="dropdown-toggle">Ministerios</a>
+                <div class="dropdown-menu">
+                    <a href="impacta.html">Impacta</a>
+
+                    <a href="index.html#ministerios">El Tren de la Salvación</a>
+                    <a href="index.html#ministerios">Ciento Ochenta mx</a>
+                    <a href="index.html#ministerios">VIVE +</a>
+                    <a href="index.html#ministerios">Matrimonios</a>
+                    <a href="index.html#ministerios">Mujeres</a>
+                    <a href="index.html#ministerios">Varones</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="index.html#discipulado-section" class="dropdown-toggle">Discipulado</a>
+                <div class="dropdown-menu">
+                    <a href="index.html#discipulado-presencial">Quiero discipulado presencial</a>
+                    <a href="index.html#discipulado-online"> Quiero discipulado online</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="index.html#fotos" class="dropdown-toggle">Galeria</a>
+                <div class="dropdown-menu">
+                    <a href="album.html">Álbum Completo</a>
+                </div>
+            </div>
+
+            <a href="index.html#donar" class="cta-button">OFRENDAR</a>
+            <a href="index.html#iniciarsesion" class="cta-button">INSTITUTO BIBLICO VIDA ONLINE</a>
+        </nav>
+        <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+    </header>
+
+    <section class="creemos-header">
+        <h1>Nuestra Declaración de Fe</h1>
+        <p>
+            En Iglesia Vida, creemos firmemente en estos pilares de la fe cristiana. Descubre las verdades que dan forma
+            a
+            nuestra visión y vida.
+        </p>
+    </section>
+
+    <section id="creemos" class="creemos-section">
+        <div class="creemos-grid">
+
+            <div class="creemos-item">
+                <h3 data-number="1.">La Biblia</h3>
+                <p>
+                    Creemos que la Biblia es la Palabra de Dios, completamente inspirada y nuestra autoridad final
+                    para creer y vivir.
+                </p>
+            </div>
+
+            <div class="creemos-item">
+                <h3 data-number="2.">Dios</h3>
+                <p>
+                    Hay un solo Dios verdadero, eterno y soberano, que se revela como Padre, Hijo y Espíritu Santo.
+                </p>
+            </div>
+
+            <div class="creemos-item">
+                <h3 data-number="3.">Jesucristo</h3>
+                <p>
+                    Creemos que Jesús es Dios hecho hombre, vivió sin pecado, murió en la cruz por nuestros pecados,
+                    resucitó al tercer día y volverá por su pueblo.
+                </p>
+            </div>
+
+            <div class="creemos-item">
+                <h3 data-number="4.">El Espíritu Santo</h3>
+                <p>
+                    El Espíritu Santo convence de pecado, regenera, habita en los creyentes y nos capacita para
+                    vivir
+                    en santidad y servir a Dios.
+                </p>
+            </div>
+
+            <div class="creemos-item">
+                <h3 data-number="5.">El Ser Humano y el Pecado</h3>
+                <p>
+                    Fuimos creados a imagen de Dios, pero por el pecado nos alejamos de Él. Todos necesitamos
+                    salvación.
+                </p>
+            </div>
+
+            <div class="creemos-item">
+                <h3 data-number="6.">La Salvación</h3>
+                <p>
+                    La salvación es un regalo de la gracia de Dios, recibido por medio de la fe en Jesús. Incluye
+                    nuevo nacimiento, perdón, transformación de vida y la seguridad eterna de los creyentes.
+                </p>
+            </div>
+
+            <div class="creemos-item">
+                <h3 data-number="7.">La Iglesia</h3>
+                <p>
+                    La iglesia es la comunidad de creyentes redimidos por Cristo. Cada iglesia local es autónoma,
+                    guiada por la Palabra y por el Espíritu.
+                </p>
+            </div>
+
+            <div class="creemos-item">
+                <h3 data-number="8.">Bautismo y Cena del Señor</h3>
+                <p>
+                    Reconocemos dos ordenanzas:
+                <ul>
+                    <li>Bautismo por inmersión para creyentes como testimonio público de fe.</li>
+                    <li>Cena del Señor como recordatorio de la muerte de Cristo y comunión del cuerpo.</li>
+                </ul>
+                </p>
+            </div>
+
+            <div class="creemos-item">
+                <h3 data-number="9.">La Misión</h3>
+                <p>
+                    La iglesia existe para compartir el evangelio, hacer discípulos y servir a nuestro prójimo con
+                    amor.
+                </p>
+            </div>
+
+            <div class="creemos-item">
+                <h3 data-number="10.">La Familia</h3>
+                <p>
+                    Creemos en el matrimonio bíblico entre un hombre y una mujer y en la familia como diseño de Dios
+                    para bendecir la sociedad.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="back-to-home">
+            <a href="index.html#mision" class="btn tertiary-btn">← Volver a la página principal</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">Términos y Condiciones</a>
+            <a href="#">Aviso de Privacidad</a>
+            <a href="#">Contacto</a>
+        </div>
+        <div class="social-links">
+            <a href="https://www.facebook.com/IglesiaVidaGDL" aria-label="Facebook" target="_blank"
+                rel="noopener noreferrer">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/iglesiavidagdl/" aria-label="Instagram" target="_blank"
+                rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@IglesiaVidaGuadalajara/featured" aria-label="YouTube" target="_blank"
+                rel="noopener noreferrer">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <p>© 2025 Vida GDL - Todos los derechos reservados.</p>
+    </footer>
+
+    <a href="https://wa.me/523318592329?text=Hola%20Iglesia%20Vida%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n."
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span>Contáctanos por WhatsApp</span>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
