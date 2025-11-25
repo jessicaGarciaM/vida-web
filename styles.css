@@ -62,12 +62,37 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.logo {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--primary-color);
-    letter-spacing: 2px;
+.header .logo-img {
+    height: 60px;
+    /* Ajusta este valor para controlar la altura del logo */
+    width: auto;
+    /* Mantiene la proporción de la imagen */
+    vertical-align: middle;
+    margin-right: 0;
+    /* No necesitamos margen si no hay texto al lado */
+    padding: 5px 0;
+    /* Pequeño padding vertical si es necesario */
 }
+
+/* Si el logo del header es "VIDA" y quieres un tamaño de fuente específico */
+.header .logo {
+    font-size: 2.5rem;
+    /* Ajusta el tamaño de la fuente si el logo es solo texto */
+    font-weight: 800;
+    color: var(--text-color, #ffffff);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-top: 10px;
+    /* Ajusta el padding para alinear verticalmente */
+    padding-bottom: 10px;
+    display: flex;
+    /* Para que la imagen y el texto (si lo hubiera) estén en línea */
+    align-items: center;
+    /* Centra verticalmente los elementos dentro del logo */
+}
+
+/* Puedes eliminar el estilo .header .logo si solo usarás la imagen */
+/* y el contenedor .logo solo contendrá la imagen */
 
 .nav a {
     text-decoration: none;
@@ -1368,20 +1393,18 @@ body {
     /* ---------------------------------------------------- */
     .events-section .events-carousel {
         /* Ajusta el ancho máximo del contenedor para móviles si es necesario */
-        max-width: 100%;
+        max-width: 450px;
     }
 
     /* En pantallas pequeñas, mostramos solo 1 recuadro por deslizamiento */
     .events-section .events-carousel .carousel-item {
         width: 100%;
         /* Ocupa el ancho total para mostrar 1 a la vez */
-        padding: 0 10px;
+        padding: 0 5px;
     }
 
     .events-section .events-carousel .carousel-item img {
         height: 450px;
         /* Altura más pequeña en móvil */
     }
-
 }
-
