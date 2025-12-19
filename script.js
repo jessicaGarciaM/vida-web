@@ -306,25 +306,55 @@ function initializeEventsCarousel(trackId) {
 /* ========================================= */
 /* 6. FUNCIONALIDAD DE MODALES (GLOBAL) */
 /* ========================================= */
-
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.style.display = 'block';
-    }
+    if (modal) modal.style.display = 'block';
 }
 
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.style.display = 'none';
-    }
+    if (modal) modal.style.display = 'none';
 }
 
-// Cerrar el modal haciendo clic fuera de su contenido
+// Cerrar el modal haciendo clic fuera
 window.onclick = function (event) {
-    // Verificamos si el elemento clicado tiene la clase 'modal' (el fondo oscuro)
     if (event.target.classList.contains('modal')) {
         event.target.style.display = 'none';
     }
-}
+};
+
+/* ========================================= */
+/* 7. LÓGICA PARA SUBMENÚS (CORREGIDA) */
+/* ========================================= */
+document.addEventListener('DOMContentLoaded', function () {
+    const submenuToggles = document.querySelectorAll('.submenu-toggle');
+
+    submenuToggles.forEach(toggle => {
+        toggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation(); // Evita que se cierre el menú principal
+
+            const submenuContent = this.nextElementSibling;
+
+            // Cerrar otros submenús abiertos para evitar que se encimen
+            const parentMenu = this.closest('.dropdown-menu');
+            parentMenu.querySelectorAll('.submenu-content').forEach(menu => {
+                if (menu !== submenuContent) {
+                    menu.classList.remove('active');
+                }
+            });
+
+            // Alternar el actual
+            submenuContent.classList.toggle('active');
+        });
+    });
+
+    // Cerrar submenús si se hace clic fuera de ellos
+    document.addEventListener('click', function (e) {
+        if (!e.target.closest('.dropdown-submenu')) {
+            document.querySelectorAll('.submenu-content.active').forEach(menu => {
+                menu.classList.remove('active');
+            });
+        }
+    });
+});

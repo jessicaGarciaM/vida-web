@@ -552,16 +552,17 @@ body {
 
 .events-section .events-carousel {
     position: relative;
-    /* Ancho máximo ajustado para el escritorio */
+    /*Permite que los botones (prev/next) se puedan posicionar encima del carrusel.*/
     max-width: 1500px;
+    /* Ancho máximo ajustado para el escritorio */
     margin: 40px auto;
+    /*da espacio arriba y abajo, y el auto lo centra horizontalmente*/
     width: 100%;
 }
 
 .events-section .events-carousel .carousel-frame {
     overflow: hidden;
     width: 100%;
-    /* 💥 CAMBIO CLAVE: Aumenta el padding del marco para compensar el del ítem */
     padding: 0 15px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -572,25 +573,24 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
-/* 💥 CADA ITEM OCUPA UN TERCIO DEL ESPACIO VISIBLE (Desktop) */
 .events-section .events-carousel .carousel-item {
     flex-shrink: 0;
     width: 33.333%;
-    /* 💥 CAMBIO CLAVE: Aumenta el padding lateral a 15px para más separación */
+    /* CAMBIO CLAVE: Aumenta el padding lateral a 15px para más separación */
     padding: 0 15px;
     box-sizing: border-box;
 }
 
 .events-section .events-carousel .carousel-item img {
     width: 100%;
-    /* Altura aumentada a 450px */
-    height: 450px;
+    /* Altura de las imagenes del carrusel de eventos */
+    height: 600px;
     display: block;
     object-fit: cover;
     border-radius: 8px;
 }
 
-/* Estilos de botones específicos para eventos (Mantener) */
+/* Estilos de botones específicos para eventos */
 .events-section .events-carousel .carousel-btn {
     position: absolute;
     top: 50%;
@@ -633,6 +633,8 @@ body {
     /* 9 / 16 = 0.5625 = 56.25% (Relación 16:9) */
     height: 0;
     overflow: hidden;
+    background-color: #121212;
+    border-radius: 8px;
 }
 
 .calendar-container iframe {
@@ -702,10 +704,10 @@ body {
 }
 
 /* ========================================= */
-/* 7. MISIÓN (Profesional) */
+/* 7. MISIÓN  */
 /* ========================================= */
 .mission-section {
-    background-image: url('WhatsApp\ Image\ 2025-11-15\ at\ 11.29.19\ \(2\).jpeg');
+    background-image: url('alabanza seccion mision.jpg');
     background-size: cover;
     /* Cubre toda la sección */
     background-position: center center;
@@ -871,7 +873,7 @@ body {
 }
 
 /* ----------------------------------------- */
-/* 8.5. GALERÍA DE FOTOS (Sliders) - NUEVO */
+/* 8.5. GALERÍA DE FOTOS  */
 /* ----------------------------------------- */
 .slider-container-wrapper {
     background-color: var(--bg-light);
@@ -1366,6 +1368,103 @@ body {
     .slider-grid {
         grid-template-columns: 1fr;
         /* Una sola columna en móvil */
+    }
+
+    /* ========================================= */
+    /* 2.6. SUBMENÚS ANIDADOS (SOLUCIÓN FINAL DE ALINEACIÓN + CLICK + FONDO NEGRO) */
+    /* ========================================= */
+
+    .dropdown-submenu {
+        position: relative;
+        /* Contenedor del elemento Evangelismo/Educación */
+        display: block;
+        width: 100%;
+    }
+
+    /* Link que abre el submenú (el elemento 'Evangelismo', 'Educación', etc.) */
+    .dropdown-submenu>a.submenu-toggle {
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        cursor: pointer;
+        text-decoration: none;
+        color: var(--primary-color);
+        font-weight: 600;
+        margin: 0;
+        border-radius: 0;
+        transition: all 0.3s ease;
+    }
+
+    /* Estilo hover/activo para el link padre */
+    .dropdown-submenu>a.submenu-toggle:hover,
+    .dropdown-submenu>a.submenu-toggle.active {
+        background-color: var(--bg-light);
+        color: var(--secondary-color);
+    }
+
+    /* Estilo base del submenú (Caja negra desplegable) */
+    .dropdown-submenu .submenu-content {
+        display: none;
+        position: absolute;
+        /* AJUSTE CLAVE: Alineamos con el inicio del padding del elemento padre. */
+        top: 0;
+        left: 100%;
+        min-width: 220px;
+
+        /* --- FONDO NEGRO --- */
+        background-color: #000000 !important;
+        border: 1px solid #333;
+
+        box-shadow: var(--shadow-medium);
+        border-radius: 5px;
+        padding: 5px 0;
+        /* Reducimos el padding interno para mejor alineación */
+        z-index: 1002;
+    }
+
+    /* CLASE QUE ACTIVA EL JS: Solo se muestra si tiene la clase .active */
+    .dropdown-submenu .submenu-content.active {
+        display: block;
+    }
+
+    /* Enlaces dentro del submenú negro */
+    .dropdown-submenu .submenu-content a {
+        color: #fff !important;
+        padding: 10px 20px;
+        display: block;
+        text-align: left;
+        margin: 0;
+        font-weight: 400;
+    }
+
+    .dropdown-submenu .submenu-content a:hover {
+        background-color: #333 !important;
+        color: var(--secondary-color) !important;
+    }
+
+
+    /* --- AJUSTE PARA MÓVILES (Para que se vea como lista y empuje el contenido) --- */
+    @media (max-width: 992px) {
+        .dropdown-submenu .submenu-content {
+            position: relative;
+            /* ¡CRUCIAL! Se inserta en el flujo y empuja otros elementos. */
+            left: 0;
+            top: 0;
+            margin-left: 0;
+            width: 100%;
+
+            background-color: #000000 !important;
+            border-left: 2px solid var(--secondary-color);
+            border-radius: 0;
+            padding: 5px 0;
+        }
+
+        /* Indentación para que se vea la jerarquía en móvil */
+        .dropdown-submenu .submenu-content a {
+            padding-left: 40px !important;
+        }
     }
 
     /* ---------------------------------------------------- */
