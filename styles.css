@@ -1347,18 +1347,74 @@ body {
     /* Esto le da un aspecto nocturno/oscuro al mapa */
 }
 
+/* Corrección Global para evitar desbordamientos */
+* {
+    box-sizing: border-box;
+}
+
+/* Ajustes específicos para la sección oscura en celular */
 @media (max-width: 768px) {
-    .fila-contacto {
-        flex-direction: column;
+    .seccion-contacto-oscura {
+        padding: 40px 15px;
+        /* Menos padding lateral para dar más espacio al contenido */
+        overflow: hidden;
+        /* Evita que cualquier elemento interno empuje el borde */
     }
 
+    .contenedor-contacto {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    /* Evita que el título "Conecta con nosotros" se salga */
+    .titulo-contacto {
+        font-size: 1.8rem !important;
+        /* Tamaño reducido para móvil */
+        line-height: 1.2;
+        word-wrap: break-word;
+        /* Rompe palabras si son muy largas */
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .descripcion-contacto {
+        text-align: center;
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    /* Ajuste del Formulario */
     .formulario-vida {
         grid-template-columns: 1fr;
+        /* Una sola columna */
+        width: 100%;
+        gap: 15px;
     }
 
-    .ancho-total,
-    .boton-enviar {
-        grid-column: span 1;
+    .columna-formulario {
+        padding: 10px;
+        /* Espacio interno para que los inputs no toquen el borde negro */
+    }
+
+    /* Ajuste de inputs para que no se salgan */
+    .grupo-input input,
+    .grupo-input textarea {
+        width: 100% !important;
+        max-width: 100%;
+    }
+
+    /* Ajuste del prefijo de teléfono (México +52) */
+    .caja-telefono {
+        display: flex;
+        flex-direction: row;
+        /* Mantiene el prefijo al lado en móvil si hay espacio */
+    }
+
+    .prefijo {
+        padding: 10px 5px;
+        font-size: 0.8rem;
+        min-width: 80px;
     }
 }
 
