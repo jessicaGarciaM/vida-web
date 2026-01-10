@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 /* ========================================= */
 /* 1. VARIABLES GLOBALES Y RESET */
 /* ========================================= */
@@ -657,57 +661,12 @@ body {
 }
 
 
-/* ========================================= */
-/* 7. SECCIÓN CONECTA CON NOSOTROS (HORIZONTAL) */
-/* ========================================= */
-.events-grid {
-    display: grid;
-    /* Divide el espacio en 3 columnas de igual ancho */
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    /* Espacio entre las columnas */
-    max-width: 1100px;
-    margin: 40px auto;
-    /* Centra el contenedor y le da espacio vertical */
-    padding: 0 20px;
-}
-
-.event-card {
-    /* Usamos flexbox para asegurar que el botón se alinee al fondo */
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 30px 20px;
-    height: 100%;
-    /* Permite que el grid ocupe el espacio completo */
-
-    /* Estilos visuales de la tarjeta */
-    background-color: var(--bg-dark);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-}
-
-/* Regla clave para empujar el botón al fondo si el texto es de diferente longitud */
-.event-card p {
-    flex-grow: 1;
-    /* Permite que el párrafo ocupe el espacio restante */
-    margin-bottom: 20px;
-    color: var(--text-dark);
-}
-
-/* Ajuste de botones dentro de la tarjeta */
-.event-card .btn {
-    margin-top: auto;
-    /* Empuja el botón al final de la tarjeta */
-    display: inline-block;
-    width: auto;
-}
 
 /* ========================================= */
 /* 7. MISIÓN  */
 /* ========================================= */
 .mission-section {
-    background-image: url('alabanza seccion mision.jpg');
+    background-image: url('alabanza en blanco y negro.jpg');
     background-size: cover;
     /* Cubre toda la sección */
     background-position: center center;
@@ -791,6 +750,15 @@ body {
     margin-bottom: 10px;
     color: var(--primary-color);
     font-weight: 700;
+}
+
+.seccion-declaracion-fe {
+    padding-top: 100px;
+    /* Espacio grande arriba */
+    padding-bottom: 100px;
+    /* Espacio grande abajo */
+    background-color: #ffffff;
+    /* Asegúrate de que tenga fondo para notar el espacio */
 }
 
 /* ========================================= */
@@ -1146,6 +1114,254 @@ body {
     box-shadow: 0 8px 20px rgba(18, 140, 126, 0.8);
 }
 
+/*STAFF*/
+
+/* Color del título principal "Nuestro Liderazgo" */
+.team-section h2 {
+    color: #313131;
+    /* Un negro suave o puedes usar var(--primary-color) */
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+/* Color del texto "Las personas que sirven con pasión..." */
+.team-section .section-description {
+    color: #555454;
+    /* Un gris medio para que no compita con el título */
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    /* Centra el texto y da espacio abajo */
+}
+
+/* Estilos para la Sección de Equipo  STAFF */
+.team-section {
+    background-color: #f9f9f9;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 40px auto 0;
+}
+
+.team-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+}
+
+.team-image-wrapper {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    /* Esto hace la foto circular como en Escom */
+    overflow: hidden;
+    border: 3px solid var(--secondary-color);
+    /* Usa el color naranja/dorado de tu logo */
+}
+
+.team-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-info h3 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.team-role {
+    color: var(--secondary-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.team-divider {
+    width: 50px;
+    height: 3px;
+    background: var(--secondary-color);
+    margin: 15px auto;
+}
+
+.team-info p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+/*UBICACION Y FORMULARIO*/
+
+/* --- SECCIÓN CONTACTO OSCURA --- */
+.seccion-contacto-oscura {
+    background-color: #1a1a1a;
+    /* Negro mate / Gris muy oscuro */
+    padding: 100px 0;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    border-top: 4px solid var(--secondary-color);
+    /* Línea dorada que divide de la misión */
+}
+
+.contenedor-contacto {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.fila-contacto {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+}
+
+.columna-info,
+.columna-formulario {
+    flex: 1;
+    min-width: 320px;
+}
+
+.etiqueta-dorada {
+    color: var(--secondary-color);
+    font-weight: 800;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.titulo-contacto {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.descripcion-contacto {
+    color: #cccccc;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.detalle-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: #eeeeee;
+}
+
+.detalle-item i {
+    color: var(--secondary-color);
+    font-size: 1.3rem;
+}
+
+/* --- ESTILO FORMULARIO --- */
+.formulario-vida {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.ancho-total {
+    grid-column: span 2;
+}
+
+.grupo-input label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #ffffff;
+}
+
+.grupo-input input,
+.grupo-input textarea {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #2a2a2a;
+    /* Fondo del input un poco más claro que el fondo de sección */
+    color: #fff;
+    font-family: inherit;
+}
+
+.caja-telefono {
+    display: flex;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.prefijo {
+    background: #333;
+    padding: 15px;
+    font-size: 0.85rem;
+    color: #bbb;
+    border-right: 1px solid #444;
+}
+
+.boton-enviar {
+    grid-column: span 2;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 18px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.boton-enviar:hover {
+    background: var(--secondary-color);
+    transform: translateY(-3px);
+}
+
+/* --- SECCIÓN MAPA INDEPENDIENTE --- */
+.seccion-mapa-total {
+    width: 100%;
+    line-height: 0;
+}
+
+.seccion-mapa-total iframe {
+    filter: grayscale(1) invert(0.9) contrast(1.2);
+    /* Esto le da un aspecto nocturno/oscuro al mapa */
+}
+
+@media (max-width: 768px) {
+    .fila-contacto {
+        flex-direction: column;
+    }
+
+    .formulario-vida {
+        grid-template-columns: 1fr;
+    }
+
+    .ancho-total,
+    .boton-enviar {
+        grid-column: span 1;
+    }
+}
+
 
 /* ========================================= */
 /* 10. RESPONSIVE (Móviles y Tabletas) */
@@ -1273,7 +1489,7 @@ body {
     }
 
     /* ========================================= */
-    /* AJUSTES ESPECÍFICOS DE LA SECCIÓN HERO ✅ */
+    /* AJUSTES ESPECÍFICOS DE LA SECCIÓN HERO */
     /* ========================================= */
 
     /* 6. Altura y centrado del Hero */
