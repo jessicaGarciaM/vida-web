@@ -1347,75 +1347,19 @@ body {
     /* Esto le da un aspecto nocturno/oscuro al mapa */
 }
 
-/* --- AJUSTES PARA CELULAR (Mobile Responsive) --- */
 @media (max-width: 768px) {
-
-
-    /* Ajuste para que el título no se salga */
-    .titulo-contacto {
-        font-size: 1.8rem !important;
-        /* Tamaño más pequeño para móvil */
-        line-height: 1.1;
-        word-wrap: break-word;
-        /* Fuerza a que la palabra se rompa si es necesario */
-        margin-bottom: 15px;
+    .fila-contacto {
+        flex-direction: column;
     }
 
-    /* Reducir un poco el espacio lateral en móviles */
-    .seccion-contacto-oscura {
-        padding: 50px 15px;
+    .formulario-vida {
+        grid-template-columns: 1fr;
     }
 
-    .columna-info {
-        padding-right: 0;
+    .ancho-total,
+    .boton-enviar {
+        grid-column: span 1;
     }
-}
-
-/* La fila de contacto deja de ser horizontal y pasa a ser vertical */
-.fila-contacto {
-    flex-direction: column;
-    gap: 40px;
-    /* Espacio entre la info y el formulario */
-}
-
-.columna-info,
-.columna-formulario {
-    width: 100%;
-    min-width: unset;
-    /* Permite que ocupen el ancho total del celular */
-}
-
-/* Reducimos el tamaño del título para que no se corte */
-.titulo-contacto {
-    font-size: 1.8rem;
-    line-height: 1.2;
-}
-
-/* Hacemos que el formulario use una sola columna en móviles */
-.formulario-vida {
-    grid-template-columns: 1fr;
-}
-
-.ancho-total,
-.boton-enviar {
-    grid-column: span 1;
-}
-
-/* Reducimos el padding de la sección para aprovechar el espacio */
-.seccion-contacto-oscura {
-    padding: 60px 20px;
-}
-
-/* Ajuste del prefijo de México para que no se vea apretado */
-.prefijo {
-    padding: 12px 8px;
-    font-size: 0.75rem;
-}
-
-/* El mapa puede ser un poco más bajo en celulares */
-.seccion-mapa-total iframe {
-    height: 350px;
-}
 }
 
 
