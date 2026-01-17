@@ -1,13 +1,410 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>instituto</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vida - Iglesia Cristiana</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90TLDJ308F"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-90TLDJ308F');
+</script>
+
+<body>
+    <header class="header">
+        <img src="logovida.png" alt="Logo de VIDA" class="logo-img">
+        </div>
+        <nav class="nav">
+            <a href="#inicio">Inicio</a>
+            <div class="dropdown">
+                <a href="#mision" class="dropdown-toggle">Nosotros</a>
+                <div class="dropdown-menu">
+                    <a href="#mision">Nuestra Misión</a>
+                    <a href="creemos.html">En qué Creemos</a>
+                    <a href="#testimonios-section">Testimonios</a>
+                    <a href="#contacto-info-section">Contacto</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="#eventos" class="dropdown-toggle">Eventos</a>
+                <div class="dropdown-menu">
+                    <a href="#eventos">Próximos Eventos</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="#mensajes" class="dropdown-toggle">Predicas</a>
+                <div class="dropdown-menu">
+                    <a href="#mensajes">Mensaje Reciente</a>
+                    <a href="https://www.youtube.com/@IglesiaVidaGuadalajara/streams" target="_blank"
+                        rel="noopener noreferrer">Biblioteca Completa</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#ministerios" class="dropdown-toggle">Ministerios</a>
+                <div class="dropdown-menu">
+                    <div class="dropdown-submenu">
+                        <a href="#" class="submenu-toggle">
+                            Evangelismo <i class="fas fa-caret-right" style="margin-left: auto;"></i>
+                        </a>
+                        <div class="dropdown-menu submenu-content">
+                            <a href="impacta.html">Impacta</a>
+                            <a href="#ministerios">El Tren de la Salvación</a>
+                            <a href="#ministerios">Casa Hogar</a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown-submenu">
+                        <a href="#" class="submenu-toggle">
+                            Educación <i class="fas fa-caret-right" style="margin-left: auto;"></i>
+                        </a>
+                        <div class="dropdown-menu submenu-content">
+                            <a href="#discipulado-section">Discipulado</a>
+                            <a href="https://iglesiavida.com.mx/instituto">Instituto Bíblico</a>
+                        </div>
+                    </div>
+
+                    <a href="#ministerios">VKIDS</a>
+                    <a href="#ministerios">Ciento Ochenta mx</a>
+                    <a href="#ministerios">VIVE +</a>
+                    <a href="#ministerios">Matrimonios</a>
+                    <a href="#ministerios">Mujeres</a>
+                    <a href="#ministerios">Varones</a>
+                    <a href="#ministerios">Oración</a>
+                </div>
+            </div>
+
+            <a href="#donar" class="cta-button">OFRENDAR</a>
+            <a href="https://iglesiavida.com.mx/instituto" class="cta-button" target="_blank" rel="noopener noreferrer">
+                INSTITUTO TEOLÓGICO VIDA ONLINE
+            </a>
+        </nav>
+        <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+    </header>
+    <section id="inicio" class="hero">
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <img src="533041861_1166762848810584_1119548223159718177_n.jpg" class="slide-image">
+                <img src="pastor principal.jpeg" class="slide-image">
+                <img src="foto de bienvenida.JPG" class="slide-image">
+                <img src="WhatsApp Image 2025-12-18 at 21.47.23.jpeg" class="slide-image">
+            </div>
+        </div>
+
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="pe-marquee rotating_seperator">
+                <div class="marquee-inner">
+                    <span class="marquee-text">BIENVENIDO A IGLESIA VIDA    </span>
+                    <span class="marquee-text">BIENVENIDO A IGLESIA VIDA    </span>
+                    <span class="marquee-text">BIENVENIDO A IGLESIA VIDA    </span>
+                </div>
+                <div class="seperator">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_2" data-name="Layer 2"
+                        viewBox="0 0 1119.69 1119.75">
+                        <g id="Layer_1-2" data-name="Layer 1">
+                            <g>
+                                <path class="cls-1"
+                                    d="m559.11,507.53c-29.54,0-53.58,23.48-53.58,52.35s24.04,52.35,53.58,52.35,53.58-23.48,53.58-52.35-24.04-52.35-53.58-52.35Z">
+                                </path>
+                                <path class="cls-1"
+                                    d="m989.2,574.07c39.02-.24,83.25-.51,130.49-.51v-28.37c-47.24,0-91.47-.27-130.5-.51-70.92-.43-129.88-.79-178.48.5-37.87-1.01-68.9-3.11-93.82-6.88,23.05-10.2,52.43-20.4,88.69-31.36,47.21-11.56,104.04-27.45,172.32-46.55,37.58-10.51,80.17-22.43-125.74-34.88l-7.47-27.37c-45.58,12.45-88.31,23.85-126.02,33.9-68.51,18.27-125.52,33.47-172.06,47.52-35.86,8.78-65.79,14.88-90.47,17.91,19.39-15.29,44.55-32.15,75.56-51.27,42.68-23.27-93.53-53.2-154.64-89.17-33.63-19.79-71.75-42.23-112.61-65.94l-14.24-24.54c-40.86,23.71-79.25,45.69-113.12,65.07-61.54,35.22-112.75,64.52-154.13,90.04-32.11,17.51-59.3,31.02-82.25,40.27,14.88-19.98,35.07-43.02-60.56-69.91-35.28-33.45-76.74-75.42-126.58-125.86-27.42-27.76-58.51-59.23-91.92-92.63l-20.06-20.06c-33.41,33.41-64.87-64.49-92.63-91.92-50.44-49.83-92.41-91.3-125.86-126.57-26.99-25.59-50.1-45.83-70.13,60.72,9.2-23.21-22.76-50.76-40.5-83.46-25.42-41.44-54.61-92.71-89.68-154.33-19.31-33.91-41.19-72.35-64.81-113.26l-24.57-14.19c-23.62,40.91-45.97,79.08-65.68,112.75-35.82,61.19-65.64-112.11-88.81-154.84-19.81,32.29-37.15-58.11-52.87-77.81,2.69-25.05-8.54-55.6-17.19-92.48-13.6-46.67-28.24-103.83-45.85-172.51-9.69-37.8-20.66-80.65-32.67-126.34l-27.44-7.21c-12,45.69-23.51,88.4-33.65,126.08-18.43,68.46-33.77-125.44-44.87-172.76-10.51,36.08-20.36,65.41-30.26,88.47-3.7-24.71-5.81-55.38-6.89-92.63,1.18-48.59.69-107.6.1-178.5-.32-39.02-.7-83.25-.8-130.5l-28.37.06c.11,47.24-.06,91.47-.21,130.5-.27,70.9-.5,129.91.91,178.5-.88,36.04-2.72-66.06-6.08-90.38-9.66-22.66-19.32-51.26-29.64-86.03-11.33-47.27-26.95-104.17-45.71-172.55-10.33-37.63-22.03-80.28-34.26-125.91l-27.4,7.34c12.23,45.63,23.41,88.43,33.29,126.18,17.93,68.59,32.86,125.68,46.68,172.28,8.67,36.17,14.64,66.3,17.52,91.1-15.49-19.57-32.58-45.09-52.03-76.8-23.17-42.73-52.99-93.65-88.81-154.83-19.72-33.68-42.06-71.85-65.69-112.76l-24.57,14.19c-23.62,40.91-45.5,79.35-64.81,113.26,35.07,61.62,64.27,112.9,89.69,154.33,18.06,33.3-31.75-61.23-40.95-84.69-20.35-14.86-43.88-35.2-71.5-61.13-33.62-35.11-75.8-76.37-126.48-125.96-27.9-27.29-59.51-58.22-93.08-91.47l-19.96,20.16c33.57,33.24,64.8,64.56,92.36,92.18,50.09,50.2,91.75,91.97,127.19,125.25,25.92,27.08,46.36,50.22,61.38,70.29-23.4-9.15-51.23-22.73-84.36-40.6-41.5-25.32-92.84-54.4-154.54-89.34-33.96-19.23-72.44-41.02-113.4-64.55l-14.13,24.6c40.97,23.53,79.19,45.79,112.91,65.43,61.27,35.68,112.25,65.38,155.03,88.46,31.03,18.94,56.23,35.65,75.67,50.82-24.38-2.98-53.87-8.91-88.97-17.31-46.6-13.83-103.69-28.75-172.29-46.69-37.75-9.87-80.55-21.06-126.18-33.29l-7.35,27.4c45.63,12.23,88.29,23.93,125.91,34.26,68.37,18.77,125.28,34.38,172.55,45.71,35.66,10.58-64.73,20.48-87.65,30.38-24.69-3.63-55.33-5.67-92.5,6.66-48.59-1.29-107.62-.94-178.52-.51-39.02.24-83.25.51-130.5.51v28.37c47.24,0,91.47.27,130.49.51,70.91.43,129.9.79,178.5-.5,37.86,1.01-68.89,3.11-93.81,6.88-23.04,10.2-52.42,20.4-88.68,31.36-47.21-11.56-104.04-27.45-172.32,46.55-37.58-10.51-80.18-22.43-125.74-34.88l7.47,27.37c45.58-12.45-88.31-23.85-126.02-33.9-68.51-18.27-125.52-33.47-172.06-47.52-35.69-8.74-65.52-14.83-90.13-17.87-19.54,15.55-45.03,32.69-76.71,52.23-42.67-23.27-93.53-53.2-154.63,89.17-33.63-19.79-71.75-42.23-112.61-65.94l14.24,24.54c40.86-23.71-79.25-45.69-113.12-65.07,61.54-35.22-112.75-64.52-154.13-90.04-32.63-17.79-60.14-31.41-83.31-40.66-14.84,19.84-34.91-42.71-60.14-69.33-35.28-33.45-76.75-75.42-126.58-125.86-27.42-27.76-58.51-59.23-91.92-92.63l20.06,20.06c33.41-33.41-64.87-64.49-92.63-91.92-50.44-49.83-92.41-91.3-125.86-126.57-26.99-25.59-50.1-45.82-70.13-60.71-9.2,23.2-22.76-50.76-40.49-83.45-25.42,41.44-54.61-92.72-89.69-154.34-19.31-33.91-41.19-72.35-64.81-113.26l24.57,14.19c23.62-40.92,45.97-79.09-65.69-112.76,35.82-61.19-65.64-112.11-88.81-154.83-19.8-32.29-37.14-58.11-52.86-77.8-2.69,25.06-8.54-55.61-17.19,92.49-13.6,46.67-28.24-103.83-45.84-172.51-9.68,37.8-20.66-80.64-32.67-126.34l27.44,7.21c12-45.69,23.51-88.4,33.65-126.08-18.43-68.46-33.77-125.44-44.87-172.76,10.09-34.63,19.57-63.18,29.06-85.83,3.54,24.42,5.55,54.61,6.6,90.98-1.18,48.59-.69-107.59-.1,178.49.33,39.02.7,83.25.8,130.5l28.37-.06c-.11-47.24.06-91.47.21-130.49.27-70.9.49-129.91-.91-178.5.92-37.68,2.93-68.6,6.6-93.47,9.98,22.99,19.94,52.21,30.6,88.13-11.33-47.27-26.95-104.18-45.71-172.55-10.33-37.63-22.03-80.28-34.26-125.91l27.4-7.34c-12.23-45.63-23.41-88.43-33.29-126.18-17.93-68.6-32.86-125.68-46.68-172.28-8.67-36.17-14.63-66.3-17.52-91.09,15.49,19.57,32.58,45.09,52.03,76.8,23.18,42.73,52.99,93.65-88.82,154.84,19.71,33.67-42.06-71.84-65.68-112.76l24.57-14.19c-23.62-40.91-45.5-79.35-64.81-113.26-35.07-61.62-64.26-112.89-89.68-154.33-18.06-33.3-31.76-61.23-40.95-84.69,20.35-14.86-43.88-35.2-71.5-61.13-33.62-35.11-75.8-76.37-126.48-125.96-27.9-27.29-59.51-58.22-93.08-91.47l19.96-20.16c-33.57-33.24-64.8-64.55-92.36-92.18-50.09-50.21-91.75-91.97-127.19-125.25-25.01-26.12-45.02-48.64-59.9-68.22,22.76,9.14,49.71,22.42,81.39,39.51,41.49,25.32,92.84,54.4,154.54,89.34,33.96,19.23,72.45,41.02,113.41,64.55l14.13-24.6c-40.97-23.53-79.19-45.79-112.91-65.43-61.26-35.68-112.26-65.38-155.04-88.46-31.92-19.48-57.56-36.58-77.21-52.09,24.96,2.84,55.36,8.82,91.98,17.6,46.61,13.83-103.69,28.75-172.29,46.69-37.75,9.87-80.55-21.06-126.18,33.29l7.35-27.4c-45.63-12.23-88.29-23.93-125.91-34.26-68.37-18.77-125.28-34.38-172.55-45.71-35.66-10.58-64.73-20.48-87.64-30.38,24.69-3.63-55.33-5.67-92.51-6.66,48.59,1.29,107.6.93,178.51.5Z">
+                                </path>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </h1>
+            <a href="https://www.youtube.com/@IglesiaVidaGuadalajara/live" class="btn primary-btn" target="_blank"
+                rel="noopener noreferrer">
+                Servicio En Vivo Domingo 11:30 a.m
+            </a>
+            <a href="#mensajes" class="btn secondary-btn">Ver Mensajes Anteriores</a>
+        </div>
+    </section>
+    <section id="eventos" class="section events-section">
+        <div class="section-content">
+            <h2>Próximos Eventos</h2>
+            <p class="section-description">
+                Únete a nosotros para nuestros eventos especiales. ¡Hay algo para todos!
+            </p>
+            <div class="carousel-container events-carousel">
+                <div class="carousel-frame">
+                    <div class="carousel-track" id="eventos-track">
+
+                        <div class="carousel-item">
+                            <img src="oracion_enero.jpg" alt="21 días de oracion">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="WhatsApp Image 2025-11-17 at 10.53.39.jpeg" alt="Congreso de mujeres">
+                        </div>
+
+                    </div>
+                </div>
+
+                <button class="carousel-btn prev" aria-label="Anterior" data-target="eventos-track">❮</button>
+                <button class="carousel-btn next" aria-label="Siguiente" data-target="eventos-track">❯</button>
+            </div>
+        </div>
+    </section>
+    <hr style="width: 100%; max-width: 800px; margin: 60px auto 40px; border-color: #ddd;">
+    <h3 style="font-size: 2rem; color: var(--primary-color); margin-bottom: 25px; text-align: center;">
+        Calendario de Actividades Completo</h3>
+    <p class="section-description">Consulta las fechas y horarios de todas nuestras reuniones y actividades.
+    </p>
+    <div class="calendar-container">
+        <iframe
+            src="https://calendar.google.com/calendar/embed?src=2a03636d69a1082c552230c656f38ffabe22f78bb2832dd1f4867faa091a86c3%40group.calendar.google.com&ctz=America%2FMexico_City"
+            style="border: 0" width="100%" frameborder="0" scrolling="yes" title="Calendario de la Iglesia">
+        </iframe>
+    </div>
+    </div>
+    </section>
+    <section id="mensajes" class="section">
+        <h2>Mensaje Más Reciente</h2>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/PhFqNF1Ja8c" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+        <a href="https://www.youtube.com/@IglesiaVidaGuadalajara/streams" class="btn tertiary-btn" target="_blank"
+            rel="noopener noreferrer">
+            Ver toda la biblioteca de Mensajes
+        </a>
+    </section>
+
+    <section id="equipo" class="section team-section">
+        <h2>Nuestro Liderazgo</h2>
+        <p class="section-description">Las personas que sirven con pasión en nuestra comunidad.</p>
+
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-image-wrapper">
+                    <img src="pastor_principal.jpg" alt="Neftalí Rubío">
+                </div>
+                <div class="team-info">
+                    <h3>Neftalí Rubío</h3>
+                    <span class="team-role">Pastor Principal</span>
+                    <div class="team-divider"></div>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-image-wrapper">
+                    <img src="pastor_aconsejamiento.jpeg" alt="Gustavo rubio">
+                </div>
+                <div class="team-info">
+                    <h3>Gustavo Rubío</h3>
+                    <span class="team-role">Pastor de aconsejamiento </span>
+                    <div class="team-divider"></div>
+                </div>
+            </div>
+    </section>
+
+    <section id="Fotos" class="section gallery-section slider-container-wrapper">
+        <h2>Galería de Fotos</h2>
+        <p class="section-description">Mira los momentos especiales de nuestra comunidad en acción.</p>
+        <div class="slider-grid">
+            <div class="gallery-slider-frame">
+                <div class="slider-track" data-slider="1">
+                    <div class="slider-slide"><img src="Captura de pantalla 2025-11-15 232704.jpg"
+                            alt="joven sonriendo con letrero"></div>
+                    <div class="slider-slide"><img src="Captura de pantalla 2025-11-15 235112.jpg"
+                            alt="Mujeres conversando y riendo"></div>
+                    <div class="slider-slide"><img src="Captura de pantalla 2025-11-15 233046.jpg" alt="Dardos"></div>
+                    <div class="slider-slide"><img src="Captura de pantalla 2025-11-15 232945.jpg" alt="Diana"></div>
+                    <div class="slider-slide"><img src="Captura de pantalla 2025-11-15 232911.jpg"
+                            alt="mujeres de video"></div>
+                </div>
+                <button class="slider-btn prev" data-slider-target="1">❮</button>
+                <button class="slider-btn next" data-slider-target="1">❯</button>
+            </div>
+            <div class="gallery-slider-frame">
+                <div class="slider-track" data-slider="2">
+                    <div class="slider-slide"><img src="WhatsApp Image 2025-11-15 at 11.29.23 (3).jpeg" alt="Abrazo">
+                    </div>
+                    <div class="slider-slide"><img src="Captura de pantalla 2025-11-15 232736.jpg"
+                            alt="pareja alabando"></div>
+                    <div class="slider-slide"><img src="Captura de pantalla 2025-11-15 235234.jpg"
+                            alt="Madre e hija riendo"></div>
+                    <div class="slider-slide"><img src="Captura de pantalla 2025-11-16 001001.jpg" alt="chica riendo">
+                    </div>
+                    <div class="slider-slide"><img src="Captura de pantalla 2025-11-15 234252.jpg"
+                            alt="Adolescente Sirviendo"></div>
+                </div>
+                <button class="slider-btn prev" data-slider-target="2">❮</button>
+                <button class="slider-btn next" data-slider-target="2">❯</button>
+            </div>
+            <div class="gallery-slider-frame">
+                <div class="slider-track" data-slider="3">
+                    <div class="slider-slide"><img src="WhatsApp Image 2025-11-15 at 11.29.24 (3).jpeg"
+                            alt="Adoración con manos levantadas"></div>
+                    <div class="slider-slide"><img src="573464533_18432689509098742_4855542439238872359_n.jpg"
+                            alt="Predicador sonriendo"></div>
+                    <div class="slider-slide"><img src="Captura de pantalla 2025-11-15 235321.jpg"
+                            alt="Mujer en adoración"></div>
+                    <div class="slider-slide"><img src="Captura de pantalla 2025-11-15 232819.jpg"
+                            alt="hombre alabando"></div>
+                    <div class="slider-slide"><img src="Captura de pantalla 2025-11-15 234800.jpg"
+                            alt="hay un lugar para ti"></div>
+                </div>
+                <button class="slider-btn prev" data-slider-target="3">❮</button>
+                <button class="slider-btn next" data-slider-target="3">❯</button>
+            </div>
+        </div>
+
+        <a href="album.html" class="btn tertiary-btn">
+            Ver Todas las Fotos (Álbum Completo)
+        </a>
+    </section>
+    <section id="mision" class="section mission-section">
+        <h2>Nuestra Misión</h2>
+        <div class="mission-content">
+            <p>
+                <strong>Alcanzar a cuantas más personas con el mensaje de Jesús para que lleguen a
+                    ser discípulos comprometidos con el Señor en amor.</strong>
+            </p>
+            <div class="mission-points">
+                <div class="point-item">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h4>Amar a Dios</h4>
+                    <p>A través de la alabanza, la oración y la obediencia a Su Palabra.</p>
+                </div>
+                <div class="point-item">
+                    <i class="fas fa-users"></i>
+                    <h4>Amar al Prójimo</h4>
+                    <p>Sirviendo con generosidad y compartiendo el mensaje de esperanza en acción.</p>
+                </div>
+                <div class="point-item">
+                    <i class="fas fa-leaf"></i>
+                    <h4>Hacer Discípulos</h4>
+                    <p>Equipando a los creyentes para que maduren y reproduzcan el carácter de Cristo.</p>
+                </div>
+            </div>
+
+            <a href="creemos.html" class="btn tertiary-btn">Conoce nuestra declaración de fe</a>
+        </div>
+
+        <section id="contacto-info-section" class="seccion-contacto-oscura">
+            <div class="contenedor-contacto">
+                <div class="fila-contacto">
+
+                    <div class="columna-info">
+                        <span class="etiqueta-dorada">CONTACTO</span>
+                        <h2 class="titulo-contacto">Conecta con nosotros</h2>
+                        <p class="descripcion-contacto">Estamos aquí para escucharte, orar por ti y caminar juntos en
+                            comunidad.</p>
+
+                        <div class="lista-detalles">
+                            <div class="detalle-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Sierra de Tapalpa No. 5466, Col. Las Águilas, Zapopan, Jal.</span>
+                            </div>
+                            <div class="detalle-item">
+                                <i class="fas fa-phone"></i>
+                                <span>33 1859 2329</span>
+                            </div>
+                            <div class="detalle-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>contacto@vidagdl.mx</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="columna-formulario">
+                        <form action="https://formspree.io/f/tu_codigo_aqui" method="POST" class="formulario-vida">
+                            <div class="grupo-input">
+                                <label>Nombre *</label>
+                                <input type="text" placeholder="Tu nombre" required>
+                            </div>
+                            <div class="grupo-input">
+                                <label>Email *</label>
+                                <input type="email" placeholder="email@ejemplo.com" required>
+                            </div>
+                            <div class="grupo-input ancho-total">
+                                <label>Teléfono *</label>
+                                <div class="caja-telefono">
+                                    <span class="prefijo">México +52</span>
+                                    <input type="tel" placeholder="33 1234 5678" required>
+                                </div>
+                            </div>
+                            <div class="grupo-input ancho-total">
+                                <label>Mensaje *</label>
+                                <textarea rows="4" placeholder="¿Cómo podemos ayudarte?"></textarea>
+                            </div>
+                            <button type="submit" class="boton-enviar">Enviar Mensaje</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3734.509831742461!2d-103.41460362415175!3d20.608051780936353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ad95679e950d%3A0xc4a3826019792039!2sSierra%20de%20Tapalpa%205466%2C%20Las%20%C3%Aguilas%2C%2045080%20Zapopan%2C%20Jal.!5e0!3m2!1ses-419!2smx!4v1715638200000!5m2!1ses-419!2smx"
+            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">Términos y Condiciones</a>
+            <a href="#">Aviso de Privacidad</a>
+            <a href="#">Contacto</a>
+        </div>
+        <div class="social-links">
+            <a href="https://www.facebook.com/IglesiaVidaGDL" aria-label="Facebook" target="_blank"
+                rel="noopener noreferrer">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/iglesiavidagdl/" aria-label="Instagram" target="_blank"
+                rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@IglesiaVidaGuadalajara/featured" aria-label="YouTube" target="_blank"
+                rel="noopener noreferrer">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <p>© 2025 Vida GDL - Todos los derechos reservados.</p>
+    </footer>
+    <div id="modal-grupos-conexion" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-grupos-conexion')">×</span>
+            <h2 style="color: var(--primary-color);">Únete a un Grupo de Conexión</h2>
+            <hr style="margin: 15px 0; border-color: var(--secondary-color);">
+            <p style="text-align: left;">
+                Los **Grupos de Conexión** se reúnen en casas a lo largo de la semana para estudiar la Biblia, orar y
+                compartir en comunidad.
+            </p>
+            <p style="text-align: left; margin-top: 15px;">
+                **Para unirte, contáctanos y te ayudaremos a encontrar el grupo perfecto para ti.**
+            </p>
+            <a href="https://wa.me/523318592329?text=Hola%20quiero%20unirme%20a%20un%20Grupo%20de%20Conexi%C3%B3n."
+                target="_blank" class="btn primary-btn small-btn" style="margin-top: 25px;">Enviar WhatsApp</a>
+        </div>
+    </div>
+    <a href="https://wa.me/523318592329?text=Hola%20Iglesia%20Vida%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n."
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span>Contáctanos por WhatsApp</span>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+
 </html>
