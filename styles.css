@@ -233,131 +233,122 @@ body {
 }
 
 /* ========================================= */
-/* 4. RESPONSIVE MÓVIL (ALTO NIVEL)          */
+/* 4. RESPONSIVE MÓVIL (DISEÑO PREMIUM)     */
 /* ========================================= */
 @media (max-width: 992px) {
 
-    /* El panel lateral derecho */
+    /* El botón de hamburguesa que ya tienes */
+    .menu-toggle {
+        display: none !important;
+        font-size: 24px;
+        color: #d4af37;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 2000;
+        transition: 0.3s;
+    }
+
+    /* Panel Lateral Derecho */
     .nav {
         position: fixed;
         top: 0;
-        right: -110%;
-        /* Totalmente oculto */
+        right: -100%;
+        /* Escondido */
         height: 100vh;
         width: 85%;
-        max-width: 380px;
-        background: rgba(10, 10, 10, 0.95);
-        /* Negro profundo */
-        backdrop-filter: blur(20px);
-        /* Efecto cristal premium */
+        max-width: 350px;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(15px);
+        display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
+        padding: 100px 20px 40px 20px;
         transition: right 0.6s cubic-bezier(1, 0, 0, 1);
-        /* Animación elástica */
-        border-left: 1px solid rgba(212, 175, 55, 0.3);
         z-index: 1500;
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        overflow-y: auto;
+        border-left: 1px solid rgba(212, 175, 55, 0.2);
     }
 
     .nav.active {
         right: 0;
-        /* Entra desde la derecha */
+        /* Aparece */
+        box-shadow: -15px 0 30px rgba(0, 0, 0, 0.5);
     }
 
-    /* Animación de entrada para los links (Casca) */
-    .nav-list {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
+    /* Enlaces del Nav en móvil */
+    .nav>a,
+    .dropdown {
         width: 100%;
-    }
-
-    .nav-list li {
+        margin-bottom: 15px;
         opacity: 0;
         transform: translateX(30px);
         transition: 0.4s ease;
     }
 
-    .nav.active .nav-list li {
+    /* Animación en cascada */
+    .nav.active>a,
+    .nav.active .dropdown {
         opacity: 1;
         transform: translateX(0);
     }
 
-    /* Retrasos para el efecto cascada */
-    .nav.active .nav-list li:nth-child(1) {
+    /* Retrasos para la cascada */
+    .nav.active>a:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .nav.active .dropdown:nth-child(2) {
         transition-delay: 0.2s;
     }
 
-    .nav.active .nav-list li:nth-child(2) {
+    .nav.active .dropdown:nth-child(3) {
         transition-delay: 0.3s;
     }
 
-    .nav.active .nav-list li:nth-child(3) {
+    .nav.active .dropdown:nth-child(4) {
         transition-delay: 0.4s;
     }
 
-    .nav.active .nav-list li:nth-child(4) {
+    .nav.active .dropdown:nth-child(5) {
         transition-delay: 0.5s;
     }
 
-    .nav.active .nav-list li:nth-child(5) {
-        transition-delay: 0.6s;
-    }
-
-    /* Ajuste de Dropdowns en Móvil */
+    /* Ajuste de Dropdowns (Menús desplegables) */
     .dropdown-menu,
     .submenu-content {
         position: static !important;
         display: none;
-        opacity: 1 !important;
-        background: rgba(255, 255, 255, 0.03) !important;
-        border: none;
         width: 100%;
-        text-align: center;
+        background: rgba(255, 255, 255, 0.03) !important;
         transform: none !important;
+        opacity: 1 !important;
         box-shadow: none !important;
-        padding: 5px 0;
+        border: none !important;
+        padding-left: 15px;
     }
 
+    /* Clase para abrir dropdowns en móvil al hacer clic */
     .dropdown.active>.dropdown-menu,
     .dropdown-submenu.active>.submenu-content {
         display: block !important;
-        animation: fadeInDown 0.4s ease forwards;
     }
 
-    .dropdown-menu a {
-        color: #bbb;
-        padding: 10px 20px;
-        font-size: 14px;
-        text-transform: none;
+    .nav a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 700;
+        display: block;
+        padding: 10px 0;
         letter-spacing: 1px;
     }
 
-    /* Animación para que bajen suave los submenús */
-    @keyframes fadeInDown {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .cta-button {
+        text-align: center;
+        margin-top: 10px;
+        border: 1px solid #d4af37 !important;
     }
-}
-
-/* Enlaces simples (Global dentro de menús) */
-.dropdown-menu a {
-    text-decoration: none;
-    display: block;
-    transition: 0.3s;
-}
-
-.dropdown-menu a:hover {
-    color: #d4af37;
-    /* Dorado al tocar */
-    background: rgba(212, 175, 55, 0.05);
 }
 
 /* ========================================= */
@@ -811,6 +802,90 @@ body {
 
 .events-section .carousel-btn.next {
     right: -30px;
+}
+
+/* ========================================= */
+/* EVENTOS - ADAPTACIÓN CELULAR             */
+/* ========================================= */
+@media (max-width: 992px) {
+    .events-section {
+        padding: 60px 0;
+        /* Menos espacio vertical */
+    }
+
+    .events-section .events-carousel {
+        margin: 30px auto;
+        padding: 0 15px;
+        /* Evita que toque los bordes del cel */
+        overflow: hidden;
+    }
+
+    .events-section .carousel-item {
+        /* Mostramos una tarjeta casi completa para invitar a deslizar */
+        width: 85%;
+        padding: 0 10px;
+    }
+
+    .event-card-inner {
+        height: 450px;
+        /* Reducimos altura para que quepa bien en pantallas cortas */
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    /* En celular el hover no existe, así que dejamos el diseño base limpio */
+    .carousel-item:hover .event-card-inner {
+        transform: none;
+        /* Quitamos rotación 3D en móvil para evitar saltos visuales */
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+    }
+
+    /* Overlay más visible en celular ya que no hay hover */
+    .event-overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 50%);
+        padding: 20px;
+    }
+
+    .event-tag {
+        font-size: 0.7rem;
+        padding: 4px 12px;
+    }
+
+    /* --- AJUSTE DE BOTONES NAVEGACIÓN --- */
+    /* Los hacemos más pequeños y los bajamos para que no tapen la imagen */
+    .events-section .carousel-btn {
+        width: 45px;
+        height: 45px;
+        top: auto;
+        bottom: -60px;
+        /* Los movemos debajo del carrusel */
+        transform: none;
+    }
+
+    .events-section .carousel-btn.prev {
+        left: 30%;
+    }
+
+    .events-section .carousel-btn.next {
+        right: 30%;
+    }
+
+    /* Espacio extra abajo para los botones */
+    .events-section .events-carousel {
+        margin-bottom: 80px;
+    }
+}
+
+/* Para celulares muy pequeños (iPhone SE, etc) */
+@media (max-width: 480px) {
+    .event-card-inner {
+        height: 380px;
+    }
+
+    .events-section .carousel-item {
+        width: 95%;
+        /* Casi pantalla completa */
+    }
 }
 
 /* --- SECCIÓN CALENDARIO --- */

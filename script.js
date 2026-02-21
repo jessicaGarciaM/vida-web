@@ -244,4 +244,40 @@ window.addEventListener('click', function (event) {
     if (event.target.classList.contains('modal')) {
         event.target.style.display = 'none';
     }
-});
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const menuToggle = document.getElementById('menu-toggle');
+        const nav = document.querySelector('.nav');
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle, .submenu-toggle');
+
+        // Abrir/Cerrar menú lateral
+        menuToggle.addEventListener('click', function () {
+            nav.classList.toggle('active');
+            // Cambiar icono de hamburguesa a X
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Lógica para Dropdowns en móviles
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', function (e) {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    const parent = this.parentElement;
+                    parent.classList.toggle('active');
+                }
+            });
+        });
+
+        // Cerrar menú al hacer clic en un enlace simple
+        const navLinks = document.querySelectorAll('.nav > a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+    });
