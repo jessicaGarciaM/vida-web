@@ -233,25 +233,78 @@ body {
 }
 
 /* ========================================= */
-/* 4. RESPONSIVE MÓVIL                       */
+/* 4. RESPONSIVE MÓVIL (ALTO NIVEL)          */
 /* ========================================= */
 @media (max-width: 992px) {
+
+    /* El panel lateral derecho */
     .nav {
         position: fixed;
         top: 0;
-        right: -100%;
+        right: -110%;
+        /* Totalmente oculto */
         height: 100vh;
-        width: 80%;
-        background-color: #0d0d0d;
+        width: 85%;
+        max-width: 380px;
+        background: rgba(10, 10, 10, 0.95);
+        /* Negro profundo */
+        backdrop-filter: blur(20px);
+        /* Efecto cristal premium */
         flex-direction: column;
         justify-content: center;
-        transition: 0.5s ease;
+        transition: right 0.6s cubic-bezier(1, 0, 0, 1);
+        /* Animación elástica */
+        border-left: 1px solid rgba(212, 175, 55, 0.3);
+        z-index: 1500;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
     }
 
     .nav.active {
         right: 0;
+        /* Entra desde la derecha */
     }
 
+    /* Animación de entrada para los links (Casca) */
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .nav-list li {
+        opacity: 0;
+        transform: translateX(30px);
+        transition: 0.4s ease;
+    }
+
+    .nav.active .nav-list li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Retrasos para el efecto cascada */
+    .nav.active .nav-list li:nth-child(1) {
+        transition-delay: 0.2s;
+    }
+
+    .nav.active .nav-list li:nth-child(2) {
+        transition-delay: 0.3s;
+    }
+
+    .nav.active .nav-list li:nth-child(3) {
+        transition-delay: 0.4s;
+    }
+
+    .nav.active .nav-list li:nth-child(4) {
+        transition-delay: 0.5s;
+    }
+
+    .nav.active .nav-list li:nth-child(5) {
+        transition-delay: 0.6s;
+    }
+
+    /* Ajuste de Dropdowns en Móvil */
     .dropdown-menu,
     .submenu-content {
         position: static !important;
@@ -263,33 +316,48 @@ body {
         text-align: center;
         transform: none !important;
         box-shadow: none !important;
+        padding: 5px 0;
     }
 
-    /* Mostrar al seleccionar en móvil */
     .dropdown.active>.dropdown-menu,
     .dropdown-submenu.active>.submenu-content {
         display: block !important;
+        animation: fadeInDown 0.4s ease forwards;
     }
 
-    .submenu-content a {
-        padding-left: 20px;
-        font-size: 13px;
+    .dropdown-menu a {
+        color: #bbb;
+        padding: 10px 20px;
+        font-size: 14px;
+        text-transform: none;
+        letter-spacing: 1px;
+    }
+
+    /* Animación para que bajen suave los submenús */
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 }
 
-/* Enlaces simples dentro de los menús */
+/* Enlaces simples (Global dentro de menús) */
 .dropdown-menu a {
-    color: var(--text-muted);
     text-decoration: none;
     display: block;
-    padding: 12px 20px;
-    font-size: 14px;
-    transition: var(--transition);
+    transition: 0.3s;
 }
 
 .dropdown-menu a:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: var(--text-gold);
+    color: #d4af37;
+    /* Dorado al tocar */
+    background: rgba(212, 175, 55, 0.05);
 }
 
 /* ========================================= */
