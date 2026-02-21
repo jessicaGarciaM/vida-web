@@ -978,7 +978,7 @@ body {
 /* Ajustes Móvil */
 @media (max-width: 768px) {
     .calendar-container {
-        padding-bottom: 350%;
+        padding-bottom: 320%;
         /* Más alto en móvil para que se lea bien */
     }
 
@@ -1169,7 +1169,7 @@ body {
 /* 8.5. GALERÍA DE FOTOS  */
 /* ----------------------------------------- */
 .slider-container-wrapper {
-    background-color: var(--primary-color);
+    background-color: var(--bg-light);
     text-align: center;
 }
 
@@ -1819,7 +1819,7 @@ body {
     transform: translateZ(100px);
     pointer-events: auto;
     border-color: #dbdbdb;
-    box-shadow: 0 0 30px rgba(92, 126, 193, 0.585);
+    box-shadow: 0 0 30px rgba(103, 137, 204, 0.585);
 }
 
 .fe-card.prev {
