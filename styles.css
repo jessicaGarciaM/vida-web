@@ -942,15 +942,15 @@ body {
 .calendar-decorator .line {
     width: 100px;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    background: linear-gradient(90deg, transparent, #b9b9bc, transparent);
 }
 
 .calendar-decorator .dot {
     width: 6px;
     height: 6px;
-    background: #d4af37;
+    background: #b9b9bc;
     border-radius: 50%;
-    box-shadow: 0 0 10px #d4af37;
+    box-shadow: 0 0 10px #b9b9bc;
 }
 
 /* --- EL MARCO FUTURISTA --- */
@@ -1011,7 +1011,7 @@ body {
     bottom: 0;
     border-radius: 30px;
     border: 2px solid transparent;
-    background: linear-gradient(45deg, #d4af37, transparent, #d4af37) border-box;
+    background: linear-gradient(45deg, #b9b9bc, transparent, #b9b9bc) border-box;
     -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: destination-out;
