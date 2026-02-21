@@ -745,14 +745,14 @@ body {
 }
 
 .event-tag {
-    background: #d4af37;
+    background: #e4e4e4;
     color: #000;
     padding: 5px 15px;
     border-radius: 50px;
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    box-shadow: 0 0 15px rgba(225, 225, 225, 0.842);
 }
 
 /* --- ANIMACIONES HOVER --- */
