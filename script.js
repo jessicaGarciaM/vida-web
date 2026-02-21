@@ -1,311 +1,234 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     /* ========================================= */
-    /* 1. FUNCIONALIDAD DEL CARRUSEL PRINCIPAL (HERO) */
+    /* 1. NAVEGACIÓN, HAMBURGUESA Y SUBMENÚS     */
+    /* ========================================= */
+    const header = document.querySelector('.header');
+    const nav = document.querySelector('.nav');
+
+    if (header && !document.querySelector('.hamburger')) {
+        const hamburger = document.createElement('div');
+        hamburger.classList.add('hamburger');
+        hamburger.innerHTML = '<span></span><span></span><span></span>';
+        header.appendChild(hamburger);
+
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nav.classList.toggle('active');
+            const spans = hamburger.querySelectorAll('span');
+            if (nav.classList.contains('active')) {
+                spans[0].style.transform = "rotate(45deg) translate(5px, 6px)";
+                spans[1].style.opacity = "0";
+                spans[2].style.transform = "rotate(-45deg) translate(5px, -6px)";
+            } else {
+                spans.forEach(s => s.style.transform = "none");
+                spans[1].style.opacity = "1";
+            }
+        });
+    }
+
+    const toggles = document.querySelectorAll('.dropdown-toggle, .submenu-toggle');
+    toggles.forEach(toggle => {
+        toggle.addEventListener('click', function (e) {
+            if (window.innerWidth <= 1024) {
+                e.preventDefault();
+                e.stopPropagation();
+                const parent = this.parentElement;
+                const isActive = parent.classList.contains('active');
+                const siblings = parent.parentElement.querySelectorAll(':scope > .dropdown, :scope > .dropdown-submenu');
+                siblings.forEach(sib => sib.classList.remove('active'));
+                if (!isActive) parent.classList.add('active');
+            }
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (nav && !nav.contains(e.target)) {
+            nav.classList.remove('active');
+            document.querySelectorAll('.dropdown, .dropdown-submenu').forEach(el => el.classList.remove('active'));
+            const spans = document.querySelectorAll('.hamburger span');
+            if (spans.length) {
+                spans.forEach(s => s.style.transform = "none");
+                spans[1].style.opacity = "1";
+            }
+        }
+    });
+
+    /* ========================================= */
+    /* 2. CARRUSEL 3D - DECLARACIÓN DE FE        */
+    /* ========================================= */
+    const feCards = document.querySelectorAll('.fe-card');
+    const feNextBtn = document.querySelector('.fe-next');
+    const fePrevBtn = document.querySelector('.fe-prev');
+    let feIndex = 0;
+
+    if (feCards.length > 0) {
+        function updateFeCarousel() {
+            feCards.forEach((card, i) => {
+                card.classList.remove('active', 'prev', 'next', 'hide');
+                if (i === feIndex) {
+                    card.classList.add('active');
+                } else if (i === (feIndex - 1 + feCards.length) % feCards.length) {
+                    card.classList.add('prev');
+                } else if (i === (feIndex + 1) % feCards.length) {
+                    card.classList.add('next');
+                } else {
+                    card.classList.add('hide');
+                }
+            });
+        }
+
+        if (feNextBtn) {
+            feNextBtn.addEventListener('click', () => {
+                feIndex = (feIndex + 1) % feCards.length;
+                updateFeCarousel();
+            });
+        }
+
+        if (fePrevBtn) {
+            fePrevBtn.addEventListener('click', () => {
+                feIndex = (feIndex - 1 + feCards.length) % feCards.length;
+                updateFeCarousel();
+            });
+        }
+
+        setInterval(() => {
+            feIndex = (feIndex + 1) % feCards.length;
+            updateFeCarousel();
+        }, 5000);
+
+        updateFeCarousel();
+    }
+
+    /* ========================================= */
+    /* 3. CARRUSEL HERO (IMÁGENES FONDO)         */
     /* ========================================= */
     const slides = document.querySelectorAll('.slide-image');
     let currentSlide = 0;
     let slideInterval;
 
     function showSlide(index) {
-        slides.forEach((slide, i) => {
+        slides.forEach((slide) => {
             slide.style.opacity = '0';
             slide.style.zIndex = '1';
         });
-
-        slides[index].style.opacity = '1';
-        slides[index].style.zIndex = '5';
-        currentSlide = index;
-    }
-
-    function nextSlide() {
-        let newIndex = (currentSlide + 1) % slides.length;
-        showSlide(newIndex);
-    }
-
-    function startAutoSlide() {
-        if (!slideInterval) {
-            slideInterval = setInterval(nextSlide, 5000);
+        if (slides[index]) {
+            slides[index].style.opacity = '1';
+            slides[index].style.zIndex = '5';
+            currentSlide = index;
         }
     }
 
-    function stopAutoSlide() {
-        clearInterval(slideInterval);
-        slideInterval = null;
+    function startAutoSlide() {
+        if (!slideInterval && slides.length > 1) {
+            slideInterval = setInterval(() => {
+                showSlide((currentSlide + 1) % slides.length);
+            }, 5000);
+        }
     }
 
-    // Inicialización del Carrusel Principal
-    if (slides.length > 1) {
+    if (slides.length > 0) {
         showSlide(0);
         startAutoSlide();
-
-        // Pausa al pasar el ratón (Recomendado para el Hero)
         const heroContainer = document.querySelector('.hero');
         if (heroContainer) {
-            heroContainer.addEventListener('mouseenter', stopAutoSlide);
+            heroContainer.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+                slideInterval = null;
+            });
             heroContainer.addEventListener('mouseleave', startAutoSlide);
         }
     }
 
     /* ========================================= */
-    /* 2. FUNCIONALIDAD DE NAVEGACIÓN Y DROPDOWN (MÓVIL) */
+    /* 4. TÍTULO ANIMADO Y OTROS SLIDERS         */
     /* ========================================= */
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.nav');
+    const originalTitle = "Vida - Iglesia Cristiana";
+    let titleIndex = 0;
+    setInterval(() => {
+        document.title = originalTitle.substring(titleIndex) + " | " + originalTitle.substring(0, titleIndex);
+        titleIndex = (titleIndex + 1) % originalTitle.length;
+    }, 200);
 
-    if (menuToggle && nav) {
-        menuToggle.addEventListener('click', function () {
-            nav.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
-    }
-
-    // Funcionalidad de Dropdown en móvil (Activar/Desactivar al hacer clic)
-    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-    dropdownToggles.forEach(toggle => {
-        toggle.addEventListener('click', function (e) {
-            // Previene la navegación si es un enlace (#)
-            e.preventDefault();
-            // Encuentra el contenedor padre
-            const parentDropdown = toggle.closest('.dropdown');
-            // Muestra/Oculta el submenú
-            parentDropdown.classList.toggle('active');
-        });
-    });
-
-    /* ========================================= */
-    /* 2.5. CERRAR DROPDOWN AL CLICKEAR FUERA */
-    /* ========================================= */
-    document.addEventListener('click', function (e) {
-        // Busca el elemento padre con la clase .dropdown para ver si se hizo clic dentro de un dropdown
-        const isClickInsideDropdown = e.target.closest('.dropdown');
-
-        // Si el clic NO fue dentro de un dropdown...
-        if (!isClickInsideDropdown) {
-            const activeDropdowns = document.querySelectorAll('.dropdown.active');
-            activeDropdowns.forEach(dropdown => {
-                // Cierra todos los dropdowns que estén abiertos
-                dropdown.classList.remove('active');
-            });
-        }
-    });
-
-    /* ========================================= */
-    /* 3. FUNCIONALIDAD DEL SLIDER DE GALERÍA (INICIALIZACIÓN) */
-    /* ========================================= */
-    // Llama a las funciones para INICIALIZAR AMBOS SLIDERS de la galería
     sliderLogic(1);
     sliderLogic(2);
     sliderLogic(3);
-
-    /* ========================================= */
-    /* 4. FUNCIONALIDAD DEL TÍTULO ROTATORIO (MARQUEE) */
-    /* ========================================= */
-    const originalTitle = "Vida - Iglesia Cristiana"; // Título base
-    const welcomeMessage = "¡Bienvenido a VIDA! 💖"; // Mensaje de bienvenida
-    const delaySwitch = 8000; // Tiempo en ms para cambiar de mensaje (8 segundos)
-    const scrollSpeed = 200; // Velocidad de desplazamiento en ms
-
-    let isOriginal = true;
-    let titleIndex = 0;
-
-    function marqueeTitle() {
-        const currentMessage = isOriginal ? welcomeMessage : originalTitle;
-
-        if (titleIndex <= currentMessage.length) {
-            document.title = currentMessage.substring(titleIndex, currentMessage.length) + " | " + currentMessage.substring(0, titleIndex);
-            titleIndex++;
-        } else {
-            // Al finalizar el desplazamiento, espera un momento y cambia al siguiente mensaje
-            setTimeout(() => {
-                isOriginal = !isOriginal; // Cambia entre original y el mensaje de bienvenida
-                titleIndex = 0; // Reinicia el índice
-            }, delaySwitch);
-        }
-    }
-
-    // Inicia el ciclo de desplazamiento solo si el título original está presente
-    if (document.title.includes(originalTitle)) {
-        setInterval(marqueeTitle, scrollSpeed);
-    }
-
-    /* ========================================= */
-    /* 5. INICIALIZACIÓN DEL CARRUSEL DE EVENTOS */
-    /* ========================================= */
-    // LLAMADA CLAVE: Inicializa el carrusel de eventos
     initializeEventsCarousel('eventos-track');
-
-}); // FIN de DOMContentLoaded
-
-// --- Funciones de Carrusel Auxiliares (DEFINIDAS FUERA DE DOMContentLoaded) ---
+});
 
 /* ========================================= */
-/* 5.1. FUNCIÓN PRINCIPAL DEL SLIDER DE GALERÍA */
+/* FUNCIONES FUERA DEL DOMCONTENTLOADED      */
 /* ========================================= */
 
 function sliderLogic(sliderId) {
     const track = document.querySelector(`.slider-track[data-slider="${sliderId}"]`);
     if (!track) return;
-
     const slides = Array.from(track.children);
-    // No hacer nada si solo hay una foto o ninguna
-    if (slides.length <= 1) return;
-
-    const frame = track.closest('.gallery-slider-frame');
-    const nextButton = document.querySelector(`.slider-btn.next[data-slider-target="${sliderId}"]`);
-    const prevButton = document.querySelector(`.slider-btn.prev[data-slider-target="${sliderId}"]`);
-
     let currentIndex = 0;
-    const slideCount = slides.length;
-    let autoSlideInterval;
-
-    // Función para actualizar la posición del slider (transformación CSS)
-    function updateSlider() {
-        const offset = -currentIndex * 100;
-        track.style.transform = `translateX(${offset}%)`;
-    }
-
-    function showNextSlide() {
-        currentIndex = (currentIndex + 1) % slideCount;
-        updateSlider();
-    }
-
-    function showPrevSlide() {
-        currentIndex = (currentIndex - 1 + slideCount) % slideCount;
-        updateSlider();
-    }
-
-    // Función para iniciar el avance automático
-    function startAutoSlide() {
-        if (!autoSlideInterval) {
-            autoSlideInterval = setInterval(showNextSlide, 3500); // 3.5 segundos de avance
+    setInterval(() => {
+        if (slides.length > 1) {
+            currentIndex = (currentIndex + 1) % slides.length;
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
-    }
-
-    // Función para detener el avance automático
-    function stopAutoSlide() {
-        clearInterval(autoSlideInterval);
-        autoSlideInterval = null;
-    }
-
-    // Event Listeners para Navegación Manual
-    if (nextButton) {
-        nextButton.addEventListener('click', () => {
-            stopAutoSlide(); // Pausa al hacer clic
-            showNextSlide();
-            startAutoSlide(); // Reinicia el auto-slide
-        });
-    }
-
-    if (prevButton) {
-        prevButton.addEventListener('click', () => {
-            stopAutoSlide(); // Pausa al hacer clic
-            showPrevSlide();
-            startAutoSlide(); // Reinicia el auto-slide
-        });
-    }
-
-    // Pausar al pasar el ratón (Hover)
-    if (frame) {
-        frame.addEventListener('mouseenter', stopAutoSlide);
-        frame.addEventListener('mouseleave', startAutoSlide);
-    }
-
-    // Iniciar el slider
-    updateSlider(); // Muestra la primera diapositiva inmediatamente
-    startAutoSlide(); // Comienza el avance automático
+    }, 3500);
 }
 
-/* ========================================= */
-/* 5.5. FUNCIÓN ESPECÍFICA DEL CARRUSEL DE EVENTOS (AJUSTADA PARA RESPONSIVE) */
-/* ========================================= */
-
+/**
+ * Lógica mejorada para el Carrusel de Eventos con botones funcionales
+ */
 function initializeEventsCarousel(trackId) {
     const track = document.getElementById(trackId);
     if (!track) return;
 
-    // Selecciona los ítems individuales que se van a deslizar
-    const items = Array.from(track.children).filter(el => el.classList.contains('carousel-item'));
-    if (items.length === 0) return;
+    const items = track.children;
+    const container = track.closest('.events-carousel');
+    const nextBtn = container.querySelector('.next');
+    const prevBtn = container.querySelector('.prev');
+    let index = 0;
 
-    const nextButton = document.querySelector(`.carousel-btn.next[data-target="${trackId}"]`);
-    const prevButton = document.querySelector(`.carousel-btn.prev[data-target="${trackId}"]`);
+    function moveCarousel() {
+        const visibleItems = window.innerWidth <= 768 ? 1 : (window.innerWidth <= 992 ? 2 : 3);
+        const maxIndex = Math.max(0, items.length - visibleItems);
 
-    let currentIndex = 0;
-    const itemsCount = items.length;
+        if (index > maxIndex) index = 0;
+        if (index < 0) index = maxIndex;
 
-    // Nueva función para obtener el número de ítems visibles basado en el ancho de la pantalla
-    function getVisibleItemsCount() {
-        // Usamos 992px como el punto de quiebre de tu CSS
-        if (window.innerWidth <= 992) {
-            return 1; // ✅ Móvil: mostrar 1 ítem a la vez
-        }
-        // Escritorio: mantener la lógica original de 3 ítems
-        return 3;
+        const width = items[0].offsetWidth;
+        track.style.transform = `translateX(-${index * width}px)`;
     }
 
-    // Función principal para actualizar la posición del carrusel
-    function moveToItem(index) {
-        const visibleItems = getVisibleItemsCount();
-        // Recalcula el índice máximo basado en los ítems visibles actuales
-        const maxMoveIndex = itemsCount - visibleItems;
-
-        let targetIndex = index;
-
-        // Restricción: No mover más allá del último conjunto visible
-        if (targetIndex > maxMoveIndex) {
-            targetIndex = maxMoveIndex;
-        }
-        if (targetIndex < 0) {
-            targetIndex = 0;
-        }
-
-        currentIndex = targetIndex;
-
-        // Si hay menos ítems que los visibles, no hay necesidad de mover
-        if (itemsCount <= visibleItems) {
-            track.style.transform = `translateX(0)`;
-            return;
-        }
-
-        // El ancho de un solo ítem (que en móvil debe ser 100% y en desktop 33.33%)
-        const itemWidth = items[0].offsetWidth;
-
-        // Aplica la transformación
-        track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            index++;
+            moveCarousel();
+        });
     }
 
-    // Estas funciones ahora llaman a moveToItem con el índice ajustado
-    function showNextItem() {
-        moveToItem(currentIndex + 1);
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            index--;
+            moveCarousel();
+        });
     }
 
-    function showPrevItem() {
-        moveToItem(currentIndex - 1);
-    }
+    // Auto-desplazamiento cada 5 segundos
+    let autoPlay = setInterval(() => {
+        index++;
+        moveCarousel();
+    }, 5000);
 
-    // Event Listeners para Navegación Manual
-    if (nextButton) {
-        nextButton.addEventListener('click', showNextItem);
-    }
-
-    if (prevButton) {
-        prevButton.addEventListener('click', showPrevItem);
-    }
-
-    // Asegurarse de que el carrusel se reposicione y recalcule la visibilidad al cambiar el tamaño de la ventana
-    window.addEventListener('resize', () => {
-        moveToItem(currentIndex);
+    // Pausar al pasar el mouse
+    container.addEventListener('mouseenter', () => clearInterval(autoPlay));
+    container.addEventListener('mouseleave', () => {
+        autoPlay = setInterval(() => {
+            index++;
+            moveCarousel();
+        }, 5000);
     });
 
-    // Inicializar la posición
-    moveToItem(currentIndex);
+    window.addEventListener('resize', moveCarousel);
 }
 
-
-/* ========================================= */
-/* 6. FUNCIONALIDAD DE MODALES (GLOBAL) */
-/* ========================================= */
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) modal.style.display = 'block';
@@ -316,45 +239,9 @@ function closeModal(modalId) {
     if (modal) modal.style.display = 'none';
 }
 
-// Cerrar el modal haciendo clic fuera
-window.onclick = function (event) {
+// Cerrar modales al hacer clic fuera
+window.addEventListener('click', function (event) {
     if (event.target.classList.contains('modal')) {
         event.target.style.display = 'none';
     }
-};
-
-/* ========================================= */
-/* 7. LÓGICA PARA SUBMENÚS (CORREGIDA) */
-/* ========================================= */
-document.addEventListener('DOMContentLoaded', function () {
-    const submenuToggles = document.querySelectorAll('.submenu-toggle');
-
-    submenuToggles.forEach(toggle => {
-        toggle.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation(); // Evita que se cierre el menú principal
-
-            const submenuContent = this.nextElementSibling;
-
-            // Cerrar otros submenús abiertos para evitar que se encimen
-            const parentMenu = this.closest('.dropdown-menu');
-            parentMenu.querySelectorAll('.submenu-content').forEach(menu => {
-                if (menu !== submenuContent) {
-                    menu.classList.remove('active');
-                }
-            });
-
-            // Alternar el actual
-            submenuContent.classList.toggle('active');
-        });
-    });
-
-    // Cerrar submenús si se hace clic fuera de ellos
-    document.addEventListener('click', function (e) {
-        if (!e.target.closest('.dropdown-submenu')) {
-            document.querySelectorAll('.submenu-content.active').forEach(menu => {
-                menu.classList.remove('active');
-            });
-        }
-    });
 });

@@ -15,7 +15,7 @@ html {
     /* Un gris un poco más claro para dar profundidad y separación. */
 
     /* Color Principal: (para elementos de navegación, iconos, bordes) */
-    --primary-color: #e8e8e8;
+    --primary-color: #dbdbdb;
 
     /* Color Secundario/Acento:  (para CTAs, botones, enlaces destacados, hover) */
     --secondary-color: #b3b3b3;
@@ -50,179 +50,246 @@ body {
     scroll-behavior: smooth;
 }
 
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --accent-blue: #3b82f6;
+    --accent-glow: rgba(59, 130, 246, 0.5);
+    --text-main: #f8fafc;
+}
+
+:root {
+    --bg-header: #0a0a0a;
+    --text-gold: #c5a059;
+    /* Un dorado elegante para acentos */
+    --text-muted: #a1a1a1;
+    --white: #ffffff;
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* ========================================= */
-/* 2. HEADER Y NAVEGACIÓN (Sticky/Impresionante) */
+/* 1. ESTRUCTURA PRINCIPAL DEL HEADER        */
 /* ========================================= */
 .header {
-    background-color: var(--bg-dark);
-    box-shadow: var(--shadow-light);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    background-color: var(--bg-header);
+    height: 90px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 5%;
-    transition: background-color 0.3s ease;
+    padding: 0 8%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.header .logo-img {
-    height: 60px;
-    /* Ajusta este valor para controlar la altura del logo */
-    width: auto;
-    /* Mantiene la proporción de la imagen */
-    vertical-align: middle;
-    margin-right: 0;
-    /* No necesitamos margen si no hay texto al lado */
-    padding: 5px 0;
-    /* Pequeño padding vertical si es necesario */
+.logo-img {
+    height: 50px;
+    filter: brightness(1.2);
+    transition: var(--transition);
 }
 
-/* Si el logo del header es "VIDA" y quieres un tamaño de fuente específico */
-.header .logo {
-    font-size: 2.5rem;
-    /* Ajusta el tamaño de la fuente si el logo es solo texto */
-    font-weight: 800;
-    color: var(--text-color, #ffffff);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    padding-top: 10px;
-    /* Ajusta el padding para alinear verticalmente */
-    padding-bottom: 10px;
+/* ========================================= */
+/* 2. NAVEGACIÓN E ILUMINACIÓN (GLOBAL)      */
+/* ========================================= */
+.nav {
     display: flex;
-    /* Para que la imagen y el texto (si lo hubiera) estén en línea */
     align-items: center;
-    /* Centra verticalmente los elementos dentro del logo */
+    gap: 35px;
 }
 
-/* Puedes eliminar el estilo .header .logo si solo usarás la imagen */
-/* y el contenedor .logo solo contendrá la imagen */
-
-.nav a {
+.nav>a,
+.dropdown-toggle,
+.submenu-toggle {
+    color: var(--text-muted);
     text-decoration: none;
-    color: var(--primary-color);
-    font-weight: 700;
-    margin-left: 20px;
-    padding: 8px 15px;
-    border-radius: 5px;
-    position: relative;
-    transition: all 0.3s ease;
-    /* ✅ CAMBIO CLAVE: Reducir este valor de 0.95rem a un valor más pequeño */
-    font-size: 0.65rem;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
+    position: relative;
+    padding: 15px 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
-.nav a:hover {
-    color: var(--text-light);
-    /* Color del texto se vuelve blanco */
-    background-color: var(--secondary-color);
-    /* Fondo Deep Ruby */
-    transform: translateY(-2px);
-    /* Pequeño levantamiento */
-    box-shadow: 0 4px 10px rgba(136, 14, 79, 0.4);
-    /* Sombra ajustada al nuevo color */
+/* --- RAYA DORADA (Base) --- */
+.nav>a::after,
+.dropdown-toggle::after,
+.submenu-toggle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    /* Ajustado para estar al borde inferior del texto */
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #d4af37;
+    /* Oro */
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+    transition: width 0.3s ease-in-out;
+}
+
+/* --- ESTADO: HOVER (PC) --- */
+.nav>a:hover,
+.dropdown:hover>.dropdown-toggle,
+.dropdown-submenu:hover>.submenu-toggle {
+    color: var(--white) !important;
+}
+
+.nav>a:hover::after,
+.dropdown:hover>.dropdown-toggle::after,
+.dropdown-submenu:hover>.submenu-toggle::after {
+    width: 100%;
+}
+
+/* --- ESTADO: SELECCIONADO (Clase .active de JS) --- */
+.dropdown.active>.dropdown-toggle,
+.dropdown-submenu.active>.submenu-toggle {
+    color: var(--white) !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    /* Ilumina la palabra */
+}
+
+.dropdown.active>.dropdown-toggle::after,
+.dropdown-submenu.active>.submenu-toggle::after {
+    width: 100% !important;
+    /* Mantiene la raya al seleccionar */
 }
 
 /* ========================================= */
-/* 2.5. SUBMENÚ DESPLEGABLE (DROPDOWN) - NUEVO */
+/* 3. DROPDOWNS Y SUBMENÚS (LÓGICA)          */
 /* ========================================= */
-
-/* Contenedor del Dropdown (el <li> que contiene el submenú) */
 .dropdown {
     position: relative;
-    display: inline-block;
 }
 
-/* Enlace que activa el dropdown */
-.dropdown-toggle {
-    cursor: pointer;
-}
-
-/* Flecha indicadora de submenú */
-.dropdown-toggle::after {
-    content: ' \25BE';
-    /* Código de flecha hacia abajo */
-    font-size: 0.8em;
-    margin-left: 5px;
-    transition: transform 0.3s ease;
-}
-
-/* Contenedor real del submenú */
 .dropdown-menu {
     display: none;
-    /* Por defecto, oculto */
     position: absolute;
     top: 100%;
-    /* Se posiciona justo debajo del enlace padre */
-    left: 0;
-    min-width: 220px;
-    background-color: var(--text-light);
-    box-shadow: var(--shadow-medium);
-    border-radius: 5px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: #141414;
+    min-width: 250px;
+    padding: 15px 0;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     z-index: 1001;
-    /* Debe estar por encima de otros elementos */
-    padding: 10px 0;
+    opacity: 0;
+    overflow: visible !important;
+    /* Permite ver submenús laterales */
 }
 
-/* Estilos para los elementos dentro del submenú */
+/* Puente para evitar que se cierre el menú al bajar el mouse */
+.dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+}
+
+/* Submenús laterales (Evangelismo / Educación) */
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .submenu-content {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background-color: #1a1a1a;
+    min-width: 220px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 0;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1005;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: 0.3s;
+}
+
+/* Visibilidad en Escritorio */
+@media (min-width: 993px) {
+    .dropdown:hover>.dropdown-menu {
+        display: block;
+        opacity: 1;
+        transform: translateX(-50%) translateY(5px);
+    }
+
+    .dropdown-submenu:hover>.submenu-content {
+        display: block !important;
+        opacity: 1 !important;
+        transform: translateX(0);
+    }
+}
+
+/* ========================================= */
+/* 4. RESPONSIVE MÓVIL                       */
+/* ========================================= */
+@media (max-width: 992px) {
+    .nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 80%;
+        background-color: #0d0d0d;
+        flex-direction: column;
+        justify-content: center;
+        transition: 0.5s ease;
+    }
+
+    .nav.active {
+        right: 0;
+    }
+
+    .dropdown-menu,
+    .submenu-content {
+        position: static !important;
+        display: none;
+        opacity: 1 !important;
+        background: rgba(255, 255, 255, 0.03) !important;
+        border: none;
+        width: 100%;
+        text-align: center;
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Mostrar al seleccionar en móvil */
+    .dropdown.active>.dropdown-menu,
+    .dropdown-submenu.active>.submenu-content {
+        display: block !important;
+    }
+
+    .submenu-content a {
+        padding-left: 20px;
+        font-size: 13px;
+    }
+}
+
+/* Enlaces simples dentro de los menús */
 .dropdown-menu a {
-    color: var(--primary-color);
-    padding: 10px 20px;
+    color: var(--text-muted);
     text-decoration: none;
     display: block;
-    text-align: left;
-    margin: 0;
-    border-radius: 0;
-    /* Remueve el borde redondeado */
-    font-weight: 600;
+    padding: 12px 20px;
+    font-size: 14px;
+    transition: var(--transition);
 }
 
-/* Estilo hover en enlaces del submenú */
 .dropdown-menu a:hover {
-    background-color: var(--bg-light);
-    /* Fondo gris claro en hover */
-    color: var(--secondary-color);
-    transform: none;
-    /* Evita el levantamiento */
-    box-shadow: none;
-}
-
-/* Activación del Dropdown en Escritorio (Hover) */
-.dropdown:hover .dropdown-menu {
-    display: block;
-}
-
-/* Rotar la flecha al abrir el menú en escritorio */
-.dropdown:hover .dropdown-toggle::after {
-    transform: rotate(180deg);
-}
-
-/* Fin 2.5. Dropdown */
-/* ========================================= */
-
-
-/* Asegura que el botón de DONAR y del INSTITUTO mantenga su estilo distintivo */
-.cta-button {
-    background-color: var(--secondary-color) !important;
-    color: var(--text-light) !important;
-    padding: 8px 20px;
-    border-radius: 50px;
-    font-weight: 700 !important;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(223, 220, 222, 0.4);
-    margin-left: 30px;
-}
-
-.cta-button:hover {
-    background-color: #6a003f !important;
-    /* Tono más oscuro de Deep Ruby */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(136, 14, 79, 0.6);
-}
-
-.menu-toggle {
-    display: none;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-gold);
 }
 
 /* ========================================= */
@@ -233,6 +300,7 @@ body {
     min-height: 600px;
     position: relative;
     overflow: hidden;
+    margin-top: 90px;
 }
 
 .carousel-container {
@@ -487,7 +555,6 @@ body {
     color: var(--secondary-color);
     /* Utiliza Deep Ruby para mayor impacto */
     font-weight: 600;
-    /* ✅ CORRECCIÓN DE SINTAXIS: Separamos las propiedades */
     text-align: center;
     display: block;
     margin: 0 auto 10px auto;
@@ -546,127 +613,274 @@ body {
 }
 
 
-/* 6. EVENTOS*/
 /* ========================================= */
-.events-section {
-    background-color: var(--bg-light);
-}
+/* 6. EVENTOS - DISEÑO PREMIO                 */
+/* ========================================= */
 
-/* --- ESTILOS ESPECÍFICOS DEL CARRUSEL DE EVENTOS (3 Recuadros Visibles - Desktop) --- */
+.events-section {
+    background: radial-gradient(circle at center, #1a1a1a 0%, #080808 100%);
+    padding: 100px 0;
+    overflow: hidden;
+}
 
 .events-section .events-carousel {
     position: relative;
-    /*Permite que los botones (prev/next) se puedan posicionar encima del carrusel.*/
-    max-width: 1500px;
-    /* Ancho máximo ajustado para el escritorio */
-    margin: 40px auto;
-    /*da espacio arriba y abajo, y el auto lo centra horizontalmente*/
+    max-width: 1400px;
+    margin: 50px auto;
     width: 100%;
+    z-index: 2;
 }
 
-.events-section .events-carousel .carousel-frame {
-    overflow: hidden;
+/* Contenedor con efecto de profundidad */
+.events-section .carousel-frame {
+    overflow: visible;
+    /* Permitimos que el brillo de las tarjetas se vea */
     width: 100%;
-    padding: 0 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
 }
 
-.events-section .events-carousel .carousel-track {
+.events-section .carousel-track {
     display: flex;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    /* Movimiento suave */
 }
 
-.events-section .events-carousel .carousel-item {
+.events-section .carousel-item {
     flex-shrink: 0;
     width: 33.333%;
-    /* CAMBIO CLAVE: Aumenta el padding lateral a 15px para más separación */
-    padding: 0 15px;
+    padding: 0 20px;
     box-sizing: border-box;
+    perspective: 1000px;
 }
 
-.events-section .events-carousel .carousel-item img {
-    width: 100%;
-    /* Altura de las imagenes del carrusel de eventos */
+/* --- TARJETA DE EVENTO ESTILO GLASS --- */
+.event-card-inner {
+    position: relative;
     height: 600px;
-    display: block;
-    object-fit: cover;
-    border-radius: 8px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.5s ease;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
 }
 
-/* Estilos de botones específicos para eventos */
-.events-section .events-carousel .carousel-btn {
+.event-card-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+    filter: saturate(1.2);
+}
+
+/* Overlay de información rápida */
+.event-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 60%);
+    display: flex;
+    align-items: flex-end;
+    padding: 30px;
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+.event-tag {
+    background: #d4af37;
+    color: #000;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+/* --- ANIMACIONES HOVER --- */
+.carousel-item:hover .event-card-inner {
+    transform: translateY(-15px) rotateX(5deg);
+    border-color: #cbcbcb;
+    box-shadow: 0 25px 50px rgba(105, 115, 150, 0.848);
+}
+
+.carousel-item:hover img {
+    transform: scale(1.1);
+}
+
+.carousel-item:hover .event-overlay {
+    opacity: 1;
+}
+
+/* --- BOTONES DE NAVEGACIÓN FUTURISTAS --- */
+.events-section .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(5px);
+    color: #cbcbcb;
+    border: 1px solid rgba(240, 240, 240, 0.711);
+    width: 60px;
+    height: 60px;
     cursor: pointer;
-    z-index: 10;
-    font-size: 24px;
-    line-height: 1;
+    z-index: 100;
     border-radius: 50%;
-    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
 }
 
-.events-section .events-carousel .carousel-btn:hover {
-    background: var(--secondary-color);
+.events-section .carousel-btn:hover {
+    background: #cbcbcb;
+    color: #000;
+    box-shadow: 0 0 25px #cbcbcb;
 }
 
-.events-section .events-carousel .carousel-btn.prev {
-    left: 15px;
+.events-section .carousel-btn.prev {
+    left: -30px;
 }
 
-.events-section .events-carousel .carousel-btn.next {
-    right: 15px;
+.events-section .carousel-btn.next {
+    right: -30px;
 }
 
-/* ========================================= */
-/* 6.5. CALENDARIO RESPONSIVO */
-/* ========================================= */
-.calendar-container {
-    /* Establece un ancho máximo si es necesario, ya lo tienes en el padre */
-    max-width: 900px;
-    margin: 0 auto;
+/* --- SECCIÓN CALENDARIO --- */
+.calendar-section {
+    background-color: #050505;
+    padding: 100px 5%;
+    text-align: center;
+}
 
-    /* CRÍTICO: Técnica para mantener la relación de aspecto (16:9) */
+.calendar-title {
+    font-size: 2.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+/* Decorador dorado bajo el título */
+.calendar-decorator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.calendar-decorator .line {
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
+
+.calendar-decorator .dot {
+    width: 6px;
+    height: 6px;
+    background: #d4af37;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #d4af37;
+}
+
+/* --- EL MARCO FUTURISTA --- */
+.calendar-outer-frame {
     position: relative;
-    padding-bottom: 56.25%;
-    /* 9 / 16 = 0.5625 = 56.25% (Relación 16:9) */
-    height: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 15px;
+    /* Espacio para el brillo */
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 30px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+}
+
+/* Brillo ambiental detrás del calendario */
+.calendar-inner-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.calendar-container {
+    position: relative;
+    z-index: 1;
+    border-radius: 20px;
     overflow: hidden;
-    background-color: #121212;
-    border-radius: 8px;
+    background: #121212;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Relación de aspecto para que sea responsivo */
+    padding-bottom: 65%;
+    height: 0;
 }
 
 .calendar-container iframe {
-    /* CRÍTICO: El iframe toma la altura y el ancho del contenedor responsivo */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Remueve la altura fija del HTML */
+    filter: invert(90%) hue-rotate(180deg) brightness(0.9) contrast(1.1);
+    /* MAGIA: Hace el calendario oscuro */
 }
 
-/* Ajuste específico para móvil si el 16:9 es demasiado ancho */
-@media (max-width: 600px) {
-    .calendar-container {
-        /* Usa una relación más cuadrada para pantallas muy pequeñas (Ej: 4:3) */
-        padding-bottom: 75%;
-        /* 3 / 4 = 0.75 = 75% */
+/* --- ANIMACIÓN DE BORDE (SCANNER) --- */
+.calendar-outer-frame::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 30px;
+    border: 2px solid transparent;
+    background: linear-gradient(45deg, #d4af37, transparent, #d4af37) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    opacity: 0.4;
+    animation: rotateGlow 6s linear infinite;
+}
+
+@keyframes rotateGlow {
+    0% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 0.2;
     }
 }
 
+/* Ajustes Móvil */
+@media (max-width: 768px) {
+    .calendar-container {
+        padding-bottom: 120%;
+        /* Más alto en móvil para que se lea bien */
+    }
 
+    .calendar-title {
+        font-size: 1.8rem;
+    }
+}
 
 /* ========================================= */
 /* 7. MISIÓN  */
 /* ========================================= */
 .mission-section {
-    background-image: url('alabanza en blanco y negro.jpg');
+    background-image: url('alabanza\ en\ blanco\ y\ negro.avif');
     background-size: cover;
     /* Cubre toda la sección */
     background-position: center center;
@@ -818,7 +1032,7 @@ body {
     top: 50%;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);
-    color: white;
+    color: rgb(232, 230, 230);
     border: none;
     padding: 10px;
     cursor: pointer;
@@ -863,7 +1077,7 @@ body {
     position: relative;
     overflow: hidden;
     /* CRÍTICO: Oculta las imágenes que no están en vista */
-    border: 15px solid white;
+    border: 15px solid rgb(240, 237, 237);
     /* El marco blanco */
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
@@ -941,23 +1155,102 @@ body {
     margin-top: 0;
 }
 
-/* Enlaces Sociales (Iconos) - Asegurar color blanco */
+/* ========================================= */
+/* REDES SOCIALES: BRILLO Y ANIMACIÓN        */
+/* ========================================= */
+
 .social-links {
-    margin: 20px 0;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
-.social-links a i {
-    font-size: 2.8rem;
-    color: var(--text-dark) !important;
-    /* ¡Color de íconos asegurado! */
-    margin: 0 12px;
-    transition: color 0.3s ease, transform 0.3s ease;
+.social-links a {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Animación constante de flotado */
+    animation: socialFloat 3s ease-in-out infinite;
 }
 
-.social-links a:hover i {
-    color: var(--text-dark);
-    /* Deep Ruby en hover */
-    transform: scale(1.15);
+/* Retraso de animación para que no se muevan todos al mismo tiempo */
+.social-links a:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.social-links a:nth-child(3) {
+    animation-delay: 1s;
+}
+
+/* --- EFECTOS HOVER (BRRILLO) --- */
+
+/* Facebook */
+.social-links a[aria-label="Facebook"]:hover {
+    color: #1877f2;
+    background: rgba(24, 119, 242, 0.1);
+    border-color: #1877f2;
+    box-shadow: 0 0 20px rgba(24, 119, 242, 0.6), inset 0 0 10px rgba(24, 119, 242, 0.4);
+    transform: translateY(-10px) scale(1.1);
+}
+
+/* Instagram */
+.social-links a[aria-label="Instagram"]:hover {
+    color: #e4405f;
+    background: rgba(228, 64, 95, 0.1);
+    border-color: #e4405f;
+    box-shadow: 0 0 20px rgba(228, 64, 95, 0.6), inset 0 0 10px rgba(228, 64, 95, 0.4);
+    transform: translateY(-10px) scale(1.1);
+}
+
+/* YouTube */
+.social-links a[aria-label="YouTube"]:hover {
+    color: #ff0000;
+    background: rgba(255, 0, 0, 0.1);
+    border-color: #ff0000;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), inset 0 0 10px rgba(255, 0, 0, 0.4);
+    transform: translateY(-10px) scale(1.1);
+}
+
+/* --- KEYFRAMES --- */
+@keyframes socialFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Efecto de destello al pasar el mouse (opcional) */
+.social-links a::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.social-links a:hover::after {
+    opacity: 1;
 }
 
 /* Enlaces del Footer (Términos, Privacidad, Contacto) - Asegurar color blanco */
@@ -1068,53 +1361,138 @@ body {
 }
 
 /* ========================================= */
-/* 9.5. BOTÓN FLOTANTE DE WHATSAPP */
+/* BOTÓN WHATSAPP PREMIUN                    */
 /* ========================================= */
+
 .whatsapp-float {
-    /* Posicionamiento y diseño */
     position: fixed;
-    width: auto;
-    min-width: 170px;
-    height: 55px;
-    bottom: 40px;
-    right: 40px;
-
-    /* Estilos */
-    background-color: #25d366;
-    color: var(--text-light);
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    background: #25d366;
+    color: white;
+    padding: 12px;
     border-radius: 50px;
+    text-decoration: none;
+    z-index: 1000;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    max-width: 55px;
+    /* Estado inicial circular */
+}
 
-    /* Contenido y Centrado */
+/* Expansión al pasar el mouse */
+.whatsapp-float:hover {
+    max-width: 300px;
+    padding-right: 25px;
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+    transform: translateY(-5px);
+}
+
+.whatsapp-float i {
+    font-size: 30px;
+    min-width: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.whatsapp-text {
+    white-space: nowrap;
+    margin-left: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.whatsapp-float:hover .whatsapp-text {
+    opacity: 1;
+}
+
+/* --- ANIMACIÓN DE PULSO (ONDAS) --- */
+.whatsapp-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #25d366;
+    border-radius: 50%;
+    z-index: -1;
+    animation: wa-pulse 2s infinite;
+}
+
+@keyframes wa-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+/* --- BADGE DE NOTIFICACIÓN --- */
+.whatsapp-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background: #ff3b30;
+    color: white;
+    font-size: 10px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 25px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-decoration: none;
-
-    /* Sombra y Transición */
-    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.6);
-    transition: all 0.3s ease;
-    z-index: 10000;
+    border: 2px solid #fff;
+    font-weight: bold;
+    animation: wa-bounce 3s infinite;
 }
 
-/* Estilo para el ícono de WhatsApp (i) dentro del botón */
-.whatsapp-float i {
-    font-size: 1.4rem;
-    /* Tamaño del ícono en escritorio */
-    margin-right: 10px;
-    line-height: 1;
+/* Animación de salto sutil */
+@keyframes wa-bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-5px);
+    }
+
+    60% {
+        transform: translateY(-3px);
+    }
 }
 
-.whatsapp-float:hover {
-    background-color: #128c7e;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(18, 140, 126, 0.8);
-}
+/* Responsive para Móvil */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        max-width: 50px;
+        padding: 10px;
+    }
 
-/*STAFF*/
+    .whatsapp-text {
+        display: none;
+        /* Ocultar texto en móvil para no estorbar */
+    }
+
+    .whatsapp-float:hover {
+        max-width: 50px;
+    }
+}
 
 /* Color del título principal "Nuestro Liderazgo" */
 .team-section h2 {
@@ -1161,15 +1539,95 @@ body {
     transform: translateY(-10px);
 }
 
+/* ========================================= */
+/* TARJETAS DE EQUIPO CON BORDE ANIMADO      */
+/* ========================================= */
+
 .team-image-wrapper {
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    /* Un poco más grande para compensar el borde */
+    height: 160px;
     margin: 0 auto 20px;
     border-radius: 50%;
-    /* Esto hace la foto circular como en Escom */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111;
+    /* Fondo oscuro por si la imagen tarda en cargar */
     overflow: hidden;
-    border: 3px solid var(--secondary-color);
-    /* Usa el color naranja/dorado de tu logo */
+    /* Mantiene todo circular */
+    z-index: 1;
+}
+
+/* El borde de luz con movimiento */
+.team-image-wrapper::before {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    /* Degradado con los colores de tu iglesia (Dorado/Naranja y transparente) */
+    background: conic-gradient(transparent,
+            transparent,
+            transparent,
+            #d4af37
+            /* Color Oro */
+        );
+    animation: rotateBorder 4s linear infinite;
+    z-index: -1;
+}
+
+/* El resplandor (Luz difusa hacia afuera) */
+.team-image-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    /* Crea el grosor del borde */
+    background: #ffffff;
+    /* Color de fondo de la tarjeta */
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.team-image-wrapper img {
+    width: 92%;
+    /* Deja ver el borde animado */
+    height: 92%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgba(190, 188, 188, 0.973);
+    /* Borde interno fino */
+    transition: transform 0.5s ease;
+}
+
+/* Animación de rotación */
+@keyframes rotateBorder {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Efecto Hover: La foto se acerca y la luz brilla más */
+.team-card:hover .team-image-wrapper img {
+    transform: scale(1.1);
+}
+
+.team-card:hover .team-image-wrapper::before {
+    background: conic-gradient(transparent,
+            #ffffff,
+            #d4af37);
+    animation-duration: 1s;
+    /* Gira más rápido al pasar el mouse */
+}
+
+/* Opcional: Añadir un brillo externo a la tarjeta completa */
+.team-card:hover .team-image-wrapper {
+    box-shadow: 0 0 25px rgba(21, 21, 21, 0.4);
+    transition: box-shadow 0.3s ease;
 }
 
 .team-image-wrapper img {
@@ -1204,6 +1662,158 @@ body {
     font-size: 0.95rem;
     color: #666;
     line-height: 1.5;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.declaracion-fe-container {
+    padding: 100px 0;
+    background-color: #0d0d0d;
+    text-align: center;
+    overflow: hidden;
+}
+
+.creemos-header h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.creemos-header p {
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 50px;
+}
+
+/* --- CARRUSEL 3D --- */
+.fe-carousel-wrapper {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    height: 450px;
+    perspective: 1500px;
+    /* Crucial para el efecto 3D */
+}
+
+.fe-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- TARJETAS INDIVIDUALES --- */
+.fe-card {
+    position: absolute;
+    /* Esto evita que se pongan una debajo de otra */
+    width: 320px;
+    height: 380px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 35px;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+/* --- ESTADOS DINÁMICOS (JS aplica estas clases) --- */
+.fe-card.active {
+    opacity: 1;
+    z-index: 10;
+    transform: translateZ(100px);
+    pointer-events: auto;
+    border-color: #dbdbdb;
+    box-shadow: 0 0 30px rgba(55, 107, 212, 0.585);
+}
+
+.fe-card.prev {
+    opacity: 0.4;
+    transform: translateX(-75%) scale(0.8) rotateY(25deg);
+    z-index: 5;
+}
+
+.fe-card.next {
+    opacity: 0.4;
+    transform: translateX(75%) scale(0.8) rotateY(-25deg);
+    z-index: 5;
+}
+
+.fe-card.hide {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+/* --- DECORACIÓN INTERNA --- */
+.fe-number {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(254, 249, 231, 0.898);
+}
+
+.fe-card h3 {
+    color: #dbdbdb;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.fe-card p {
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* --- CONTROLES --- */
+.fe-controls {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.fe-controls button {
+    background: transparent;
+    border: 1px solid #dbdbdb;
+    color: #dbdbdb;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.fe-controls button:hover {
+    background: #dbdbdb;
+    color: #000;
+    box-shadow: 0 0 15px #dbdbdb;
+}
+
+/* Responsive Móvil */
+@media (max-width: 768px) {
+    .fe-card {
+        width: 280px;
+        height: 350px;
+    }
+
+    .fe-card.prev {
+        transform: translateX(-40%) scale(0.6) rotateY(20deg);
+    }
+
+    .fe-card.next {
+        transform: translateX(40%) scale(0.6) rotateY(-20deg);
+    }
 }
 
 /*UBICACION Y FORMULARIO*/
@@ -1384,398 +1994,174 @@ body {
         padding: 0 10px;
     }
 
-    /* Ajuste del Formulario */
-    .formulario-vida {
-        grid-template-columns: 1fr;
-        /* Una sola columna */
-        width: 100%;
-        gap: 15px;
-    }
+    @media (max-width: 768px) {
 
-    .columna-formulario {
-        padding: 10px;
-        /* Espacio interno para que los inputs no toquen el borde negro */
-    }
-
-    /* Ajuste de inputs para que no se salgan */
-    .grupo-input input,
-    .grupo-input textarea {
-        width: 100% !important;
-        max-width: 100%;
-    }
-
-    /* Ajuste del prefijo de teléfono (México +52) */
-    .caja-telefono {
-        display: flex;
-        flex-direction: row;
-        /* Mantiene el prefijo al lado en móvil si hay espacio */
-    }
-
-    .prefijo {
-        padding: 10px 5px;
-        font-size: 0.8rem;
-        min-width: 80px;
-    }
-}
-
-
-/* ========================================= */
-/* 10. RESPONSIVE (Móviles y Tabletas) */
-/* ========================================= */
-@media (max-width: 992px) {
-
-    /* 1. Muestra el botón de hamburguesa y oculta el menú de escritorio */
-    .menu-toggle {
-        display: block;
-    }
-
-    /* 2. Oculta el menú por defecto, forzando la anulación de estilos de escritorio */
-    .nav {
-        display: none !important;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background-color: var(--text-light, white);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-        height: auto;
-        overflow-y: auto;
-    }
-
-    /* 3. Muestra el menú cuando el JS añade la clase 'active' */
-    .nav.active {
-        display: flex !important;
-        animation: slideDown 0.3s ease-out;
-    }
-
-    /* 4. Estilos de los enlaces del menú móvil */
-    .nav a {
-        margin-left: 0;
-        padding: 15px 5%;
-        text-align: left;
-        border-bottom: 1px solid var(--bg-light, #f0f0f0);
-        width: 100%;
-        color: var(--primary-color, #2c3e50);
-    }
-
-    /* 5. Ajuste para los botones CTA */
-    .nav a.cta-button {
-        margin: 15px 5% 5px;
-        width: 90%;
-        text-align: center;
-        border-bottom: none;
-    }
-
-    /* ========================================= */
-    /* Dentro de @media (max-width: 992px) { ... } */
-    /* ========================================= */
-
-    .events-grid {
-        /* 1fr significa "una fracción", lo que resulta en una sola columna */
-        grid-template-columns: 1fr;
-        gap: 20px;
-        /* Reduce un poco el espacio vertical entre las tarjetas */
-        margin: 20px auto;
-    }
-
-    /* ========================================= */
-    /* DROPDOWN EN MÓVIL (Activación por JS) - NUEVO */
-    /* ========================================= */
-    .dropdown {
-        display: block;
-        /* Ocupa todo el ancho en móvil */
-    }
-
-    /* El submenú por defecto sigue oculto */
-    .dropdown-menu {
-        position: relative;
-        /* Ya no es absoluto; se mueve dentro del flujo */
-        top: 0;
-        width: 100%;
-        box-shadow: none;
-        /* Remueve la sombra en móvil */
-        border-radius: 0;
-        background-color: var(--bg-light);
-        /* Un tono para diferenciar */
-        padding: 0;
-    }
-
-    /* Estilos de los enlaces dentro del submenú móvil */
-    .dropdown-menu a {
-        padding-left: 10%;
-        /* Sangría para indicar que es un sub-enlace */
-        font-size: 0.9em;
-        border-bottom: 1px solid #e0e0e0;
-    }
-
-    /* El JS añade la clase 'active' al contenedor .dropdown para mostrar .dropdown-menu */
-    .dropdown.active .dropdown-menu {
-        display: block;
-        /* Muestra el submenú cuando el JS lo activa en móvil */
-        animation: slideDown 0.3s ease-out;
-    }
-
-    /* Rota la flecha para indicar que está abierto en móvil */
-    .dropdown.active .dropdown-toggle::after {
-        transform: rotate(180deg);
-    }
-
-    /* El .dropdown-toggle no debe tener un margen inferior grande */
-    .nav a.dropdown-toggle {
-        margin-bottom: 0;
-    }
-
-    /* Fin Dropdown Responsive */
-    /* ========================================= */
-
-
-    /* Definición de la animación (opcional, pero agradable) */
-    @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-20px);
+        /* Forzamos al grid a tener una sola columna */
+        .formulario-vida {
+            grid-template-columns: 1fr !important;
+            gap: 20px;
+            padding: 20px;
+            /* Un poco más de aire interno */
         }
 
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* ========================================= */
-    /* AJUSTES ESPECÍFICOS DE LA SECCIÓN HERO */
-    /* ========================================= */
-
-    /* 6. Altura y centrado del Hero */
-    .hero {
-        height: 70vh;
-        /* Reduce la altura para que ocupe menos de la pantalla */
-        min-height: 450px;
-        /* Mínimo pero más pequeño */
-    }
-
-    .hero-content {
-        /* Asegura el centrado vertical y horizontal */
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 90%;
-        /* Limita el ancho del contenido para que no se desborde */
-    }
-
-    /* 7. Ajuste de imágenes para evitar desajustes */
-    .slide-image {
-        object-fit: cover;
-        /* Asegura que la imagen cubra el contenedor sin distorsión */
-    }
-
-    /* 8. Ajuste de Botones (CTA) en el Hero (más pequeños y apilados) */
-    .btn {
-        padding: 10px 20px;
-        /* Reduce el padding para botones más pequeños */
-        font-size: 0.9rem;
-        /* Reduce el tamaño de la fuente del botón */
-        margin: 8px auto;
-        /* Margen reducido y centrado */
-        display: block;
-        /* Hace que los botones se apilen para una mejor experiencia táctil */
-        width: 90%;
-        /* Ocupa casi todo el ancho disponible */
-    }
-
-    /* 9. Estilos para la marquesina */
-    .hero-content .pe-marquee {
-        font-size: 2.5rem;
-    }
-
-    .hero-content .pe-marquee .seperator {
-        margin: 0 15px;
-        height: 1em;
-        width: 1em;
-    }
-
-    /* Ajuste para que la animación de la marquesina sea más rápida en móvil */
-    .hero-content .pe-marquee .marquee-inner {
-        animation-duration: 10s;
-    }
-
-    /* Otros ajustes responsive de secciones... */
-
-    .mission-points {
-        flex-direction: column;
-    }
-
-    /* ========================================= */
-    /* AJUSTE ESPECÍFICO DEL BOTÓN SECUNDARIO EN HERO */
-    /* ========================================= */
-
-    .hero-content .secondary-btn {
-        /* Fondo Claro (Usando el color principal del tema) */
-        background-color: var(--primary-color);
-
-        /* Texto Oscuro para contraste */
-        color: var(--text-light);
-
-        /* Asegurar que no tenga un borde que no se vea bien */
-        border: none;
-    }
-
-    .hero-content .secondary-btn:hover {
-        /* Usamos el color de acento (gris medio) al pasar el ratón */
-        background-color: var(--secondary-color);
-
-        /* Mantiene el texto oscuro */
-        color: var(--text-light);
-
-        /* Mantiene el efecto de elevación si lo tienes definido en el .btn global */
-        transform: translateY(-2px);
-        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-    }
-
-    /* ----------------------------------------- */
-    /* RESPONSIVIDAD ESPECÍFICA PARA LA GALERÍA */
-    /* ----------------------------------------- */
-    .slider-grid {
-        grid-template-columns: 1fr;
-        /* Una sola columna en móvil */
-    }
-
-    /* ========================================= */
-    /* 2.6. SUBMENÚS ANIDADOS (SOLUCIÓN FINAL DE ALINEACIÓN + CLICK + FONDO NEGRO) */
-    /* ========================================= */
-
-    .dropdown-submenu {
-        position: relative;
-        /* Contenedor del elemento Evangelismo/Educación */
-        display: block;
-        width: 100%;
-    }
-
-    /* Link que abre el submenú (el elemento 'Evangelismo', 'Educación', etc.) */
-    .dropdown-submenu>a.submenu-toggle {
-        padding: 10px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        cursor: pointer;
-        text-decoration: none;
-        color: var(--primary-color);
-        font-weight: 600;
-        margin: 0;
-        border-radius: 0;
-        transition: all 0.3s ease;
-    }
-
-    /* Estilo hover/activo para el link padre */
-    .dropdown-submenu>a.submenu-toggle:hover,
-    .dropdown-submenu>a.submenu-toggle.active {
-        background-color: var(--bg-light);
-        color: var(--secondary-color);
-    }
-
-    /* Estilo base del submenú (Caja negra desplegable) */
-    .dropdown-submenu .submenu-content {
-        display: none;
-        position: absolute;
-        /* AJUSTE CLAVE: Alineamos con el inicio del padding del elemento padre. */
-        top: 0;
-        left: 100%;
-        min-width: 220px;
-
-        /* --- FONDO NEGRO --- */
-        background-color: #000000 !important;
-        border: 1px solid #333;
-
-        box-shadow: var(--shadow-medium);
-        border-radius: 5px;
-        padding: 5px 0;
-        /* Reducimos el padding interno para mejor alineación */
-        z-index: 1002;
-    }
-
-    /* CLASE QUE ACTIVA EL JS: Solo se muestra si tiene la clase .active */
-    .dropdown-submenu .submenu-content.active {
-        display: block;
-    }
-
-    /* Enlaces dentro del submenú negro */
-    .dropdown-submenu .submenu-content a {
-        color: #fff !important;
-        padding: 10px 20px;
-        display: block;
-        text-align: left;
-        margin: 0;
-        font-weight: 400;
-    }
-
-    .dropdown-submenu .submenu-content a:hover {
-        background-color: #333 !important;
-        color: var(--secondary-color) !important;
-    }
-
-
-    /* --- AJUSTE PARA MÓVILES (Para que se vea como lista y empuje el contenido) --- */
-    @media (max-width: 992px) {
-        .dropdown-submenu .submenu-content {
-            position: relative;
-            /* ¡CRUCIAL! Se inserta en el flujo y empuja otros elementos. */
-            left: 0;
-            top: 0;
-            margin-left: 0;
+        /* CRÍTICO: Hacemos que CUALQUIER grupo de input ocupe toda la fila */
+        .formulario-vida .grupo-input {
+            grid-column: span 1 !important;
             width: 100%;
-
-            background-color: #000000 !important;
-            border-left: 2px solid var(--secondary-color);
-            border-radius: 0;
-            padding: 5px 0;
         }
 
-        /* Indentación para que se vea la jerarquía en móvil */
-        .dropdown-submenu .submenu-content a {
-            padding-left: 40px !important;
+        /* Aseguramos que el botón también ocupe el ancho completo */
+        .boton-enviar {
+            grid-column: span 1 !important;
+            width: 100%;
+        }
+
+        /* Ajuste fino para el teléfono en pantallas muy pequeñas */
+        .caja-telefono {
+            width: 100%;
+        }
+
+        .caja-telefono input {
+            flex: 1;
+            /* El input toma el resto del espacio del prefijo */
+            min-width: 0;
+            /* Evita que el input desborde el contenedor */
         }
     }
 
-    /* ---------------------------------------------------- */
-    /* AJUSTE WHATSAPP FLOTANTE EN MÓVIL (Bajo 992px) */
-    /* ---------------------------------------------------- */
-    .whatsapp-float {
-        min-width: 130px;
-        /* Ancho mínimo ajustado */
-        height: 45px;
-        /* Altura más pequeña en móvil */
-        bottom: 20px;
-        right: 20px;
-        font-size: 0.8rem;
-        padding: 0 15px;
-        /* Relleno ajustado */
-    }
 
-    .whatsapp-float i {
-        font-size: 20px;
-        margin-right: 8px;
-    }
+    /* ========================================= */
+    /* 10. RESPONSIVE (Móviles y Tabletas) */
+    /* ========================================= */
+    @media (max-width: 992px) {
 
-    /* ---------------------------------------------------- */
-    /* AJUSTE ESPECÍFICO CARRUSEL DE EVENTOS EN MÓVIL/TABLET */
-    /* ---------------------------------------------------- */
-    .events-section .events-carousel {
-        /* Ajusta el ancho máximo del contenedor para móviles si es necesario */
-        max-width: 450px;
-    }
+        .events-grid {
+            /* 1fr significa "una fracción", lo que resulta en una sola columna */
+            grid-template-columns: 1fr;
+            gap: 20px;
+            /* Reduce un poco el espacio vertical entre las tarjetas */
+            margin: 20px auto;
+        }
 
-    /* En pantallas pequeñas, mostramos solo 1 recuadro por deslizamiento */
-    .events-section .events-carousel .carousel-item {
-        width: 100%;
-        /* Ocupa el ancho total para mostrar 1 a la vez */
-        padding: 0 5px;
-    }
 
-    .events-section .events-carousel .carousel-item img {
-        height: 450px;
-        /* Altura más pequeña en móvil */
+        /* ========================================= */
+        /* AJUSTES ESPECÍFICOS DE LA SECCIÓN HERO */
+        /* ========================================= */
+
+        /* 6. Altura y centrado del Hero */
+        .hero {
+            height: 70vh;
+            /* Reduce la altura para que ocupe menos de la pantalla */
+            min-height: 450px;
+            /* Mínimo pero más pequeño */
+        }
+
+        .hero-content {
+            /* Asegura el centrado vertical y horizontal */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            /* Limita el ancho del contenido para que no se desborde */
+        }
+
+        /* 7. Ajuste de imágenes para evitar desajustes */
+        .slide-image {
+            object-fit: cover;
+            /* Asegura que la imagen cubra el contenedor sin distorsión */
+        }
+
+        /* 8. Ajuste de Botones (CTA) en el Hero (más pequeños y apilados) */
+        .btn {
+            padding: 10px 20px;
+            /* Reduce el padding para botones más pequeños */
+            font-size: 0.9rem;
+            /* Reduce el tamaño de la fuente del botón */
+            margin: 8px auto;
+            /* Margen reducido y centrado */
+            display: block;
+            /* Hace que los botones se apilen para una mejor experiencia táctil */
+            width: 90%;
+            /* Ocupa casi todo el ancho disponible */
+        }
+
+        /* 9. Estilos para la marquesina */
+        .hero-content .pe-marquee {
+            font-size: 2.5rem;
+        }
+
+        .hero-content .pe-marquee .seperator {
+            margin: 0 15px;
+            height: 1em;
+            width: 1em;
+        }
+
+        /* Ajuste para que la animación de la marquesina sea más rápida en móvil */
+        .hero-content .pe-marquee .marquee-inner {
+            animation-duration: 10s;
+        }
+
+        /* Otros ajustes responsive de secciones... */
+
+        .mission-points {
+            flex-direction: column;
+        }
+
+        /* ========================================= */
+        /* AJUSTE ESPECÍFICO DEL BOTÓN SECUNDARIO EN HERO */
+        /* ========================================= */
+
+        .hero-content .secondary-btn {
+            /* Fondo Claro (Usando el color principal del tema) */
+            background-color: var(--primary-color);
+
+            /* Texto Oscuro para contraste */
+            color: var(--text-light);
+
+            /* Asegurar que no tenga un borde que no se vea bien */
+            border: none;
+        }
+
+        .hero-content .secondary-btn:hover {
+            /* Usamos el color de acento (gris medio) al pasar el ratón */
+            background-color: var(--secondary-color);
+
+            /* Mantiene el texto oscuro */
+            color: var(--text-light);
+
+            /* Mantiene el efecto de elevación si lo tienes definido en el .btn global */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ----------------------------------------- */
+        /* RESPONSIVIDAD ESPECÍFICA PARA LA GALERÍA */
+        /* ----------------------------------------- */
+        .slider-grid {
+            grid-template-columns: 1fr;
+            /* Una sola columna en móvil */
+        }
+
+
+        /* ---------------------------------------------------- */
+        /* AJUSTE WHATSAPP FLOTANTE EN MÓVIL (Bajo 992px) */
+        /* ---------------------------------------------------- */
+        .whatsapp-float {
+            min-width: 130px;
+            /* Ancho mínimo ajustado */
+            height: 45px;
+            /* Altura más pequeña en móvil */
+            bottom: 20px;
+            right: 20px;
+            font-size: 0.8rem;
+            padding: 0 15px;
+            /* Relleno ajustado */
+        }
+
+        .whatsapp-float i {
+            font-size: 20px;
+            margin-right: 8px;
+        }
+
+
     }
-}
