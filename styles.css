@@ -805,66 +805,113 @@ body {
 }
 
 /* ========================================= */
-/* EVENTOS - ADAPTACIÓN CELULAR (BOTONES IGUAL A PC) */
+/* EVENTOS - ADAPTACIÓN CELULAR PREMIUM      */
 /* ========================================= */
 @media (max-width: 992px) {
+    .events-section {
+        padding: 60px 0 100px 0;
+        /* Más aire abajo para que no se pegue al siguiente bloque */
+    }
+
     .events-section .events-carousel {
-        margin: 30px auto;
-        padding: 0 40px;
-        /* Espacio lateral para que quepan los botones */
+        margin: 20px auto;
+        padding: 0 10px;
+        /* Reducimos padding lateral del contenedor */
         overflow: visible;
-        /* IMPORTANTE: permite ver los botones fuera del borde */
     }
 
     .events-section .carousel-item {
         width: 100%;
-        /* Una tarjeta a la vez para evitar cortes feos */
-        padding: 0 10px;
+        padding: 0 50px;
+        /* Este padding crea el espacio para que los botones floten a los lados */
+        box-sizing: border-box;
     }
 
     .event-card-inner {
-        height: 500px;
-        /* Tamaño elegante para celular */
+        height: 550px;
+        /* Altura estilizada */
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        /* Un toque dorado sutil en el borde */
+        background: rgba(255, 255, 255, 0.05);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
     }
 
-    /* BOTONES FLOTANTES IGUAL QUE EN ESCRITORIO */
+    /* Overlay siempre visible en móvil para un look pro */
+    .event-overlay {
+        opacity: 1;
+        background: linear-gradient(to top,
+                rgba(0, 0, 0, 0.95) 0%,
+                rgba(0, 0, 0, 0.4) 40%,
+                transparent 100%);
+        padding: 25px;
+    }
+
+    .event-tag {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+
+    /* BOTONES FLOTANTES ESTILO 'FLOATING ACTION' */
     .events-section .carousel-btn {
         display: flex !important;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        width: 45px;
-        height: 45px;
+        width: 50px;
+        height: 50px;
         z-index: 100;
-        background: rgba(20, 20, 20, 0.9);
-        border: 1px solid #d4af37;
-        /* Borde dorado para que resalten */
+        background: rgba(15, 15, 15, 0.85);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(212, 175, 55, 0.5);
+        /* Borde dorado */
+        color: #d4af37;
+        /* Iconos dorados */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     }
 
+    /* Posicionamiento perfecto a los lados de la tarjeta */
     .events-section .carousel-btn.prev {
-        left: 5px;
-        /* Pegado al borde izquierdo */
+        left: 15px;
     }
 
     .events-section .carousel-btn.next {
-        right: 5px;
-        /* Pegado al borde derecho */
+        right: 15px;
     }
 
-    /* Ajuste de íconos para botones más pequeños */
+    .events-section .carousel-btn:active {
+        transform: translateY(-50%) scale(0.9);
+        /* Efecto de click */
+        background: #d4af37;
+        color: #000;
+    }
+
     .events-section .carousel-btn i {
-        font-size: 14px;
+        font-size: 18px;
     }
 }
 
-/* Ajuste para pantallas muy pequeñas */
+/* Optimización para iPhone y celulares pequeños */
 @media (max-width: 480px) {
-    .event-card-inner {
-        height: 420px;
+    .events-section .carousel-item {
+        padding: 0 45px;
+        /* Ajuste fino del espacio lateral */
     }
 
-    .events-section .events-carousel {
-        padding: 0 35px;
+    .event-card-inner {
+        height: 480px;
+    }
+
+    .events-section .carousel-btn {
+        width: 42px;
+        height: 42px;
+    }
+
+    .events-section .carousel-btn.prev {
+        left: 8px;
+    }
+
+    .events-section .carousel-btn.next {
+        right: 8px;
     }
 }
 
@@ -2153,138 +2200,125 @@ body {
     }
 
 
+
     /* ========================================= */
-    /* 10. RESPONSIVE (Móviles y Tabletas) */
+    /* AJUSTES ESPECÍFICOS DE LA SECCIÓN HERO */
     /* ========================================= */
-    @media (max-width: 992px) {
 
-        .events-grid {
-            /* 1fr significa "una fracción", lo que resulta en una sola columna */
-            grid-template-columns: 1fr;
-            gap: 20px;
-            /* Reduce un poco el espacio vertical entre las tarjetas */
-            margin: 20px auto;
-        }
-
-
-        /* ========================================= */
-        /* AJUSTES ESPECÍFICOS DE LA SECCIÓN HERO */
-        /* ========================================= */
-
-        /* 6. Altura y centrado del Hero */
-        .hero {
-            height: 70vh;
-            /* Reduce la altura para que ocupe menos de la pantalla */
-            min-height: 450px;
-            /* Mínimo pero más pequeño */
-        }
-
-        .hero-content {
-            /* Asegura el centrado vertical y horizontal */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            /* Limita el ancho del contenido para que no se desborde */
-        }
-
-        /* 7. Ajuste de imágenes para evitar desajustes */
-        .slide-image {
-            object-fit: cover;
-            /* Asegura que la imagen cubra el contenedor sin distorsión */
-        }
-
-        /* 8. Ajuste de Botones (CTA) en el Hero (más pequeños y apilados) */
-        .btn {
-            padding: 10px 20px;
-            /* Reduce el padding para botones más pequeños */
-            font-size: 0.9rem;
-            /* Reduce el tamaño de la fuente del botón */
-            margin: 8px auto;
-            /* Margen reducido y centrado */
-            display: block;
-            /* Hace que los botones se apilen para una mejor experiencia táctil */
-            width: 90%;
-            /* Ocupa casi todo el ancho disponible */
-        }
-
-        /* 9. Estilos para la marquesina */
-        .hero-content .pe-marquee {
-            font-size: 2.5rem;
-        }
-
-        .hero-content .pe-marquee .seperator {
-            margin: 0 15px;
-            height: 1em;
-            width: 1em;
-        }
-
-        /* Ajuste para que la animación de la marquesina sea más rápida en móvil */
-        .hero-content .pe-marquee .marquee-inner {
-            animation-duration: 10s;
-        }
-
-        /* Otros ajustes responsive de secciones... */
-
-        .mission-points {
-            flex-direction: column;
-        }
-
-        /* ========================================= */
-        /* AJUSTE ESPECÍFICO DEL BOTÓN SECUNDARIO EN HERO */
-        /* ========================================= */
-
-        .hero-content .secondary-btn {
-            /* Fondo Claro (Usando el color principal del tema) */
-            background-color: var(--primary-color);
-
-            /* Texto Oscuro para contraste */
-            color: var(--text-light);
-
-            /* Asegurar que no tenga un borde que no se vea bien */
-            border: none;
-        }
-
-        .hero-content .secondary-btn:hover {
-            /* Usamos el color de acento (gris medio) al pasar el ratón */
-            background-color: var(--secondary-color);
-
-            /* Mantiene el texto oscuro */
-            color: var(--text-light);
-
-            /* Mantiene el efecto de elevación si lo tienes definido en el .btn global */
-            transform: translateY(-2px);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        /* ----------------------------------------- */
-        /* RESPONSIVIDAD ESPECÍFICA PARA LA GALERÍA */
-        /* ----------------------------------------- */
-        .slider-grid {
-            grid-template-columns: 1fr;
-            /* Una sola columna en móvil */
-        }
-
-
-        /* ---------------------------------------------------- */
-        /* AJUSTE WHATSAPP FLOTANTE EN MÓVIL (Bajo 992px) */
-        /* ---------------------------------------------------- */
-        .whatsapp-float {
-            min-width: 130px;
-            /* Ancho mínimo ajustado */
-            height: 45px;
-            /* Altura más pequeña en móvil */
-            bottom: 20px;
-            right: 20px;
-            font-size: 0.8rem;
-            padding: 0 15px;
-            /* Relleno ajustado */
-        }
-
-        .whatsapp-float i {
-            font-size: 20px;
-            margin-right: 8px;
-        }
-
-
+    /* 6. Altura y centrado del Hero */
+    .hero {
+        height: 70vh;
+        /* Reduce la altura para que ocupe menos de la pantalla */
+        min-height: 450px;
+        /* Mínimo pero más pequeño */
     }
+
+    .hero-content {
+        /* Asegura el centrado vertical y horizontal */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        /* Limita el ancho del contenido para que no se desborde */
+    }
+
+    /* 7. Ajuste de imágenes para evitar desajustes */
+    .slide-image {
+        object-fit: cover;
+        /* Asegura que la imagen cubra el contenedor sin distorsión */
+    }
+
+    /* 8. Ajuste de Botones (CTA) en el Hero (más pequeños y apilados) */
+    .btn {
+        padding: 10px 20px;
+        /* Reduce el padding para botones más pequeños */
+        font-size: 0.9rem;
+        /* Reduce el tamaño de la fuente del botón */
+        margin: 8px auto;
+        /* Margen reducido y centrado */
+        display: block;
+        /* Hace que los botones se apilen para una mejor experiencia táctil */
+        width: 90%;
+        /* Ocupa casi todo el ancho disponible */
+    }
+
+    /* 9. Estilos para la marquesina */
+    .hero-content .pe-marquee {
+        font-size: 2.5rem;
+    }
+
+    .hero-content .pe-marquee .seperator {
+        margin: 0 15px;
+        height: 1em;
+        width: 1em;
+    }
+
+    /* Ajuste para que la animación de la marquesina sea más rápida en móvil */
+    .hero-content .pe-marquee .marquee-inner {
+        animation-duration: 10s;
+    }
+
+    /* Otros ajustes responsive de secciones... */
+
+    .mission-points {
+        flex-direction: column;
+    }
+
+    /* ========================================= */
+    /* AJUSTE ESPECÍFICO DEL BOTÓN SECUNDARIO EN HERO */
+    /* ========================================= */
+
+    .hero-content .secondary-btn {
+        /* Fondo Claro (Usando el color principal del tema) */
+        background-color: var(--primary-color);
+
+        /* Texto Oscuro para contraste */
+        color: var(--text-light);
+
+        /* Asegurar que no tenga un borde que no se vea bien */
+        border: none;
+    }
+
+    .hero-content .secondary-btn:hover {
+        /* Usamos el color de acento (gris medio) al pasar el ratón */
+        background-color: var(--secondary-color);
+
+        /* Mantiene el texto oscuro */
+        color: var(--text-light);
+
+        /* Mantiene el efecto de elevación si lo tienes definido en el .btn global */
+        transform: translateY(-2px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ----------------------------------------- */
+    /* RESPONSIVIDAD ESPECÍFICA PARA LA GALERÍA */
+    /* ----------------------------------------- */
+    .slider-grid {
+        grid-template-columns: 1fr;
+        /* Una sola columna en móvil */
+    }
+
+
+    /* ---------------------------------------------------- */
+    /* AJUSTE WHATSAPP FLOTANTE EN MÓVIL (Bajo 992px) */
+    /* ---------------------------------------------------- */
+    .whatsapp-float {
+        min-width: 130px;
+        /* Ancho mínimo ajustado */
+        height: 45px;
+        /* Altura más pequeña en móvil */
+        bottom: 20px;
+        right: 20px;
+        font-size: 0.8rem;
+        padding: 0 15px;
+        /* Relleno ajustado */
+    }
+
+    .whatsapp-float i {
+        font-size: 20px;
+        margin-right: 8px;
+    }
+
+
+}
