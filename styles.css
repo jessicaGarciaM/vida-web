@@ -805,86 +805,66 @@ body {
 }
 
 /* ========================================= */
-/* EVENTOS - ADAPTACIÓN CELULAR             */
+/* EVENTOS - ADAPTACIÓN CELULAR (BOTONES IGUAL A PC) */
 /* ========================================= */
 @media (max-width: 992px) {
-    .events-section {
-        padding: 60px 0;
-        /* Menos espacio vertical */
-    }
-
     .events-section .events-carousel {
         margin: 30px auto;
-        padding: 0 15px;
-        /* Evita que toque los bordes del cel */
-        overflow: hidden;
+        padding: 0 40px;
+        /* Espacio lateral para que quepan los botones */
+        overflow: visible;
+        /* IMPORTANTE: permite ver los botones fuera del borde */
     }
 
     .events-section .carousel-item {
-        /* Mostramos una tarjeta casi completa para invitar a deslizar */
-        width: 85%;
+        width: 100%;
+        /* Una tarjeta a la vez para evitar cortes feos */
         padding: 0 10px;
     }
 
     .event-card-inner {
-        height: 450px;
-        /* Reducimos altura para que quepa bien en pantallas cortas */
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+        height: 500px;
+        /* Tamaño elegante para celular */
     }
 
-    /* En celular el hover no existe, así que dejamos el diseño base limpio */
-    .carousel-item:hover .event-card-inner {
-        transform: none;
-        /* Quitamos rotación 3D en móvil para evitar saltos visuales */
-        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
-    }
-
-    /* Overlay más visible en celular ya que no hay hover */
-    .event-overlay {
-        opacity: 1;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 50%);
-        padding: 20px;
-    }
-
-    .event-tag {
-        font-size: 0.7rem;
-        padding: 4px 12px;
-    }
-
-    /* --- AJUSTE DE BOTONES NAVEGACIÓN --- */
-    /* Los hacemos más pequeños y los bajamos para que no tapen la imagen */
+    /* BOTONES FLOTANTES IGUAL QUE EN ESCRITORIO */
     .events-section .carousel-btn {
+        display: flex !important;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
         width: 45px;
         height: 45px;
-        top: auto;
-        bottom: -60px;
-        /* Los movemos debajo del carrusel */
-        transform: none;
+        z-index: 100;
+        background: rgba(20, 20, 20, 0.9);
+        border: 1px solid #d4af37;
+        /* Borde dorado para que resalten */
     }
 
     .events-section .carousel-btn.prev {
-        left: 30%;
+        left: 5px;
+        /* Pegado al borde izquierdo */
     }
 
     .events-section .carousel-btn.next {
-        right: 30%;
+        right: 5px;
+        /* Pegado al borde derecho */
     }
 
-    /* Espacio extra abajo para los botones */
-    .events-section .events-carousel {
-        margin-bottom: 80px;
+    /* Ajuste de íconos para botones más pequeños */
+    .events-section .carousel-btn i {
+        font-size: 14px;
     }
 }
 
-/* Para celulares muy pequeños (iPhone SE, etc) */
+/* Ajuste para pantallas muy pequeñas */
 @media (max-width: 480px) {
     .event-card-inner {
-        height: 380px;
+        height: 420px;
     }
 
-    .events-section .carousel-item {
-        width: 95%;
-        /* Casi pantalla completa */
+    .events-section .events-carousel {
+        padding: 0 35px;
     }
 }
 
