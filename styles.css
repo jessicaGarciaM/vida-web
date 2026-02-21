@@ -978,7 +978,7 @@ body {
 /* Ajustes Móvil */
 @media (max-width: 768px) {
     .calendar-container {
-        padding-bottom: 520%;
+        padding-bottom: 400%;
         /* Más alto en móvil para que se lea bien */
     }
 
