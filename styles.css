@@ -830,10 +830,10 @@ body {
     .event-card-inner {
         height: 550px;
         /* Altura estilizada */
-        border: 1px solid rgba(212, 175, 55, 0.3);
+        border: 1px solid #cbcbcb;
         /* Un toque dorado sutil en el borde */
-        background: rgba(255, 255, 255, 0.05);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        background: #cbcbcb;
+        box-shadow: 0 20px 40px #cbcbcb;
     }
 
     /* Overlay siempre visible en móvil para un look pro */
@@ -862,9 +862,9 @@ body {
         z-index: 100;
         background: rgba(15, 15, 15, 0.85);
         backdrop-filter: blur(8px);
-        border: 1px solid rgba(212, 175, 55, 0.5);
+        border: 1px solid #cbcbcb;
         /* Borde dorado */
-        color: #d4af37;
+        color: #cbcbcb;
         /* Iconos dorados */
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     }
@@ -881,7 +881,7 @@ body {
     .events-section .carousel-btn:active {
         transform: translateY(-50%) scale(0.9);
         /* Efecto de click */
-        background: #d4af37;
+        background: #cbcbcb;
         color: #000;
     }
 
