@@ -11,7 +11,7 @@ html {
     /* Un gris muy oscuro, menos duro que el negro puro. */
 
     /* Fondo Secundario Oscuro (Para secciones alternas o tarjetas) */
-    --bg-light: #252525;
+    --bg-light: #1e1d1d;
     /* Un gris un poco más claro para dar profundidad y separación. */
 
     /* Color Principal: (para elementos de navegación, iconos, bordes) */
@@ -52,7 +52,7 @@ body {
 
 :root {
     --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(51, 51, 51, 0.1);
     --accent-blue: #3b82f6;
     --accent-glow: rgba(59, 130, 246, 0.5);
     --text-main: #f8fafc;
@@ -233,122 +233,63 @@ body {
 }
 
 /* ========================================= */
-/* 4. RESPONSIVE MÓVIL (DISEÑO PREMIUM)     */
+/* 4. RESPONSIVE MÓVIL                       */
 /* ========================================= */
 @media (max-width: 992px) {
-
-    /* El botón de hamburguesa que ya tienes */
-    .menu-toggle {
-        display: none !important;
-        font-size: 24px;
-        color: #d4af37;
-        background: none;
-        border: none;
-        cursor: pointer;
-        z-index: 2000;
-        transition: 0.3s;
-    }
-
-    /* Panel Lateral Derecho */
     .nav {
         position: fixed;
         top: 0;
         right: -100%;
-        /* Escondido */
         height: 100vh;
-        width: 85%;
-        max-width: 350px;
-        background: rgba(10, 10, 10, 0.98);
-        backdrop-filter: blur(15px);
-        display: flex;
+        width: 80%;
+        background-color: #0d0d0d;
         flex-direction: column;
-        justify-content: flex-start;
-        padding: 100px 20px 40px 20px;
-        transition: right 0.6s cubic-bezier(1, 0, 0, 1);
-        z-index: 1500;
-        overflow-y: auto;
-        border-left: 1px solid rgba(212, 175, 55, 0.2);
+        justify-content: center;
+        transition: 0.5s ease;
     }
 
     .nav.active {
         right: 0;
-        /* Aparece */
-        box-shadow: -15px 0 30px rgba(0, 0, 0, 0.5);
     }
 
-    /* Enlaces del Nav en móvil */
-    .nav>a,
-    .dropdown {
-        width: 100%;
-        margin-bottom: 15px;
-        opacity: 0;
-        transform: translateX(30px);
-        transition: 0.4s ease;
-    }
-
-    /* Animación en cascada */
-    .nav.active>a,
-    .nav.active .dropdown {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    /* Retrasos para la cascada */
-    .nav.active>a:nth-child(1) {
-        transition-delay: 0.1s;
-    }
-
-    .nav.active .dropdown:nth-child(2) {
-        transition-delay: 0.2s;
-    }
-
-    .nav.active .dropdown:nth-child(3) {
-        transition-delay: 0.3s;
-    }
-
-    .nav.active .dropdown:nth-child(4) {
-        transition-delay: 0.4s;
-    }
-
-    .nav.active .dropdown:nth-child(5) {
-        transition-delay: 0.5s;
-    }
-
-    /* Ajuste de Dropdowns (Menús desplegables) */
     .dropdown-menu,
     .submenu-content {
         position: static !important;
         display: none;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.03) !important;
-        transform: none !important;
         opacity: 1 !important;
+        background: rgba(255, 255, 255, 0.03) !important;
+        border: none;
+        width: 100%;
+        text-align: center;
+        transform: none !important;
         box-shadow: none !important;
-        border: none !important;
-        padding-left: 15px;
     }
 
-    /* Clase para abrir dropdowns en móvil al hacer clic */
+    /* Mostrar al seleccionar en móvil */
     .dropdown.active>.dropdown-menu,
     .dropdown-submenu.active>.submenu-content {
         display: block !important;
     }
 
-    .nav a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: 700;
-        display: block;
-        padding: 10px 0;
-        letter-spacing: 1px;
+    .submenu-content a {
+        padding-left: 20px;
+        font-size: 13px;
     }
+}
 
-    .cta-button {
-        text-align: center;
-        margin-top: 10px;
-        border: 1px solid #d4af37 !important;
-    }
+/* Enlaces simples dentro de los menús */
+.dropdown-menu a {
+    color: var(--text-muted);
+    text-decoration: none;
+    display: block;
+    padding: 12px 20px;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-gold);
 }
 
 /* ========================================= */
@@ -1343,7 +1284,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(21, 21, 21, 0.05);
     color: #fff;
     border-radius: 50%;
     text-decoration: none;
@@ -1990,7 +1931,7 @@ body {
 
 /* --- SECCIÓN CONTACTO OSCURA --- */
 .seccion-contacto-oscura {
-    background-color: #1a1a1a;
+    background-color: #1c1c1c;
     /* Negro mate / Gris muy oscuro */
     padding: 100px 0;
     color: #ffffff;
