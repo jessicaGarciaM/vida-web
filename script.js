@@ -3,27 +3,22 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ========================================= */
     /* 1. NAVEGACIÓN, HAMBURGUESA Y SUBMENÚS     */
     /* ========================================= */
-    const header = document.querySelector('.header');
-    const nav = document.querySelector('.nav');
+    const nav = document.getElementById('main-nav');
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuClose = document.getElementById('menu-close');
 
-    if (header && !document.querySelector('.hamburger')) {
-        const hamburger = document.createElement('div');
-        hamburger.classList.add('hamburger');
-        hamburger.innerHTML = '<span></span><span></span><span></span>';
-        header.appendChild(hamburger);
-
-        hamburger.addEventListener('click', (e) => {
+    // Abrir menú
+    if (menuToggle && nav) {
+        menuToggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            nav.classList.toggle('active');
-            const spans = hamburger.querySelectorAll('span');
-            if (nav.classList.contains('active')) {
-                spans[0].style.transform = "rotate(45deg) translate(5px, 6px)";
-                spans[1].style.opacity = "0";
-                spans[2].style.transform = "rotate(-45deg) translate(5px, -6px)";
-            } else {
-                spans.forEach(s => s.style.transform = "none");
-                spans[1].style.opacity = "1";
-            }
+            nav.classList.add('active');
+        });
+    }
+
+    // Cerrar menú con el botón X
+    if (menuClose && nav) {
+        menuClose.addEventListener('click', () => {
+            nav.classList.remove('active');
         });
     }
 
@@ -42,15 +37,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Cerrar al hacer clic fuera del nav
     document.addEventListener('click', (e) => {
-        if (nav && !nav.contains(e.target)) {
+        if (nav && !nav.contains(e.target) && nav.classList.contains('active')) {
             nav.classList.remove('active');
             document.querySelectorAll('.dropdown, .dropdown-submenu').forEach(el => el.classList.remove('active'));
-            const spans = document.querySelectorAll('.hamburger span');
-            if (spans.length) {
-                spans.forEach(s => s.style.transform = "none");
-                spans[1].style.opacity = "1";
-            }
         }
     });
 
@@ -173,9 +164,6 @@ function sliderLogic(sliderId) {
     }, 3500);
 }
 
-/**
- * Lógica mejorada para el Carrusel de Eventos con botones funcionales
- */
 function initializeEventsCarousel(trackId) {
     const track = document.getElementById(trackId);
     if (!track) return;
@@ -211,13 +199,11 @@ function initializeEventsCarousel(trackId) {
         });
     }
 
-    // Auto-desplazamiento cada 5 segundos
     let autoPlay = setInterval(() => {
         index++;
         moveCarousel();
     }, 5000);
 
-    // Pausar al pasar el mouse
     container.addEventListener('mouseenter', () => clearInterval(autoPlay));
     container.addEventListener('mouseleave', () => {
         autoPlay = setInterval(() => {
@@ -239,10 +225,8 @@ function closeModal(modalId) {
     if (modal) modal.style.display = 'none';
 }
 
-// Cerrar modales al hacer clic fuera
 window.addEventListener('click', function (event) {
     if (event.target.classList.contains('modal')) {
         event.target.style.display = 'none';
     }
-
 });

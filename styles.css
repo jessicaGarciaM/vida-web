@@ -236,20 +236,71 @@ body {
 /* 4. RESPONSIVE MÓVIL                       */
 /* ========================================= */
 @media (max-width: 992px) {
-    .nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        height: 100vh;
-        width: 80%;
-        background-color: #0d0d0d;
-        flex-direction: column;
-        justify-content: center;
-        transition: 0.5s ease;
-    }
+    /* Menú Lateral Estilo Premium */
+    @media (max-width: 768px) {
+        .nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            /* Escondido a la derecha */
+            height: 100vh;
+            width: 80%;
+            max-width: 300px;
+            /* Evita que sea demasiado ancho en tablets */
+            background-color: #0d0d0d;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            /* Alinea los links arriba */
+            padding: 80px 30px;
+            /* Espacio para el botón de cerrar y márgenes laterales */
+            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 2000;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        }
 
-    .nav.active {
-        right: 0;
+        .nav.active {
+            right: 0;
+        }
+
+        /* Estilo de los enlaces dentro del menú (igual al de Elsy) */
+        .nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            /* Espaciado de letras elegante */
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            /* Línea divisoria sutil */
+            width: 100%;
+            display: block;
+        }
+
+        /* Estilo para el botón de cerrar (X) */
+        .menu-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 2001;
+        }
+
+        /* Ajuste para los botones dorados dentro del menú lateral */
+        .nav .cta-button {
+            margin-top: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            background-color: transparent;
+            font-size: 0.75rem;
+        }
     }
 
     .dropdown-menu,
