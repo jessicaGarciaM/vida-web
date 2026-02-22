@@ -93,6 +93,35 @@ body {
 /* ========================================= */
 /* 2. NAVEGACIÓN E ILUMINACIÓN (GLOBAL)      */
 /* ========================================= */
+/* --- OCULTAR BOTONES EN ESCRITORIO --- */
+
+/* Escondemos la hamburguesa (3 rayitas) */
+.menu-toggle {
+    display: none;
+}
+
+/* Escondemos la X (cruz) */
+.menu-close {
+    display: none;
+}
+
+/* --- MOSTRAR BOTONES SOLO EN MÓVIL --- */
+@media (max-width: 1024px) {
+
+    /* O 768px según tu diseño */
+    .menu-toggle {
+        display: block;
+        /* O flex si necesitas centrar el icono */
+    }
+
+    .menu-close {
+        display: block;
+        position: absolute;
+        top: 25px;
+        right: 25px;
+    }
+}
+
 .nav {
     display: flex;
     align-items: center;
