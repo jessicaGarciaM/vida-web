@@ -719,7 +719,7 @@ body {
 .event-card-inner img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     transition: transform 0.8s ease;
     filter: saturate(1.2);
 }
@@ -820,12 +820,12 @@ body {
     }
 
     .event-card-inner {
-        height: 550px;
-        /* Altura estilizada */
-        border: 1px solid #cbcbcb;
-        /* Un toque dorado sutil en el borde */
-        background: #cbcbcb;
-        box-shadow: 0 20px 40px #cbcbcb;
+        height: 350px;
+        /* Bajamos de 550px a 350px */
+        background: #000;
+        /* Fondo negro en lugar de gris para que resalte la foto */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
     /* Overlay siempre visible en móvil para un look pro */
