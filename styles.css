@@ -1707,6 +1707,141 @@ body {
     transform: translateY(-10px);
 }
 
+/* --- Podcast Section --- */
+.podcast-section {
+    padding: 80px 20px;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+    overflow: hidden;
+}
+
+.podcast-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.podcast-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Estilo para la etiqueta dorada que faltaba */
+.etiqueta-dorada {
+    color: #d4af37;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.titulo-moderno {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 10px 0;
+    letter-spacing: -1px;
+}
+
+.podcast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    perspective: 1000px;
+}
+
+.podcast-card {
+    position: relative;
+    height: 220px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-glass {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    transition: transform 0.3s ease;
+}
+
+.platform-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    display: block;
+    transition: 0.3s ease;
+}
+
+.btn-escuchar {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.3s ease;
+    color: #d4af37;
+    /* Color dorado */
+}
+
+/* Colores de marca en Hover */
+.podcast-card[data-platform="spotify"]:hover .platform-icon {
+    color: #1DB954;
+}
+
+.podcast-card[data-platform="apple"]:hover .platform-icon {
+    color: #FC3C44;
+}
+
+.podcast-card[data-platform="amazon"]:hover .platform-icon {
+    color: #00A8E1;
+}
+
+.podcast-card[data-platform="youtube"]:hover .platform-icon {
+    color: #FF0000;
+}
+
+.podcast-card[data-platform="deezer"]:hover .platform-icon {
+    color: #822efb;
+}
+
+/* Deezer es más morado/azul */
+
+.podcast-card:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    border-color: rgba(212, 175, 55, 0.5);
+    /* Brillo dorado en el borde al pasar el mouse */
+}
+
+.podcast-card:hover .btn-escuchar {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Media Query corregida */
+@media (max-width: 768px) {
+    .titulo-moderno {
+        font-size: 2.2rem;
+    }
+
+    .podcast-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 /* ========================================= */
 /* TARJETAS DE EQUIPO CON BORDE ANIMADO      */
 /* ========================================= */
@@ -2318,5 +2453,137 @@ body {
         margin-right: 8px;
     }
 
+    /* --- Podcast Section --- */
+    .podcast-section {
+        padding: 80px 20px;
+        background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+        overflow: hidden;
+    }
 
-}
+    .podcast-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .podcast-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    /* Estilo para la etiqueta dorada que faltaba */
+    .etiqueta-dorada {
+        color: #d4af37;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .titulo-moderno {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #fff;
+        margin: 10px 0;
+        letter-spacing: -1px;
+    }
+
+    .podcast-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        perspective: 1000px;
+    }
+
+    .podcast-card {
+        position: relative;
+        height: 220px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card-glass {
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        z-index: 1;
+    }
+
+    .card-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: #fff;
+        transition: transform 0.3s ease;
+    }
+
+    .platform-icon {
+        font-size: 3.5rem;
+        margin-bottom: 15px;
+        display: block;
+        transition: 0.3s ease;
+    }
+
+    .btn-escuchar {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: 0.3s ease;
+        color: #d4af37;
+        /* Color dorado */
+    }
+
+    /* Colores de marca en Hover */
+    .podcast-card[data-platform="spotify"]:hover .platform-icon {
+        color: #1DB954;
+    }
+
+    .podcast-card[data-platform="apple"]:hover .platform-icon {
+        color: #FC3C44;
+    }
+
+    .podcast-card[data-platform="amazon"]:hover .platform-icon {
+        color: #00A8E1;
+    }
+
+    .podcast-card[data-platform="youtube"]:hover .platform-icon {
+        color: #FF0000;
+    }
+
+    .podcast-card[data-platform="deezer"]:hover .platform-icon {
+        color: #822efb;
+    }
+
+    /* Deezer es más morado/azul */
+
+    .podcast-card:hover {
+        transform: translateY(-10px) rotateX(5deg);
+        border-color: rgba(212, 175, 55, 0.5);
+        /* Brillo dorado en el borde al pasar el mouse */
+    }
+
+    .podcast-card:hover .btn-escuchar {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Media Query corregida */
+    @media (max-width: 768px) {
+        .titulo-moderno {
+            font-size: 2.2rem;
+        }
+
+        .podcast-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
